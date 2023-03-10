@@ -3,4 +3,5 @@ public class App {
         System.out.println("Hello, World!");
         hello
     }
+    public class student
 }
