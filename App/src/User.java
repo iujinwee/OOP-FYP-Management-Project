@@ -1,28 +1,38 @@
-// Base Class (Super)
-public class User implements UserInterface{
+public class User{
 
-    private String userId;
+    private String userID;
+    private String name;
     private String email;
     
-    public User(String userId, String email, String userType){
-        this.userId = userId;
+    public User(){
+        
+    }
+
+    public User(String userID, String name, String email){
+        this.userID = userID;
+        this.name = name;
         this.email = email;
     }
 
-    @Override
-    public void viewProjects() {
-        // TODO Auto-generated method stub
+    public String getUserID(){
+        return this.userID;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public String getEmail(){
+        return this.email;
+    }
+
+    // @Override
+    // public void viewProjects() {
         
-    }
+    // }
 
-    @Override
-    public void viewRequestHistory() {
-        // TODO Auto-generated method stub
+    // @Override
+    // public void viewRequestHistory() {
         
-    }
-
-    public String getUserId(){
-        return this.userId;
-    }
-
+    // }
 }

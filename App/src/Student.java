@@ -1,37 +1,35 @@
 public class Student extends User{
-    private String studentId;
-    private RequestList requestDB;
     
-    public Student(){
-        this.studentId = super.getUserId();
+    private String studentID;
+    // private RequestList requestDB;
 
-        RequestDB requestDB = new RequestDB();
+    public Student(String userID, String name, String email){
+        super(userID, name, email);
+        this.studentID = userID;
+    }
+
+    // private createRequest(){
+    //     requestDB.createRequest(requestType); // changetitle, registers, deregister
+    // }
+
+    // public viewProjects(){
         
-        
-    }
+    // }
+    // public showMenu(){
+    //     PRINT STATEMENTS
+    //     // [1] create req
 
-    private createRequest(){
-        requestDB.createRequest(requestType); // changetitle, registers, deregister
-    }
+    //     // [2] show avail projects 
+    //     // [3] show registered projects
 
-    public viewProjects(){
-        
-    }
-    public showMenu(){
-        PRINT STATEMENTS
-        // [1] create req
+    //     ASK FOR INPUT 
 
-        // [2] show avail projects 
-        // [3] show registered projects
-
-        ASK FOR INPUT 
-
-        switch(CHOICE)
-            case 1:
-                requestDB.viewProjects(userType)
-            case 2:
-                
-    }
+    switch(CHOICE){
+        case 1:
+            requestDB.viewProjects(userType)
+        case 2:
+    }      
+    
 }
 
 

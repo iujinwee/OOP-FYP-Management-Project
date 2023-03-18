@@ -1,23 +1,22 @@
 public class Account {
 
-    private String userId; 
+    private String userID; 
     private String password;
     private userType userType;
     enum userType {STUDENT, SUPERVISOR, FYPCOORDINATOR}
 
-    public Account(String userId, String password){
-        this.userId = userId;
+    public Account(String userID, String password){
+        this.userID = userID;
         this.password = password;
     }
 
-    public boolean authenticate(Account[] accountList){
+    public boolean authenticate(Account[] accountList, String inputPassword){
         
         // iterate through accountlist to find account 
-
-        this.userType = "STUDENT";
-
         return true;
     }
+
+
     public boolean changePassword(Account[] accountList){
 
         // update password if valid in the accountlist
@@ -27,20 +26,27 @@ public class Account {
     public void initializeUser(){
         switch (this.userType) {
             case STUDENT:
-                User currentUser = Student(userId, email, this.userType);
-                
+                User currentUser = new Student();
                 break;
             
             case SUPERVISOR: 
-                User currentUser = Supervisor(userId);
+                // User currentUser = Supervisor(userId);
             default:
                 break;
         }
 
-        currentUser.showMenu();
+        // currentUser.showMenu();
     }
 
-    public String getUserId(){
-        return this.userId;
+    public String getUserID(){
+        return this.userID;
+    }
+
+    public String getPassword(){
+        return this.password;
+    }
+
+    public userType getUserType(){
+        return this.userType;
     }
 }
