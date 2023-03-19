@@ -1,3 +1,4 @@
+package Login;
 public class Account {
 
     private String userID; 
@@ -35,7 +36,7 @@ public class Account {
                 break;
         }
 
-        // currentUser.showMenu();
+        currentUser.showMenu();
     }
 
     public String getUserID(){
