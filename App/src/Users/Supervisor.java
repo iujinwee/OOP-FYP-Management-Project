@@ -1,8 +1,8 @@
 package Users;
 import java.util.*;
 
-import Projects.Project.Project;
-import Requests.Request;
+import Projects.ProjectDetails.Project;
+import Requests.RequestDetails.Request;
 import Users.UserRole.Administrator;
 
 public class Supervisor extends Administrator {

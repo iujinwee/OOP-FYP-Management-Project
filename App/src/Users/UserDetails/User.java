@@ -1,4 +1,4 @@
-package Users.User;
+package Users.UserDetails;
 public abstract class User implements UserInterface {
 
 	private String userID;
@@ -28,6 +28,10 @@ public abstract class User implements UserInterface {
 		return this.email;
 	}
 
+	public void setUserType(UserType inputType){
+		this.type = inputType;
+	}
+
 	@Override
 	public void showMenu() {
 		System.out.println("=======================================");
@@ -36,6 +40,6 @@ public abstract class User implements UserInterface {
         System.out.printf("You are currently signed in as a %s.\n", type);
    	}
 
-	abstract public void showUserMenu();
+	abstract public void viewUserMenu();
 	// abstract public userType getUserType();
 }

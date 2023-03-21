@@ -1,4 +1,4 @@
-package Requests.Request;
+package Requests.RequestDetails;
 public enum RequestType {
 	CHANGETITLE,
 	CHANGESUPERVISOR,

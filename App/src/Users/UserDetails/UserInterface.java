@@ -1,4 +1,4 @@
-package Users.User;
+package Users.UserDetails;
 public interface UserInterface {
 
 	void showMenu();

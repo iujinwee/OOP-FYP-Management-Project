@@ -1,6 +1,6 @@
-import Projects.Project.Project;
+import Projects.ProjectDetails.Project;
 import Users.FYP_Coordinator;
-import Users.User.UserType;
+import Users.UserDetails.UserType;
 
 package Projects;
 public class ProjectDB {

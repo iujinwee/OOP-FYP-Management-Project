@@ -1,16 +1,25 @@
 package Users.UserRole;
 
-import Users.User.User;
+import Requests.RequestDB;
+import Requests.RequestDetails.RequestType;
+import Users.UserDetails.User;
 
-public class Requestor extends User {
+public abstract class Requestor extends User {
 
+	private RequestDB reqDB;
 	/**
 	 * 
 	 * @param RequestDB
 	 */
-	public void sendRequest(int RequestDB) {
-		// TODO - implement Requestor.sendRequest
-		throw new UnsupportedOperationException();
+
+	public Requestor(String userID, String name, String email){
+		super(userID, name, email);
+		reqDB = new RequestDB();
+	}
+	
+	public void sendRequest(RequestType type){
+		reqDB.createRequest(type);
 	}
 
+	abstract public void viewUserMenu();
 }

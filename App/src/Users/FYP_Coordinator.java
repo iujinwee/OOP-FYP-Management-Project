@@ -1,4 +1,4 @@
-import Requests.Request;
+import Requests.RequestDetails;
 
 public class FYP_Coordinator extends Supervisor {
 

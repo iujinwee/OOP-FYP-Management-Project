@@ -1,7 +1,7 @@
 import Users.Student;
 import Users.Supervisor;
 
-package Projects.Project;
+package Projects.ProjectDetails;
 public class Project {
 
 	Supervisor supervisedBy;

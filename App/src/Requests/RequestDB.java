@@ -1,12 +1,17 @@
 package Requests;
 
-import Requests.Request.Request;
+import Requests.RequestDetails.Request;
+import Requests.RequestDetails.RequestType;
 
 public class RequestDB {
 
 	private Request[] requestDB;
 
-	public void createRequest() {
+	public RequestDB(){
+		
+	}
+
+	public void createRequest(RequestType type) {
 		// TODO - implement RequestDB.createRequest
 		throw new UnsupportedOperationException();
 	}
