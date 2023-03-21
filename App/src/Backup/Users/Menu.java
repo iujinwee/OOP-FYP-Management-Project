@@ -1,6 +1,6 @@
-package Users;
+package Backup.Users;
 
-import Users.User.userType;
+import Backup.Users.User.userType;
 
 public class Menu {
     public Menu(userType type){

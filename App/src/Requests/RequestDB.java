@@ -1,29 +1,26 @@
 package Requests;
 
-public class RequestDB{
+import Requests.Request.Request;
 
-    private Request[] requestList;
-    public RequestDB(){
-        // initialize request database 
-        
-    }
+public class RequestDB {
 
-    public void viewProjects{
-        
-    }
 
-    public void createRequest(requestType){
-        // add new request
+	private Request[] requestDB;
 
-        switch(requestType){
-            case changetitle:
-                Request newRequest = new Request(senderID, requestType);
-        }
-        updateDB(newRequest);
-    }
 
-    private boolean updateDB(Request newRequest){
+	public void createRequest() {
+		// TODO - implement RequestDB.createRequest
+		throw new UnsupportedOperationException();
+	}
 
-        return true;
-    }
+	public void updateRequest() {
+		// TODO - implement RequestDB.updateRequest
+		throw new UnsupportedOperationException();
+	}
+
+	public void viewRequest() {
+		// TODO - implement RequestDB.viewRequest
+		throw new UnsupportedOperationException();
+	}
+
 }
