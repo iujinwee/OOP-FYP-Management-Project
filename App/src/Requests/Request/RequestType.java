@@ -1,0 +1,7 @@
+package Requests.Request;
+public enum RequestType {
+	CHANGETITLE,
+	CHANGESUPERVISOR,
+	REGISTERPROJECT,
+	DEREGISTERPROJECT
+}

@@ -1,12 +1,26 @@
-public class Supervisor extends User{
-    
-    private String supervisorID;
+package Users;
+import java.util.*;
 
-    public Supervisor(){
-        this.supervisorID = super.getUserID;
-    }
+import Projects.Project.Project;
+import Requests.Request;
+import Users.UserRole.Administrator;
 
-    public String getSupervisorID(){
-        return this.supervisorID;
-    }
+public class Supervisor extends Administrator {
+
+	Collection<Request> sends;
+	Collection<Project> create;
+	private String supervisorID;
+	private int numAssignedProjects;
+	private int projectLimit = 2;
+
+	/**
+	 * 
+	 * @param userID
+	 * @param name
+	 */
+	public Supervisor(String userID, String name) {
+		// TODO - implement Supervisor.Supervisor
+		throw new UnsupportedOperationException();
+	}
+
 }

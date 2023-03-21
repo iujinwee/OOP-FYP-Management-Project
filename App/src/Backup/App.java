@@ -1,22 +1,14 @@
-import java.util.ArrayList;
+package Backup;
 import java.util.Scanner;
 
 import Login.Account;
-import Projects.Project.Project;
-import Users.FYP_Coordinator;
-import Users.Student;
-import Users.Supervisor;
+import Users.User.Users.Student;
+import Users.User.Users.User;
 
 public class App {
-
-	private ArrayList<Student> studentList;
-	private ArrayList<Supervisor> facultyList;
-	private ArrayList<Project> projectList;
-	private ArrayList<FYP_Coordinator> coordinator;
-	private ArrayList<Account> accountsList;
-
-	public static void main(String[] args) {
-		// File Initialization
+    public static void main(String[] args){
+        
+        // File Initialization
         initalizeSystem();
 
         // Introduction to App 
@@ -31,9 +23,9 @@ public class App {
         
         
         // Execute choice of user
-	}
+    }
 
-	
+    
     private static boolean login(){
         String inputUserID;
         String inputPassword;
@@ -63,13 +55,9 @@ public class App {
         // scan in fyp coordinator file
     }
 
-	/**
-	 * 
-	 * @param inputFile
-	 */
-	private ArrayList<Object> loadFile(FileIO inputFile) {
-		// TODO - implement App.loadFile
-		throw new UnsupportedOperationException();
-	}
-
+    private static void loadFile(){
+        Scanner sc = new Scanner(System.in);
+        // read file
+    }
+    
 }

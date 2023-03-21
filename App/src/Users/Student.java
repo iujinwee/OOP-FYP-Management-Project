@@ -1,56 +1,28 @@
 package Users;
-public class Student extends User{
-    
-    private String studentID;
-    private userType userType;
-    // private RequestList requestDB;
+import java.util.*;
 
-    public Student(String userID, String name, String email){
-        super(userID, name, email);
-        this.studentID = userID;
-        this.userType = Users.User.userType.STUDENT;
+import Projects.Project.Project;
+import Requests.Request;
+import Users.UserRole.Requestor;
 
-        showUserMenu();
-    }
+public class Student extends Requestor {
 
-    @Override
-    public void showUserMenu() {
-        System.out.println("=== User Menu ===");
-        System.out.println("[1] View Available Projects");
-        System.out.println("[2] View Registered Project");
-        System.out.println("[3] Register Project");
-        System.out.println("[4] Deregister Project");
-        System.out.println("[5] Request to change project title");
+	Collection<Request> sends;
+	Project registeredTo;
+	private String studentID;
 
-        System.out.println("\nSelect an option from the menu: ");
-    }
+	/**
+	 * 
+	 * @param userID
+	 * @param name
+	 */
+	public Student(String userID, String name) {
+		
+	}
 
-    @Override
-    public userType getUserType() {
-        return this.userType;
-    }
+	public void viewRegisteredProject() {
+		// TODO - implement Student.viewRegisteredProject
+		throw new UnsupportedOperationException();
+	}
 
-    // private createRequest(){
-    //     requestDB.createRequest(requestType); // changetitle, registers, deregister
-    // }
-
-    // public viewProjects(){
-        
-    // }
-    // public showMenu(){
-    //     PRINT STATEMENTS
-    //     // [1] create req
-
-    //     // [2] show avail projects 
-    //     // [3] show registered projects
-
-    //     ASK FOR INPUT 
-
-    // switch(CHOICE){
-    //     case 1:
-    //         requestDB.viewProjects(userType)
-    //     case 2:
-    // }      
-    
 }
-
