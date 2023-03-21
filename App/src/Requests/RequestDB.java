@@ -9,7 +9,7 @@ public class RequestDB{
     }
 
     public void viewProjects{
-        // for loop print
+        
     }
 
     public void createRequest(requestType){
