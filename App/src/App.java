@@ -50,6 +50,7 @@ public class App {
             Account account = new Account(userID, password);
             account.authenticate(accountList, inputPassword);
         }
+        // error handling
         else {
             System.out.println("Invalid user ID!");
             return false;
