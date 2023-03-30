@@ -54,6 +54,7 @@ public class App {
             // account.authenticate(accountList, inputPassword);
             return true;
         }
+        // error handling
         else {
             System.out.println("Invalid user ID!");
             return false;
