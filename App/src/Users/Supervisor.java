@@ -19,8 +19,7 @@ public class Supervisor extends Administrator {
 	 * @param name
 	 */
 	public Supervisor(String userID, String name) {
-		// TODO - implement Supervisor.Supervisor
-		throw new UnsupportedOperationException();
+		super(userID, name, name);
 	}
 
 }

@@ -4,16 +4,17 @@ import java.util.*;
 import Projects.ProjectDB;
 import Requests.RequestDetails.Request;
 import Requests.RequestDetails.RequestType;
+import Users.UserDetails.User;
 import Users.UserDetails.UserType;
-import Users.UserRole.Requestor;
 import Requests.RequestDB;
 
-public class Student extends Requestor{
+public class Student extends User{
 
 	ArrayList<Request> sends;
 	// Project registeredTo;
 	private String studentID;
 	private ProjectDB projDB;
+	private RequestDB reqDB;
 
 	/**
 	 * 
@@ -25,10 +26,11 @@ public class Student extends Requestor{
 		// Initialization
 		super(userID, name, email);
 		super.setUserType(UserType.STUDENT);
-		this.studentID = getUserID();
+		this.studentID = super.getUserID();
 
 		// Load Database
 		projDB = new ProjectDB();
+		reqDB = new RequestDB();
 
 		// Get User Input  
 		Scanner sc = new Scanner(System.in);
@@ -52,13 +54,13 @@ public class Student extends Requestor{
 						viewRegisteredProject();
 						break;
 					case 3:
-						sendRequest(RequestType.REGISTERPROJECT);
+						reqDB.createRequest(RequestType.REGISTERPROJECT);
 						break;
 					case 4:
-						sendRequest(RequestType.DEREGISTERPROJECT);
+						reqDB.createRequest(RequestType.DEREGISTERPROJECT);
 						break;
 					case 5:
-						sendRequest(RequestType.CHANGETITLE);
+						reqDB.createRequest(RequestType.CHANGETITLE);
 						break;
 
 					default:

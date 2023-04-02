@@ -1,25 +1,56 @@
-import Users.User.User;
+import Projects.ProjectDB;
+import Requests.RequestDB;
+import Users.UserDetails.User;
 
-package Users.UserRole;
 public class Administrator extends User implements ManageRequestMenu {
 
 	/**
 	 * 
 	 * @param RequestDB
 	 */
+
+	private RequestDB reqDB;
+	private ProjectDB projDB; 
+	
+	public Administrator(String userID, String name, String email){
+		
+		// Call Constructor
+		super(userID, name, email);
+
+		// Initialize DB 
+		reqDB = new RequestDB();
+		projDB = new ProjectDB();
+
+		// Get User 
+	}
+
 	public void manageRequests(int RequestDB) {
-		// TODO - implement Administrator.manageRequests
-		throw new UnsupportedOperationException();
+		
 	}
 
 	public isBoolean createProject() {
-		// TODO - implement Administrator.createProject
-		throw new UnsupportedOperationException();
+		
 	}
 
 	public isBoolean changeTitle() {
-		// TODO - implement Administrator.changeTitle
-		throw new UnsupportedOperationException();
+		
 	}
 
+	@Override
+	public void viewUserMenu() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void approve() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void reject() {
+		// TODO Auto-generated method stub
+		
+	}
 }
