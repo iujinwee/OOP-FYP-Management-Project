@@ -1,14 +1,17 @@
 package Requests;
 
+import java.util.ArrayList;
+
 import Requests.RequestDetails.Request;
 import Requests.RequestDetails.RequestType;
 
 public class RequestDB {
 
-	private Request[] requestDB;
+	private ArrayList <Request> requestDB;
 
 	public RequestDB(){
-		
+		// Load the Excel File  
+		requestDB = <output of excel> 
 	}
 
 	public void createRequest(RequestType type) {
