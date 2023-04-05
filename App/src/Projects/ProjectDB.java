@@ -22,12 +22,12 @@ public class ProjectDB {
 	 * 
 	 * @param newTitle
 	 */
-	public void setProjectTitle(String newTitle) {
+	public void setProjectTitle(String projectTitle) {
 		// TODO - implement ProjectDB.setProjectTitle
 		throw new UnsupportedOperationException();
 	}
 
-	public void setSupervisor() {
+	public void setSupervisor(String supervisorName) {
 		// TODO - implement ProjectDB.setSupervisor
 		throw new UnsupportedOperationException();
 	}

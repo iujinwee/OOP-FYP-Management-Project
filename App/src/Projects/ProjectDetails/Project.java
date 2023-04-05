@@ -28,4 +28,28 @@ public class Project {
 		throw new UnsupportedOperationException();
 	}
 
+	public String getProjectTitle(){
+	}
+
+	
+	public String getStudent(){
+		
+	}
+
+	
+	public String getSupervisor(){
+
+	}
+
+	public void setProjectTitle(String title){
+
+	}
+
+	public void setStudent(String studentId){
+
+	}
+
+	public void setSupervisor(String supervisorId){
+
+	}
 }
