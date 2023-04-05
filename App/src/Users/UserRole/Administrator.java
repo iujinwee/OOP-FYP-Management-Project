@@ -1,5 +1,7 @@
 package Users.UserRole;
 
+import java.util.Scanner;
+
 import Projects.ProjectDB;
 import Requests.RequestDB;
 import Users.UserDetails.User;
@@ -26,6 +28,23 @@ public class Administrator extends User implements ManageRequestMenu {
 
 	public void manageRequests() {
 		reqDB.viewRequest(); // View all requests
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Select Request:");
+		int requestId = sc.nextInt();
+
+		int choice = sc.nextInt();
+		switch (choice) {
+			// Approve
+			case 1:
+				
+				break;
+		
+			// Reject 
+			case 2: 	
+			default:
+				break;
+		}
 	}
 
 	public isBoolean createProject() {

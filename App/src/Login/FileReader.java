@@ -9,14 +9,16 @@ import java.util.Map;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;  
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;  
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import Projects.ProjectDetails.Project;
+import Requests.RequestDetails.Request;
 import Users.UserDetails.User;
 
 public class FileReader {
     
-    public static ArrayList<User> readExcelFile(String filePath, User user) throws IOException {
-        ArrayList<User> userList = new ArrayList<>();
+    public static ArrayList<Object> readExcelFile(String filePath, Object item) throws IOException {
+        ArrayList<Object> resultList = new ArrayList<>();
         Map<String, Integer> columnMap = new HashMap<>();
 
         try {
@@ -36,23 +38,54 @@ public class FileReader {
                     // skip header row
                     continue;
                 }
-                User tempUser = user.getClass().getDeclaredConstructor().newInstance();
-                tempUser.setUserID(getStringCellValue(row.getCell(0)));
-                System.out.println(getStringCellValue(row.getCell(0)));
-                tempUser.setName(getStringCellValue(row.getCell(columnMap.get("Name"))));
-                tempUser.setEmail(getStringCellValue(row.getCell(columnMap.get("Email"))));
+
+                switch (item.getClass().getSimpleName()) {
+                    case "Student":
+                    case "Supervisor":
+                        User tempUser = (User) item.getClass().getDeclaredConstructor().newInstance();
+
+                        String email  = getStringCellValue(row.getCell(columnMap.get("Email")));
+
+                        tempUser.setUserID(email.substring(0, email.indexOf('@')));
+                        tempUser.setName(getStringCellValue(row.getCell(columnMap.get("Name"))));
+                        tempUser.setEmail(email);
+                        resultList.add(tempUser);
+
+                        break;
+
+                    case "Project":
+                        Project tempProject = (Project) item.getClass().getDeclaredConstructor().newInstance();
+
+                        tempProject.setProjectTitle(getStringCellValue(row.getCell(columnMap.get("Title"))));
+                        tempProject.setSupervisor(getStringCellValue(row.getCell(columnMap.get("Supervisor"))));
+                        resultList.add(tempProject);
+
+                        break;
+
+                    case "Request": 
+                        Request tempRequest = (Request) item.getClass().getDeclaredConstructor().newInstance();
+                        
+
+                        resultList.add(tempRequest);
+                        break;
+                        
+                    default:
+                        break;
+                }
+
             
-                userList.add(tempUser);
             }
             
             wb.close();
             inputStream.close();
+
         }catch(IOException e){
             e.printStackTrace();
+            
         } catch (ReflectiveOperationException e){
             e.printStackTrace();
         }
-        return userList;
+        return resultList;
     }
     
     private static String getStringCellValue(Cell cell) {

@@ -4,25 +4,28 @@ import java.util.Scanner;
 
 import Login.Account;
 import Login.FileReader;
-// import Projects.Project.Project;
+import Projects.ProjectDetails.Project;
 import Users.FYP_Coordinator;
 import Users.Student;
 import Users.Supervisor;
-import Users.UserDetails.User;
 
 public class App {
 
-	private ArrayList<Student> studentList;
-	private ArrayList<Supervisor> facultyList;
-	// private ArrayList<Project> projectList;
-	private ArrayList<FYP_Coordinator> coordinator;
-	private ArrayList<Account> accountsList;
+	private static ArrayList<Object> studentList;
+	private static ArrayList<Supervisor> facultyList;
+	private static ArrayList<Project> projectList;
+	private static ArrayList<FYP_Coordinator> coordinator;
+	private static ArrayList<Account> accountsList;
 
 	public static void main(String[] args) {
 		// File Initialization
         initalizeSystem();
 
         // Introduction to App 
+        System.out.println("\n================================================================");
+        System.out.println("======    Welcome to Final Year Project Management App    ======");
+        System.out.println("================================================================\n");
+
 
         // Login (Login with 5 attempts, use try, catch to handle invalid  inputs. once 5 attempts up, terminate program)
         boolean loginSuccess = login();
@@ -63,16 +66,14 @@ public class App {
 
     private static void initalizeSystem(){ 
 
-        String pathname = System.getProperty("user.dir").concat("\\App\\data\\");
+        String pathname = System.getProperty("user.dir").concat("\\data\\");
 
         // scan in student list file 
         try{
-            ArrayList<User> studentList = FileReader.readExcelFile(pathname.concat("student_list.xlsx"), new Student());
+            System.out.println("Initializing Files...");
+            studentList = FileReader.readExcelFile(pathname.concat("student_list.xlsx"), new Student());
 
-            for (int i =0; i<studentList.size(); i++){
-                System.out.println(studentList.get(i).getName());
-                System.out.println(studentList.get(i).getEmail());
-            }
+            System.out.println("Files Initialized!");
         }catch(IOException e){
             e.printStackTrace();
         }
