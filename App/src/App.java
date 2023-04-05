@@ -64,6 +64,7 @@ public class App {
         }
     }
 
+    // Do we really need this, mayb just need to initialize whenever loading the class
     private static void initalizeSystem(){ 
 
         try{
