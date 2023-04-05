@@ -20,6 +20,7 @@ public class Student extends User{
 	 * 
 	 * @param userID
 	 * @param name
+	 * @param email
 	 */
 	public Student(){}
 	public Student(String userID, String name, String email) {
@@ -29,15 +30,15 @@ public class Student extends User{
 		super.setUserType(UserType.STUDENT);
 		this.studentID = super.getUserID();
 
-		// Load Database
-		projDB = new ProjectDB();
-		reqDB = new RequestDB();
-
-		// Get User Input  
-		Scanner sc = new Scanner(System.in);
-		int choice = -1;
-
 		try{
+			// Load Database
+			projDB = new ProjectDB();
+			reqDB = new RequestDB();
+
+			// Get User Input  
+			Scanner sc = new Scanner(System.in);
+			int choice = -1;
+
 			while (choice != 0){
 				// Show User Menu 
 				viewUserMenu();

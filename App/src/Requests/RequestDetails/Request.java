@@ -20,6 +20,7 @@ public class Request {
 	 * 
 	 * @param type
 	 */
+	public Request(){}
 	public Request(RequestType type) {
 		// TODO - implement Request.Request
 		throw new UnsupportedOperationException();
