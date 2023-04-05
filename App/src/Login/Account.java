@@ -2,7 +2,7 @@ package Login;
 public class Account {
 
 	private String userID;
-	private String password = password;
+	private String password = "password";
 
 	/**
 	 * 

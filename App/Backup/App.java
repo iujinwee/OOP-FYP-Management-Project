@@ -2,8 +2,7 @@ package Backup;
 import java.util.Scanner;
 
 import Login.Account;
-import Users.User.Users.Student;
-import Users.User.Users.User;
+import Users.UserDetails.User;
 
 public class App {
     public static void main(String[] args){

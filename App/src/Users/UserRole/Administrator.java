@@ -1,3 +1,5 @@
+package Users.UserRole;
+
 import Projects.ProjectDB;
 import Requests.RequestDB;
 import Users.UserDetails.User;
@@ -20,20 +22,18 @@ public class Administrator extends User implements ManageRequestMenu {
 		// Initialize DB 
 		reqDB = new RequestDB();
 		projDB = new ProjectDB();
-
-		// Get User 
 	}
 
-	public void manageRequests(int RequestDB) {
-		
+	public void manageRequests() {
+		reqDB.viewRequest(); // View all requests
 	}
 
 	public isBoolean createProject() {
-		
+		projDB.createProject();
 	}
 
 	public isBoolean changeTitle() {
-		
+		projDB.setProjectTitle();
 	}
 
 	@Override

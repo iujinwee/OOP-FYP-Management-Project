@@ -21,6 +21,7 @@ public class Student extends User{
 	 * @param userID
 	 * @param name
 	 */
+	public Student(){}
 	public Student(String userID, String name, String email) {
 
 		// Initialization

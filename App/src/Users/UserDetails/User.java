@@ -10,6 +10,11 @@ public abstract class User implements UserInterface {
 	 * 
 	 * @param userID
 	 */
+
+	public User(){
+
+	};
+	
 	public User(String userID, String name, String email) {
 		this.userID = userID;
 		this.name = name;
@@ -26,6 +31,18 @@ public abstract class User implements UserInterface {
 
 	public String getEmail() {
 		return this.email;
+	}
+
+	public void setUserID(String id) {
+		this.userID = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public void setUserType(UserType inputType){
