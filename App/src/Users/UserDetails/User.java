@@ -1,4 +1,7 @@
 package Users.UserDetails;
+
+import Users.ErrorHandler.InvalidInputException;
+
 public abstract class User implements UserInterface {
 
 	private String userID;
@@ -58,5 +61,6 @@ public abstract class User implements UserInterface {
    	}
 
 	abstract public void viewUserMenu();
-	// abstract public userType getUserType();
+	abstract public void getInput() throws InvalidInputException;
+	abstract public void handleInvalidInputException(InvalidInputException e);
 }

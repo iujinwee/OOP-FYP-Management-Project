@@ -10,7 +10,7 @@ import Users.UserDetails.User;
 
 public class RequestDB {
 
-	private ArrayList <Request> requestDB;
+	private ArrayList <Object> requestDB;
 
 	public RequestDB(){
 		// Load the Excel File  
