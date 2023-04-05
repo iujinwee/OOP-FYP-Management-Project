@@ -2,8 +2,11 @@ package Requests;
 
 import java.util.ArrayList;
 
+import Login.FileReader;
 import Requests.RequestDetails.Request;
+import Requests.RequestDetails.RequestStatus;
 import Requests.RequestDetails.RequestType;
+import Users.UserDetails.User;
 
 public class RequestDB {
 
@@ -11,22 +14,26 @@ public class RequestDB {
 
 	public RequestDB(){
 		// Load the Excel File  
-		requestDB = <output of excel> 
+		requestDB = FileReader.readExcelFile("request_list.xlsx", new Request());
 	}
-
+	
+	
 	public void createRequest(RequestType type) {
-		// TODO - implement RequestDB.createRequest
-		throw new UnsupportedOperationException();
+		// Switch case
 	}
 
-	public void updateRequest() {
+	public void updateRequest(int requestID, RequestStatus updatedStatus) {
 		// TODO - implement RequestDB.updateRequest
 		throw new UnsupportedOperationException();
 	}
 
-	public void viewRequest() {
+	public void viewRequest(int requestID) {
 		// TODO - implement RequestDB.viewRequest
 		throw new UnsupportedOperationException();
+	}
+
+	public void viewAllRequests(User user){
+		// Filter result based on userType
 	}
 
 }

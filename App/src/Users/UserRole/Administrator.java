@@ -24,11 +24,15 @@ public class Administrator extends User implements ManageRequestMenu {
 	}
 
 	public void manageRequests() {
-		reqDB.viewRequest(); // View all requests
+		// View all Requests (To include in sub-class)
+		// reqDB.viewAllRequest(); 
 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Select Request:");
+
+
 		int requestId = sc.nextInt();
+		reqDB.viewRequest(requestId);
 
 		int choice = sc.nextInt();
 		switch (choice) {
