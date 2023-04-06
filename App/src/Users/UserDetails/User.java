@@ -1,6 +1,6 @@
 package Users.UserDetails;
 
-import Users.ErrorHandler.InvalidInputException;
+import Users.Exceptions.InvalidInputException;
 
 public abstract class User implements UserInterface {
 
@@ -61,6 +61,6 @@ public abstract class User implements UserInterface {
    	}
 
 	abstract public void viewUserMenu();
+	abstract public void loadMenu();
 	abstract public void getInput() throws InvalidInputException;
-	abstract public void handleInvalidInputException(InvalidInputException e);
 }

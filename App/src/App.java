@@ -19,13 +19,15 @@ public class App {
 
 	public static void main(String[] args) {
 		// File Initialization
-        initalizeSystem();
+        // initalizeSystem();
 
         // Introduction to App 
         System.out.println("\n================================================================");
         System.out.println("======    Welcome to Final Year Project Management App    ======");
         System.out.println("================================================================\n");
 
+        Student x = new Student("wee","Eugene", "wee@ntu.sg");
+        x.loadMenu();
 
         // Login (Login with 5 attempts, use try, catch to handle invalid  inputs. once 5 attempts up, terminate program)
         // boolean loginSuccess = login();
@@ -73,6 +75,7 @@ public class App {
             // scan in student list file 
             studentList = FileReader.readExcelFile("student_list.xlsx", new Student());
 
+            // TO BE DELETED, JUST TO CHECK
             Student x = (Student) studentList.get(0);
             System.out.println(x.getUserID());
             

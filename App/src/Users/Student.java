@@ -4,7 +4,8 @@ import java.util.*;
 import Projects.ProjectDB;
 import Requests.RequestDetails.Request;
 import Requests.RequestDetails.RequestType;
-import Users.ErrorHandler.InvalidInputException;
+import Users.Exceptions.InvalidInputException;
+import Users.Exceptions.handleInvalidInput;
 import Users.UserDetails.User;
 import Users.UserDetails.UserType;
 import Requests.RequestDB;
@@ -13,6 +14,9 @@ public class Student extends User{
 
 	ArrayList<Request> sends;
 	// Project registeredTo;
+	private final static int MAX_ATTEMPTS = 3; 
+	private int attempts = 0;
+	private int choice = -1;
 	private String studentID;
 	private ProjectDB projDB;
 	private RequestDB reqDB;
@@ -32,25 +36,37 @@ public class Student extends User{
 		super.setUserType(UserType.STUDENT);
 		this.studentID = super.getUserID();
 		this.sc = new Scanner(System.in);
-		
-		try{
-			// Load Database
-			projDB = new ProjectDB();
-			reqDB = new RequestDB();
-			getInput();
+	}
 
-		}catch(InvalidInputException e){
-			handleInvalidInputException(e);
-			
-		}catch(Exception e){
-			System.out.println("Other Error: " + e.getMessage());
-			
-		// Clearing Program
-		}finally{
-			this.sc.close();
-			System.exit(0);
+	@Override
+	public void loadMenu() {
+
+		handleInvalidInput handler = new handleInvalidInput(sc);
+
+		while(handler.checkAttempts()){
+
+			try{
+				// Load Database
+				// projDB = new ProjectDB();
+				// reqDB = new RequestDB();
+				
+				getInput();
+
+				// Exit loop
+				break;
+
+			}catch(InvalidInputException e){
+				handler.handleInvalidInputException(e);
+
+			}catch(InputMismatchException e){
+				handler.handleInputMismatchException(e);
+
+			}
 		}
-
+		// Clearing System
+		System.out.println("Terminating Program...");
+		this.sc.close();
+		System.exit(0);
 	}
 
 	@Override
@@ -70,54 +86,41 @@ public class Student extends User{
 
 	@Override
 	public void getInput() throws InvalidInputException{
-		int choice = sc.nextInt();
 
-		while (choice != 0){
-			// Show User Menu 
+		while (choice != 0){	
+			
+			// Show User Menu
 			viewUserMenu();
-		
+
 			// Get Input 
 			System.out.println("\nEnter your option: ");
-			
-			// Exception for invalid input 
+			choice = sc.nextInt();
 
 			switch(choice){
 				case 1: 
+					System.out.println("Option [1] selected! - Show Available Projects");
 					projDB.viewProjects(UserType.STUDENT);
 					break;
 				case 2: 
+					System.out.println("Option [2] selected! - Show Registered Project.");
 					viewRegisteredProject();
 					break;
 				case 3:
+					System.out.println("Option [3] selected! - Register Project.");
 					reqDB.createRequest(RequestType.REGISTERPROJECT);
 					break;
-				case 4:
+				case 4:	
+					System.out.println("Option [4] selected! - Deregister Project.");
 					reqDB.createRequest(RequestType.DEREGISTERPROJECT);
 					break;
 				case 5:
+					System.out.println("Option [5] selected! - Change Assigned Project Title.");
 					reqDB.createRequest(RequestType.CHANGETITLE);
-					break;
-				case 0:
-					System.out.println("Terminating Program...");
 					break;
 
 				default:
 					throw new InvalidInputException(choice);
 			}
-		}
-	}	
-
-	@Override
-	public void handleInvalidInputException(InvalidInputException e) {
-		System.out.println("Invalid Input. Please select a valid option.\n");
-		try{
-			getInput();
-		}catch(InvalidInputException error){
-			System.out.println("2nd Invalid Input. Please try again later...");
-			System.out.println("Terminating Program...");
-			System.exit(0);
-		}catch(Exception otherError){
-			System.out.println("Other Exception: " + otherError.getMessage());
 		}
 	}	
 }
