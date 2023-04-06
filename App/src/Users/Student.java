@@ -1,11 +1,11 @@
 package Users;
 import java.util.*;
 
+import Exceptions.InvalidInputException;
+import Exceptions.handleInvalidInput;
 import Projects.ProjectDB;
 import Requests.RequestDetails.Request;
 import Requests.RequestDetails.RequestType;
-import Users.Exceptions.InvalidInputException;
-import Users.Exceptions.handleInvalidInput;
 import Users.UserDetails.User;
 import Users.UserDetails.UserType;
 import Requests.RequestDB;

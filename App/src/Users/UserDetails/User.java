@@ -1,6 +1,6 @@
 package Users.UserDetails;
 
-import Users.Exceptions.InvalidInputException;
+import Exceptions.InvalidInputException;
 
 public abstract class User implements UserInterface {
 
