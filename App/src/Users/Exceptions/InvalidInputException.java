@@ -1,4 +1,6 @@
-package Users.ErrorHandler;
+package Users.Exceptions;
+
+import java.util.InputMismatchException;
 
 public class InvalidInputException extends Exception{
     
@@ -7,10 +9,9 @@ public class InvalidInputException extends Exception{
     }
 
     public InvalidInputException(int choice){
-        super(choice + "is an invalid option!");
+        super(choice + " is an invalid option!");
     }
-
-    public InvalidInputException(String message){
-        super(message);
+    public InvalidInputException(Exception e){
+        super(e.getMessage());
     }
 }
