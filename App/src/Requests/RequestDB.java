@@ -1,11 +1,17 @@
 package Requests;
 
-import Requests.Request.ChangeSupervisor;
-import Requests.Request.ChangeTitle;
-import Requests.Request.DeregisterProject;
-import Requests.Request.RegisterProject;
-import Requests.Request.Request;
-import Requests.Request.RequestType;
+import java.util.ArrayList;
+
+import FileManager.FileReader;
+import Requests.RequestDetails.ChangeSupervisor;
+import Requests.RequestDetails.DeregisterProject;
+import Requests.RequestDetails.RegisterProject;
+import Requests.RequestDetails.ChangeTitle;
+import Requests.RequestDetails.Request;
+import Requests.RequestDetails.RequestStatus;
+import Requests.RequestDetails.RequestType;
+import Users.UserDetails.User;
+import Users.UserDetails.UserType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -106,6 +112,9 @@ public class RequestDB {
 				requestDB.add(new DeregisterProject(requestDB.size() + 1));
 				break;
 		}
+
+		// Add new Request
+		// Update Excel
 		throw new UnsupportedOperationException();
 
 	}
@@ -129,7 +138,7 @@ public class RequestDB {
 		throw new UnsupportedOperationException();
 	}
 
-	public void viewRequest() {
+	public void viewRequest(String userID) {
 		for (Request request : requestDB) {
 			System.out.println(request);
 		}

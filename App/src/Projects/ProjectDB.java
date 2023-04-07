@@ -1,43 +1,47 @@
-import Projects.Project.Project;
-import Users.FYP_Coordinator;
-import Users.User.UserType;
-
 package Projects;
+import java.util.ArrayList;
+
+import FileManager.FileReader;
+import Projects.ProjectDetails.Project;
+import Projects.ProjectDetails.ProjectStatus;
+import Users.FYP_Coordinator;
+import Users.UserDetails.UserType;
+
 public class ProjectDB {
 
 	FYP_Coordinator modifies;
-	private Project[] projectDB;
+	private ArrayList<Object> projectDB; 
 
 	public ProjectDB() {
-		// TODO - implement ProjectDB.ProjectDB
-		throw new UnsupportedOperationException();
+		// Initialize ProjectDB (Scan Excel File)
+		projectDB = FileReader.readExcelFile("rollover_project.xlsx", new Project());
+		Project lastProject = (Project) projectDB.get(projectDB.size()-1);
 	}
 
-	public void createProject() {
-		// TODO - implement ProjectDB.createProject
-		throw new UnsupportedOperationException();
+	public void createProject(String projectTitle, String studentId, String supervisorId) {
+		
 	}
 
 	/**
 	 * 
 	 * @param newTitle
 	 */
-	public void setProjectTitle(String newTitle) {
+	public void setProjectTitle(int projectId, String projectTitle) {
 		// TODO - implement ProjectDB.setProjectTitle
 		throw new UnsupportedOperationException();
 	}
 
-	public void setSupervisor() {
+	public void setSupervisor(int projectId, String supervisorName) {
 		// TODO - implement ProjectDB.setSupervisor
 		throw new UnsupportedOperationException();
 	}
 
-	public void setProjectStatus() {
+	public void setProjectStatus(int projectId, ProjectStatus updatedStatus) {
 		// TODO - implement ProjectDB.setProjectStatus
 		throw new UnsupportedOperationException();
 	}
 
-	public void deregisterProject() {
+	public void deregisterProject(int projectId) {
 		// TODO - implement ProjectDB.deregisterProject
 		throw new UnsupportedOperationException();
 	}

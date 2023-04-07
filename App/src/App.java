@@ -1,25 +1,36 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import FileManager.FileReader;
 import Login.Account;
-import Projects.Project.Project;
 import Users.FYP_Coordinator;
 import Users.Student;
 import Users.Supervisor;
+import Projects.ProjectDB;
 
 public class App {
 
-	private ArrayList<Student> studentList;
-	private ArrayList<Supervisor> facultyList;
-	private ArrayList<Project> projectList;
-	private ArrayList<FYP_Coordinator> coordinator;
-	private ArrayList<Account> accountsList;
+	private static ArrayList<Object> studentList;
+	private static ArrayList<Supervisor> facultyList;
+	private static ArrayList<Object> projectList;
+	private static ArrayList<FYP_Coordinator> coordinator;
+	private static ArrayList<Account> accountsList;
 
 	public static void main(String[] args) {
 		// File Initialization
-        initalizeSystem();
+        // initalizeSystem();
 
         // Introduction to App 
+        System.out.println("\n================================================================");
+        System.out.println("======    Welcome to Final Year Project Management App    ======");
+        System.out.println("================================================================\n");
+
+        // Student x = new Student("wee","Eugene", "wee@ntu.sg");
+        // x.loadMenu();
+
+        ProjectDB projectList = new ProjectDB();
+        projectList.createProject("Yes", "Y", null);
+
 
         // Login (Login with 5 attempts, use try, catch to handle invalid  inputs. once 5 attempts up, terminate program)
         boolean loginSuccess = login();
@@ -44,32 +55,45 @@ public class App {
         System.out.println("Enter Password: ");
         inputPassword = sc.nextLine();
 
-        if (/*inputUserID exists in file*/) {
+        if (inputPassword!="" /*inputUserID exists in file*/) {
             String userID = inputUserID;
-            String password = /* correct password */ ;
+            String password = inputPassword /* correct password */ ;
             Account account = new Account(userID, password);
-            account.authenticate(accountList, inputPassword);
+            // account.authenticate(accountList, inputPassword);
+            return true;
         }
+        // error handling
         else {
             System.out.println("Invalid user ID!");
             return false;
         }
     }
 
+    // Do we really need this, mayb just need to initialize whenever loading the class
     private static void initalizeSystem(){ 
-        // scan in student list file 
-        // scan in faculty list file
-        // scan in rollover project list file
-        // scan in fyp coordinator file
+
+        try{
+            System.out.println("Initializing Files...");
+
+            // scan in student list file 
+            studentList = FileReader.readExcelFile("student_list.xlsx", new Student());
+
+            // // TO BE DELETED, JUST TO CHECK
+            // Student x = (Student) studentList.get(0);
+            // System.out.println(x.getUserID());
+            
+            // scan in faculty list file
+
+            // scan in rollover project list file
+
+            // scan in fyp coordinator file
+
+
+            System.out.println("Files Initialized!");
+
+        }catch(Exception e){
+            System.out.println("Error in Initializing File");
+            e.printStackTrace();
+        }
     }
-
-	/**
-	 * 
-	 * @param inputFile
-	 */
-	private ArrayList<Object> loadFile(FileIO inputFile) {
-		// TODO - implement App.loadFile
-		throw new UnsupportedOperationException();
-	}
-
 }
