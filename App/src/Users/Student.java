@@ -78,6 +78,7 @@ public class Student extends User{
 		System.out.println("[3] Register Project.");
 		System.out.println("[4] Deregister Project.");
 		System.out.println("[5] Change Assigned Project Title.");
+		System.out.println("[6] View All Requests.");
 		System.out.println("[0] Exit Program.");
 	}
 	
@@ -118,6 +119,11 @@ public class Student extends User{
 					System.out.println("Option [5] selected! - Change Assigned Project Title.");
 					reqDB.createRequest(RequestType.CHANGETITLE);
 					break;
+
+				case 6: 
+					System.out.println("Option [6] selected!");
+					reqDB.viewRequest(this.studentID);
+					break;				
 
 				default:
 					throw new InvalidInputException(choice);
