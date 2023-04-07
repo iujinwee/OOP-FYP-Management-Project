@@ -23,10 +23,11 @@ public class Student extends User{
 	private Scanner sc;
 
 	/**
+	 * Represents a Student. 
 	 * 
-	 * @param userID
-	 * @param name
-	 * @param email
+	 * @param userID The unique ID of each student.
+	 * @param name The name of each student.
+	 * @param email The email of each student.
 	 */
 	public Student(){}
 	public Student(String userID, String name, String email) {
