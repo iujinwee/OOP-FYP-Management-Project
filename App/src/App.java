@@ -26,8 +26,8 @@ public class App {
         System.out.println("======    Welcome to Final Year Project Management App    ======");
         System.out.println("================================================================\n");
 
-        // Student x = new Student("wee","Eugene", "wee@ntu.sg");
-        // x.loadMenu();
+        Student x = new Student("wee","Eugene", "wee@ntu.sg");
+        x.loadMenu();
 
         // Login (Login with 5 attempts, use try, catch to handle invalid  inputs. once 5 attempts up, terminate program)
         boolean loginSuccess = login();
