@@ -56,7 +56,6 @@ public abstract class Request {
 		this.toUser = toUser;
 	}
 
-	public abstract void approve();
-	public abstract void reject();
+	public abstract void enactRequest();
 
 }

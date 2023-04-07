@@ -13,8 +13,12 @@ import java.io.IOException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.util.List;
 import java.util.StringTokenizer;
+
+import Projects.ProjectDB;
+
 import java.util.Scanner;
 
 
@@ -70,9 +74,15 @@ import java.util.Scanner;
 
 public class RequestDB {
 
-	private ArrayList<Request> requestDB = new ArrayList<Request>();
+	private Request[] requestDB;
+	private static ArrayList<Request> requestList;
 	Scanner sc = new Scanner(System.in);
 
+
+	public RequestDB() {
+		requestDB = FileReader.readExcelFile("Requests.xlsx");
+		throw new UnsupportedOperationException();
+	}
 	public void createRequest(RequestType type) {
 		switch (type) {
 			case CHANGETITLE:
@@ -122,6 +132,15 @@ public class RequestDB {
 	public void viewRequest() {
 		for (Request request : requestDB) {
 			System.out.println(request);
+		}
+		throw new UnsupportedOperationException();
+	}
+
+	public Request getRequest(int requestID) {
+		for (Request request : requestDB) {
+			if (request.getRequestID() == requestID) {
+				return request;
+			}
 		}
 		throw new UnsupportedOperationException();
 	}
