@@ -17,6 +17,57 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Scanner;
 
+
+// ## MANAGING REQUEST
+// USER SELECT OPTION (USER CLASS)
+
+// DISPLAY LIST OF REQ (USER CLASS ACCESS REQUESTDB = TAKES IN USER ID = DISPLAY ACCORDINGLY)
+// - req 1
+// - req 2 
+
+// ASK FOR INPUT (USER CLASS)
+// Select 1 
+// switch statement
+// Request current_req = new ChangeTitle(); (Request contains content required)
+
+
+// ASK FOR INPUT CHOICE TO MANAGE REQUEST (USER CLASS)
+
+// MANAGE CURRENT REQUEST (REQUEST )
+// current_req.enactRequest(db, requestStatus)
+
+// enactRequest(db, requestStatus){
+// 	switch(requestStatus){
+// 		case approve: 
+
+// 		case reject: 
+// 	}
+// }
+
+
+
+// ## CREATING REQUEST 
+// SEND REQUEST (USER CLASS = ACCESS REQUESTDB = CREATE NEW REQUEST CLASS)
+
+// reqDB.createRequest(RequestType)
+
+// switch (requestType) {
+// 	case CHANGETITLE:
+// 		// Get input
+// 		Request newRequest = new ChangeTitle()
+// 		break;
+
+// 	default:
+// 		break;
+// }
+
+// ReqDB.add(newRequest)
+// Update excel
+
+
+// VIEW USER (User Type)
+
+
 public class RequestDB {
 
 	private ArrayList<Request> requestDB = new ArrayList<Request>();
