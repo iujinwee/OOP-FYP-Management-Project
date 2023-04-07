@@ -20,7 +20,7 @@ public class FileReader {
     public static ArrayList<Object> readExcelFile(String filePath, Object item) {
         
         // Path Name 
-        String pathname = System.getProperty("user.dir").concat("\\data\\");
+        String pathname = System.getProperty("user.dir").concat("/App/data/");
         String finalPath = pathname.concat(filePath);
         ArrayList<Object> resultList = new ArrayList<>();
         Map<String, Integer> columnMap = new HashMap<>();
