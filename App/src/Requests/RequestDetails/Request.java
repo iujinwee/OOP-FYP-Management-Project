@@ -25,5 +25,3 @@ public class Request {
 		// TODO - implement Request.Request
 		throw new UnsupportedOperationException();
 	}
-
-}
