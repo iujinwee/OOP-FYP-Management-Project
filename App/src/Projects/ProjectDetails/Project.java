@@ -1,15 +1,16 @@
+package Projects.ProjectDetails;
+
 import Users.Student;
 import Users.Supervisor;
 
-package Projects.ProjectDetails;
 public class Project {
 
 	Supervisor supervisedBy;
 	Student taggedTo;
 	private int projectID;
 	private String projectTitle;
-	private Student student;
-	private Supervisor supervisor;
+	private String studentID;
+	private String supervisorID;
 	private ProjectStatus projectStatus;
 
 	/**
@@ -18,31 +19,34 @@ public class Project {
 	 * @param studentID
 	 * @param supervisorID
 	 */
-	public Project(String title, String studentID, String supervisorID) {
-		// TODO - implement Project.Project
-		throw new UnsupportedOperationException();
+	public Project(){}
+
+	public Project(int id, String title, String studentID, String supervisorID) {
+		this.projectID = id;
+		this.projectTitle = title;
+		this.studentID = studentID; 
+		this.supervisorID = supervisorID;
 	}
 
 	public void viewProjectDetails() {
-		// TODO - implement Project.viewProjectDetails
-		throw new UnsupportedOperationException();
+		// View Project Details
 	}
 
 	public String getProjectTitle(){
+		return this.projectTitle;
 	}
 
 	
 	public String getStudent(){
 		
 	}
-
 	
 	public String getSupervisor(){
 
 	}
 
 	public void setProjectTitle(String title){
-
+		this.projectTitle = title;
 	}
 
 	public void setStudent(String studentId){

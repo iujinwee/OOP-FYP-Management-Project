@@ -1,22 +1,25 @@
+package Projects;
+import java.util.ArrayList;
+
+import FileManager.FileReader;
 import Projects.ProjectDetails.Project;
 import Projects.ProjectDetails.ProjectStatus;
 import Users.FYP_Coordinator;
 import Users.UserDetails.UserType;
 
-package Projects;
 public class ProjectDB {
 
 	FYP_Coordinator modifies;
-	private Project[] projectDB;
+	private ArrayList<Object> projectDB; 
 
 	public ProjectDB() {
-		// TODO - implement ProjectDB.ProjectDB
-		throw new UnsupportedOperationException();
+		// Initialize ProjectDB (Scan Excel File)
+		projectDB = FileReader.readExcelFile("rollover_project.xlsx", new Project());
+		Project lastProject = (Project) projectDB.get(projectDB.size()-1);
 	}
 
 	public void createProject(String projectTitle, String studentId, String supervisorId) {
-		// TODO - implement ProjectDB.createProject
-		throw new UnsupportedOperationException();
+		
 	}
 
 	/**
