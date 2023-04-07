@@ -1,4 +1,5 @@
 package Requests.Request;
+import Projects.ProjectDB;
 import Projects.Project.Project;
 import Projects.Project.ProjectStatus;
 import Users.Student;
@@ -15,6 +16,12 @@ public class ChangeSupervisor extends Request{
         setToUser(/*FYP_Coordinator */);
         this.newSupervisorID = newSupervisorID;
         this.projectID = projectID;
+    }
+
+    public void enactRequest(Request req){
+        ProjectDB projdb = new ProjectDB();
+        projdb.setSupervisor(req.getTitle());
+        projdb.exportFile();
     }
 
     public void approve() {
