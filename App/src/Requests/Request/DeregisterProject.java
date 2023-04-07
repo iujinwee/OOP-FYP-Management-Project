@@ -19,6 +19,14 @@ public class DeregisterProject extends Request{
     public void approve() {
         modifies.setProjectStatus(ProjectStatus.AVAILABLE);
         modifies.setStudent(null);
+        //does student have attribute projectID?
+        //if yes, set to null
+        //not sure how to make it unavailable for this particular student
+        //but available for other students
+        //maybe add a new attribute to student class
+        //called "unavailableProjects" or something
+        //and add projectID to that list
+
         setRequestStatus(RequestStatus.APPROVED);
         throw new UnsupportedOperationException();
     }
