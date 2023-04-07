@@ -1,23 +1,29 @@
+package Projects;
+import java.util.ArrayList;
+
+import FileManager.FileReader;
 import Projects.ProjectDetails.Project;
 import Projects.ProjectDetails.ProjectStatus;
 import Users.FYP_Coordinator;
 import Users.UserDetails.UserType;
+import java.util.ArrayList;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
 
-package Projects;
 public class ProjectDB {
 
 	FYP_Coordinator modifies;
-	private Project[] projectDB;
+	private ArrayList<Object> projectDB; 
 
 	public ProjectDB() {
-		// TODO - implement ProjectDB.ProjectDB
-		// hi
-		throw new UnsupportedOperationException();
+		// Initialize ProjectDB (Scan Excel File)
+		projectDB = FileReader.readExcelFile("rollover_project.xlsx", new Project());
+		Project lastProject = (Project) projectDB.get(projectDB.size()-1);
 	}
 
 	public void createProject(String projectTitle, String studentId, String supervisorId) {
-		// TODO - implement ProjectDB.createProject
-		throw new UnsupportedOperationException();
+		
 	}
 
 	/**
@@ -26,12 +32,14 @@ public class ProjectDB {
 	 */
 	public void setProjectTitle(int projectId, String projectTitle) {
 		// TODO - implement ProjectDB.setProjectTitle
-		throw new UnsupportedOperationException();
+		System.out.println("Enter new Project Title: ");
+		projectTitle = sc.next();
 	}
 
 	public void setSupervisor(int projectId, String supervisorName) {
 		// TODO - implement ProjectDB.setSupervisor
-		throw new UnsupportedOperationException();
+		System.out.println("Enter new Supervisor's Name: ");
+		supervisorName = sc.next();
 	}
 
 	public void setProjectStatus(int projectId, ProjectStatus updatedStatus) {
@@ -50,7 +58,7 @@ public class ProjectDB {
 	 */
 	public void viewProjects(UserType userType) {
 		// TODO - implement ProjectDB.viewProjects
-		throw new UnsupportedOperationException();
+		return projectList;
 	}
 
 }

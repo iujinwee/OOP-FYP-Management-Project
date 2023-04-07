@@ -1,25 +1,24 @@
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import FileManager.FileReader;
 import Login.Account;
-import Login.FileReader;
-import Projects.ProjectDetails.Project;
 import Users.FYP_Coordinator;
 import Users.Student;
 import Users.Supervisor;
+import Projects.ProjectDB;
 
 public class App {
 
 	private static ArrayList<Object> studentList;
 	private static ArrayList<Supervisor> facultyList;
-	private static ArrayList<Project> projectList;
+	private static ArrayList<Object> projectList;
 	private static ArrayList<FYP_Coordinator> coordinator;
 	private static ArrayList<Account> accountsList;
 
 	public static void main(String[] args) {
 		// File Initialization
-        initalizeSystem();
+        // initalizeSystem();
 
         // Introduction to App 
         System.out.println("\n================================================================");
@@ -28,6 +27,10 @@ public class App {
 
         Student x = new Student("wee","Eugene", "wee@ntu.sg");
         x.loadMenu();
+
+        ProjectDB projectList = new ProjectDB();
+        projectList.createProject("Yes", "Y", null);
+
 
         // Login (Login with 5 attempts, use try, catch to handle invalid  inputs. once 5 attempts up, terminate program)
         boolean loginSuccess = login();
@@ -75,9 +78,9 @@ public class App {
             // scan in student list file 
             studentList = FileReader.readExcelFile("student_list.xlsx", new Student());
 
-            // TO BE DELETED, JUST TO CHECK
-            Student x = (Student) studentList.get(0);
-            System.out.println(x.getUserID());
+            // // TO BE DELETED, JUST TO CHECK
+            // Student x = (Student) studentList.get(0);
+            // System.out.println(x.getUserID());
             
             // scan in faculty list file
 
