@@ -12,9 +12,6 @@ public interface Administrator {
 	 * 
 	 * @param RequestDB
 	 */
-	public Boolean createProject();
-
-	public Boolean changeTitle();
 
 	public void manageRequests();
 

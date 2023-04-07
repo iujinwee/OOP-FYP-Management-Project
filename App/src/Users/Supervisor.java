@@ -1,5 +1,7 @@
 import java.util.*;
 
+import Exceptions.InvalidInputException;
+import Exceptions.handleInvalidInput;
 import Projects.ProjectDB;
 import Projects.ProjectDetails.Project;
 import Requests.RequestDB;
@@ -10,7 +12,7 @@ import Users.UserDetails.User;
 import Users.UserDetails.UserType;
 import Users.UserRole.Administrator;
 
-public class Supervisor extends User implements Administrator  {
+public class Supervisor extends User {
 
 	Collection<Request> sends;
 	Collection<Project> create;
@@ -89,28 +91,19 @@ public class Supervisor extends User implements Administrator  {
 			switch(choice){
 				case 1: 
 					System.out.println("Option [1] selected! - Create New Project.");
-					/*move to ProjDB */
-					// System.out.println("Enter Project Title: ");
-					// String ProjectTitle = sc.nextLine();
 					projDB.createProject(supervisorID);
 					break;
 
 				case 2: 
 					//Supervisor views his/her projects
 					System.out.println("Option [2] selected! - View Projects created by me.");
-					projDB.viewProjects(super.getUserID());
+					projDB.viewProjects(supervisorID);
 					break;
 
 				case 3:
 					//Supervisor changes title of his/her projects
 					System.out.println("Option [3] selected! - Change Title of Project.");
 					projDB.setProjectTitle(supervisorID);
-
-					/*to move to ProjDB*/
-					// System.out.println("Enter ProjectID: ");
-					// int projectID = sc.nextInt();
-					// System.out.println("Enter New Project Title: ");
-					// String NewProjectTitle = sc.nextLine();
 					
 					break;
 
@@ -137,58 +130,22 @@ public class Supervisor extends User implements Administrator  {
 		}
 	}
 
-	@Override
 	public void manageRequests() {
 		// View all Requests (To include in sub-class)
-		reqDB.viewAllRequests(SupervisorID); //to change this method parameter in reqDB?
+		reqDB.viewRequest(this.supervisorID); //to change this method parameter in reqDB?\
 
 		//manage requests
 		System.out.println("Enter RequestID to Approve/Reject: ");
 		int reqID = sc.nextInt();
-		System.out.println("Select one \n [1] Approve [2] Reject ");
-		choice = sc.nextInt();
-		if (choice==1){ 
-			approve(reqID); 
-		}else{
-			reject(reqID);
-		}
 
+		Request curRequest = reqDB.getRequest(reqID); // return Subclass
+
+		System.out.println("Approve/ Reject");
+		System.out.println("[1] Approve");
+		System.out.println("[0]");
+		int choice = sc.nextInt();
+
+		curRequest.enactRequest(choice);
 	}
-
-	@Override
-	public Boolean createProject() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'createProject'");
-	}
-
-	@Override
-	public Boolean changeTitle() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'changeTitle'");
-	}
-
-	@Override
-	public void approve(int RequestID) {
-		//approve request to Change Title
-
-		//update request status 
-		RequestDB.updateRequest(RequestID, RequestStatus.APPROVED);
-
-		//make the changes
-		projDB.setProjectTitle(Request);
-
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'approve'");
-
-	}
-
-	@Override
-	public void reject(int RequestID) {
-		RequestDB.updateRequest(RequestID, RequestStatus.REJECTED);
-
-		//reject request to Change Title 
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'reject'");
-	}
-	}
+	
 }
