@@ -13,9 +13,6 @@ import Requests.RequestDB;
 public class Student extends User{
 
 	ArrayList<Request> sends;
-	// Project registeredTo;
-	private final static int MAX_ATTEMPTS = 3; 
-	private int attempts = 0;
 	private int choice = -1;
 	private String studentID;
 	private ProjectDB projDB;
@@ -104,7 +101,7 @@ public class Student extends User{
 					break;
 				case 2: 
 					System.out.println("Option [2] selected! - Show Registered Project.");
-					viewRegisteredProject();
+					projDB.viewRegisteredProject(this.studentID);
 					break;
 				case 3:
 					System.out.println("Option [3] selected! - Register Project.");
