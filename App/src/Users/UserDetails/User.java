@@ -1,4 +1,4 @@
-package Users.UserDetails;
+package UserDetails;
 
 import Exceptions.InvalidInputException;
 
