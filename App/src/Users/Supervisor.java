@@ -1,3 +1,5 @@
+package Users;
+
 import java.util.*;
 
 import Exceptions.InvalidInputException;
@@ -13,11 +15,8 @@ import Requests.RequestDetails.RequestStatus;
 
 public class Supervisor extends User {
 
-	Collection<Request> sends;
-	Collection<Project> create;
 	private String supervisorID;
 	private int numAssignedProjects=0;
-	private String input = null; 
 	private int choice = -1;
 	private ProjectDB projDB;
 	private RequestDB reqDB;
@@ -40,17 +39,17 @@ public class Supervisor extends User {
 	}
 
 	@Override
-	public void loadMenu(){
+	public void loadMenu(User user){
 		handleInvalidInput handler = new handleInvalidInput(sc);
 
 		while(handler.checkAttempts()){
 			try{
 				// Load Database
-				projDB = new ProjectDB();
-				reqDB = new RequestDB();
+				// projDB = new ProjectDB();
+				// reqDB = new RequestDB();
 
 
-				getInput();
+				getInput(user);
 				// Exit loop
 				break;
 			}catch(InvalidInputException e){
@@ -80,7 +79,7 @@ public class Supervisor extends User {
 	}
 
 	@Override
-	public void getInput() throws InvalidInputException{
+	public void getInput(User user) throws InvalidInputException{
 		while (choice != 0){	
 
 			// Show Supervisor Menu
@@ -92,19 +91,19 @@ public class Supervisor extends User {
 			switch(choice){
 				case 1: 
 					System.out.println("Option [1] selected! - Create New Project.");
-					projDB.createProject(Supervisor);
+					projDB.createProject(user);
 					break;
 
 				case 2: 
 					//Supervisor views his/her projects
 					System.out.println("Option [2] selected! - View Projects created by me.");
-					projDB.viewProjects(supervisorID);
+					projDB.viewProjects(user);
 					break;
 
 				case 3:
 					//Supervisor changes title of his/her projects
 					System.out.println("Option [3] selected! - Change Title of Project.");
-					projDB.setProjectTitle(supervisorID);
+					projDB.setProjectTitle(user);
 
 					break;
 

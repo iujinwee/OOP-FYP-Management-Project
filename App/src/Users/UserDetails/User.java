@@ -1,4 +1,4 @@
-package UserDetails;
+package Users.UserDetails;
 
 import Exceptions.InvalidInputException;
 
@@ -61,6 +61,6 @@ public abstract class User implements UserInterface {
    	}
 
 	abstract public void viewUserMenu();
-	abstract public void loadMenu();
-	abstract public void getInput() throws InvalidInputException;
+	abstract public void loadMenu(User user);
+	abstract public void getInput(User user) throws InvalidInputException;
 }

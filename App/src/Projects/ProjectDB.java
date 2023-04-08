@@ -1,9 +1,10 @@
+package Projects;
+
 import Projects.ProjectDetails.Project;
 import Projects.ProjectDetails.ProjectStatus;
 import Users.FYP_Coordinator;
 import Users.UserDetails.UserType;
 
-package Projects;
 public class ProjectDB {
 
 	FYP_Coordinator modifies;
