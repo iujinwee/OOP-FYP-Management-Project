@@ -3,9 +3,10 @@ import java.util.*;
 
 import Projects.ProjectDetails.Project;
 import Requests.RequestDetails.Request;
+import Users.UserDetails.User;
 import Users.UserRole.Administrator;
 
-public class Supervisor extends Administrator {
+public class Supervisor extends User {
 
 	Collection<Request> sends;
 	Collection<Project> create;
@@ -18,8 +19,10 @@ public class Supervisor extends Administrator {
 	 * @param userID
 	 * @param name
 	 */
-	public Supervisor(String userID, String name) {
-		super(userID, name, name);
+	public Supervisor(){}
+	public Supervisor(String userID, String name, String email) {
+		super(userID, name, email);
 	}
 
+	
 }

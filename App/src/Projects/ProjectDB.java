@@ -11,15 +11,19 @@ public class ProjectDB {
 
 	FYP_Coordinator modifies;
 	private ArrayList<Object> projectDB; 
+	private ArrayList<Object> studentList; 
+	private ArrayList<Object> supervisorList;
 
 	public ProjectDB() {
 		// Initialize ProjectDB (Scan Excel File)
+		studentList = FileReader.readExcelFile("student_list.xlsx", new Student());
+		supervisorList = FileReader.readExcelFile("faculty_list.xlsx", new Supervisor());
 		projectDB = FileReader.readExcelFile("rollover_project.xlsx", new Project());
 		Project lastProject = (Project) projectDB.get(projectDB.size()-1);
 	}
 
 	public void createProject(String projectTitle, String studentId, String supervisorId) {
-		
+
 	}
 
 	/**
