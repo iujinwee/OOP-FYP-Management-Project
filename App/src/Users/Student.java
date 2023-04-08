@@ -21,7 +21,7 @@ public class Student extends User{
 	private ProjectDB projDB;
 	private RequestDB reqDB;
 	private Scanner sc;
-
+ 	
 	/**
 	 * Represents a Student. 
 	 * 
@@ -31,7 +31,6 @@ public class Student extends User{
 	 */
 	public Student(){}
 	public Student(String userID, String name, String email) {
-
 		// Initialization
 		super(userID, name, email);
 		super.setUserType(UserType.STUDENT);
@@ -39,14 +38,15 @@ public class Student extends User{
 		this.sc = new Scanner(System.in);
 	}
 
+
 	@Override
-	public void loadMenu() {
+	public void loadMenu(User user) {
 
 		handleInvalidInput handler = new handleInvalidInput(sc);
 
 		while(handler.checkAttempts()){
 			try{
-				getInput();
+				getInput(user);
 				break; // Break out of loop
 
 			}catch(InvalidInputException e){
@@ -80,7 +80,7 @@ public class Student extends User{
 	}
 
 	@Override
-	public void getInput() throws InvalidInputException{
+	public void getInput(User user) throws InvalidInputException{
 
 		while (choice != 0){	
 			
@@ -94,11 +94,11 @@ public class Student extends User{
 			switch(choice){
 				case 1: 
 					System.out.println("Option [1] selected! - Show Available Projects");
-					projDB.viewProjects(UserType.STUDENT);
+					projDB.viewProjects(user);
 					break;
 				case 2: 
 					System.out.println("Option [2] selected! - Show Registered Project.");
-					viewRegisteredProject();
+					projDB.viewAllocatedProject();
 					break;
 				case 3:
 					System.out.println("Option [3] selected! - Register Project.");
@@ -114,8 +114,8 @@ public class Student extends User{
 					break;
 
 				case 6: 
-					System.out.println("Option [6] selected!");
-					reqDB.viewRequest(this.studentID);
+					System.out.println("Option [6] selected! - View All Requests");
+					reqDB.viewRequests(user);
 					break;				
 
 				default:

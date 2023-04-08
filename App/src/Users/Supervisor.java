@@ -27,6 +27,11 @@ public class Supervisor extends User {
 	 * @param userID
 	 * @param name
 	 */
+
+	public Supervisor(){}
+	public Supervisor(String userID){
+		this.supervisorID = userID;
+	}
 	public Supervisor(String userID, String name,String email) {
 		super(userID, name, email);
 		super.setUserType(UserType.SUPERVISOR); 

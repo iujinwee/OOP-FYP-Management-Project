@@ -1,5 +1,9 @@
 package Projects.ProjectDetails;
 
+import java.util.ArrayList;
+
+import org.apache.commons.math3.geometry.Space;
+
 import Users.Student;
 import Users.Supervisor;
 
@@ -10,6 +14,7 @@ public class Project {
 	private int projectID;
 	private String projectTitle;
 	private ProjectStatus projectStatus;
+	private String[] rejectedID;
 
 	/**
 	 * Represents a Project. Project is created by a Supervisor and assigned to a Student.
@@ -20,12 +25,13 @@ public class Project {
 	 */
 	public Project(){}
 
-	public Project(int id, String title, Student student, Supervisor supervisor) {
+	public Project(int id, String title, Student student, Supervisor supervisor, String[] rejectedId) {
 		// Create Project
 		this.projectID = id;
 		this.projectTitle = title;
 		this.supervisedBy = supervisor;
 		this.assignedTo = student;
+		this.rejectedID = rejectedId;
 		this.projectStatus = ProjectStatus.AVAILABLE;
 	}
 
@@ -64,13 +70,25 @@ public class Project {
 		System.out.println("Student Email: " + assignedTo.getEmail());
 		System.out.println("===================================================");
 	}
+	
+	public int getProjectId(){
+		return projectID;
+	}
 
 	public String getProjectTitle(){
-		return this.projectTitle;
+		return projectTitle;
 	}
 
 	public ProjectStatus getProjectStatus(){
-		return this.projectStatus;
+		return projectStatus;
+	}
+
+	public String getSupervisorId(){
+		return supervisedBy.getUserID();
+	}
+
+	public String getStudentId(){
+		return assignedTo.getUserID();
 	}
 
 	public void setProjectStatus(ProjectStatus status){

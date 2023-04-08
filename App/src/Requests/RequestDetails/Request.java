@@ -4,11 +4,12 @@ import Users.Student;
 import Users.Supervisor;
 import Users.UserDetails.User;
 
-public abstract class Request {
+public class Request {
 
 	Student belongs;
 	Supervisor taggedTo;
 	private RequestType requestType;
+	private int requestID;
 	private User fromUser;
 	private User toUser;
 	private int projectID;
@@ -21,12 +22,13 @@ public abstract class Request {
 	public Request(){}
 	public Request(RequestType type) {
 		// TODO - implement Request.Request
-	public Request(int requestID) {
-		this.requestStatus = RequestStatus.PENDING;
-		this.fromUser = belongs;
-		this.toUser = null;
-		this.requestID = requestID;
-		this.requestType = null;
+	}
+	public Request(int id, User fromUser, User toUser, RequestType type, RequestStatus status, int projectID) {
+		this.requestStatus = status;
+		this.fromUser = fromUser;
+		this.toUser = toUser;
+		this.requestID = id;
+		this.requestType = type;
 		throw new UnsupportedOperationException();
 	}
 

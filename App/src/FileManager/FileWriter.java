@@ -49,15 +49,15 @@ public class FileWriter {
 
                     case "Project":
                         Project current_proj = (Project) result.get(row.getRowNum());
-                        row.createCell(row.getRowNum()).setCellValue(current_proj.getSupervisor());
+                        row.createCell(row.getRowNum()).setCellValue(current_proj.getSupervisorId());
                         row.createCell(row.getRowNum()).setCellValue(current_proj.getProjectTitle());
-                        row.createCell(row.getRowNum()).setCellValue(current_proj.getStudent());
+                        row.createCell(row.getRowNum()).setCellValue(current_proj.getStudentId());
                         break;
 
                     case "Request": 
-                        Project current_req = (Project) result.get(row.getRowNum());
-                        row.createCell(row.getRowNum()).setCellValue(current_req.getSupervisor());
+                        Request current_req = (Request) result.get(row.getRowNum());
                         row.createCell(row.getRowNum()).setCellValue(current_req.getProjectTitle());
+                        row.createCell(row.getRowNum()).setCellValue(current_req.getFromUser());
                         row.createCell(row.getRowNum()).setCellValue(current_req.getStudent());
                         break;
                         
