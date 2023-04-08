@@ -23,7 +23,8 @@ public class ProjectDB {
 	}
 
 	public void createProject(String projectTitle, String studentId, String supervisorId) {
-
+		// TODO - implement ProjectDB.createProject
+		throw new UnsupportedOperationException();
 	}
 
 	/**

@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -35,14 +36,18 @@ public class App {
         p.viewAllocatedProjectDetails();
         p.viewAvailableProjectDetails();
 
-        // Login (Login with 5 attempts, use try, catch to handle invalid  inputs. once 5 attempts up, terminate program)
-        boolean loginSuccess = login();
-        while(!loginSuccess){
-            login();
-        }
+        // Student x = new Student("wee","Eugene", "wee@ntu.sg");
+        // x.loadMenu();
+
+        // // Login (Login with 5 attempts, use try, catch to handle invalid  inputs. once 5 attempts up, terminate program)
+        // boolean loginSuccess = login();
+        // while(!loginSuccess){
+        //     login();
+        // }
 
         // Show menu depending on user type
-        
+        Supervisor a = new Supervisor("null", "d",  "s");
+        a.loadMenu();
         
         // Execute choice of user
 	}
