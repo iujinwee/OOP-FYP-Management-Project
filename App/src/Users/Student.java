@@ -25,9 +25,9 @@ public class Student extends User{
 	/**
 	 * Represents a Student. 
 	 * 
-	 * @param userID The unique ID of each student.
-	 * @param name The name of each student.
-	 * @param email The email of each student.
+	 * @param userID represents the unique ID of the student.
+	 * @param name represents the name of the student.
+	 * @param email represents the email of the student.
 	 */
 	public Student(){}
 	public Student(String userID, String name, String email) {
@@ -45,16 +45,9 @@ public class Student extends User{
 		handleInvalidInput handler = new handleInvalidInput(sc);
 
 		while(handler.checkAttempts()){
-
 			try{
-				// Load Database
-				// projDB = new ProjectDB();
-				// reqDB = new RequestDB();
-				
 				getInput();
-
-				// Exit loop
-				break;
+				break; // Break out of loop
 
 			}catch(InvalidInputException e){
 				handler.handleInvalidInputException(e);

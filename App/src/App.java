@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,6 +8,7 @@ import Users.FYP_Coordinator;
 import Users.Student;
 import Users.Supervisor;
 import Projects.ProjectDB;
+import Projects.ProjectDetails.Project;
 
 public class App {
 
@@ -26,20 +28,26 @@ public class App {
         System.out.println("================================================================\n");
 
         Student x = new Student("wee","Eugene", "wee@ntu.sg");
-        x.loadMenu();
+        Supervisor y = new Supervisor("gan", "Bgan", "B@.t");
+        // ProjectDB projectList = new ProjectDB();
+        // projectList.createProject("Yes", "Y", null);
 
-        ProjectDB projectList = new ProjectDB();
-        projectList.createProject("Yes", "Y", null);
+        Project p = new Project(1, "Content", x, y);
+        p.viewAllocatedProjectDetails();
+        p.viewAvailableProjectDetails();
 
+        // Student x = new Student("wee","Eugene", "wee@ntu.sg");
+        // x.loadMenu();
 
-        // Login (Login with 5 attempts, use try, catch to handle invalid  inputs. once 5 attempts up, terminate program)
-        boolean loginSuccess = login();
-        while(!loginSuccess){
-            login();
-        }
+        // // Login (Login with 5 attempts, use try, catch to handle invalid  inputs. once 5 attempts up, terminate program)
+        // boolean loginSuccess = login();
+        // while(!loginSuccess){
+        //     login();
+        // }
 
         // Show menu depending on user type
-        
+        Supervisor a = new Supervisor("null", "d",  "s");
+        a.loadMenu();
         
         // Execute choice of user
 	}

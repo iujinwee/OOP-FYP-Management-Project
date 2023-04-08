@@ -18,6 +18,7 @@ public abstract class Request {
 	 * 
 	 * @param type
 	 */
+	public Request(){}
 	public Request(RequestType type) {
 		// TODO - implement Request.Request
 	public Request(int requestID) {
