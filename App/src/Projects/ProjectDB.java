@@ -91,11 +91,7 @@ public class ProjectDB {
 
 	public void deregisterProject(int projectID, String studentID) { //wait do we need this if already under requests?
 		findProject(projectID);
-		currentProject.setStudent(null);
-		
-		
-		// Add to rejected list (TO CHECK IF VALID)
-		currentProject.getRejected().add();
+		currentProject.addRejected(studentID);
 	}
 
 	public boolean allocateStudent(int projectID, Student student){
