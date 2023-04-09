@@ -13,6 +13,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import Projects.ProjectDetails.Project;
 import Requests.RequestDetails.Request;
+import Users.Student;
+import Users.Supervisor;
 import Users.UserDetails.User;
 
 public class FileReader {
@@ -46,31 +48,53 @@ public class FileReader {
                 switch (item.getClass().getSimpleName()) {
                     case "Student":
                     case "Supervisor":
-                        User tempUser = (User) item.getClass().getDeclaredConstructor().newInstance();
-
+                    case "FYP_Coordinator":
+                        String id  = getStringCellValue(row.getCell(columnMap.get("ID")));
+                        String name  = getStringCellValue(row.getCell(columnMap.get("Name")));
                         String email  = getStringCellValue(row.getCell(columnMap.get("Email")));
 
-                        tempUser.setUserID(email.substring(0, email.indexOf('@')));
-                        tempUser.setName(getStringCellValue(row.getCell(columnMap.get("Name"))));
-                        tempUser.setEmail(email);
+                        User tempUser = (User) item.getClass().getDeclaredConstructor(String.class, String.class, String.class).newInstance(id, name, email);
                         resultList.add(tempUser);
 
                         break;
 
                     case "Project":
-                        Project tempProject = (Project) item.getClass().getDeclaredConstructor().newInstance();
 
-                        tempProject.setProjectTitle(getStringCellValue(row.getCell(columnMap.get("Title"))));
-                        tempProject.setSupervisor(getStringCellValue(row.getCell(columnMap.get("Supervisor"))));
+                        // Load Project Information
+                        int projId  = getNumericCellValue(row.getCell(columnMap.get("ID")));
+                        String supId  = getStringCellValue(row.getCell(columnMap.get("SupervisorID")));
+                        String stuId  = getStringCellValue(row.getCell(columnMap.get("StudentID")));
+                        String title  = getStringCellValue(row.getCell(columnMap.get("Title")));
+                        String rejectString  = getStringCellValue(row.getCell(columnMap.get("Rejected")));
+                        String[] rejectList = rejectString.split("|");
+
+                        Project tempProject = (Project) item
+                            .getClass()
+                            .getDeclaredConstructor(int.class, String.class, Student.class, Supervisor.class, String[].class)
+                            .newInstance(projId, title, getStudent(stuId), getSupervisor(supId) , rejectList);
+
                         resultList.add(tempProject);
 
                         break;
 
                     case "Request": 
-                        Request tempRequest = (Request) item.getClass().getDeclaredConstructor().newInstance();
-                        
+                        String reqId = getStringCellValue(row.getCell(columnMap.get("ID")));
+                        String fromUser = getStringCellValue(row.getCell(columnMap.get("fromUser")));
+                        String toUser = getStringCellValue(row.getCell(columnMap.get("toUser")));
+                        String type = getStringCellValue(row.getCell(columnMap.get("type")));
+                        String status = getStringCellValue(row.getCell(columnMap.get("status")));
+                        String projID = getStringCellValue(row.getCell(columnMap.get("projectID")));
+                        String newTitle = getStringCellValue(row.getCell(columnMap.get("newTitle")));
+                        String newSupervisor = getStringCellValue(row.getCell(columnMap.get("newSupervisor")));
 
+                        Request tempRequest = (Request) item.getClass().getDeclaredConstructor().newInstance(reqId, fromUser, toUser, type, status, projID);
+                        // if (newTitle!=""){
+                        //     tempRequest.addTitle(newTitle);
+                        // }else{
+                        //     tempRequest.addSupervisor(newSupervisor);
+                        // }
                         resultList.add(tempRequest);
+
                         break;
                         
                     default:
@@ -91,7 +115,37 @@ public class FileReader {
         }
         return resultList;
     }
+
+    private static Student getStudent(String id){
+        
+        ArrayList<Object> studentList = readExcelFile("student_list.xlsx", new Student());
+        
+        // Load User Sub-class
+        for (Object ob : studentList){
+            Student stu = (Student) ob;
+            if (stu.getUserID() == id){
+                return stu;
+            }
+        }
+        return new Student();
+    }
     
+
+    private static Supervisor getSupervisor(String id){
+        
+        ArrayList<Object> supervisorList = readExcelFile("faculty_list.xlsx", new Supervisor());
+        
+        // Load User Sub-class
+        for (Object ob : supervisorList){
+            Supervisor sup = (Supervisor) ob;
+
+            if (sup.getUserID().compareTo(id) == 0){
+                return sup;
+            }
+        }
+        return new Supervisor();
+    }
+
     private static String getStringCellValue(Cell cell) {
         String value = "";
         if (cell != null) {
@@ -115,15 +169,15 @@ public class FileReader {
         return value;
     }
     
-    private static double getNumericCellValue(Cell cell) {
-        double value = 0;
+    private static int getNumericCellValue(Cell cell) {
+        int value = 0;
         if (cell != null) {
             switch (cell.getCellType()) {
                 case NUMERIC:
-                    value = cell.getNumericCellValue();
+                    value = (int) cell.getNumericCellValue();
                     break;
                 case FORMULA:
-                    value = cell.getNumericCellValue();
+                    value = (int) cell.getNumericCellValue();
                     break;
                 default:
                     break;
