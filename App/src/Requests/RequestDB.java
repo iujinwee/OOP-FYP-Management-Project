@@ -147,7 +147,7 @@ public class RequestDB {
 		}
 	}
 
-	public void viewAllRequests(User user){
+	public void viewAllRequests(String userID){
 		// Filter result based on userType
 	}
 

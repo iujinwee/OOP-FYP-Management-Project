@@ -6,19 +6,22 @@ public class handleInvalidInput {
     
     private Scanner sc;
     private int attempts = 0; 
-    private final static int MAX_ATTEMPTS = 3;
+    private int MAX_ATTEMPTS;
 
-    public handleInvalidInput(Scanner scanner){
+    public handleInvalidInput(Scanner scanner, int MAX_ATTEMPTS){
         this.sc = scanner;
+        this.MAX_ATTEMPTS = MAX_ATTEMPTS;
     }
 	public void handleInputMismatchException(Exception e){
-		System.out.println("\nInvalid Input. Please enter a number.");
-		sc.nextLine();
+        System.out.println("\nERROR!");
+		System.out.println("Invalid Input. Please enter a number.");
 		System.out.printf("Remaining Attempts left: %d\n\n", MAX_ATTEMPTS - ++attempts);
+        sc.nextLine();
 	}	
 
 	public void handleInvalidInputException(Exception e){
-		System.out.printf("\nInvalid Input. %s\n", e.getMessage());
+        System.out.println("\nERROR!");
+		System.out.printf("Invalid Input. %s\n", e.getMessage());
 		System.out.printf("Remaining Attempts left: %d\n\n", MAX_ATTEMPTS - ++attempts);
 	}	
 

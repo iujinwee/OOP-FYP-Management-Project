@@ -21,12 +21,16 @@ public class App {
 
 	public static void main(String[] args) {
 		// File Initialization
-        initalizeSystem();
+        // initalizeSystem();
 
         // Introduction to App 
         System.out.println("\n================================================================");
         System.out.println("======    Welcome to Final Year Project Management App    ======");
         System.out.println("================================================================\n");
+
+        Student user = new Student("y", "y", "y");
+        user.startProgram();
+
 
         // Login (Login with 5 attempts, use try, catch to handle invalid  inputs. once 5 attempts up, terminate program)
         boolean loginSuccess = login();
