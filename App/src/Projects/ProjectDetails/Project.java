@@ -14,7 +14,7 @@ public class Project {
 	private int projectID;
 	private String projectTitle;
 	private ProjectStatus projectStatus;
-	private String[] rejectedID;
+	private ArrayList<String> rejectedID;
 
 	/**
 	 * Represents a Project. Project is created by a Supervisor and assigned to a Student.
@@ -25,7 +25,15 @@ public class Project {
 	 */
 	public Project(){}
 
-	public Project(int id, String title, Student student, Supervisor supervisor, String[] rejectedId) {
+	public Project(int id){
+		ArrayList<String> rejList = new ArrayList<>();
+		this.projectID = id; 
+		this.assignedTo = null;
+		this.rejectedID = rejList;
+		this.projectStatus = ProjectStatus.AVAILABLE;
+	}
+
+	public Project(int id, String title, Student student, Supervisor supervisor, ArrayList<String> rejectedId) {
 		// Create Project
 		this.projectID = id;
 		this.projectTitle = title;
@@ -71,7 +79,7 @@ public class Project {
 		System.out.println("===================================================");
 	}
 	
-	public int getProjectId(){
+	public int getProjectID(){
 		return projectID;
 	}
 
@@ -83,28 +91,26 @@ public class Project {
 		return projectStatus;
 	}
 
-	public String getSupervisorId(){
+	public String getSupervisorID(){
 		return supervisedBy.getUserID();
 	}
 
-	public String getStudentId(){
+	public String getStudentID(){
 		return assignedTo.getUserID();
 	}
 
+	public ArrayList<String> getRejected(){
+		return this.rejectedID;
+	}
+
+
+	// SETTER FUNCTIONS 
 	public void setProjectStatus(ProjectStatus status){
 		this.projectStatus = status;
 	}
 	
 	public void setProjectTitle(String title){
 		this.projectTitle = title;
-	}
-
-	public int getProjectID(){
-		return this.projectID;
-	}
-
-	public String getSupervisorID() {
-		return this.supervisedBy.getUserID();
 	}
 
 	public void setStudent(Student student){
