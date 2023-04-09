@@ -15,14 +15,14 @@ import Users.UserDetails.UserType;
 public class ProjectDB {
 
 	FYP_Coordinator modifies;
-	private ArrayList<Project> projectDB = new ArrayList<Project>(); 
+	private ArrayList<Object> projectDB; 
 	private ArrayList<Object> studentList; 
 	private ArrayList<Object> supervisorList; 
+
 	private int projectLimit = 2;
 	private int sizeofdb;
-	private int projectID;
-	private String supervisorID;
-	private String projectTitle;
+	private Project currentProject;
+	private int currentIndex; 
 
 	Scanner sc = new Scanner(System.in);
 	Random random = new Random();
@@ -32,7 +32,6 @@ public class ProjectDB {
 		studentList = FileReader.readExcelFile("student_list.xlsx", new Student());
 		supervisorList = FileReader.readExcelFile("faculty_list.xlsx", new Supervisor());
 		projectDB = FileReader.readExcelFile("rollover_project.xlsx", new Project());
-		Project lastProject = (Project) projectDB.get(projectDB.size()-1);
 		sizeofdb = projectDB.size();
 	}
 
@@ -40,69 +39,109 @@ public class ProjectDB {
 		//ask rest of project details here
 		//if num of assigned > 2 then cannot create project alr 
 		//else num of assigned +1
-		if (supervisor.getNumAssignedProjects() < projectLimit) {
-			projectID = sizeofdb + 1;
-			projectTitle = setProjectTitle(supervisor);
-			Project newProject = new Project(projectID, projectTitle, null, supervisor);
-			sizeofdb++;
+		if (hasVacancy(supervisor)) {
+			int newID = ++sizeofdb; 
+			currentProject = new Project(newID); // Default 
+			currentProject.setSupervisor(supervisor); 
+			setNewTitle(newID); // Ask for input 
 		}
 		else {
 			System.out.println("Error! You are unable to create anymore projects!");
 		}
 	}
 
+
+	public Project findProject(int id){
+		int counter = 0;
+		for (Object obj: projectDB){
+			Project curProj = (Project) obj;
+			if(curProj.getProjectID() == id){
+				currentProject = curProj;
+				currentIndex = counter;
+				return currentProject;
+			}
+			counter++;
+		}
+		return new Project();
+	}
+
 	/**
 	 * 
 	 * @param newTitle
 	 */
-	public String setProjectTitle(Supervisor supervisor) {
+	public void setNewTitle(int projectID) {
+
+		findProject(projectID);
+
 		System.out.println("Input your project title");
-		return projectTitle = sc.next();
+		String title = sc.next();
+		currentProject.setProjectTitle(title);
 	}
 
-	public void changeSupervisor(int projectID, String supervisorID) {
-		for (Project project : projectDB) {
-			if (project.getProjectID() == projectID) {
-				project.setSupervisor(supervisorID);
-			}
-		}
+	public void changeSupervisor(int projectID, Supervisor supervisor) {
+		findProject(projectID);
+		currentProject.setSupervisor(supervisor);
 	}
 
-	public void setProjectStatus(int projectId, ProjectStatus updatedStatus) {
+	public void setProjectStatus(int projectID, ProjectStatus updatedStatus) {
 		// if approved, then run countproject
-
+		findProject(projectID);
+		currentProject.setProjectStatus(updatedStatus);
 	}
 
-	public void deregisterProject(int projectId) { //wait do we need this if already under requests?
-		// TODO - implement ProjectDB.deregisterProject
-		throw new UnsupportedOperationException();
+	public void deregisterProject(int projectID, String studentID) { //wait do we need this if already under requests?
+		findProject(projectID);
+		currentProject.setStudent(null);
+		
+		
+		// Add to rejected list (TO CHECK IF VALID)
+		currentProject.getRejected().add();
+	}
+
+	public boolean allocateStudent(int projectID, Student student){
+		findProject(projectID);
+		
+		// Check if student has been rejected previously
+		if(currentProject.getRejected().contains(student.getUserID())){
+			System.out.println("Student has been rejected previously.");
+			return false;
+		}
+
+		// Allocate student
+		currentProject.setStudent(student);
+		return true;
 	}
 
 	/**
 	 * 
 	 * @param userType
 	 */
-	public void viewProjects(UserType userType) {
-		// TODO - implement ProjectDB.viewProjects
-		throw new UnsupportedOperationException();
+	public void viewAllProjects(UserType userType) {
+		System.out.println("========    Project List    ========");
+		for (Object obj: projectDB){
+			Project curProj = (Project) obj;
+			System.out.printf("[%d] %s\n", curProj.getProjectID(), curProj.getProjectTitle());
+		}
 	}
 
 	public void exportProj(){
 		//after every method, call this 
 	}
 
-	public boolean setUnavailableProject(Supervisor supervisor) {
+	public boolean hasVacancy(Supervisor supervisor) {
 		//get number of assigned projects 
 		//if more than limit, set all projects under that supervisor as unavailable
 		if (supervisor.getNumAssignedProjects() >= projectLimit) {
-			for (Project project : projectDB) {
-				if (supervisor.getUserID() = project.getSupervisorID) {
-					setProjectStatus(project.getProjectID(), ProjectStatus.UNAVAILABLE);
+			for (Object obj : projectDB) {
+				Project curProject = (Project) obj;
+				if (supervisor.getUserID() == curProject.getSupervisorID()) {
+					setProjectStatus(curProject.getProjectID(), ProjectStatus.UNAVAILABLE);
 				}
 				return false;
 			}
 		}
-		else return true;
+		
+		return true;
 	}
 
 }
