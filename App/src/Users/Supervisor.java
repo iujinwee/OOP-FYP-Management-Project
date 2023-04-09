@@ -22,23 +22,22 @@ public class Supervisor extends User {
 	private RequestDB reqDB;
 	private Scanner sc;
 
-	/**
-	 * 
-	 * @param userID
-	 * @param name
-	 */
+	public Supervisor() {}
 
-	public Supervisor(){}
-	public Supervisor(String userID){
-		this.supervisorID = userID;
-	}
+	/**
+	 * Represents a Supervisor
+	 * 
+	 * @param userID represents the unique ID of the supervisor.
+	 * @param name represents the name of the supervisor.
+	 * @param email represents the email of the supervisor.
+	 */
 	public Supervisor(String userID, String name,String email) {
 		super(userID, name, email);
-		super.setUserType(UserType.SUPERVISOR); 
+		super.setType(UserType.SUPERVISOR); 
 		this.supervisorID = super.getUserID(); 
 		this.sc = new Scanner(System.in);
-
 	}
+	
 	public int getNumAssignedProjects(){
 		return this.numAssignedProjects;
 	}

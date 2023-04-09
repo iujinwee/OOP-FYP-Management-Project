@@ -7,16 +7,9 @@ public abstract class User implements UserInterface {
 	private String userID;
 	private String name;
 	private String email;
-	UserType type;
+	private UserType type; 
 
-	/**
-	 * 
-	 * @param userID
-	 */
-
-	public User(){
-
-	};
+	public User() {}
 	
 	public User(String userID, String name, String email) {
 		this.userID = userID;
@@ -27,29 +20,30 @@ public abstract class User implements UserInterface {
 	public String getUserID() {
 		return this.userID;
 	}
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
 
 	public String getName() {
 		return this.name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
 		return this.email;
 	}
-
-	public void setUserID(String id) {
-		this.userID = id;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public void setUserType(UserType inputType){
-		this.type = inputType;
+	public UserType getType() {
+		return this.type;
+	}
+
+	public void setType(UserType type){
+		this.type = type;
 	}
 
 	@Override

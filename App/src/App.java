@@ -29,9 +29,11 @@ public class App {
         System.out.println("================================================================\n");
 
         // Login (Login with 5 attempts, use try, catch to handle invalid  inputs. once 5 attempts up, terminate program)
+        int loginAttempts = 1;
         boolean loginSuccess = login();
-        while(!loginSuccess){
+        while(!loginSuccess && loginAttempts <= 5){
             login();
+            loginAttempts++;
         }
 
         // Show menu depending on user type
@@ -50,10 +52,13 @@ public class App {
         System.out.println("Enter Password: ");
         inputPassword = sc.nextLine();
 
+        // if inputUserID exists in studentList
+            // if 
+
         if (inputPassword!="" /*inputUserID exists in file*/) {
             String userID = inputUserID;
-            String password = inputPassword /* correct password */ ;
-            Account account = new Account(userID, password);
+            String password = inputPassword /* correct password */;
+            Account account = new Account(userID);
             // account.authenticate(accountList, inputPassword);
             return true;
         }

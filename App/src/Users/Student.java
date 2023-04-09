@@ -22,6 +22,8 @@ public class Student extends User{
 	private RequestDB reqDB;
 	private Scanner sc;
  	
+	public Student() {}
+
 	/**
 	 * Represents a Student. 
 	 * 
@@ -29,11 +31,9 @@ public class Student extends User{
 	 * @param name represents the name of the student.
 	 * @param email represents the email of the student.
 	 */
-	public Student(){}
 	public Student(String userID, String name, String email) {
-		// Initialization
 		super(userID, name, email);
-		super.setUserType(UserType.STUDENT);
+		super.setType(UserType.STUDENT);
 		this.studentID = super.getUserID();
 		this.sc = new Scanner(System.in);
 	}

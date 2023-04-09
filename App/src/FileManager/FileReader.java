@@ -16,6 +16,7 @@ import Requests.RequestDetails.Request;
 import Users.Student;
 import Users.Supervisor;
 import Users.UserDetails.User;
+import Login.Account;
 
 public class FileReader {
     
@@ -46,6 +47,17 @@ public class FileReader {
                 }
 
                 switch (item.getClass().getSimpleName()) {
+                    case "Account":
+                        String userID = getStringCellValue(row.getCell(columnMap.get("ID")));
+
+                        Account tempAccount = (Account) item
+                            .getClass()
+                            .getDeclaredConstructor(String.class)
+                            .newInstance(userID);
+                        resultList.add(tempAccount);
+
+                        break;
+                        
                     case "Student":
                     case "Supervisor":
                     case "FYP_Coordinator":
@@ -53,7 +65,10 @@ public class FileReader {
                         String name  = getStringCellValue(row.getCell(columnMap.get("Name")));
                         String email  = getStringCellValue(row.getCell(columnMap.get("Email")));
 
-                        User tempUser = (User) item.getClass().getDeclaredConstructor(String.class, String.class, String.class).newInstance(id, name, email);
+                        User tempUser = (User) item
+                            .getClass()
+                            .getDeclaredConstructor(String.class, String.class, String.class)
+                            .newInstance(id, name, email);
                         resultList.add(tempUser);
 
                         break;

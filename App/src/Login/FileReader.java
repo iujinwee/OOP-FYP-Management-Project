@@ -44,6 +44,9 @@ public class FileReader {
                 }
 
                 switch (item.getClass().getSimpleName()) {
+                    case "Account":
+                        
+                        break;
                     case "Student":
                     case "Supervisor":
                         User tempUser = (User) item.getClass().getDeclaredConstructor().newInstance();
