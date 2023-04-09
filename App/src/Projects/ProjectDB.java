@@ -7,12 +7,15 @@ import FileManager.FileReader;
 import Projects.ProjectDetails.Project;
 import Projects.ProjectDetails.ProjectStatus;
 import Users.FYP_Coordinator;
+import Users.Student;
+import Users.Supervisor;
+import Users.UserDetails.User;
 import Users.UserDetails.UserType;
 
 public class ProjectDB {
 
 	FYP_Coordinator modifies;
-	private ArrayList<Object> projectDB; 
+	private ArrayList<Project> projectDB = new ArrayList<Project>(); 
 	private ArrayList<Object> studentList; 
 	private ArrayList<Object> supervisorList; 
 	private int projectLimit = 2;
@@ -33,16 +36,14 @@ public class ProjectDB {
 		sizeofdb = projectDB.size();
 	}
 
-	public void createProject(Supervisor Supervisor) {
+	public void createProject(Supervisor supervisor) {
 		//ask rest of project details here
 		//if num of assigned > 2 then cannot create project alr 
 		//else num of assigned +1
-		if () {
-			supervisorID = jgkjk; //get supervisor id method
-			projectID = random.nextInt(); //sequential
-			setSupervisor(projectID,supervisorName);
-			setProjectTitle(supervisorID);
-			//how to make studentID empty ah? HELPPPPPP
+		if (supervisor.getNumAssignedProjects() < projectLimit) {
+			projectID = sizeofdb + 1;
+			projectTitle = setProjectTitle(supervisor);
+			Project newProject = new Project(projectID, projectTitle, null, supervisor);
 			sizeofdb++;
 		}
 		else {
@@ -54,23 +55,25 @@ public class ProjectDB {
 	 * 
 	 * @param newTitle
 	 */
-	public void setProjectTitle(String supervisorId) {
+	public String setProjectTitle(Supervisor supervisor) {
 		System.out.println("Input your project title");
-		projectTitle = sc.next();
+		return projectTitle = sc.next();
 	}
 
-	public void setSupervisor(int projectId, String supervisorName) {
-		// TODO - implement ProjectDB.setSupervisor
-		throw new UnsupportedOperationException();
+	public void changeSupervisor(int projectID, String supervisorID) {
+		for (Project project : projectDB) {
+			if (project.getProjectID() == projectID) {
+				project.setSupervisor(supervisorID);
+			}
+		}
 	}
 
 	public void setProjectStatus(int projectId, ProjectStatus updatedStatus) {
-		// TODO - implement ProjectDB.setProjectStatus
-		throw new UnsupportedOperationException();
 		// if approved, then run countproject
+
 	}
 
-	public void deregisterProject(int projectId) {
+	public void deregisterProject(int projectId) { //wait do we need this if already under requests?
 		// TODO - implement ProjectDB.deregisterProject
 		throw new UnsupportedOperationException();
 	}
@@ -88,9 +91,18 @@ public class ProjectDB {
 		//after every method, call this 
 	}
 
-	public boolean setUnavailableProject(Supervisor Supervisor) {
+	public boolean setUnavailableProject(Supervisor supervisor) {
 		//get number of assigned projects 
 		//if more than limit, set all projects under that supervisor as unavailable
+		if (supervisor.getNumAssignedProjects() >= projectLimit) {
+			for (Project project : projectDB) {
+				if (supervisor.getUserID() = project.getSupervisorID) {
+					setProjectStatus(project.getProjectID(), ProjectStatus.UNAVAILABLE);
+				}
+				return false;
+			}
+		}
+		else return true;
 	}
 
 }
