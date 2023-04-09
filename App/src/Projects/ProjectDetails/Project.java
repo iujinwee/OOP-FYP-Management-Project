@@ -81,6 +81,14 @@ public class Project {
 		this.projectTitle = title;
 	}
 
+	public int getProjectID(){
+		return this.projectID;
+	}
+
+	public String getSupervisorID() {
+		return this.supervisedBy.getUserID();
+	}
+
 	public void setStudent(Student student){
 		this.assignedTo = student;
 	}

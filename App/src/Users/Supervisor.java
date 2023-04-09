@@ -34,6 +34,8 @@ public class Supervisor extends User {
 		this.sc = new Scanner(System.in);
 
 	}
+	public Supervisor() {
+	}
 	public int getNumAssignedProjects(){
 		return this.numAssignedProjects;
 	}
