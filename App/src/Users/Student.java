@@ -34,7 +34,6 @@ public class Student extends User{
 	}
 	
 	public void viewRegisteredProject() {
-		// TODO - implement Student.viewRegisteredProject
 	}
 
 	public void viewUserMenu() {

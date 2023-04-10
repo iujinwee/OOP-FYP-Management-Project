@@ -4,6 +4,7 @@ public class Account {
 
 	private String userID;
 	private String password;
+	private String type;
 
 	public Account() {}
 
@@ -11,19 +12,22 @@ public class Account {
 	 * Account constructor, created with default password
 	 * @param userID Correct user ID of the account for login.
 	 */
-	public Account(String userID) {
+	public Account(String userID, String type) {
 		this.userID = userID;
 		this.password = "password";	
+		this.type = type;
 	}
 	
 	/**
 	 * Account constructor with both User ID and password specified
 	 * @param userID Correct user ID of the account for login.
 	 * @param password Correct password of the account for login.
+	 * @param type Account type, which will then correspond to user type.
 	 */
-	public Account(String userID, String password) {
+	public Account(String userID, String password, String type) {
 		this.userID = userID;
 		this.password = password;
+		this.type = type; 
 	}
 
 	public String getUserID() {
@@ -32,6 +36,18 @@ public class Account {
 	
 	public void setUserID(String userID) {
 		this.userID = userID;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public String getType() {
+		return this.type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	/**
@@ -56,11 +72,14 @@ public class Account {
 	 * @return Whether input password is correct.
 	 */
 	public boolean authenticate(String inputPassword) {
-		if(inputPassword == this.password) {
+		if(inputPassword.compareTo(this.password) == 0) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
+	public boolean login(AccountDB accountDB) {
+		
+	}
 }

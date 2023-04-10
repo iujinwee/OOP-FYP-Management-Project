@@ -12,7 +12,7 @@ public abstract class User implements UserInterface {
 	private String name;
 	private String email;
 	private Scanner sc;
-	UserType type;
+	private UserType type;
 
 	public User() {}
 	
@@ -22,9 +22,6 @@ public abstract class User implements UserInterface {
 	 * @param name Name of the user
 	 * @param email Email address of the user
 	 */
-
-	public User(){};
-	
 	public User(String userID, String name, String email) {
 		this.userID = userID;
 		this.name = name;
@@ -43,22 +40,6 @@ public abstract class User implements UserInterface {
 		return this.name;
 	}
 
-	public String getEmail() {
-		return this.email;
-	}
-
-	public UserType getUserType(){
-		return this.type;
-	}
-
-	public Scanner getScanner(){
-		return this.sc;
-	}
-
-	public void setUserID(String id) {
-		this.userID = id;
-	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -66,6 +47,7 @@ public abstract class User implements UserInterface {
 	public String getEmail() {
 		return this.email;
 	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -73,6 +55,12 @@ public abstract class User implements UserInterface {
 	public UserType getType() {
 		return this.type;
 	}
+
+	public void setType(UserType type) {
+		this.type = type;
+	}
+
+
 
 	public void startProgram() {
 		handleInvalidInput handler = new handleInvalidInput(sc, 3);

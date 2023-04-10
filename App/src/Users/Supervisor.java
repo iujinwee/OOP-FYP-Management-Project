@@ -31,14 +31,13 @@ public class Supervisor extends User {
 	 * @param name Name of the supervisor.
 	 * @param email Email address of the supervisor.
 	 */
-	public Supervisor(String userID, String name,String email) {
+	public Supervisor(String userID, String name, String email) {
 		super(userID, name, email);
 		super.setType(UserType.SUPERVISOR); 
 		this.supervisorID = super.getUserID(); 
 		this.sc = new Scanner(System.in);
 	}
-	public Supervisor() {
-	}
+	
 	public int getNumAssignedProjects(){
 		return this.numAssignedProjects;
 	}
