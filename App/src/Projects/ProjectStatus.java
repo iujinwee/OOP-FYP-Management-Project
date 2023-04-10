@@ -1,4 +1,4 @@
-package Projects.ProjectDetails;
+package Projects;
 public enum ProjectStatus {
 	RESERVED,
 	UNAVAILABLE,

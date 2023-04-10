@@ -1,4 +1,4 @@
-package Requests.RequestDetails;
+package Requests;
 public enum RequestStatus {
 	APPROVED,
 	REJECTED,

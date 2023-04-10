@@ -3,11 +3,11 @@ import java.util.*;
 
 import Exceptions.InvalidInputException;
 import Projects.ProjectDB;
-import Requests.RequestDetails.Request;
-import Requests.RequestDetails.RequestType;
 import Users.UserDetails.User;
 import Users.UserDetails.UserType;
+import Requests.Request;
 import Requests.RequestDB;
+import Requests.RequestType;
 
 public class Student extends User{
 

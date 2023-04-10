@@ -1,4 +1,4 @@
-package Requests.Request;
+package Requests;
 import Projects.Project.Project;
 import Projects.Project.ProjectStatus;
 import Users.Student;

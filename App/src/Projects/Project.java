@@ -1,4 +1,4 @@
-package Projects.ProjectDetails;
+package Projects;
 
 import java.util.ArrayList;
 

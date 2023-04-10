@@ -1,9 +1,7 @@
 package Projects;
 import java.util.ArrayList;
 
-import FileManager.FileReader;
-import Projects.ProjectDetails.Project;
-import Projects.ProjectDetails.ProjectStatus;
+import Database.FileHandler;
 import Users.FYP_Coordinator;
 import Users.UserDetails.UserType;
 
@@ -16,9 +14,9 @@ public class ProjectDB {
 
 	public ProjectDB() {
 		// Initialize ProjectDB (Scan Excel File)
-		studentList = FileReader.readExcelFile("student_list.xlsx", new Student());
-		supervisorList = FileReader.readExcelFile("faculty_list.xlsx", new Supervisor());
-		projectDB = FileReader.readExcelFile("rollover_project.xlsx", new Project());
+		studentList = FileHandler.readExcelFile("student_list.xlsx", new Student());
+		supervisorList = FileHandler.readExcelFile("faculty_list.xlsx", new Supervisor());
+		projectDB = FileHandler.readExcelFile("rollover_project.xlsx", new Project());
 		Project lastProject = (Project) projectDB.get(projectDB.size()-1);
 	}
 
