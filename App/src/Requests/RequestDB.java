@@ -80,7 +80,6 @@ import java.util.Scanner;
 
 public class RequestDB {
 
-	private Request[] requestDB;
 	private static ArrayList<Object> requestList;
 	Scanner sc = new Scanner(System.in);
 
@@ -131,19 +130,20 @@ public class RequestDB {
 	}
 
 	public void viewRequest(User user) {
-		for(int i=0; i<ArrayList.size(); i++){
-			if(requestList.get(i).getFromUser().equals(user)){
-				System.out.println(requestList.get(i).toString());
+		for(Object request : requestList){
+			Request req = (Request) request;
+			if(req.getFromUser().equals(user)){
+				System.out.println(req.toString());
 			}
 		}
 		throw new UnsupportedOperationException();
 	}
 
 	public Request getRequest(int requestID) {
-		for (int i = 0; i < requestList.size(); i++) {
-			if (requestList.get(i).getRequestID() == requestID) {
-				return requestList.get(i);
-				break;
+		for (Object request : requestList) {
+			Request req = (Request) request;
+			if (req.getRequestID() == requestID) {
+				return req;
 			}
 		}
 		throw new UnsupportedOperationException();
