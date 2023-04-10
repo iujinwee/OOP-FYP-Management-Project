@@ -2,9 +2,9 @@ package Database;
 
 import Users.Student;
 
-public class StudentDB extends Database{
+public class RequestDB extends Database{
 
-    public StudentDB(){
+    public RequestDB(){
         super("student_list.xlsx", new Student());
     }
 
