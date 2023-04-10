@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import Database.AccountDB;
 import Database.StudentDB;
 import Login.Account;
 import Users.Student;
@@ -11,6 +12,7 @@ public class App {
         // (db.findInstance("KOH1")).setName("YES");
         // System.out.println(db.findInstance("KOH1").getName());
         // db.exportDB();
+        AccountDB accountDB = new AccountDB();
 
         // Introduction to App 
         System.out.println("\n================================================================");
@@ -43,6 +45,8 @@ public class App {
         System.out.println("Enter Password: ");
         inputPassword = sc.nextLine();
 
+        account = accountDB.findInstance()
+        if ()
         // if (account = AccountDB.findAcc()) {
             // account.authenticate(inputPassword);
             // return true;
