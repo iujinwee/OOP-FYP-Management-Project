@@ -12,12 +12,10 @@ import Users.FYP_Coordinator;
 public class App {
 
 	public static void main(String[] args) {
-        // StudentDB db = new StudentDB();
-        // (db.findInstance("KOH1")).setName("YES");
-        // System.out.println(db.findInstance("KOH1").getName());
-        // db.exportDB();
         AccountDB accountDB = new AccountDB();
-        // accountDB.showAccountDB();
+        StudentDB studentDB = new StudentDB();
+        SupervisorDB supervisorDB = new SupervisorDB();
+        accountDB.showAccountDB();
         Account ca = null; 
         User user = null;
         Scanner sc = new Scanner(System.in);
@@ -52,6 +50,8 @@ public class App {
             
             loginAttempts++;
         }
+        
+        String userID = ca.getUserID();
         
         // Initialising user class based on user type
         switch(ca.getType()) {
