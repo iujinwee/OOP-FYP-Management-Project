@@ -2,8 +2,6 @@ package Projects;
 
 import java.util.ArrayList;
 
-import org.apache.commons.math3.geometry.Space;
-
 import Users.Student;
 import Users.Supervisor;
 
@@ -79,11 +77,17 @@ public class Project {
 	}
 
 	public String getSupervisorID(){
-		return supervisedBy.getUserID();
+		if(supervisedBy!=null){
+			return supervisedBy.getUserID();
+		}
+		return "";
 	}
 
 	public String getStudentID(){
-		return assignedTo.getUserID();
+		if(assignedTo!=null){
+			return assignedTo.getUserID();
+		}
+		return "";
 	}
 
 	public ArrayList<String> getRejected(){

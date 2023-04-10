@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -83,12 +84,15 @@ public class FileHandler {
                         String stuId  = getStringCellValue(row.getCell(columnMap.get("StudentID")));
                         String title  = getStringCellValue(row.getCell(columnMap.get("Title")));
                         String rejectString  = getStringCellValue(row.getCell(columnMap.get("Rejected")));
+                        StudentDB stu = new StudentDB();
+                        SupervisorDB sup = new SupervisorDB();
                         String[] rejectList = rejectString.split("|");
+                        ArrayList<String> rejectStrList = new ArrayList<>(Arrays.asList(rejectList));
 
                         Project tempProject = (Project) item
                             .getClass()
-                            .getDeclaredConstructor(int.class, String.class, Student.class, Supervisor.class, String[].class)
-                            .newInstance(projId, title, getStudent(stuId), getSupervisor(supId) , rejectList);
+                            .getDeclaredConstructor(int.class, String.class, Student.class, Supervisor.class, ArrayList.class)
+                            .newInstance(projId, title, stu.findInstance(stuId), sup.findInstance(supId), rejectStrList);
 
                         resultList.add(tempProject);
 
@@ -101,8 +105,8 @@ public class FileHandler {
                         String type = getStringCellValue(row.getCell(columnMap.get("type")));
                         String status = getStringCellValue(row.getCell(columnMap.get("status")));
                         String projID = getStringCellValue(row.getCell(columnMap.get("projectID")));
-                        String newTitle = getStringCellValue(row.getCell(columnMap.get("newTitle")));
-                        String newSupervisor = getStringCellValue(row.getCell(columnMap.get("newSupervisor")));
+                        // String newTitle = getStringCellValue(row.getCell(columnMap.get("newTitle")));
+                        // String newSupervisor = getStringCellValue(row.getCell(columnMap.get("newSupervisor")));
 
                         Request tempRequest = (Request) item.getClass().getDeclaredConstructor().newInstance(reqId, fromUser, toUser, type, status, projID);
                         // if (newTitle!=""){
@@ -164,12 +168,13 @@ public class FileHandler {
                         break;
 
                     case "Project":
-                        Project current_proj = (Project) result.get(row.getRowNum());
-                        row.createCell(row.getRowNum()).setCellValue(current_proj.getProjectId());
-                        row.createCell(row.getRowNum()).setCellValue(current_proj.getSupervisorId());
-                        row.createCell(row.getRowNum()).setCellValue(current_proj.getStudentId());
-                        row.createCell(row.getRowNum()).setCellValue(current_proj.getProjectTitle());
-                        // row.createCell(row.getRowNum()).setCellValue(current_proj.getRejected());
+                        Project current_proj = (Project) result.get(row_count++);
+                        String rejected = String.join("|", current_proj.getRejected());
+                        row.getCell(column_count++).setCellValue(current_proj.getProjectID());
+                        row.getCell(column_count++).setCellValue(current_proj.getProjectTitle());
+                        row.getCell(column_count++).setCellValue(current_proj.getStudentID());
+                        row.getCell(column_count++).setCellValue(current_proj.getSupervisorID());
+                        row.createCell(column_count++).setCellValue(rejected);
                         break;
 
                     case "Request": 
@@ -197,37 +202,6 @@ public class FileHandler {
             
         } 
         return saveFile;
-    }
-
-
-    private static Student getStudent(String id){
-        
-        ArrayList<Object> studentList = readExcelFile("student_list.xlsx", new Student());
-        
-        // Load User Sub-class
-        for (Object ob : studentList){
-            Student stu = (Student) ob;
-            if (stu.getUserID() == id){
-                return stu;
-            }
-        }
-        return new Student();
-    }
-    
-
-    private static Supervisor getSupervisor(String id){
-        
-        ArrayList<Object> supervisorList = readExcelFile("faculty_list.xlsx", new Supervisor());
-        
-        // Load User Sub-class
-        for (Object ob : supervisorList){
-            Supervisor sup = (Supervisor) ob;
-
-            if (sup.getUserID().compareTo(id) == 0){
-                return sup;
-            }
-        }
-        return new Supervisor();
     }
 
     private static String getStringCellValue(Cell cell) {

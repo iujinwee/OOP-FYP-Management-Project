@@ -2,10 +2,10 @@ package Users;
 
 import java.util.*;
 
+import Database.ProjectDB;
 import Exceptions.InvalidInputException;
 import Exceptions.handleInvalidInput;
 import Projects.Project;
-import Projects.ProjectDB;
 import Requests.Request;
 import Requests.RequestDB;
 import Requests.RequestStatus;
@@ -33,19 +33,17 @@ public class Supervisor extends User {
 	 */
 	public Supervisor(String userID, String name,String email) {
 		super(userID, name, email);
-		super.setType(UserType.SUPERVISOR); 
+		super.setUserType(UserType.SUPERVISOR); 
 		this.supervisorID = super.getUserID(); 
 		this.sc = new Scanner(System.in);
 	}
-	public Supervisor() {
-	}
+	
 	public int getNumAssignedProjects(){
 		return this.numAssignedProjects;
 	}
 
-	@Override
 	public void loadMenu(User user){
-		handleInvalidInput handler = new handleInvalidInput(sc);
+		handleInvalidInput handler = new handleInvalidInput(user.getScanner(), 3);
 
 		while(handler.checkAttempts()){
 			try{
@@ -83,7 +81,6 @@ public class Supervisor extends User {
 		System.out.println("[0] Exit Program.");
 	}
 
-	@Override
 	public void getInput(User user) throws InvalidInputException{
 		while (choice != 0){	
 
@@ -96,7 +93,7 @@ public class Supervisor extends User {
 			switch(choice){
 				case 1: 
 					System.out.println("Option [1] selected! - Create New Project.");
-					projDB.createProject(user);
+					// projDB.createProject(user);
 					break;
 
 				case 2: 
@@ -108,7 +105,7 @@ public class Supervisor extends User {
 				case 3:
 					//Supervisor changes title of his/her projects
 					System.out.println("Option [3] selected! - Change Title of Project.");
-					projDB.setProjectTitle(user);
+					// projDB.setProjectTitle(user);
 
 					break;
 
@@ -120,7 +117,7 @@ public class Supervisor extends User {
 					
 				case 5:
 					System.out.println("Option [5] selected! - Manage Incoming Requests.");
-					manageRequests();
+					// manageRequests();
 					break;
 
 				default:
@@ -129,22 +126,28 @@ public class Supervisor extends User {
 		}
 	}
 
-	public void manageRequests() {
-		// View all Requests (To include in sub-class)
-		reqDB.viewRequest(this.supervisorID); //to change this method parameter in reqDB?
+	// public void manageRequests() {
+	// 	// View all Requests (To include in sub-class)
+	// 	reqDB.viewRequest(this.supervisorID); //to change this method parameter in reqDB?
 
-		//manage requests
-		System.out.println("Enter RequestID to Approve/Reject: ");
-		int reqID = sc.nextInt();
+	// 	//manage requests
+	// 	System.out.println("Enter RequestID to Approve/Reject: ");
+	// 	int reqID = sc.nextInt();
 
-		Request curRequest = reqDB.getRequest(reqID); // return Subclass
+	// 	Request curRequest = reqDB.getRequest(reqID); // return Subclass
 
-		System.out.println("Approve/ Reject");
-		System.out.println("[1] Approve");
-		System.out.println("[0]");
-		int choice = sc.nextInt();
+	// 	System.out.println("Approve/ Reject");
+	// 	System.out.println("[1] Approve");
+	// 	System.out.println("[0]");
+	// 	int choice = sc.nextInt();
 
-		curRequest.enactRequest(choice);
+	// 	curRequest.enactRequest(choice);
+	// }
+
+	@Override
+	public void getInput() throws InvalidInputException {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'getInput'");
 	}
 
 	

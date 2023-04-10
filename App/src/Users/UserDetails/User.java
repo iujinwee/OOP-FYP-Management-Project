@@ -14,8 +14,6 @@ public abstract class User implements UserInterface {
 	private Scanner sc;
 	UserType type;
 
-	public User() {}
-	
 	/**
 	 * User constructor
 	 * @param userID Unique user ID of the user, the part of the email before @
@@ -35,9 +33,6 @@ public abstract class User implements UserInterface {
 	public String getUserID() {
 		return this.userID;
 	}
-	public void setUserID(String userID) {
-		this.userID = userID;
-	}
 
 	public String getName() {
 		return this.name;
@@ -55,6 +50,7 @@ public abstract class User implements UserInterface {
 		return this.sc;
 	}
 
+	// SETTER FUNCTIONS
 	public void setUserID(String id) {
 		this.userID = id;
 	}
@@ -63,15 +59,12 @@ public abstract class User implements UserInterface {
 		this.name = name;
 	}
 
-	public String getEmail() {
-		return this.email;
-	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public UserType getType() {
-		return this.type;
+	public void setUserType(UserType type){
+		this.type = type;
 	}
 
 	public void startProgram() {
