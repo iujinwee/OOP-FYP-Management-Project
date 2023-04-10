@@ -1,10 +1,6 @@
 package Requests;
-import Projects.ProjectDB;
-import Projects.Project;
+import Database.ProjectDB;
 import Projects.ProjectStatus;
-import Users.Student;
-import Users.Supervisor;
-import Users.FYP_Coordinator;
 import Users.UserDetails.*;;
 
 public class DeregisterProject extends Request{
@@ -18,15 +14,13 @@ public class DeregisterProject extends Request{
         switch(choice){
             case 1:
                 ProjectDB projDB = new ProjectDB();
-                Project project = projDB.findInstance(getProjectID());
-                project.setProjectStatus(ProjectStatus.AVAILABLE);
+                (projDB.findInstance(getProjectID())).setProjectStatus(ProjectStatus.AVAILABLE);
                 projDB.exportDB();
                 setRequestStatus(RequestStatus.APPROVED);
                 break;
             case 0:
                 ProjectDB projDB0 = new ProjectDB();
-                Project project0 = projDB0.findInstance(getProjectID());
-                project0.addRejected(getFromUser().getUserID());
+                (projDB0.findInstance(getProjectID())).addRejected(getFromUser().getUserID());
                 projDB0.exportDB();
                 setRequestStatus(RequestStatus.REJECTED);
                 break;

@@ -24,7 +24,7 @@ public class RequestDB extends Database{
 			case CHANGETITLE:
 				System.out.println("Insert new title: ");
 				String newTitle = sc.nextLine();
-				requestList.add(new ChangeTitle(requestList.size(), newTitle, fromUser, toUser));
+				requestList.add(new ChangeTitle(super.size(), newTitle, fromUser, toUser));
 				exportDB();
 				break;
 			case CHANGESUPERVISOR:

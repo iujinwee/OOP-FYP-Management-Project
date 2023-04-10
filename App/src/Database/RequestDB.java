@@ -43,22 +43,22 @@ public class RequestDB extends Database{
 				System.out.println("Insert project ID: ");
 				int projectID = sc.nextInt();
 				System.out.println("Insert new supervisor ID: ");
-				int newSupervisorID = sc.nextInt();
-				requestList.add(new ChangeSupervisor(requestList.size(), newSupervisorID, projectID, fromUser, toUser));
+				String newSupervisorID = sc.next();
+				requestList.add(new ChangeSupervisor(super.size+1, newSupervisorID, projectID, fromUser, toUser));
 				exportDB();
 				break;
 
 			case REGISTERPROJECT:
 				System.out.println("Insert project ID: ");
 				projectID = sc.nextInt();
-				requestList.add(new RegisterProject(requestList.size(), projectID, fromUser, toUser));
+				requestList.add(new RegisterProject(super.size+1, projectID, fromUser, toUser));
 				exportDB();
 				break;
 
 			case DEREGISTERPROJECT:
 				System.out.println("Insert project ID: ");
 				projectID = sc.nextInt();
-				requestList.add(new DeregisterProject(requestList.size(), projectID, fromUser, toUser));
+				requestList.add(new DeregisterProject(super.size+1, projectID, fromUser, toUser));
 				exportDB();
 				break;
 		}

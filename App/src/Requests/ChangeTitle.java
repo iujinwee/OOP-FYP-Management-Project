@@ -1,6 +1,5 @@
 package Requests;
 import Database.ProjectDB;
-import Projects.*;
 import Users.UserDetails.*;
 
 public class ChangeTitle extends Request{

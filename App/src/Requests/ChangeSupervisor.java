@@ -2,13 +2,9 @@ package Requests;
 import Database.ProjectDB;
 import Database.SupervisorDB;
 import Projects.Project;
-import Projects.ProjectStatus;
-import Users.*;
 import Users.UserDetails.*;;
 
 public class ChangeSupervisor extends Request{
-
-    private int newSupervisor;
 
     public ChangeSupervisor(int requestID, String newSupervisor, int projectID, User fromUser, User toUser) {
         super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGESUPERVISOR, projectID);
