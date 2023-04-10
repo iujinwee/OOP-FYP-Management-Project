@@ -8,33 +8,27 @@ import Users.User.User;
 
 public class ChangeSupervisor extends Request{
 
-    private int newSupervisorID, projectID;
+    private int newSupervisor;
+    private int projectID;
+    private int requestID;
 
-    public ChangeSupervisor(int requestID, int newSupervisorID, int projectID) {
-        super(requestID);
-        setRequestType(RequestType.CHANGESUPERVISOR);
-        setToUser(/*FYP_Coordinator */);
-        this.newSupervisorID = newSupervisorID;
-        this.projectID = projectID;
+    public ChangeSupervisor(int requestID, int newSupervisor, int projectID) {
+        super(requestID, fromUser, FYP_Coordinator, RequestStatus.PENDING, RequestType.CHANGESUPERVISOR, projectID);
+        this.newSupervisor = newSupervisor;
     }
 
-    public void enactRequest(Request req){
-        ProjectDB projdb = new ProjectDB();
-        projdb.setSupervisor(req.getTitle());
-        projdb.exportFile();
-    }
-
-    public void approve() {
-        //scan through project list for project with projectID
-        //scan through supervisor list for supervisor with newSupervisorID
-        //set project supervisor to newSupervisor
-        setRequestStatus(RequestStatus.APPROVED);
-        throw new UnsupportedOperationException();
-    }
-
-    public void reject() {
-        setRequestStatus(RequestStatus.REJECTED);
-        throw new UnsupportedOperationException();
+    public void enactRequest(int choice){
+        switch(choice){
+            case 1:
+                approve();
+                break;
+            case 2:
+                setRequestStatus(RequestStatus.REJECTED);
+                break;
+            default:
+                System.out.println("Invalid choice");
+                break;
+        }
     }
     
 }

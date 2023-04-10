@@ -81,12 +81,12 @@ import java.util.Scanner;
 public class RequestDB {
 
 	private Request[] requestDB;
-	private static ArrayList<Request> requestList;
+	private static ArrayList<Object> requestList;
 	Scanner sc = new Scanner(System.in);
 
 
 	public RequestDB() {
-		requestDB = FileReader.readExcelFile("Requests.xlsx");
+		requestList = FileReader.readExcelFile("Requests.xlsx", new Request());
 		throw new UnsupportedOperationException();
 	}
 	public void createRequest(RequestType type) {
@@ -94,22 +94,28 @@ public class RequestDB {
 			case CHANGETITLE:
 				System.out.println("Insert new title: ");
 				String newTitle = sc.nextLine();
-				requestDB.add(new ChangeTitle((requestDB.size() + 1), newTitle));
+				requestList.add(new ChangeTitle(requestList.size(), newTitle));
+				FileManager.FileWriter.writeExcelFile("Requests.xlsx", requestList);
 				break;
 			case CHANGESUPERVISOR:
 				System.out.println("Insert project ID: ");
 				int projectID = sc.nextInt();
 				System.out.println("Insert new supervisor ID: ");
 				int newSupervisorID = sc.nextInt();
-				requestDB.add(new ChangeSupervisor((requestDB.size() + 1), newSupervisorID, projectID));
+				requestList.add(new ChangeSupervisor(requestList.size(), newSupervisorID, projectID));
+				FileManager.FileWriter.writeExcelFile("Requests.xlsx", requestList);
 				break;
 			case REGISTERPROJECT:
 				System.out.println("Insert project ID: ");
 				projectID = sc.nextInt();
-				requestDB.add(new RegisterProject((requestDB.size() + 1), projectID));
+				requestList.add(new RegisterProject(requestList.size(), projectID));
+				FileManager.FileWriter.writeExcelFile("Requests.xlsx", requestList);
 				break;
 			case DEREGISTERPROJECT:
-				requestDB.add(new DeregisterProject(requestDB.size() + 1));
+				System.out.println("Insert project ID: ");
+				projectID = sc.nextInt();
+				requestList.add(new DeregisterProject(requestList.size(), projectID));
+				FileManager.FileWriter.writeExcelFile("Requests.xlsx", requestList);
 				break;
 		}
 
@@ -119,51 +125,28 @@ public class RequestDB {
 
 	}
 
-	public void updateRequest(String filename) throws IOException {
-		List alw = new ArrayList();
-
-		for (int i = 0; i < requestDB.size(); i++) {
-			Request req = (Request) requestDB.get(i);
-			StringBuilder st = new StringBuilder();
-			st.append(req.getRequestType());
-			st.append('|');
-			st.append(req.getFromUser());
-			st.append('|');
-			st.append(req.getToUser());
-			st.append('|');
-			st.append(req.getRequestStatus());
-			alw.add(st.toString());
-		}
-		write(filename, alw);
+	public void manageRequest() {
+		
 		throw new UnsupportedOperationException();
 	}
 
-	public void viewRequest(String userID) {
-		for (Request request : requestDB) {
-			System.out.println(request);
+	public void viewRequest(User user) {
+		for(int i=0; i<ArrayList.size(); i++){
+			if(requestList.get(i).getFromUser().equals(user)){
+				System.out.println(requestList.get(i).toString());
+			}
 		}
 		throw new UnsupportedOperationException();
 	}
 
 	public Request getRequest(int requestID) {
-		for (Request request : requestDB) {
-			if (request.getRequestID() == requestID) {
-				return request;
+		for (int i = 0; i < requestList.size(); i++) {
+			if (requestList.get(i).getRequestID() == requestID) {
+				return requestList.get(i);
+				break;
 			}
 		}
 		throw new UnsupportedOperationException();
-	}
-
-	public static void write(String fileName, List data) throws IOException {
-		PrintWriter out = new PrintWriter(new FileWriter(fileName));
-
-		try {
-			for (int i = 0; i < data.size(); i++) {
-				out.println((String) data.get(i));
-			}
-		} finally {
-			out.close();
-		}
 	}
 
 }

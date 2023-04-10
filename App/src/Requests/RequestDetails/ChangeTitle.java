@@ -7,23 +7,25 @@ import Users.User.User;
 
 public class ChangeTitle extends Request{
     
-    String newTitle;
+    private String newTitle;
+    private int requestID;
 
     public ChangeTitle(int requestID, String newTitle) {
-        super(requestID);
-        setRequestType(RequestType.CHANGETITLE);
-        setToUser(belongs.getSupervisor());
+        super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGETITLE, projectID)
         this.newTitle = newTitle;
     }
 
-    public void approve() {
-        modifies.setProjectTitle(newTitle);
-        setRequestStatus(RequestStatus.APPROVED);
-        throw new UnsupportedOperationException();
-    }
-
-    public void reject() {
-        setRequestStatus(RequestStatus.REJECTED);
-        throw new UnsupportedOperationException();
+    public void enactRequest(int choice){
+        switch(choice){
+            case 1:
+                approve();
+                break;
+            case 2:
+                setRequestStatus(RequestStatus.REJECTED);
+                break;
+            default:
+                System.out.println("Invalid choice");
+                break;
+        }
     }
 }

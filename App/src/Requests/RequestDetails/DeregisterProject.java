@@ -8,32 +8,26 @@ import Users.User.User;
 public class DeregisterProject extends Request{
     
     private int projectID;
+    private int requestID;
 
-    public DeregisterProject(int requestID) {
-        super(requestID);
+    public DeregisterProject(int requestID, int projectID) {
+        super(requestID, fromUser, FYP_Coordinator, RequestStatus.PENDING, RequestType.DEREGISTERPROJECT, projectID);
         setRequestType(RequestType.DEREGISTERPROJECT);
         setToUser(/*FYP_Coordinator*/);
         projectID = modifies.getProjectID();
     }
 
-    public void approve() {
-        modifies.setProjectStatus(ProjectStatus.AVAILABLE);
-        modifies.setStudent(null);
-        //does student have attribute projectID?
-        //if yes, set to null
-        //not sure how to make it unavailable for this particular student
-        //but available for other students
-        //maybe add a new attribute to student class
-        //called "unavailableProjects" or something
-        //and add projectID to that list
-
-        setRequestStatus(RequestStatus.APPROVED);
-        throw new UnsupportedOperationException();
+    public void enactRequest(int choice){
+        switch(choice){
+            case 1:
+                approve();
+                break;
+            case 2:
+                setRequestStatus(RequestStatus.REJECTED);
+                break;
+            default:
+                System.out.println("Invalid choice");
+                break;
+        }
     }
-
-    public void reject() {
-        setRequestStatus(RequestStatus.REJECTED);
-        throw new UnsupportedOperationException();
-    }
-    
 }

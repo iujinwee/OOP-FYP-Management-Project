@@ -8,31 +8,27 @@ import Users.User.User;
 public class RegisterProject extends Request{
 
     private int projectID;
+    private int requestID;
 
     public RegisterProject(int requestID, int projectID) {
-        super(requestID);
-        setRequestType(RequestType.REGISTERPROJECT);
-        setToUser(/*FYP_Coordinator*/);
+        super(requestID, fromUser, FYP_Coordinator, RequestStatus.PENDING, RequestType.REGISTERPROJECT, projectID);
         this.projectID = projectID;
         //scan through project list for project with projectID
         //set project status to RESERVED
     }
 
-    public void approve() {
-        //scan through project list for project with projectID
-        //set project status to ALLOCATED
-
-        //allocate project to student
-
-        setRequestStatus(RequestStatus.APPROVED);
-        throw new UnsupportedOperationException();
-    }
-
-    public void reject() {
-        setRequestStatus(RequestStatus.REJECTED);
-        //scan through project list for project with projectID
-        //set project status to AVAILABLE
-        throw new UnsupportedOperationException();
+    public void enactRequest(int choice){
+        switch(choice){
+            case 1:
+                approve();
+                break;
+            case 2:
+                setRequestStatus(RequestStatus.REJECTED);
+                break;
+            default:
+                System.out.println("Invalid choice");
+                break;
+        }
     }
     
 }

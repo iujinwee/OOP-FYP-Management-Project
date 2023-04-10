@@ -13,19 +13,21 @@ public abstract class Request {
 	private User toUser;
 	private int projectID;
 	private RequestStatus requestStatus;
+	private int requestID;
 
 	/**
 	 * 
 	 * @param type
 	 */
-	public Request(RequestType type) {
-		// TODO - implement Request.Request
-	public Request(int requestID) {
-		this.requestStatus = RequestStatus.PENDING;
-		this.fromUser = belongs;
-		this.toUser = null;
-		this.requestID = requestID;
-		this.requestType = null;
+	public Request(){}
+	
+	public Request(int ID, User fromUser, User toUser, RequestStatus status, RequestType type, int projectID) {
+		this.requestStatus = status;
+		this.fromUser = fromUser;
+		this.toUser = toUser;
+		this.requestID = ID;
+		this.requestType = type;
+		this.projectID = projectID;
 		throw new UnsupportedOperationException();
 	}
 
@@ -57,6 +59,8 @@ public abstract class Request {
 		this.toUser = toUser;
 	}
 
-	public abstract void enactRequest();
+	public int getRequestID() {
+		return this.requestID;
+	}
 
 }
