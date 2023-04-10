@@ -1,27 +1,20 @@
 package Requests;
-import Projects.ProjectDB;
-import Projects.Project;
-import Projects.ProjectStatus;
-import Users.Student;
-import Users.Supervisor;
-import Users.FYP_Coordinator;
+import Database.ProjectDB;
+import Projects.*;
 import Users.UserDetails.*;
 
 public class ChangeTitle extends Request{
-    
-    private String newTitle;
 
-    public ChangeTitle(int requestID, String newTitle, User fromUser, User toUser) {
-        super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGETITLE, toUser.getprojectID());
-        this.newTitle = newTitle;
+    public ChangeTitle(int requestID, String newTitle, User fromUser, User toUser, int projectID) {
+        super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGETITLE, projectID);
+        super.setNewTitle(newTitle);
     }
 
     public void enactRequest(int choice){
         switch(choice){
             case 1:
                 ProjectDB projDB = new ProjectDB();
-                Project project = projDB.findInstance(getProjectID());
-                project.setProjectTitle(newTitle);
+                (projDB.findInstance(super.getProjectID())).setProjectTitle(super.getNewTitle());
                 projDB.exportDB();
                 setRequestStatus(RequestStatus.APPROVED);
                 break;

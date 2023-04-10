@@ -1,30 +1,28 @@
 package Requests;
-import Projects.ProjectDB;
+import Database.ProjectDB;
 import Database.SupervisorDB;
 import Projects.Project;
 import Projects.ProjectStatus;
-import Users.Student;
-import Users.Supervisor;
-import Users.FYP_Coordinator;
+import Users.*;
 import Users.UserDetails.*;;
 
 public class ChangeSupervisor extends Request{
 
     private int newSupervisor;
 
-    public ChangeSupervisor(int requestID, int newSupervisor, int projectID, User fromUser, User toUser) {
+    public ChangeSupervisor(int requestID, String newSupervisor, int projectID, User fromUser, User toUser) {
         super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGESUPERVISOR, projectID);
-        this.newSupervisor = newSupervisor;
+        super.setNewSupervisor(newSupervisor);
     }
 
     public void enactRequest(int choice){
         switch(choice){
             case 1:
                 ProjectDB projDB = new ProjectDB();
-                Project project = projDB.findInstance(getProjectID());
                 SupervisorDB supDB = new SupervisorDB();
-                Supervisor newSup = supDB.findInstance(this.newSupervisor);
-                project.setSupervisor(newSup);
+
+                ((Project) projDB.findInstance(getProjectID())).setSupervisor(supDB.findInstance(super.getNewSupervisor()));
+                
                 projDB.exportDB();
                 setRequestStatus(RequestStatus.APPROVED);
                 break;

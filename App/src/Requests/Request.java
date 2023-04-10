@@ -12,6 +12,8 @@ public class Request {
 	private User toUser;
 	private int projectID;
 	private RequestStatus requestStatus;
+	private String newTitle; 
+	private String newSupervisorID;
 
 	public Request(){}
 	
@@ -22,7 +24,6 @@ public class Request {
 		this.requestID = ID;
 		this.requestType = type;
 		this.projectID = projectID;
-		throw new UnsupportedOperationException();
 	}
 
 	public RequestType getRequestType() {
@@ -35,6 +36,14 @@ public class Request {
 
 	public void setRequestStatus(RequestStatus requestStatus) {
 		this.requestStatus = requestStatus;
+	}
+
+	public void setNewTitle(String newTitle){
+		this.newTitle = newTitle;
+	}
+
+	public void setNewSupervisor(String newSupervisor){
+		this.newSupervisorID = newSupervisor;
 	}
 
 	public User getFromUser() {
@@ -51,5 +60,13 @@ public class Request {
 
 	public int getProjectID() {
 		return this.projectID;
+	}
+
+	public String getNewTitle(){
+		return this.newTitle;
+	}
+
+	public String getNewSupervisor(){
+		return this.newSupervisorID;
 	}
 }

@@ -96,7 +96,7 @@ public class ProjectDB extends Database{
 	 * @param userType
 	 */
 	public void viewProjects(User user) {
-		System.out.println("========    Project List    ========");
+		System.out.println("\n========    Project List    ========");
 
 		for (Object obj: super.objectDB){
 			Project curProj = (Project) obj;

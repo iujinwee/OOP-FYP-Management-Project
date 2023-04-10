@@ -15,6 +15,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import Projects.Project;
 import Requests.Request;
+import Requests.RequestStatus;
+import Requests.RequestType;
 import Users.Student;
 import Users.Supervisor;
 import Users.UserDetails.User;
@@ -105,15 +107,22 @@ public class FileHandler {
                         String type = getStringCellValue(row.getCell(columnMap.get("type")));
                         String status = getStringCellValue(row.getCell(columnMap.get("status")));
                         String projID = getStringCellValue(row.getCell(columnMap.get("projectID")));
-                        // String newTitle = getStringCellValue(row.getCell(columnMap.get("newTitle")));
-                        // String newSupervisor = getStringCellValue(row.getCell(columnMap.get("newSupervisor")));
+                        String newTitle = getStringCellValue(row.getCell(columnMap.get("newTitle")));
+                        String newSupervisor = getStringCellValue(row.getCell(columnMap.get("newSupervisor")));
 
-                        Request tempRequest = (Request) item.getClass().getDeclaredConstructor().newInstance(reqId, fromUser, toUser, type, status, projID);
-                        // if (newTitle!=""){
-                        //     tempRequest.addTitle(newTitle);
-                        // }else{
-                        //     tempRequest.addSupervisor(newSupervisor);
-                        // }
+                        Request tempRequest = (Request) item
+                            .getClass()
+                            .getDeclaredConstructor(int.class, User.class, User.class, RequestStatus.class, RequestType.class, int.class)
+                            .newInstance(reqId, fromUser, toUser, type, status, projID);
+
+                        if (newTitle!=""){
+                            tempRequest.setNewTitle(newTitle);
+                        }
+
+                        if (newSupervisor!=""){
+                            tempRequest.setNewSupervisor(newSupervisor);
+                        }
+                        
                         resultList.add(tempRequest);
 
                         break;
@@ -148,41 +157,60 @@ public class FileHandler {
             FileInputStream inputStream = new FileInputStream(new File(finalPath));
             XSSFWorkbook wb = new XSSFWorkbook(inputStream);   // Create Workbook
             XSSFSheet sheet = wb.getSheetAt(0);  // Change to Worksheet
-            
+
             // write header row to create column map
             int row_count = 0;
             for (Object item: result) {
                 Row row = sheet.getRow(row_count+1);
+                if(row == null){
+                    row = sheet.createRow(row_count+1);
+                }
 
-                int column_count = 0;
+                int column_count = 0; 
+                String className = item.getClass().getSuperclass().getSimpleName();
 
-                switch (item.getClass().getSimpleName()) {
-                    case "Student":
-                    case "Supervisor":
-                    case "FYP_Coordinator":
+                switch (className) {
+                    case "User":
                         
                         User current_user = (User) result.get(row_count++);
-                        row.getCell(column_count++).setCellValue((String) current_user.getUserID());
-                        row.getCell(column_count++).setCellValue((String) current_user.getName());
-                        row.getCell(column_count++).setCellValue((String) current_user.getEmail());
+                        row.createCell(column_count++).setCellValue((String) current_user.getUserID());
+                        row.createCell(column_count++).setCellValue((String) current_user.getName());
+                        row.createCell(column_count++).setCellValue((String) current_user.getEmail());
                         break;
 
                     case "Project":
                         Project current_proj = (Project) result.get(row_count++);
                         String rejected = String.join("|", current_proj.getRejected());
-                        row.getCell(column_count++).setCellValue(current_proj.getProjectID());
-                        row.getCell(column_count++).setCellValue(current_proj.getProjectTitle());
-                        row.getCell(column_count++).setCellValue(current_proj.getStudentID());
-                        row.getCell(column_count++).setCellValue(current_proj.getSupervisorID());
+                        row.createCell(column_count++).setCellValue(current_proj.getProjectID());
+                        row.createCell(column_count++).setCellValue(current_proj.getProjectTitle());
+                        row.createCell(column_count++).setCellValue(current_proj.getStudentID());
+                        row.createCell(column_count++).setCellValue(current_proj.getSupervisorID());
                         row.createCell(column_count++).setCellValue(rejected);
                         break;
 
                     case "Request": 
-                        // Request current_req = (Request) result.get(row.getRowNum());
-                        // row.createCell(row.getRowNum()).setCellValue(current_req.getProjectTitle());
-                        // row.createCell(row.getRowNum()).setCellValue(current_req.getFromUser());
-                        // row.createCell(row.getRowNum()).setCellValue(current_req.getStudent());
-                        // break;
+                        Request current_req = (Request) result.get(row_count++);
+
+                        String type = "";
+
+                        if(current_req.getRequestType()!=null){
+                            type = current_req.getRequestType().toString();
+                        }
+
+                        String status = "";
+                        if(current_req.getRequestStatus()!=null){
+                            status = current_req.getRequestStatus().toString();
+                        }
+
+                        row.createCell(column_count++).setCellValue(current_req.getRequestID());
+                        row.createCell(column_count++).setCellValue(current_req.getFromUser().getUserID());
+                        row.createCell(column_count++).setCellValue(current_req.getToUser().getUserID());
+                        row.createCell(column_count++).setCellValue(type);
+                        row.createCell(column_count++).setCellValue(status);
+                        row.createCell(column_count++).setCellValue(current_req.getProjectID());
+                        row.createCell(column_count++).setCellValue(current_req.getNewTitle());
+                        row.createCell(column_count++).setCellValue(current_req.getNewSupervisor());
+                        break;
                         
                     default:
                         saveFile = false;
