@@ -15,9 +15,9 @@ public class ProjectDB extends Database{
 
     public Project findInstance(int id) {
         for (Object s: super.objectDB){
-            Project currenProject = (Project) s;
-            if(currenProject.getProjectID() == id){
-                return currenProject;
+            Project currentProject = (Project) s;
+            if(currentProject.getProjectID() == id){
+                return currentProject;
             }
         }
         return new Project();
@@ -92,7 +92,9 @@ public class ProjectDB extends Database{
 	}
 
 	public void viewPersonalProjects(User user){
-		System.out.println("\n========    Personal Project List    ========");
+		System.out.println("\n===========================================");
+		System.out.println("======     Personal Project List     ======");
+		System.out.println("===========================================\n");
 		
 		for (Object obj: super.objectDB){
 			Project curProj = (Project) obj;
@@ -100,6 +102,7 @@ public class ProjectDB extends Database{
 				System.out.printf("[%d] %s\n", curProj.getProjectID(), curProj.getProjectTitle());
 			}
 		}
+		System.out.println("\n=========   END OF PROJECT LIST  ===========\n");
 	}
 
 	/**
@@ -107,7 +110,9 @@ public class ProjectDB extends Database{
 	 * @param userType
 	 */
 	public void viewProjects(User user) {
-		System.out.println("\n========    Project List    ========");
+		System.out.println("\n========================================");
+		System.out.println("=========     Project List     =========");
+		System.out.println("========================================\n");
 
 		for (Object obj: super.objectDB){
 			Project curProj = (Project) obj;
@@ -137,6 +142,7 @@ public class ProjectDB extends Database{
                     break;
             }
 		}
+		System.out.println("\n=========   END OF PROJECT LIST  ===========\n");
 	}
 
 	public boolean hasVacancy(Supervisor supervisor) {

@@ -7,6 +7,7 @@ import Exceptions.InvalidInputException;
 import Projects.Project;
 import Users.UserDetails.*;
 import Requests.*;
+import Requests.RequestType;
 
 public class Student extends User{
 
@@ -28,9 +29,10 @@ public class Student extends User{
 		super(userID, name, email);
 		super.setUserType(UserType.STUDENT);
 	}
-
+	
+	@Override
 	public void viewUserMenu() {
-		System.out.println("=============  MENU  ==============");
+		System.out.println("\n=============  MENU  ==============");
 		System.out.println("[1] Show Available Projects.");
 		System.out.println("[2] Show Registered Project.");
 		System.out.println("[3] Register Project.");
@@ -46,8 +48,8 @@ public class Student extends User{
 		while (choice != 0){	
 			
 			// Load DB 
-			ProjectDB projDB = new ProjectDB();
-			RequestDB reqDB = new RequestDB();
+			projDB = new ProjectDB();
+			reqDB = new RequestDB();
 			int projID;
 
 			// Show User Menu
@@ -59,29 +61,28 @@ public class Student extends User{
 
 			switch(choice){
 				case 1: 
-					System.out.println("Option [1] selected! - Show Available Projects");
+					System.out.println("\nOption [1] selected! - Show Available Projects");
 					projDB.viewProjects(this);
 					break;
 
 				case 2: 
-					System.out.println("Option [2] selected! - Show Registered Project.");
+					System.out.println("\nOption [2] selected! - Show Registered Project.");
 					projDB.viewPersonalProjects(this);
 					break;
 
 				case 3:
-					System.out.println("Option [3] selected! - Register Project.");
+					System.out.println("\nOption [3] selected! - Register Project.");
 
 					// View Projects
 					projDB.viewProjects(this);
 					System.out.println("Select Project to register:");
 					projID = super.sc.nextInt();
-					projDB.findInstance(projID);
 					
-					reqDB.createRequest(RequestType.REGISTERPROJECT, this, ((Project)projDB.currentInstance).getSupervisor(), projID);
+					reqDB.createRequest(RequestType.REGISTERPROJECT, this, ((Project) projDB.findInstance(projID)).getSupervisor(), projID);
 					break;
 
 				case 4:	
-					System.out.println("Option [4] selected! - Deregister Project.");
+					System.out.println("\nOption [4] selected! - Deregister Project.");
 					
 					// View Projects
 					projDB.viewProjects(this);
@@ -92,7 +93,7 @@ public class Student extends User{
 					reqDB.createRequest(RequestType.DEREGISTERPROJECT, this, ((Project)projDB.currentInstance).getSupervisor(), projID);
 					break;
 				case 5:
-					System.out.println("Option [5] selected! - Change Assigned Project Title.");
+					System.out.println("\nOption [5] selected! - Change Assigned Project Title.");
 
 					// View Projects
 					projDB.viewPersonalProjects(this);
@@ -104,7 +105,7 @@ public class Student extends User{
 					break;
 
 				case 6: 
-					System.out.println("Option [6] selected! - View All Requests");
+					System.out.println("\nOption [6] selected! - View All Requests");
 					reqDB.viewAllRequests(this);
 					break;				
 

@@ -3,8 +3,8 @@ import Exceptions.InvalidInputException;
 
 public interface UserInterface {
 
-	public void startProgram();
+	abstract public void startProgram();
 	
-	public void viewUserMenu();
-	public void getInput() throws InvalidInputException;
+	abstract public void viewUserMenu();
+	abstract public void getInput() throws InvalidInputException;
 }

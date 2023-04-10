@@ -2,6 +2,7 @@ package Database;
 
 import Users.UserDetails.*;
 import Requests.*;
+import Requests.RequestType;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -28,6 +29,7 @@ public class RequestDB extends Database{
                 newReq = new ChangeTitle(super.size+1, newTitle, fromUser, toUser, projID);
 				super.objectDB.add(newReq);
 				super.exportDB();
+				sc.close();
 				break;
 
 			case CHANGESUPERVISOR:
@@ -43,6 +45,7 @@ public class RequestDB extends Database{
 				newReq = new ChangeSupervisor(super.size+1, newSupervisorID, projectID, fromUser, toUser);
 				super.objectDB.add(newReq);
 				super.exportDB();
+				sc.close();
 				break;
 
 			case REGISTERPROJECT:
@@ -55,6 +58,7 @@ public class RequestDB extends Database{
 				newReq = new RegisterProject(super.size+1, projectID, fromUser, toUser);
 				super.objectDB.add(newReq);
 				super.exportDB();
+				sc.close();
 				break;
 
 			case DEREGISTERPROJECT:
@@ -64,29 +68,37 @@ public class RequestDB extends Database{
 				newReq = new DeregisterProject(super.size+1, projectID, fromUser, toUser);
 				super.objectDB.add(newReq);
 				super.exportDB();
+				sc.close();
 				break;
 		}
 	}
 
+	public void viewRequest(Request req){
+		System.out.printf("> Request [%d]\n", req.getRequestID());
+		System.out.printf("%s -> %s\n", req.getFromUser().getName(), req.getToUser().getName());
+		System.out.printf("\tType: %s | Status: %s\n", req.getRequestType(), req.getRequestStatus());
+		System.out.printf("\tProject Title: %s\n", (projDB.findInstance(req.getProjectID())).getProjectTitle());
+		if(req.getNewSupervisor().compareTo("") == 0){
+			System.out.printf("\tNew Supervisor Name: %s\n", req.getNewSupervisor());	
+		}
+		
+		if(req.getNewTitle().compareTo("") == 0){
+			System.out.printf("\tNew Title: %s\n", req.getToUser().getUserID());	
+		}
+	}
+
 	public void viewPendingRequests(User user){
-		System.out.println("Pending requests");
+		System.out.println("\nPending requests");
 		System.out.println("---------------------------------");
-		System.out.println("Request ID\tFrom User\tTo User\tRequest Type\tRequest Status\tProject ID\tcontent");
+		// System.out.println("Request ID\tFrom User\tTo User\tRequest Type\tRequest Status\tProject ID\tcontent");
 		switch(user.getUserType()){
 
 			case STUDENT:
-				for(Object request : requestList){
-					Request req = (Request) request;
-					if(req.getFromUser().equals(user) && req.getRequestStatus() == RequestStatus.PENDING){
-						System.out.println(req.toString());
-					}
-				}
-				break;
 			case SUPERVISOR:
 				for(Object request : requestList){
 					Request req = (Request) request;
 					if(req.getToUser().equals(user) && req.getRequestStatus() == RequestStatus.PENDING){
-						System.out.println(req.toString());
+						viewRequest(req);
 					}
 				}
 				break;
@@ -95,80 +107,67 @@ public class RequestDB extends Database{
 				for(Object request : requestList){
 					Request req = (Request) request;
 					if(req.getRequestStatus() == RequestStatus.PENDING){
-						System.out.println(req.toString());
+						viewRequest(req);
 					}
 				}
 				break;
 		}
-		throw new UnsupportedOperationException();
 	}
 
 	public void viewAllRequests(User user) {
 		switch(user.getUserType()){
 			case STUDENT:
-				System.out.println("Requests sent");
+				System.out.println("\nRequests sent");
 				System.out.println("---------------------------------");
-				System.out.println("Request ID\tFrom User\tTo User\tRequest Type\tRequest Status\tProject ID\tcontent");
-				for(Object request : requestList){
+				// System.out.println("Request ID\tFrom User\tTo User\tRequest Type\tRequest Status\tProject ID\tcontent");
+				for(Object request : objectDB){
 					Request req = (Request) request;
 					if(req.getFromUser().equals(user)){
-						System.out.println(req.toString());
+						viewRequest(req);
 					}
 				}
 				break;
 
 			case SUPERVISOR:
-				System.out.println("Requests sent");
+				System.out.println("\nRequests sent");
 				System.out.println("---------------------------------");
-				System.out.println("Request ID\tFrom User\tTo User\tRequest Type\tRequest Status\tProject ID\tcontent");
-				for(Object request : requestList){
+				// System.out.println("Request ID\tFrom User\tTo User\tRequest Type\tRequest Status\tProject ID\tcontent");
+				for(Object request : objectDB){
 					Request req = (Request) request;
 					if(req.getFromUser().equals(user)){
-						System.out.println(req.toString());
+						viewRequest(req);
 					}
 				}
-				System.out.println("---------------------------------");
+				System.out.println("\n---------------------------------");
 				System.out.println("Requests received");
 				System.out.println("---------------------------------");
-				System.out.println("Request ID\tFrom User\tTo User\tRequest Type\tRequest Status\tProject ID\tcontent");
-				for(Object request : requestList){
+				// System.out.println("Request ID\tFrom User\tTo User\tRequest Type\tRequest Status\tProject ID\tcontent");
+				for(Object request : objectDB){
 					Request req = (Request) request;
-					if(req.getToUser().equals(user)){
-						System.out.println(req.toString());
+					if(req.getFromUser().equals(user)){
+						viewRequest(req);
 					}
 				}
 				break;
 
 			case FYPCOORDINATOR:
-				System.out.println("Request ID\tFrom User\tTo User\tRequest Type\tRequest Status\tProject ID\tcontent");
-				for(Object request : requestList){
+				// System.out.println("Request ID\tFrom User\tTo User\tRequest Type\tRequest Status\tProject ID\tcontent");
+				for(Object request : objectDB){
 					Request req = (Request) request;
-					System.out.println(req.toString());
+					viewRequest(req);
 				}
 				break;
 		}
-		throw new UnsupportedOperationException();
 	}
-
-	public Request getRequest(int requestID) {
-		for (Object request : requestList) {
-			Request req = (Request) request;
-			if (req.getRequestID() == requestID) {
-				return req;
-			}
-		}
-		throw new UnsupportedOperationException();
-	}
-
 
 	public Request findInstance(int id){
-		for (Object request : requestList) {
+		for (Object request : super.objectDB) {
 			Request req = (Request) request;
 			if (req.getRequestID() == id) {
 				return req;
 			}
 		}
-		throw new UnsupportedOperationException();
+		return new Request();
 	}
 
 

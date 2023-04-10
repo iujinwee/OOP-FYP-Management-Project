@@ -11,7 +11,7 @@ public abstract class User implements UserInterface {
 	private String userID;
 	private String name;
 	private String email;
-	public Scanner sc = new Scanner(System.in);
+	public Scanner sc;
 	UserType type;
 
 	/**
@@ -62,7 +62,9 @@ public abstract class User implements UserInterface {
 		this.type = type;
 	}
 
+	@Override
 	public void startProgram() {
+		sc = new Scanner(System.in);
 		handleInvalidInput handler = new handleInvalidInput(sc, 3);
 
         System.out.printf("You are currently signed in as a %s.\n\n", type);

@@ -1,8 +1,7 @@
 package Requests;
 import Database.ProjectDB;
 import Database.SupervisorDB;
-import Projects.Project;
-import Users.UserDetails.*;;
+import Users.UserDetails.*;
 
 public class ChangeSupervisor extends Request{
 

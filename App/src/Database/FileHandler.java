@@ -24,7 +24,7 @@ import Users.UserDetails.User;
 import Login.Account;
 
 public class FileHandler {
-    private final static String dataPath = "\\App\\data\\";
+    private final static String dataPath = "\\data\\";
     
     public static ArrayList<Object> readExcelFile(String filePath, Object item) {
         
@@ -50,6 +50,9 @@ public class FileHandler {
                 if (row.getRowNum() == 0) {
                     // skip header row
                     continue;
+                }
+                if(getStringCellValue(row.getCell(0))==""){
+                    break;
                 }
 
                 switch (item.getClass().getSimpleName()) {
@@ -87,7 +90,7 @@ public class FileHandler {
                         String stuId  = getStringCellValue(row.getCell(columnMap.get("StudentID")));
                         String title  = getStringCellValue(row.getCell(columnMap.get("Title")));
                         String rejectString  = getStringCellValue(row.getCell(columnMap.get("Rejected")));
-                        String projStatus  = getStringCellValue(row.getCell(columnMap.get("Status")));
+                        ProjectStatus projStatus  = ProjectStatus.valueOf(getStringCellValue(row.getCell(columnMap.get("Status"))));
                         StudentDB stu = new StudentDB();
                         SupervisorDB sup = new SupervisorDB();
                         String[] rejectList = rejectString.split("|");
@@ -106,8 +109,8 @@ public class FileHandler {
                         String reqId = getStringCellValue(row.getCell(columnMap.get("ID")));
                         String fromUser = getStringCellValue(row.getCell(columnMap.get("fromUser")));
                         String toUser = getStringCellValue(row.getCell(columnMap.get("toUser")));
-                        String type = getStringCellValue(row.getCell(columnMap.get("type")));
-                        String reqStatus = getStringCellValue(row.getCell(columnMap.get("status")));
+                        RequestType type = RequestType.valueOf(getStringCellValue(row.getCell(columnMap.get("type"))));
+                        RequestStatus reqStatus = RequestStatus.valueOf(getStringCellValue(row.getCell(columnMap.get("status"))));
                         String projID = getStringCellValue(row.getCell(columnMap.get("projectID")));
                         String newTitle = getStringCellValue(row.getCell(columnMap.get("newTitle")));
                         String newSupervisor = getStringCellValue(row.getCell(columnMap.get("newSupervisor")));
@@ -152,7 +155,6 @@ public class FileHandler {
         // Path Name 
         String pathname = System.getProperty("user.dir").concat(dataPath);
         String finalPath = pathname.concat(filePath);
-        Map<String, Integer> columnMap = new HashMap<>();
         boolean saveFile = true;
 
         try {
