@@ -4,14 +4,14 @@ import java.util.*;
 
 import Exceptions.InvalidInputException;
 import Exceptions.handleInvalidInput;
+import Projects.Project;
 import Projects.ProjectDB;
-import Projects.ProjectDetails.Project;
+import Requests.Request;
 import Requests.RequestDB;
-import Requests.RequestDetails.Request;
-import Requests.RequestDetails.RequestType;
+import Requests.RequestStatus;
+import Requests.RequestType;
 import Users.UserDetails.User;
 import Users.UserDetails.UserType;
-import Requests.RequestDetails.RequestStatus;
 
 public class Supervisor extends User {
 
@@ -37,7 +37,8 @@ public class Supervisor extends User {
 		this.supervisorID = super.getUserID(); 
 		this.sc = new Scanner(System.in);
 	}
-	
+	public Supervisor() {
+	}
 	public int getNumAssignedProjects(){
 		return this.numAssignedProjects;
 	}

@@ -1,6 +1,7 @@
-package FileManager;
+package Database;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,19 +12,20 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;  
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import Projects.ProjectDetails.Project;
-import Requests.RequestDetails.Request;
+import Projects.Project;
+import Requests.Request;
 import Users.Student;
 import Users.Supervisor;
 import Users.UserDetails.User;
 import Login.Account;
 
-public class FileReader {
+public class FileHandler {
+    private final static String dataPath = "\\App\\data\\";
     
     public static ArrayList<Object> readExcelFile(String filePath, Object item) {
         
         // Path Name 
-        String pathname = System.getProperty("user.dir").concat("\\data\\");
+        String pathname = System.getProperty("user.dir").concat(dataPath);
         String finalPath = pathname.concat(filePath);
         ArrayList<Object> resultList = new ArrayList<>();
         Map<String, Integer> columnMap = new HashMap<>();
@@ -130,6 +132,73 @@ public class FileReader {
         }
         return resultList;
     }
+
+    public static boolean saveExcelFile(String filePath, ArrayList<Object> result) {
+        // Path Name 
+        String pathname = System.getProperty("user.dir").concat(dataPath);
+        String finalPath = pathname.concat(filePath);
+        Map<String, Integer> columnMap = new HashMap<>();
+        boolean saveFile = true;
+
+        try {
+            FileInputStream inputStream = new FileInputStream(new File(finalPath));
+            XSSFWorkbook wb = new XSSFWorkbook(inputStream);   // Create Workbook
+            XSSFSheet sheet = wb.getSheetAt(0);  // Change to Worksheet
+            
+            // write header row to create column map
+            int row_count = 0;
+            for (Object item: result) {
+                Row row = sheet.getRow(row_count+1);
+
+                int column_count = 0;
+
+                switch (item.getClass().getSimpleName()) {
+                    case "Student":
+                    case "Supervisor":
+                    case "FYP_Coordinator":
+                        
+                        User current_user = (User) result.get(row_count++);
+                        row.getCell(column_count++).setCellValue((String) current_user.getUserID());
+                        row.getCell(column_count++).setCellValue((String) current_user.getName());
+                        row.getCell(column_count++).setCellValue((String) current_user.getEmail());
+                        break;
+
+                    case "Project":
+                        Project current_proj = (Project) result.get(row.getRowNum());
+                        row.createCell(row.getRowNum()).setCellValue(current_proj.getProjectId());
+                        row.createCell(row.getRowNum()).setCellValue(current_proj.getSupervisorId());
+                        row.createCell(row.getRowNum()).setCellValue(current_proj.getStudentId());
+                        row.createCell(row.getRowNum()).setCellValue(current_proj.getProjectTitle());
+                        // row.createCell(row.getRowNum()).setCellValue(current_proj.getRejected());
+                        break;
+
+                    case "Request": 
+                        // Request current_req = (Request) result.get(row.getRowNum());
+                        // row.createCell(row.getRowNum()).setCellValue(current_req.getProjectTitle());
+                        // row.createCell(row.getRowNum()).setCellValue(current_req.getFromUser());
+                        // row.createCell(row.getRowNum()).setCellValue(current_req.getStudent());
+                        // break;
+                        
+                    default:
+                        saveFile = false;
+                        break;
+                }
+            }
+
+            FileOutputStream outputStream = new FileOutputStream(finalPath);
+
+            wb.write(outputStream);  
+            wb.close();
+            outputStream.close();    
+            inputStream.close();
+
+        }catch(IOException e){
+            e.printStackTrace();
+            
+        } 
+        return saveFile;
+    }
+
 
     private static Student getStudent(String id){
         

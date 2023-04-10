@@ -1,4 +1,4 @@
-package Projects.ProjectDetails;
+package Projects;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ public class Project {
 	private int projectID;
 	private String projectTitle;
 	private ProjectStatus projectStatus;
-	private String[] rejectedID;
+	private ArrayList<String> rejectedID;
 
 	/**
 	 * Represents a Project. Project is created by a Supervisor and assigned to a Student.
@@ -25,7 +25,15 @@ public class Project {
 	 */
 	public Project(){}
 
-	public Project(int id, String title, Student student, Supervisor supervisor, String[] rejectedId) {
+	public Project(int id){
+		ArrayList<String> rejList = new ArrayList<>();
+		this.projectID = id; 
+		this.assignedTo = null;
+		this.rejectedID = rejList;
+		this.projectStatus = ProjectStatus.AVAILABLE;
+	}
+
+	public Project(int id, String title, Student student, Supervisor supervisor, ArrayList<String> rejectedId) {
 		// Create Project
 		this.projectID = id;
 		this.projectTitle = title;
@@ -35,10 +43,10 @@ public class Project {
 		this.projectStatus = ProjectStatus.AVAILABLE;
 	}
 
-	public void viewAvailableProjectDetails() {
+	public void viewProjectDetails(ProjectStatus status) {
 		// View Project Details
 		System.out.println("===================================================");
-		System.out.println("=========    Available Project Details    =========");
+		System.out.println("=========         Project Details         =========");
 		System.out.println("===================================================");
 		System.out.println("> Project");
 		System.out.println("Project ID: " + projectID);
@@ -49,29 +57,16 @@ public class Project {
 		System.out.println("Supervisor Name: " + supervisedBy.getName());
 		System.out.println("Supervisor Email: " + supervisedBy.getEmail());
 		System.out.println("==================================================");
-	}
 
-	public void viewAllocatedProjectDetails() {
-		// View Project Details
-		System.out.println("===================================================");
-		System.out.println("=========    Allocated Project Details    =========");
-		System.out.println("===================================================");
-		System.out.println("> Project");
-		System.out.println("Project ID: " + projectID);
-		System.out.println("Project Title: " + projectTitle);
-		System.out.println("Project Status: " + projectStatus);
-
-		System.out.println("\n> Supervisor-in-charge");
-		System.out.println("Supervisor Name: " + supervisedBy.getName());
-		System.out.println("Supervisor Email: " + supervisedBy.getEmail());
-
-		System.out.println("\n> Assigned Student");
-		System.out.println("Student Name: " + assignedTo.getName());
-		System.out.println("Student Email: " + assignedTo.getEmail());
-		System.out.println("===================================================");
+		if((status == ProjectStatus.ALLOCATED) | (status == ProjectStatus.RESERVED)){
+			System.out.println("\n> Assigned Student");
+			System.out.println("Student Name: " + assignedTo.getName());
+			System.out.println("Student Email: " + assignedTo.getEmail());
+			System.out.println("===================================================");
+		}
 	}
 	
-	public int getProjectId(){
+	public int getProjectID(){
 		return projectID;
 	}
 
@@ -83,14 +78,20 @@ public class Project {
 		return projectStatus;
 	}
 
-	public String getSupervisorId(){
+	public String getSupervisorID(){
 		return supervisedBy.getUserID();
 	}
 
-	public String getStudentId(){
+	public String getStudentID(){
 		return assignedTo.getUserID();
 	}
 
+	public ArrayList<String> getRejected(){
+		return this.rejectedID;
+	}
+
+
+	// SETTER FUNCTIONS 
 	public void setProjectStatus(ProjectStatus status){
 		this.projectStatus = status;
 	}
@@ -105,5 +106,10 @@ public class Project {
 
 	public void setSupervisor(Supervisor supervisor){
 		this.supervisedBy = supervisor;
+	}
+
+	public void addRejected(String studentID){
+		this.assignedTo = null;
+		this.getRejected().add(studentID);
 	}
 }

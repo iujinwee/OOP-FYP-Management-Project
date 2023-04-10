@@ -2,14 +2,6 @@ package Requests;
 
 import java.util.ArrayList;
 
-import FileManager.FileReader;
-import Requests.RequestDetails.ChangeSupervisor;
-import Requests.RequestDetails.DeregisterProject;
-import Requests.RequestDetails.RegisterProject;
-import Requests.RequestDetails.ChangeTitle;
-import Requests.RequestDetails.Request;
-import Requests.RequestDetails.RequestStatus;
-import Requests.RequestDetails.RequestType;
 import Users.UserDetails.User;
 import Users.UserDetails.UserType;
 
@@ -21,6 +13,9 @@ import java.io.PrintWriter;
 import java.io.FileInputStream;
 import java.util.List;
 import java.util.StringTokenizer;
+
+import Database.FileHandler;
+
 import java.util.Scanner;
 
 
@@ -147,7 +142,7 @@ public class RequestDB {
 		}
 	}
 
-	public void viewAllRequests(User user){
+	public void viewAllRequests(String userID){
 		// Filter result based on userType
 	}
 
