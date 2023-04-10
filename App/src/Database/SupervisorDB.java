@@ -8,7 +8,6 @@ public class SupervisorDB extends Database{
         super("faculty_list.xlsx", new Supervisor());
     }
 
-    @Override
     public Supervisor findInstance(String id) {
         for (Object s: super.objectDB){
             Supervisor temp = (Supervisor) s;

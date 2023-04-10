@@ -8,7 +8,6 @@ public class StudentDB extends Database{
         super("student_list.xlsx", new Student());
     }
 
-    @Override
     public Student findInstance(String id) {
         for (Object s: super.objectDB){
             Student temp = (Student) s;

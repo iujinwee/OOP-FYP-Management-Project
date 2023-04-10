@@ -1,20 +1,16 @@
 package Users;
 import java.util.*;
 
+import Database.ProjectDB;
+import Database.RequestDB;
 import Exceptions.InvalidInputException;
-import Projects.ProjectDB;
-import Users.UserDetails.User;
-import Users.UserDetails.UserType;
-import Requests.Request;
-import Requests.RequestDB;
-import Requests.RequestType;
+import Users.UserDetails.*;
+import Requests.*;
 
 public class Student extends User{
 
 	ArrayList<Request> sends;
-	// Project registeredTo;
 	private int choice = -1;
-	private String studentID;
 	private ProjectDB projDB;
 	private RequestDB reqDB;
  	
@@ -61,6 +57,10 @@ public class Student extends User{
 
 		while (choice != 0){	
 			
+			// Load DB 
+			ProjectDB projDB = new ProjectDB();
+			RequestDB reqDB = new RequestDB();
+
 			// Show User Menu
 			viewUserMenu();
 
@@ -71,11 +71,13 @@ public class Student extends User{
 			switch(choice){
 				case 1: 
 					System.out.println("Option [1] selected! - Show Available Projects");
-					projDB.viewProjects(super.getType());
+
+					projDB.viewAvailableProjects();
 					break;
 				case 2: 
 					System.out.println("Option [2] selected! - Show Registered Project.");
-					// projDB.viewAllocatedProject();
+					projDB.viewRegisteredProjects(super.getUserID());
+
 					break;
 				case 3:
 					System.out.println("Option [3] selected! - Register Project.");
