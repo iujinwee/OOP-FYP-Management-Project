@@ -1,12 +1,17 @@
 package Users.UserDetails;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import Exceptions.InvalidInputException;
+import Exceptions.handleInvalidInput;
 
 public abstract class User implements UserInterface {
 
 	private String userID;
 	private String name;
 	private String email;
+	private Scanner sc;
 	UserType type;
 
 	/**
@@ -14,14 +19,13 @@ public abstract class User implements UserInterface {
 	 * @param userID
 	 */
 
-	public User(){
-
-	};
+	public User(){};
 	
 	public User(String userID, String name, String email) {
 		this.userID = userID;
 		this.name = name;
 		this.email = email;
+		this.sc = new Scanner(System.in);
 	}
 
 	public String getUserID() {
@@ -34,6 +38,14 @@ public abstract class User implements UserInterface {
 
 	public String getEmail() {
 		return this.email;
+	}
+
+	public UserType getUserType(){
+		return this.type;
+	}
+
+	public Scanner getScanner(){
+		return this.sc;
 	}
 
 	public void setUserID(String id) {
@@ -52,15 +64,27 @@ public abstract class User implements UserInterface {
 		this.type = inputType;
 	}
 
-	@Override
-	public void showMenu() {
-		System.out.println("=======================================");
-        System.out.println("   Welcome to FYP Management System!   ");
-        System.out.println("=======================================");
-        System.out.printf("You are currently signed in as a %s.\n", type);
-   	}
+	public void startProgram() {
+		handleInvalidInput handler = new handleInvalidInput(sc, 3);
 
-	abstract public void viewUserMenu();
-	abstract public void loadMenu(User user);
-	abstract public void getInput(User user) throws InvalidInputException;
+        System.out.printf("You are currently signed in as a %s.\n\n", type);
+
+		while(handler.checkAttempts()){
+			try{
+				getInput();
+				break; // Break out of loop
+
+			}catch(InvalidInputException e){
+				handler.handleInvalidInputException(e);
+
+			}catch(InputMismatchException e){
+				handler.handleInputMismatchException(e);
+
+			}
+		}
+		// Clearing System
+		System.out.println("Terminating Program...");
+		this.sc.close();
+		System.exit(0);
+   	}
 }

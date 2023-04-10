@@ -1,5 +1,5 @@
-package Requests.RequestDetails;
-import Projects.ProjectDetails.Project;
+package Requests;
+import Projects.Project;
 import Users.Student;
 import Users.Supervisor;
 import Users.UserDetails.User;
@@ -59,8 +59,4 @@ public class Request {
 	public void setToUser(User toUser) {
 		this.toUser = toUser;
 	}
-
-	public abstract void approve();
-	public abstract void reject();
-
 }

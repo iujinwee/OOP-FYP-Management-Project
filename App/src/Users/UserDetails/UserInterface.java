@@ -1,6 +1,10 @@
 package Users.UserDetails;
+import Exceptions.InvalidInputException;
+
 public interface UserInterface {
 
-	void showMenu();
-
+	public void startProgram();
+	
+	public void viewUserMenu();
+	public void getInput() throws InvalidInputException;
 }

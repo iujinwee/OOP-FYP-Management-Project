@@ -3,9 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-import FileManager.FileReader;
-import Projects.ProjectDetails.Project;
-import Projects.ProjectDetails.ProjectStatus;
+import Database.FileHandler;
 import Users.FYP_Coordinator;
 import Users.Student;
 import Users.Supervisor;
