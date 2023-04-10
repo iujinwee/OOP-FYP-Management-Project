@@ -20,7 +20,11 @@ public class DeregisterProject extends Request{
     public void enactRequest(int choice){
         switch(choice){
             case 1:
-                approve();
+                ProjectDB projDB = new ProjectDB();
+                projDB.loadDB();
+                projDB.findInstance(projectID).setProjectStatus(Projects.ProjectDetails.ProjectStatus.AVAILABLE);
+                projDB.exportDB();
+                setRequestStatus(RequestStatus.APPROVED);
                 break;
             case 2:
                 setRequestStatus(RequestStatus.REJECTED);

@@ -35,10 +35,6 @@ public abstract class Request {
 		return this.requestType;
 	}
 
-	public void setRequestType(RequestType requestType) {
-		this.requestType = requestType;
-	}
-
 	public RequestStatus getRequestStatus() {
 		return this.requestStatus;
 	}
@@ -53,10 +49,6 @@ public abstract class Request {
 
 	public User getToUser() {
 		return this.toUser;
-	}
-
-	public void setToUser(User toUser) {
-		this.toUser = toUser;
 	}
 
 	public int getRequestID() {

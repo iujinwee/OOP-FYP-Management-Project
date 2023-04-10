@@ -71,14 +71,14 @@ import java.util.Scanner;
 // VIEW USER (User Type)
 
 
-public class RequestDB {
+public class RequestDB extends Database{
 
 	private static ArrayList<Object> requestList;
 	Scanner sc = new Scanner(System.in);
 
 
-	public RequestDB() {
-		requestList = FileReader.readExcelFile("Requests.xlsx", new Request());
+	public RequestDB(){
+		loadDB();
 		throw new UnsupportedOperationException();
 	}
 	public void createRequest(RequestType type) {
@@ -155,7 +155,7 @@ public class RequestDB {
 	public Request findInstance(int id){
 		for (Object request : requestList) {
 			Request req = (Request) request;
-			if (req.getRequestID().compareTo(id) == 0) {
+			if (req.getRequestID() == id) {
 				return req;
 			}
 		}
