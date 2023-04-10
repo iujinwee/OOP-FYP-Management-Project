@@ -22,6 +22,7 @@ public class RequestDB extends Database{
     
 	public void createRequest(RequestType type, User fromUser, User toUser) {
         Scanner sc = new Scanner(System.in);
+		Request newReq;
 
 		switch (type) {
 			case CHANGETITLE:
@@ -34,7 +35,7 @@ public class RequestDB extends Database{
 				System.out.println("Insert new title: ");
 				String newTitle = sc.next();
 
-                Request newReq = new ChangeTitle(super.size+1, newTitle, fromUser, toUser, projID);
+                newReq = new ChangeTitle(super.size+1, newTitle, fromUser, toUser, projID);
 				super.objectDB.add(newReq);
 				super.exportDB();
 				break;
@@ -42,24 +43,31 @@ public class RequestDB extends Database{
 			case CHANGESUPERVISOR:
 				System.out.println("Insert project ID: ");
 				int projectID = sc.nextInt();
+
 				System.out.println("Insert new supervisor ID: ");
 				String newSupervisorID = sc.next();
-				requestList.add(new ChangeSupervisor(super.size+1, newSupervisorID, projectID, fromUser, toUser));
-				exportDB();
+
+				newReq = new ChangeSupervisor(super.size+1, newSupervisorID, projectID, fromUser, toUser);
+				super.objectDB.add(newReq);
+				super.exportDB();
 				break;
 
 			case REGISTERPROJECT:
 				System.out.println("Insert project ID: ");
 				projectID = sc.nextInt();
-				requestList.add(new RegisterProject(super.size+1, projectID, fromUser, toUser));
-				exportDB();
+
+				newReq = new RegisterProject(super.size+1, projectID, fromUser, toUser);
+				super.objectDB.add(newReq);
+				super.exportDB();
 				break;
 
 			case DEREGISTERPROJECT:
 				System.out.println("Insert project ID: ");
 				projectID = sc.nextInt();
-				requestList.add(new DeregisterProject(super.size+1, projectID, fromUser, toUser));
-				exportDB();
+				
+				newReq = new DeregisterProject(super.size+1, projectID, fromUser, toUser);
+				super.objectDB.add(newReq);
+				super.exportDB();
 				break;
 		}
 	}

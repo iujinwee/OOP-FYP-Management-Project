@@ -8,7 +8,7 @@ public class App {
 
 	public static void main(String[] args) {
         RequestDB db = new RequestDB();
-        // db.createRequest(RequestType.CHANGESUPERVISOR, new Student("h", "h", "h"), new Supervisor("y", "y", "y"));
+        db.createRequest(RequestType.CHANGESUPERVISOR, new Student("h", "h", "h"), new Supervisor("y", "y", "y"));
         db.createRequest(RequestType.CHANGETITLE, new Student("h", "h", "h"), new Supervisor("y", "y", "y"));
         db.exportDB();
 

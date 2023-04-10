@@ -14,6 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import Projects.Project;
+import Projects.ProjectStatus;
 import Requests.Request;
 import Requests.RequestStatus;
 import Requests.RequestType;
@@ -86,6 +87,7 @@ public class FileHandler {
                         String stuId  = getStringCellValue(row.getCell(columnMap.get("StudentID")));
                         String title  = getStringCellValue(row.getCell(columnMap.get("Title")));
                         String rejectString  = getStringCellValue(row.getCell(columnMap.get("Rejected")));
+                        String projStatus  = getStringCellValue(row.getCell(columnMap.get("Status")));
                         StudentDB stu = new StudentDB();
                         SupervisorDB sup = new SupervisorDB();
                         String[] rejectList = rejectString.split("|");
@@ -93,8 +95,8 @@ public class FileHandler {
 
                         Project tempProject = (Project) item
                             .getClass()
-                            .getDeclaredConstructor(int.class, String.class, Student.class, Supervisor.class, ArrayList.class)
-                            .newInstance(projId, title, stu.findInstance(stuId), sup.findInstance(supId), rejectStrList);
+                            .getDeclaredConstructor(int.class, String.class, Student.class, Supervisor.class, ProjectStatus.class, ArrayList.class)
+                            .newInstance(projId, title, stu.findInstance(stuId), sup.findInstance(supId), projStatus, rejectStrList);
 
                         resultList.add(tempProject);
 
@@ -105,7 +107,7 @@ public class FileHandler {
                         String fromUser = getStringCellValue(row.getCell(columnMap.get("fromUser")));
                         String toUser = getStringCellValue(row.getCell(columnMap.get("toUser")));
                         String type = getStringCellValue(row.getCell(columnMap.get("type")));
-                        String status = getStringCellValue(row.getCell(columnMap.get("status")));
+                        String reqStatus = getStringCellValue(row.getCell(columnMap.get("status")));
                         String projID = getStringCellValue(row.getCell(columnMap.get("projectID")));
                         String newTitle = getStringCellValue(row.getCell(columnMap.get("newTitle")));
                         String newSupervisor = getStringCellValue(row.getCell(columnMap.get("newSupervisor")));
@@ -113,7 +115,7 @@ public class FileHandler {
                         Request tempRequest = (Request) item
                             .getClass()
                             .getDeclaredConstructor(int.class, User.class, User.class, RequestStatus.class, RequestType.class, int.class)
-                            .newInstance(reqId, fromUser, toUser, type, status, projID);
+                            .newInstance(reqId, fromUser, toUser, reqStatus, type, projID);
 
                         if (newTitle!=""){
                             tempRequest.setNewTitle(newTitle);
@@ -185,6 +187,7 @@ public class FileHandler {
                         row.createCell(column_count++).setCellValue(current_proj.getProjectTitle());
                         row.createCell(column_count++).setCellValue(current_proj.getStudentID());
                         row.createCell(column_count++).setCellValue(current_proj.getSupervisorID());
+                        row.createCell(column_count++).setCellValue(current_proj.getProjectStatus().toString());
                         row.createCell(column_count++).setCellValue(rejected);
                         break;
 

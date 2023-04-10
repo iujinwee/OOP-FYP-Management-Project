@@ -3,15 +3,10 @@ package Users;
 import java.util.*;
 
 import Database.ProjectDB;
-import Exceptions.InvalidInputException;
-import Exceptions.handleInvalidInput;
+import Exceptions.*;
 import Projects.Project;
-import Requests.Request;
-import Requests.RequestDB;
-import Requests.RequestStatus;
-import Requests.RequestType;
-import Users.UserDetails.User;
-import Users.UserDetails.UserType;
+import Requests.*;
+import Users.UserDetails.*;
 
 public class Supervisor extends User {
 
@@ -19,7 +14,6 @@ public class Supervisor extends User {
 	private int numAssignedProjects=0;
 	private int choice = -1;
 	private ProjectDB projDB;
-	private RequestDB reqDB;
 	private Scanner sc;
 
 	public Supervisor() {}
@@ -47,11 +41,6 @@ public class Supervisor extends User {
 
 		while(handler.checkAttempts()){
 			try{
-				// Load Database
-				// projDB = new ProjectDB();
-				// reqDB = new RequestDB();
-
-
 				getInput(user);
 				// Exit loop
 				break;

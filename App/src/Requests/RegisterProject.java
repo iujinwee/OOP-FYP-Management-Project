@@ -18,10 +18,13 @@ public class RegisterProject extends Request{
         switch(choice){
             case 1:
                 ProjectDB projDB = new ProjectDB();
+
                 (projDB.findInstance(super.getProjectID())).setProjectStatus(ProjectStatus.ALLOCATED);
                 (projDB.findInstance(super.getProjectID())).setStudent((Student)super.getFromUser());
+                
                 projDB.exportDB();
                 break;
+
             case 0:
                 ProjectDB projDB0 = new ProjectDB();
                 (projDB0.findInstance(getProjectID())).setProjectStatus(ProjectStatus.AVAILABLE);
