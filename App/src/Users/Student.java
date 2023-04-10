@@ -2,75 +2,41 @@ package Users;
 import java.util.*;
 
 import Exceptions.InvalidInputException;
-import Exceptions.handleInvalidInput;
 import Projects.ProjectDB;
-import Requests.RequestDetails.Request;
-import Requests.RequestDetails.RequestType;
 import Users.UserDetails.User;
 import Users.UserDetails.UserType;
+import Requests.Request;
 import Requests.RequestDB;
+import Requests.RequestType;
 
 public class Student extends User{
 
 	ArrayList<Request> sends;
 	// Project registeredTo;
-	private final static int MAX_ATTEMPTS = 3; 
-	private int attempts = 0;
 	private int choice = -1;
 	private String studentID;
 	private ProjectDB projDB;
 	private RequestDB reqDB;
-	private Scanner sc;
+ 	
+	public Student() {}
 
 	/**
-	 * Represents a Student. 
+	 * Student constructor. 
 	 * 
-	 * @param userID The unique ID of each student.
-	 * @param name The name of each student.
-	 * @param email The email of each student.
+	 * @param userID Unique ID of the student.
+	 * @param name Name of the student.
+	 * @param email Email address of the student.
 	 */
-	public Student(){}
 	public Student(String userID, String name, String email) {
-
-		// Initialization
 		super(userID, name, email);
-		super.setUserType(UserType.STUDENT);
+		super.setType(UserType.STUDENT);
 		this.studentID = super.getUserID();
-		this.sc = new Scanner(System.in);
+	}
+	
+	public void viewRegisteredProject() {
+		// TODO - implement Student.viewRegisteredProject
 	}
 
-	@Override
-	public void loadMenu() {
-
-		handleInvalidInput handler = new handleInvalidInput(sc);
-
-		while(handler.checkAttempts()){
-
-			try{
-				// Load Database
-				// projDB = new ProjectDB();
-				// reqDB = new RequestDB();
-				
-				getInput();
-
-				// Exit loop
-				break;
-
-			}catch(InvalidInputException e){
-				handler.handleInvalidInputException(e);
-
-			}catch(InputMismatchException e){
-				handler.handleInputMismatchException(e);
-
-			}
-		}
-		// Clearing System
-		System.out.println("Terminating Program...");
-		this.sc.close();
-		System.exit(0);
-	}
-
-	@Override
 	public void viewUserMenu() {
 		System.out.println("=============  MENU  ==============");
 		System.out.println("[1] Show Available Projects.");
@@ -80,10 +46,6 @@ public class Student extends User{
 		System.out.println("[5] Change Assigned Project Title.");
 		System.out.println("[6] View All Requests.");
 		System.out.println("[0] Exit Program.");
-	}
-	
-	public void viewRegisteredProject() {
-		// TODO - implement Student.viewRegisteredProject
 	}
 
 	@Override
@@ -96,16 +58,16 @@ public class Student extends User{
 
 			// Get Input 
 			System.out.println("\nEnter your option: ");
-			choice = sc.nextInt();
+			choice = super.getScanner().nextInt();
 
 			switch(choice){
 				case 1: 
 					System.out.println("Option [1] selected! - Show Available Projects");
-					projDB.viewProjects(UserType.STUDENT);
+					projDB.viewProjects(super.getUserType());
 					break;
 				case 2: 
 					System.out.println("Option [2] selected! - Show Registered Project.");
-					viewRegisteredProject();
+					// projDB.viewAllocatedProject();
 					break;
 				case 3:
 					System.out.println("Option [3] selected! - Register Project.");
@@ -121,9 +83,13 @@ public class Student extends User{
 					break;
 
 				case 6: 
-					System.out.println("Option [6] selected!");
-					reqDB.viewRequest(this.studentID);
+					System.out.println("Option [6] selected! - View All Requests");
+					reqDB.viewAllRequests(super.getUserID());
 					break;				
+
+				case 0: 
+					System.out.println("Option [0] selected! - Exit Program");
+					break;
 
 				default:
 					throw new InvalidInputException(choice);

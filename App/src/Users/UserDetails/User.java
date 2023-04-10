@@ -1,31 +1,42 @@
 package Users.UserDetails;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import Exceptions.InvalidInputException;
+import Exceptions.handleInvalidInput;
 
 public abstract class User implements UserInterface {
 
 	private String userID;
 	private String name;
 	private String email;
+	private Scanner sc;
 	UserType type;
 
+	public User() {}
+	
 	/**
-	 * 
-	 * @param userID
+	 * User constructor
+	 * @param userID Unique user ID of the user, the part of the email before @
+	 * @param name Name of the user
+	 * @param email Email address of the user
 	 */
 
-	public User(){
-
-	};
+	public User(){};
 	
 	public User(String userID, String name, String email) {
 		this.userID = userID;
 		this.name = name;
 		this.email = email;
+		this.sc = new Scanner(System.in);
 	}
 
 	public String getUserID() {
 		return this.userID;
+	}
+	public void setUserID(String userID) {
+		this.userID = userID;
 	}
 
 	public String getName() {
@@ -36,6 +47,14 @@ public abstract class User implements UserInterface {
 		return this.email;
 	}
 
+	public UserType getUserType(){
+		return this.type;
+	}
+
+	public Scanner getScanner(){
+		return this.sc;
+	}
+
 	public void setUserID(String id) {
 		this.userID = id;
 	}
@@ -44,23 +63,38 @@ public abstract class User implements UserInterface {
 		this.name = name;
 	}
 
+	public String getEmail() {
+		return this.email;
+	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public void setUserType(UserType inputType){
-		this.type = inputType;
+	public UserType getType() {
+		return this.type;
 	}
 
-	@Override
-	public void showMenu() {
-		System.out.println("=======================================");
-        System.out.println("   Welcome to FYP Management System!   ");
-        System.out.println("=======================================");
-        System.out.printf("You are currently signed in as a %s.\n", type);
-   	}
+	public void startProgram() {
+		handleInvalidInput handler = new handleInvalidInput(sc, 3);
 
-	abstract public void viewUserMenu();
-	abstract public void loadMenu();
-	abstract public void getInput() throws InvalidInputException;
+        System.out.printf("You are currently signed in as a %s.\n\n", type);
+
+		while(handler.checkAttempts()){
+			try{
+				getInput();
+				break; // Break out of loop
+
+			}catch(InvalidInputException e){
+				handler.handleInvalidInputException(e);
+
+			}catch(InputMismatchException e){
+				handler.handleInputMismatchException(e);
+
+			}
+		}
+		// Clearing System
+		System.out.println("Terminating Program...");
+		this.sc.close();
+		System.exit(0);
+   	}
 }

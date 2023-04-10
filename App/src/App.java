@@ -1,45 +1,32 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
-import FileManager.FileReader;
+import Database.StudentDB;
 import Login.Account;
-import Users.FYP_Coordinator;
 import Users.Student;
-import Users.Supervisor;
-import Projects.ProjectDB;
 
 public class App {
 
-	private static ArrayList<Object> studentList;
-	private static ArrayList<Supervisor> facultyList;
-	private static ArrayList<Object> projectList;
-	private static ArrayList<FYP_Coordinator> coordinator;
-	private static ArrayList<Account> accountsList;
-
 	public static void main(String[] args) {
-		// File Initialization
-        // initalizeSystem();
+        // StudentDB db = new StudentDB();
+        // (db.findInstance("KOH1")).setName("YES");
+        // System.out.println(db.findInstance("KOH1").getName());
+        // db.exportDB();
 
         // Introduction to App 
         System.out.println("\n================================================================");
         System.out.println("======    Welcome to Final Year Project Management App    ======");
         System.out.println("================================================================\n");
 
-        // Student x = new Student("wee","Eugene", "wee@ntu.sg");
-        // x.loadMenu();
-
-        ProjectDB projectList = new ProjectDB();
-        projectList.createProject("Yes", "Y", null);
-
 
         // Login (Login with 5 attempts, use try, catch to handle invalid  inputs. once 5 attempts up, terminate program)
+        int loginAttempts = 1;
         boolean loginSuccess = login();
-        while(!loginSuccess){
+        while(!loginSuccess && loginAttempts <= 5){
             login();
+            loginAttempts++;
         }
 
         // Show menu depending on user type
-        
         
         // Execute choice of user
 	}
@@ -48,52 +35,21 @@ public class App {
     private static boolean login(){
         String inputUserID;
         String inputPassword;
+        Account account;
         
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter user ID: ");
+        System.out.println("Enter User ID: ");
         inputUserID = sc.nextLine();
         System.out.println("Enter Password: ");
         inputPassword = sc.nextLine();
 
-        if (inputPassword!="" /*inputUserID exists in file*/) {
-            String userID = inputUserID;
-            String password = inputPassword /* correct password */ ;
-            Account account = new Account(userID, password);
-            // account.authenticate(accountList, inputPassword);
-            return true;
-        }
-        // error handling
-        else {
-            System.out.println("Invalid user ID!");
-            return false;
-        }
-    }
-
-    // Do we really need this, mayb just need to initialize whenever loading the class
-    private static void initalizeSystem(){ 
-
-        try{
-            System.out.println("Initializing Files...");
-
-            // scan in student list file 
-            studentList = FileReader.readExcelFile("student_list.xlsx", new Student());
-
-            // // TO BE DELETED, JUST TO CHECK
-            // Student x = (Student) studentList.get(0);
-            // System.out.println(x.getUserID());
-            
-            // scan in faculty list file
-
-            // scan in rollover project list file
-
-            // scan in fyp coordinator file
-
-
-            System.out.println("Files Initialized!");
-
-        }catch(Exception e){
-            System.out.println("Error in Initializing File");
-            e.printStackTrace();
-        }
+        // if (account = AccountDB.findAcc()) {
+            // account.authenticate(inputPassword);
+            // return true;
+        // } else {
+            // print "invalid user id"
+            // return false;
+        // }
+        
     }
 }

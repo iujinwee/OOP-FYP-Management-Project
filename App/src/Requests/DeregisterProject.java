@@ -1,20 +1,20 @@
-package Requests.Request;
-import Projects.ProjectDB;
+package Requests;
 import Projects.Project.Project;
 import Projects.Project.ProjectStatus;
 import Users.Student;
 import Users.Supervisor;
 import Users.User.User;
 
-public class ChangeSupervisor extends Request{
-
-    private int newSupervisor;
+public class DeregisterProject extends Request{
+    
     private int projectID;
     private int requestID;
 
-    public ChangeSupervisor(int requestID, int newSupervisor, int projectID) {
-        super(requestID, fromUser, FYP_Coordinator, RequestStatus.PENDING, RequestType.CHANGESUPERVISOR, projectID);
-        this.newSupervisor = newSupervisor;
+    public DeregisterProject(int requestID, int projectID) {
+        super(requestID, fromUser, FYP_Coordinator, RequestStatus.PENDING, RequestType.DEREGISTERPROJECT, projectID);
+        setRequestType(RequestType.DEREGISTERPROJECT);
+        setToUser(/*FYP_Coordinator*/);
+        projectID = modifies.getProjectID();
     }
 
     public void enactRequest(int choice){
@@ -22,10 +22,9 @@ public class ChangeSupervisor extends Request{
             case 1:
                 ProjectDB projDB = new ProjectDB();
                 projDB.loadDB();
-                projDB.findInstance(projectID).setSupervisor(newSupervisor);
+                projDB.findInstance(projectID).setProjectStatus(Projects.ProjectDetails.ProjectStatus.AVAILABLE);
                 projDB.exportDB();
                 setRequestStatus(RequestStatus.APPROVED);
-
                 break;
             case 2:
                 setRequestStatus(RequestStatus.REJECTED);
@@ -35,5 +34,4 @@ public class ChangeSupervisor extends Request{
                 break;
         }
     }
-    
 }

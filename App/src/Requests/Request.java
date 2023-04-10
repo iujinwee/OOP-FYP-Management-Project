@@ -1,14 +1,15 @@
-package Requests.RequestDetails;
-import Projects.ProjectDetails.Project;
+package Requests;
+import Projects.Project;
 import Users.Student;
 import Users.Supervisor;
 import Users.UserDetails.User;
 
-public abstract class Request {
+public class Request {
 
 	Student belongs;
 	Supervisor taggedTo;
 	private RequestType requestType;
+	private int requestID;
 	private User fromUser;
 	private User toUser;
 	private int projectID;
@@ -54,5 +55,4 @@ public abstract class Request {
 	public int getRequestID() {
 		return this.requestID;
 	}
-
 }

@@ -1,20 +1,18 @@
-package Requests.Request;
+package Requests;
 import Projects.Project.Project;
 import Projects.Project.ProjectStatus;
 import Users.Student;
 import Users.Supervisor;
 import Users.User.User;
 
-public class DeregisterProject extends Request{
+public class ChangeTitle extends Request{
     
-    private int projectID;
+    private String newTitle;
     private int requestID;
 
-    public DeregisterProject(int requestID, int projectID) {
-        super(requestID, fromUser, FYP_Coordinator, RequestStatus.PENDING, RequestType.DEREGISTERPROJECT, projectID);
-        setRequestType(RequestType.DEREGISTERPROJECT);
-        setToUser(/*FYP_Coordinator*/);
-        projectID = modifies.getProjectID();
+    public ChangeTitle(int requestID, String newTitle) {
+        super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGETITLE, projectID)
+        this.newTitle = newTitle;
     }
 
     public void enactRequest(int choice){
@@ -22,7 +20,7 @@ public class DeregisterProject extends Request{
             case 1:
                 ProjectDB projDB = new ProjectDB();
                 projDB.loadDB();
-                projDB.findInstance(projectID).setProjectStatus(Projects.ProjectDetails.ProjectStatus.AVAILABLE);
+                projDB.findInstance(projectID).setTitle(newTitle);
                 projDB.exportDB();
                 setRequestStatus(RequestStatus.APPROVED);
                 break;

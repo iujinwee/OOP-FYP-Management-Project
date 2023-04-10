@@ -1,18 +1,20 @@
-package Requests.Request;
+package Requests;
+import Projects.ProjectDB;
 import Projects.Project.Project;
 import Projects.Project.ProjectStatus;
 import Users.Student;
 import Users.Supervisor;
 import Users.User.User;
 
-public class ChangeTitle extends Request{
-    
-    private String newTitle;
+public class ChangeSupervisor extends Request{
+
+    private int newSupervisor;
+    private int projectID;
     private int requestID;
 
-    public ChangeTitle(int requestID, String newTitle) {
-        super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGETITLE, projectID)
-        this.newTitle = newTitle;
+    public ChangeSupervisor(int requestID, int newSupervisor, int projectID) {
+        super(requestID, fromUser, FYP_Coordinator, RequestStatus.PENDING, RequestType.CHANGESUPERVISOR, projectID);
+        this.newSupervisor = newSupervisor;
     }
 
     public void enactRequest(int choice){
@@ -20,9 +22,10 @@ public class ChangeTitle extends Request{
             case 1:
                 ProjectDB projDB = new ProjectDB();
                 projDB.loadDB();
-                projDB.findInstance(projectID).setTitle(newTitle);
+                projDB.findInstance(projectID).setSupervisor(newSupervisor);
                 projDB.exportDB();
                 setRequestStatus(RequestStatus.APPROVED);
+
                 break;
             case 2:
                 setRequestStatus(RequestStatus.REJECTED);
@@ -32,4 +35,5 @@ public class ChangeTitle extends Request{
                 break;
         }
     }
+    
 }

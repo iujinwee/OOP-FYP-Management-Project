@@ -20,7 +20,23 @@
             "c:\\Users\\eugen\\Downloads\\jar_files\\ant-1.10.12.jar",
             "c:\\Users\\eugen\\Downloads\\jar_files\\ant-launcher-1.10.12.jar",
             "c:\\Users\\eugen\\Downloads\\jar_files\\commons-codec-1.15.jar",
-            "c:\\Users\\eugen\\Downloads\\jar_files\\commons-collections4-4.4.jar"
+            "c:\\Users\\eugen\\Downloads\\jar_files\\commons-collections4-4.4.jar",
+            "App/lib/ant-1.10.12.jar",
+            "App/lib/ant-launcher-1.10.12.jar",
+            "App/lib/commons-codec-1.15.jar",
+            "App/lib/commons-collections4-4.4.jar",
+            "App/lib/commons-compress-1.21.jar",
+            "App/lib/commons-io-2.11.0.jar",
+            "App/lib/commons-math3-3.6.1.jar",
+            "App/lib/curvesapi-1.07.jar",
+            "App/lib/log4j-api-2.18.0.jar",
+            "App/lib/log4j-core-2.18.0.jar",
+            "App/lib/poi-5.2.3.jar",
+            "App/lib/poi-excelant-5.2.3.jar",
+            "App/lib/poi-ooxml-5.2.3.jar",
+            "App/lib/poi-ooxml-lite-5.2.3.jar",
+            "App/lib/SparseBitSet-1.2.jar",
+            "App/lib/xmlbeans-5.1.1.jar"
         ],
         "exclude": [
             "c:\\Users\\eugen\\Downloads\\commons-collections4-4.1.jar"
