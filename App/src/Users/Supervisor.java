@@ -5,18 +5,24 @@ import java.util.*;
 import Database.ProjectDB;
 import Exceptions.*;
 import Projects.Project;
-import Requests.*;
-import Users.UserDetails.*;
+import Projects.ProjectDB;
+import Requests.Request;
+import Database.FYPCoordinatorDB;
+import Database.RequestDB;
+import Requests.RequestStatus;
+import Requests.RequestType;
+import Users.UserDetails.User;
+import Users.UserDetails.UserType;
 
 public class Supervisor extends User {
 
 	private String supervisorID;
 	private int numAssignedProjects=0;
 	private int choice = -1;
-	private ProjectDB projDB;
+	private int projectID=0;
+	private ProjectDB projDB = new ProjectDB();
+	private RequestDB reqDB =new RequestDB();
 	private Scanner sc;
-
-	public Supervisor() {}
 
 	/**
 	 * Supervisor constructor.
@@ -31,30 +37,9 @@ public class Supervisor extends User {
 		this.supervisorID = super.getUserID(); 
 		this.sc = new Scanner(System.in);
 	}
-	
+	public Supervisor() {}
 	public int getNumAssignedProjects(){
 		return this.numAssignedProjects;
-	}
-
-	public void loadMenu(User user){
-		handleInvalidInput handler = new handleInvalidInput(user.sc, 3);
-
-		while(handler.checkAttempts()){
-			try{
-				getInput(user);
-				// Exit loop
-				break;
-			}catch(InvalidInputException e){
-				handler.handleInvalidInputException(e);
-
-			}catch(InputMismatchException e){
-				handler.handleInputMismatchException(e);
-			}
-		}
-		// Clearing System
-		System.out.println("Terminating Program...");
-		this.sc.close();
-		System.exit(0);
 	}
 	
 		
@@ -70,7 +55,8 @@ public class Supervisor extends User {
 		System.out.println("[0] Exit Program.");
 	}
 
-	public void getInput(User user) throws InvalidInputException{
+	@Override
+	public void getInput() throws InvalidInputException{
 		while (choice != 0){	
 
 			// Show Supervisor Menu
@@ -82,31 +68,38 @@ public class Supervisor extends User {
 			switch(choice){
 				case 1: 
 					System.out.println("Option [1] selected! - Create New Project.");
-					// projDB.createProject(user);
+					projDB.createProject((Supervisor) this);
 					break;
 
 				case 2: 
 					//Supervisor views his/her projects
 					System.out.println("Option [2] selected! - View Projects created by me.");
-					// projDB.viewProjects(user);
+					projDB.viewAllProjects(this);
 					break;
 
 				case 3:
 					//Supervisor changes title of his/her projects
 					System.out.println("Option [3] selected! - Change Title of Project.");
-					// projDB.setProjectTitle(user);
-
+					projDB.viewAllProjects(this);
+					System.out.println("Select Project ID for Title Change ");
+					projectID = sc.nextInt();
+					projDB.setNewTitle(projectID);
 					break;
 
 				case 4:	
 					System.out.println("Option [4] selected! - Request to Transfer Student to Replacement Supervisor.");
-					// reqDB.createRequest(RequestType.CHANGESUPERVISOR);					
-				
+					//get fyp coordinator id 
+					FYPCoordinatorDB FYPdb = new FYPCoordinatorDB(); 
+					reqDB.createRequest(RequestType.CHANGESUPERVISOR,this.getUserID(),FYPdb.findInstance("ASFLI").getUserID());	
+					System.out.println("Request Sent.");
+	
+					//to check on missing link -> accept request -> enact change 			
 					break;
 					
 				case 5:
 					System.out.println("Option [5] selected! - Manage Incoming Requests.");
-					// manageRequests();
+					reqDB.viewPendingRequests(this);
+					manageRequests();
 					break;
 
 				default:
@@ -115,29 +108,23 @@ public class Supervisor extends User {
 		}
 	}
 
-	// public void manageRequests() {
-	// 	// View all Requests (To include in sub-class)
-	// 	reqDB.viewRequest(this.supervisorID); //to change this method parameter in reqDB?
-
-	// 	//manage requests
-	// 	System.out.println("Enter RequestID to Approve/Reject: ");
-	// 	int reqID = sc.nextInt();
+	public void manageRequests() {
 
 	// 	Request curRequest = reqDB.getRequest(reqID); // return Subclass
 
-	// 	System.out.println("Approve/ Reject");
-	// 	System.out.println("[1] Approve");
-	// 	System.out.println("[0]");
-	// 	int choice = sc.nextInt();
+		Request currentReq = reqDB.findInstance(reqID);
 
-	// 	curRequest.enactRequest(choice);
-	// }
+		System.out.println("Approve/ Reject");
+		System.out.println("[1] Approve");
+		System.out.println("[0] Reject");
+		int choice = sc.nextInt();
 
-	@Override
-	public void getInput() throws InvalidInputException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getInput'");
+		currentReq.enactRequest(choice);
+
+		reqDB.exportDB();
+
 	}
+
 
 	
 }
