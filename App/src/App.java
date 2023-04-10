@@ -45,28 +45,22 @@ public class App {
     private static boolean login(){
         String inputUserID;
         String inputPassword;
+        Account account;
         
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter user ID: ");
+        System.out.println("Enter User ID: ");
         inputUserID = sc.nextLine();
         System.out.println("Enter Password: ");
         inputPassword = sc.nextLine();
 
-        // if inputUserID exists in studentList
-            // if 
-
-        if (inputPassword!="" /*inputUserID exists in file*/) {
-            String userID = inputUserID;
-            String password = inputPassword /* correct password */;
-            Account account = new Account(userID);
-            // account.authenticate(accountList, inputPassword);
-            return true;
-        }
-        // error handling
-        else {
-            System.out.println("Invalid user ID!");
-            return false;
-        }
+        // if (account = AccountDB.findAcc()) {
+            // account.authenticate(inputPassword);
+            // return true;
+        // } else {
+            // print "invalid user id"
+            // return false;
+        // }
+        
     }
 
     // Do we really need this, mayb just need to initialize whenever loading the class

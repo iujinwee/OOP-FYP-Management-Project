@@ -11,6 +11,12 @@ public abstract class User implements UserInterface {
 
 	public User() {}
 	
+	/**
+	 * User constructor
+	 * @param userID Unique user ID of the user, the part of the email before @
+	 * @param name Name of the user
+	 * @param email Email address of the user
+	 */
 	public User(String userID, String name, String email) {
 		this.userID = userID;
 		this.name = name;
@@ -45,7 +51,7 @@ public abstract class User implements UserInterface {
 	public void setType(UserType type){
 		this.type = type;
 	}
-
+	
 	@Override
 	public void showMenu() {
 		System.out.println("=======================================");

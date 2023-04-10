@@ -25,11 +25,11 @@ public class Student extends User{
 	public Student() {}
 
 	/**
-	 * Represents a Student. 
+	 * Student constructor. 
 	 * 
-	 * @param userID represents the unique ID of the student.
-	 * @param name represents the name of the student.
-	 * @param email represents the email of the student.
+	 * @param userID Unique ID of the student.
+	 * @param name Name of the student.
+	 * @param email Email address of the student.
 	 */
 	public Student(String userID, String name, String email) {
 		super(userID, name, email);

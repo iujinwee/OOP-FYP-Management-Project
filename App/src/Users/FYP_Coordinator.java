@@ -8,11 +8,11 @@ public class FYP_Coordinator extends Supervisor {
 	public FYP_Coordinator() {}
 
 	/**
-	 * Represents a FYP Coordinator
+	 * FYP Coordinator constructor.
 	 * 
-	 * @param userID represents the unique ID of the FYP coordinator.
-	 * @param name represents the name of the FYP coordinator.
-	 * @param email represents the email of the FYP coordinator.
+	 * @param userID Unique ID of the FYP coordinator.
+	 * @param name Name of the FYP coordinator.
+	 * @param email Email address of the FYP coordinator.
 	 */
 	public FYP_Coordinator(String userID, String name, String email) {
 		super(userID, name, email);

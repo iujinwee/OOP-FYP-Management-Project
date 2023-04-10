@@ -8,9 +8,8 @@ public class Account {
 	public Account() {}
 
 	/**
-	 * Represents an Account, created with default password
-	 * 
-	 * @param userID represents correct user ID of the account for login.
+	 * Account constructor, created with default password
+	 * @param userID Correct user ID of the account for login.
 	 */
 	public Account(String userID) {
 		this.userID = userID;
@@ -18,10 +17,9 @@ public class Account {
 	}
 	
 	/**
-	 * Represents an Account
-	 * 
-	 * @param userID represents correct user ID of the account for login.
-	 * @param password represents correct password of the account for login.
+	 * Account constructor with both User ID and password specified
+	 * @param userID Correct user ID of the account for login.
+	 * @param password Correct password of the account for login.
 	 */
 	public Account(String userID, String password) {
 		this.userID = userID;
@@ -37,8 +35,9 @@ public class Account {
 	}
 
 	/**
-	 * 
-	 * @param newPassword represents new password after changing.
+	 * Changes password of the account.
+	 * @param newPassword The new password after changing.
+	 * @return Whether password successfully changed.
 	 */
 	public boolean changePassword(String newPassword) {
 		if(newPassword != this.password) {
@@ -52,8 +51,9 @@ public class Account {
 	}
 
 	/**
-	 * 
-	 * @param inputPassword represents the password that user tries to input to login
+	 * Used to check whether password is correct, for successful log in. 
+	 * @param inputPassword Password that user tries to input to login.
+	 * @return Whether input password is correct.
 	 */
 	public boolean authenticate(String inputPassword) {
 		if(inputPassword == this.password) {

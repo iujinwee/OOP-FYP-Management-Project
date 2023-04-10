@@ -16,8 +16,24 @@ public class AccountDB {
 		fypcoordAccList = FileReader.readExcelFile("FYP coordinator.xlsx", new Account());
 	}
 
-	public boolean changePassword(Account account, String newPassword) {
+	/**
+	 * Update 
+	 * @param account 
+	 * @param newPassword
+	 * @return
+	 */
+	public boolean updatePassword(Account account, String newPassword) {
+		// iterate through studentAccList
+			// if temp matches account, then temp.changePassword(newPassword) and return true
+		// iterate through supervisorAccList 
+	}
+	
+	/**
+	 * Find the corresponding Account object from AccountDB given an input User ID.
+	 * @param userID 
+	 * @return 
+	 */
+	public Account findAcc(String UserID) {
 		
 	}
-
 }

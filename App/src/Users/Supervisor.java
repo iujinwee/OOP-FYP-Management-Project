@@ -25,11 +25,11 @@ public class Supervisor extends User {
 	public Supervisor() {}
 
 	/**
-	 * Represents a Supervisor
+	 * Supervisor constructor.
 	 * 
-	 * @param userID represents the unique ID of the supervisor.
-	 * @param name represents the name of the supervisor.
-	 * @param email represents the email of the supervisor.
+	 * @param userID Unique ID of the supervisor.
+	 * @param name Name of the supervisor.
+	 * @param email Email address of the supervisor.
 	 */
 	public Supervisor(String userID, String name,String email) {
 		super(userID, name, email);
