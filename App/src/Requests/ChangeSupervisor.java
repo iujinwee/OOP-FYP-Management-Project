@@ -10,11 +10,9 @@ import Users.UserDetails.*;;
 public class ChangeSupervisor extends Request{
 
     private int newSupervisor;
-    private int projectID;
-    private int requestID;
 
-    public ChangeSupervisor(int requestID, int newSupervisor, int projectID) {
-        super(requestID, fromUser, FYP_Coordinator, RequestStatus.PENDING, RequestType.CHANGESUPERVISOR, projectID);
+    public ChangeSupervisor(int requestID, int newSupervisor, int projectID, User fromUser, User toUser) {
+        super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGESUPERVISOR, projectID);
         this.newSupervisor = newSupervisor;
     }
 
@@ -22,11 +20,9 @@ public class ChangeSupervisor extends Request{
         switch(choice){
             case 1:
                 ProjectDB projDB = new ProjectDB();
-                projDB.loadDB();
-                projDB.findInstance(projectID).setSupervisor(newSupervisor);
+                (projDB.findInstance(getProjectID())).setSupervisor(newSupervisor);
                 projDB.exportDB();
                 setRequestStatus(RequestStatus.APPROVED);
-
                 break;
             case 2:
                 setRequestStatus(RequestStatus.REJECTED);

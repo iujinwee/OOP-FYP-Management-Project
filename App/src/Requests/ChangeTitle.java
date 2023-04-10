@@ -10,10 +10,9 @@ import Users.UserDetails.*;
 public class ChangeTitle extends Request{
     
     private String newTitle;
-    private int requestID;
 
-    public ChangeTitle(int requestID, String newTitle) {
-        super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGETITLE, projectID)
+    public ChangeTitle(int requestID, String newTitle, User fromUser, User toUser) {
+        super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGETITLE, toUser.getprojectID());
         this.newTitle = newTitle;
     }
 
@@ -21,8 +20,7 @@ public class ChangeTitle extends Request{
         switch(choice){
             case 1:
                 ProjectDB projDB = new ProjectDB();
-                projDB.loadDB();
-                projDB.findInstance(projectID).setTitle(newTitle);
+                (projDB.findInstance(getProjectID())).setTitle(newTitle);
                 projDB.exportDB();
                 setRequestStatus(RequestStatus.APPROVED);
                 break;

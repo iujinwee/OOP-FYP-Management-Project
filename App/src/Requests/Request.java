@@ -55,4 +55,8 @@ public class Request {
 	public int getRequestID() {
 		return this.requestID;
 	}
+
+	public int getProjectID() {
+		return this.projectID;
+	}
 }

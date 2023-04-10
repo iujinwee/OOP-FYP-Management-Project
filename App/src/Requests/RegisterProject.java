@@ -9,14 +9,12 @@ import Users.UserDetails.*;;
 
 public class RegisterProject extends Request{
 
-    private int projectID;
-    private int requestID;
 
-    public RegisterProject(int requestID, int projectID) {
-        super(requestID, fromUser, FYP_Coordinator, RequestStatus.PENDING, RequestType.REGISTERPROJECT, projectID);
+    public RegisterProject(int requestID, int projectID, User fromUser, User toUser) {
+        super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.REGISTERPROJECT, projectID);
         this.projectID = projectID;
         ProjectDB projDB = new ProjectDB();
-        projDB.findInstance(projectID).setProjectStatus(Projects.ProjectDetails.ProjectStatus.RESERVED);
+        projDB.findInstance(projectID).setProjectStatus(ProjectStatus.RESERVED);
         projDB.exportDB();
     }
 
@@ -24,9 +22,13 @@ public class RegisterProject extends Request{
         switch(choice){
             case 1:
                 ProjectDB projDB = new ProjectDB();
-                projDB.findInstance(projectID).setProjectStatus(Projects.ProjectDetails.ProjectStatus.ALLOCATED);
+                (projDB.findInstance(getProjectID())).setProjectStatus(ProjectStatus.ALLOCATED);
+                projDB.exportDB();
                 break;
             case 2:
+                ProjectDB projDB = new ProjectDB();
+                (projDB.findInstance(getProjectID())).setProjectStatus(ProjectStatus.AVAILABLE);
+                projDB.exportDB();
                 setRequestStatus(RequestStatus.REJECTED);
                 break;
             default:

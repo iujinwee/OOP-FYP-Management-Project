@@ -1,7 +1,5 @@
 package Requests;
 
-import java.util.ArrayList;
-
 import Users.UserDetails.User;
 import Users.UserDetails.UserType;
 import Projects.ProjectDB;
@@ -71,15 +69,15 @@ public class RequestDB extends Database{
 
 
 	public RequestDB(){
-		loadDB();
+		super("Requests.xlsx", new Request());
 		throw new UnsupportedOperationException();
 	}
-	public void createRequest(RequestType type) {
+	public void createRequest(RequestType type, User fromUser, User toUser) {
 		switch (type) {
 			case CHANGETITLE:
 				System.out.println("Insert new title: ");
 				String newTitle = sc.nextLine();
-				requestList.add(new ChangeTitle(requestList.size(), newTitle));
+				requestList.add(new ChangeTitle(requestList.size(), newTitle, fromUser, toUser));
 				exportDB();
 				break;
 			case CHANGESUPERVISOR:
@@ -87,35 +85,59 @@ public class RequestDB extends Database{
 				int projectID = sc.nextInt();
 				System.out.println("Insert new supervisor ID: ");
 				int newSupervisorID = sc.nextInt();
-				requestList.add(new ChangeSupervisor(requestList.size(), newSupervisorID, projectID));
+				requestList.add(new ChangeSupervisor(requestList.size(), newSupervisorID, projectID, fromUser, toUser));
 				exportDB();
 				break;
 			case REGISTERPROJECT:
 				System.out.println("Insert project ID: ");
 				projectID = sc.nextInt();
-				requestList.add(new RegisterProject(requestList.size(), projectID));
+				requestList.add(new RegisterProject(requestList.size(), projectID, fromUser, toUser));
 				exportDB();
 				break;
 			case DEREGISTERPROJECT:
 				System.out.println("Insert project ID: ");
 				projectID = sc.nextInt();
-				requestList.add(new DeregisterProject(requestList.size(), projectID));
+				requestList.add(new DeregisterProject(requestList.size(), projectID, fromUser, toUser));
 				exportDB();
 				break;
 		}
-
-		// Add new Request
-		// Update Excel
 		throw new UnsupportedOperationException();
 
 	}
 
-	public void manageRequest() {
-		
+	public void viewPendingRequests(User user){
+		switch(user.getUserType()){
+
+			case STUDENT:
+				for(Object request : requestList){
+					Request req = (Request) request;
+					if(req.getFromUser().equals(user) && req.getRequestStatus() == RequestStatus.PENDING){
+						System.out.println(req.toString());
+					}
+				}
+				break;
+			case SUPERVISOR:
+				for(Object request : requestList){
+					Request req = (Request) request;
+					if(req.getToUser().equals(user) && req.getRequestStatus() == RequestStatus.PENDING){
+						System.out.println(req.toString());
+					}
+				}
+				break;
+
+			case FYPCOORDINATOR:
+				for(Object request : requestList){
+					Request req = (Request) request;
+					if(req.getRequestStatus() == RequestStatus.PENDING){
+						System.out.println(req.toString());
+					}
+				}
+				break;
+		}
 		throw new UnsupportedOperationException();
 	}
 
-	public void viewRequest(User user) {
+	public void viewAllRequests(User user) {
 		switch(user.getUserType()){
 			case STUDENT:
 				for(Object request : requestList){
@@ -127,21 +149,24 @@ public class RequestDB extends Database{
 				break;
 
 			case SUPERVISOR:
-				for(Object request : requestList){
-					Request req = (Request) request;
-					if(req.getToUser().equals(user) && req.getRequestStatus() == RequestStatus.PENDING){
-						System.out.println(req.toString());
-					}
-				}
+				System.out.println("Requests sent");
 				for(Object request : requestList){
 					Request req = (Request) request;
 					if(req.getFromUser().equals(user)){
 						System.out.println(req.toString());
 					}
 				}
+				System.out.println("---------------------------------");
+				System.out.println("Requests received");
+				for(Object request : requestList){
+					Request req = (Request) request;
+					if(req.getToUser().equals(user)){
+						System.out.println(req.toString());
+					}
+				}
 				break;
-				
-			case FYP_COORDINATOR:
+
+			case FYPCOORDINATOR:
 				for(Object request : requestList){
 					Request req = (Request) request;
 					System.out.println(req.toString());
@@ -161,15 +186,6 @@ public class RequestDB extends Database{
 		throw new UnsupportedOperationException();
 	}
 
-	public void loadDB(){
-		requestList = FileHandler.readExcelFile("Requests.xlsx", new Request());
-		throw new UnsupportedOperationException();
-	}
-
-	public void exportDB(){
-		FileHandler.writeExcelFile("Requests.xlsx", requestList);
-		throw new UnsupportedOperationException();
-	}
 
 	public Request findInstance(int id){
 		for (Object request : requestList) {
@@ -181,8 +197,5 @@ public class RequestDB extends Database{
 		throw new UnsupportedOperationException();
 	}
 
-	public void viewAllRequests(String userID){
-		// Filter result based on userType
-	}
 
 }
