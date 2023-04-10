@@ -15,13 +15,6 @@ import Users.UserDetails.UserType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.io.IOException;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.util.List;
-import java.util.StringTokenizer;
 
 import Projects.ProjectDB;
 
@@ -143,6 +136,26 @@ public class RequestDB {
 		for (Object request : requestList) {
 			Request req = (Request) request;
 			if (req.getRequestID() == requestID) {
+				return req;
+			}
+		}
+		throw new UnsupportedOperationException();
+	}
+
+	public void loadDB(){
+		requestList = FileReader.readExcelFile("Requests.xlsx", new Request());
+		throw new UnsupportedOperationException();
+	}
+
+	public void exportDB(){
+		FileManager.FileWriter.writeExcelFile("Requests.xlsx", requestList);
+		throw new UnsupportedOperationException();
+	}
+
+	public Request findInstance(int id){
+		for (Object request : requestList) {
+			Request req = (Request) request;
+			if (req.getRequestID().compareTo(id) == 0) {
 				return req;
 			}
 		}
