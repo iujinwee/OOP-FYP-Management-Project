@@ -1,10 +1,11 @@
 package Requests;
 import Projects.ProjectDB;
-import Projects.Project.Project;
-import Projects.Project.ProjectStatus;
+import Projects.Project;
+import Projects.ProjectStatus;
 import Users.Student;
 import Users.Supervisor;
-import Users.User.User;
+import Users.FYP_Coordinator;
+import Users.UserDetails.*;;
 
 public class ChangeSupervisor extends Request{
 

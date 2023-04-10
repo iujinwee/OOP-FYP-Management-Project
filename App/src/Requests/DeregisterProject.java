@@ -1,9 +1,11 @@
 package Requests;
-import Projects.Project.Project;
-import Projects.Project.ProjectStatus;
+import Projects.ProjectDB;
+import Projects.Project;
+import Projects.ProjectStatus;
 import Users.Student;
 import Users.Supervisor;
-import Users.User.User;
+import Users.FYP_Coordinator;
+import Users.UserDetails.*;;
 
 public class DeregisterProject extends Request{
     
@@ -13,8 +15,6 @@ public class DeregisterProject extends Request{
     public DeregisterProject(int requestID, int projectID) {
         super(requestID, fromUser, FYP_Coordinator, RequestStatus.PENDING, RequestType.DEREGISTERPROJECT, projectID);
         setRequestType(RequestType.DEREGISTERPROJECT);
-        setToUser(/*FYP_Coordinator*/);
-        projectID = modifies.getProjectID();
     }
 
     public void enactRequest(int choice){

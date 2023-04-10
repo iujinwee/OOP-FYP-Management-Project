@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 import Users.UserDetails.User;
 import Users.UserDetails.UserType;
+import Projects.ProjectDB;
+import Database.FileHandler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import Projects.ProjectDB;
-
 import java.util.Scanner;
+
+
 
 
 // ## MANAGING REQUEST
@@ -79,7 +80,7 @@ public class RequestDB extends Database{
 				System.out.println("Insert new title: ");
 				String newTitle = sc.nextLine();
 				requestList.add(new ChangeTitle(requestList.size(), newTitle));
-				FileManager.FileWriter.writeExcelFile("Requests.xlsx", requestList);
+				exportDB();
 				break;
 			case CHANGESUPERVISOR:
 				System.out.println("Insert project ID: ");
@@ -87,19 +88,19 @@ public class RequestDB extends Database{
 				System.out.println("Insert new supervisor ID: ");
 				int newSupervisorID = sc.nextInt();
 				requestList.add(new ChangeSupervisor(requestList.size(), newSupervisorID, projectID));
-				FileManager.FileWriter.writeExcelFile("Requests.xlsx", requestList);
+				exportDB();
 				break;
 			case REGISTERPROJECT:
 				System.out.println("Insert project ID: ");
 				projectID = sc.nextInt();
 				requestList.add(new RegisterProject(requestList.size(), projectID));
-				FileManager.FileWriter.writeExcelFile("Requests.xlsx", requestList);
+				exportDB();
 				break;
 			case DEREGISTERPROJECT:
 				System.out.println("Insert project ID: ");
 				projectID = sc.nextInt();
 				requestList.add(new DeregisterProject(requestList.size(), projectID));
-				FileManager.FileWriter.writeExcelFile("Requests.xlsx", requestList);
+				exportDB();
 				break;
 		}
 
@@ -115,11 +116,37 @@ public class RequestDB extends Database{
 	}
 
 	public void viewRequest(User user) {
-		for(Object request : requestList){
-			Request req = (Request) request;
-			if(req.getFromUser().equals(user)){
-				System.out.println(req.toString());
-			}
+		switch(user.getUserType()){
+			case STUDENT:
+				for(Object request : requestList){
+					Request req = (Request) request;
+					if(req.getFromUser().equals(user)){
+						System.out.println(req.toString());
+					}
+				}
+				break;
+
+			case SUPERVISOR:
+				for(Object request : requestList){
+					Request req = (Request) request;
+					if(req.getToUser().equals(user) && req.getRequestStatus() == RequestStatus.PENDING){
+						System.out.println(req.toString());
+					}
+				}
+				for(Object request : requestList){
+					Request req = (Request) request;
+					if(req.getFromUser().equals(user)){
+						System.out.println(req.toString());
+					}
+				}
+				break;
+				
+			case FYP_COORDINATOR:
+				for(Object request : requestList){
+					Request req = (Request) request;
+					System.out.println(req.toString());
+				}
+				break;
 		}
 		throw new UnsupportedOperationException();
 	}
@@ -135,12 +162,12 @@ public class RequestDB extends Database{
 	}
 
 	public void loadDB(){
-		requestList = FileReader.readExcelFile("Requests.xlsx", new Request());
+		requestList = FileHandler.readExcelFile("Requests.xlsx", new Request());
 		throw new UnsupportedOperationException();
 	}
 
 	public void exportDB(){
-		FileManager.FileWriter.writeExcelFile("Requests.xlsx", requestList);
+		FileHandler.writeExcelFile("Requests.xlsx", requestList);
 		throw new UnsupportedOperationException();
 	}
 

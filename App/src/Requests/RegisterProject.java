@@ -1,9 +1,11 @@
 package Requests;
-import Projects.Project.Project;
-import Projects.Project.ProjectStatus;
+import Projects.ProjectDB;
+import Projects.Project;
+import Projects.ProjectStatus;
 import Users.Student;
 import Users.Supervisor;
-import Users.User.User;
+import Users.FYP_Coordinator;
+import Users.UserDetails.*;;
 
 public class RegisterProject extends Request{
 
@@ -14,7 +16,6 @@ public class RegisterProject extends Request{
         super(requestID, fromUser, FYP_Coordinator, RequestStatus.PENDING, RequestType.REGISTERPROJECT, projectID);
         this.projectID = projectID;
         ProjectDB projDB = new ProjectDB();
-        projDB.loadDB();
         projDB.findInstance(projectID).setProjectStatus(Projects.ProjectDetails.ProjectStatus.RESERVED);
         projDB.exportDB();
     }
@@ -23,7 +24,6 @@ public class RegisterProject extends Request{
         switch(choice){
             case 1:
                 ProjectDB projDB = new ProjectDB();
-                projDB.loadDB();
                 projDB.findInstance(projectID).setProjectStatus(Projects.ProjectDetails.ProjectStatus.ALLOCATED);
                 break;
             case 2:
