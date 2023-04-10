@@ -78,8 +78,4 @@ public class Account {
 			return false;
 		}
 	}
-
-	public boolean login(AccountDB accountDB) {
-		
-	}
 }

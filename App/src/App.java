@@ -18,8 +18,9 @@ public class App {
         // db.exportDB();
         AccountDB accountDB = new AccountDB();
         // accountDB.showAccountDB();
-        Account ca; 
-        User user;
+        Account ca = null; 
+        User user = null;
+        Scanner sc = new Scanner(System.in);
 
         // Introduction to App 
         System.out.println("\n================================================================");
@@ -31,7 +32,6 @@ public class App {
         String inputPassword;
         int loginAttempts = 5;
         while(loginAttempts <= 5) {
-            Scanner sc = new Scanner(System.in);
             System.out.println("Enter User ID: ");
             inputUserID = sc.nextLine();
             System.out.println("Enter Password: ");
@@ -53,6 +53,7 @@ public class App {
             loginAttempts++;
         }
         
+        // Initialising user class based on user type
         switch(ca.getType()) {
             case "STUDENT":
                 user = new Student();
@@ -65,11 +66,13 @@ public class App {
                 break;
         }
         
-
         // Show menu depending on user type
-        
+        user.startProgram();
+        user.viewUserMenu();
 
         // Execute choice of user
         // Changing password
+
+        sc.close();
 	}
 }

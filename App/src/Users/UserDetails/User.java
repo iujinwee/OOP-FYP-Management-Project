@@ -60,6 +60,10 @@ public abstract class User implements UserInterface {
 		this.type = type;
 	}
 
+	public Scanner getScanner() {
+		return this.sc;
+	}
+
 
 
 	public void startProgram() {

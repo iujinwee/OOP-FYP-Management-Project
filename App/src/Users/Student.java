@@ -32,8 +32,17 @@ public class Student extends User{
 		super.setType(UserType.STUDENT);
 		this.studentID = super.getUserID();
 	}
+
+	public String getStudentID() {
+		return this.studentID;
+	}
+
+	public void setStudentID(String studentID) {
+		this.studentID = studentID;
+	}
 	
 	public void viewRegisteredProject() {
+
 	}
 
 	public void viewUserMenu() {
@@ -62,7 +71,7 @@ public class Student extends User{
 			switch(choice){
 				case 1: 
 					System.out.println("Option [1] selected! - Show Available Projects");
-					projDB.viewProjects(super.getUserType());
+					projDB.viewProjects(super.getType());
 					break;
 				case 2: 
 					System.out.println("Option [2] selected! - Show Registered Project.");

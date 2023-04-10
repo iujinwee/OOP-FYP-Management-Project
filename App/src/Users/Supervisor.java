@@ -71,6 +71,11 @@ public class Supervisor extends User {
 	
 		
 	@Override
+	public void getInput() throws InvalidInputException {
+		
+	}
+
+	@Override
 	public void viewUserMenu() {
 
 		System.out.println("=============  SUPERVISOR MENU  ==============");
