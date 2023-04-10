@@ -20,11 +20,12 @@ public class ChangeTitle extends Request{
         switch(choice){
             case 1:
                 ProjectDB projDB = new ProjectDB();
-                (projDB.findInstance(getProjectID())).setTitle(newTitle);
+                Project project = projDB.findInstance(getProjectID());
+                project.setProjectTitle(newTitle);
                 projDB.exportDB();
                 setRequestStatus(RequestStatus.APPROVED);
                 break;
-            case 2:
+            case 0:
                 setRequestStatus(RequestStatus.REJECTED);
                 break;
             default:

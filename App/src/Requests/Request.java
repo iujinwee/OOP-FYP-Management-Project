@@ -6,20 +6,13 @@ import Users.UserDetails.User;
 
 public class Request {
 
-	Student belongs;
-	Supervisor taggedTo;
 	private RequestType requestType;
 	private int requestID;
 	private User fromUser;
 	private User toUser;
 	private int projectID;
 	private RequestStatus requestStatus;
-	private int requestID;
 
-	/**
-	 * 
-	 * @param type
-	 */
 	public Request(){}
 	
 	public Request(int ID, User fromUser, User toUser, RequestStatus status, RequestType type, int projectID) {

@@ -9,59 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-
-
-
-// ## MANAGING REQUEST
-// USER SELECT OPTION (USER CLASS)
-
-// DISPLAY LIST OF REQ (USER CLASS ACCESS REQUESTDB = TAKES IN USER ID = DISPLAY ACCORDINGLY)
-// - req 1
-// - req 2 
-
-// ASK FOR INPUT (USER CLASS)
-// Select 1 
-// switch statement
-// Request current_req = new ChangeTitle(); (Request contains content required)
-
-
-// ASK FOR INPUT CHOICE TO MANAGE REQUEST (USER CLASS)
-
-// MANAGE CURRENT REQUEST (REQUEST )
-// current_req.enactRequest(db, requestStatus)
-
-// enactRequest(db, requestStatus){
-// 	switch(requestStatus){
-// 		case approve: 
-
-// 		case reject: 
-// 	}
-// }
-
-
-
-// ## CREATING REQUEST 
-// SEND REQUEST (USER CLASS = ACCESS REQUESTDB = CREATE NEW REQUEST CLASS)
-
-// reqDB.createRequest(RequestType)
-
-// switch (requestType) {
-// 	case CHANGETITLE:
-// 		// Get input
-// 		Request newRequest = new ChangeTitle()
-// 		break;
-
-// 	default:
-// 		break;
-// }
-
-// ReqDB.add(newRequest)
-// Update excel
-
-
-// VIEW USER (User Type)
-
-
 public class RequestDB extends Database{
 
 	private static ArrayList<Object> requestList;
@@ -106,6 +53,9 @@ public class RequestDB extends Database{
 	}
 
 	public void viewPendingRequests(User user){
+		System.out.println("Pending requests");
+		System.out.println("---------------------------------");
+		System.out.println("Request ID\tFrom User\tTo User\tRequest Type\tRequest Status\tProject ID\tcontent");
 		switch(user.getUserType()){
 
 			case STUDENT:
@@ -140,6 +90,9 @@ public class RequestDB extends Database{
 	public void viewAllRequests(User user) {
 		switch(user.getUserType()){
 			case STUDENT:
+				System.out.println("Requests sent");
+				System.out.println("---------------------------------");
+				System.out.println("Request ID\tFrom User\tTo User\tRequest Type\tRequest Status\tProject ID\tcontent");
 				for(Object request : requestList){
 					Request req = (Request) request;
 					if(req.getFromUser().equals(user)){
@@ -150,6 +103,8 @@ public class RequestDB extends Database{
 
 			case SUPERVISOR:
 				System.out.println("Requests sent");
+				System.out.println("---------------------------------");
+				System.out.println("Request ID\tFrom User\tTo User\tRequest Type\tRequest Status\tProject ID\tcontent");
 				for(Object request : requestList){
 					Request req = (Request) request;
 					if(req.getFromUser().equals(user)){
@@ -158,6 +113,8 @@ public class RequestDB extends Database{
 				}
 				System.out.println("---------------------------------");
 				System.out.println("Requests received");
+				System.out.println("---------------------------------");
+				System.out.println("Request ID\tFrom User\tTo User\tRequest Type\tRequest Status\tProject ID\tcontent");
 				for(Object request : requestList){
 					Request req = (Request) request;
 					if(req.getToUser().equals(user)){
@@ -167,6 +124,7 @@ public class RequestDB extends Database{
 				break;
 
 			case FYPCOORDINATOR:
+				System.out.println("Request ID\tFrom User\tTo User\tRequest Type\tRequest Status\tProject ID\tcontent");
 				for(Object request : requestList){
 					Request req = (Request) request;
 					System.out.println(req.toString());

@@ -22,13 +22,16 @@ public class RegisterProject extends Request{
         switch(choice){
             case 1:
                 ProjectDB projDB = new ProjectDB();
-                (projDB.findInstance(getProjectID())).setProjectStatus(ProjectStatus.ALLOCATED);
+                Project project = projDB.findInstance(getProjectID());
+                project.setProjectStatus(ProjectStatus.ALLOCATED);
+                Student student = (Student) getFromUser();
+                project.setStudent(student);
                 projDB.exportDB();
                 break;
-            case 2:
-                ProjectDB projDB = new ProjectDB();
-                (projDB.findInstance(getProjectID())).setProjectStatus(ProjectStatus.AVAILABLE);
-                projDB.exportDB();
+            case 0:
+                ProjectDB projDB0 = new ProjectDB();
+                (projDB0.findInstance(getProjectID())).setProjectStatus(ProjectStatus.AVAILABLE);
+                projDB0.exportDB();
                 setRequestStatus(RequestStatus.REJECTED);
                 break;
             default:

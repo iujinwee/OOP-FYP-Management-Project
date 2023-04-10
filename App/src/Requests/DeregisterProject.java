@@ -18,11 +18,16 @@ public class DeregisterProject extends Request{
         switch(choice){
             case 1:
                 ProjectDB projDB = new ProjectDB();
-                (projDB.findInstance(getProjectID())).setProjectStatus(ProjectStatus.AVAILABLE);
+                Project project = projDB.findInstance(getProjectID());
+                project.setProjectStatus(ProjectStatus.AVAILABLE);
                 projDB.exportDB();
                 setRequestStatus(RequestStatus.APPROVED);
                 break;
-            case 2:
+            case 0:
+                ProjectDB projDB0 = new ProjectDB();
+                Project project0 = projDB0.findInstance(getProjectID());
+                project0.addRejected(getFromUser().getUserID());
+                projDB0.exportDB();
                 setRequestStatus(RequestStatus.REJECTED);
                 break;
             default:

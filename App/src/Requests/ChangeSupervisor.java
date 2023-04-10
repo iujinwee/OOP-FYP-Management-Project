@@ -1,5 +1,6 @@
 package Requests;
 import Projects.ProjectDB;
+import Database.SupervisorDB;
 import Projects.Project;
 import Projects.ProjectStatus;
 import Users.Student;
@@ -20,11 +21,14 @@ public class ChangeSupervisor extends Request{
         switch(choice){
             case 1:
                 ProjectDB projDB = new ProjectDB();
-                (projDB.findInstance(getProjectID())).setSupervisor(newSupervisor);
+                Project project = projDB.findInstance(getProjectID());
+                SupervisorDB supDB = new SupervisorDB();
+                Supervisor newSup = supDB.findInstance(this.newSupervisor);
+                project.setSupervisor(newSup);
                 projDB.exportDB();
                 setRequestStatus(RequestStatus.APPROVED);
                 break;
-            case 2:
+            case 0:
                 setRequestStatus(RequestStatus.REJECTED);
                 break;
             default:
