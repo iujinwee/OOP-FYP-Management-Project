@@ -37,7 +37,7 @@ public class Supervisor extends User {
 	}
 
 	public void loadMenu(User user){
-		handleInvalidInput handler = new handleInvalidInput(user.getScanner(), 3);
+		handleInvalidInput handler = new handleInvalidInput(user.sc, 3);
 
 		while(handler.checkAttempts()){
 			try{
@@ -88,7 +88,7 @@ public class Supervisor extends User {
 				case 2: 
 					//Supervisor views his/her projects
 					System.out.println("Option [2] selected! - View Projects created by me.");
-					projDB.viewProjects(user);
+					// projDB.viewProjects(user);
 					break;
 
 				case 3:
@@ -100,7 +100,7 @@ public class Supervisor extends User {
 
 				case 4:	
 					System.out.println("Option [4] selected! - Request to Transfer Student to Replacement Supervisor.");
-					reqDB.createRequest(RequestType.CHANGESUPERVISOR);					
+					// reqDB.createRequest(RequestType.CHANGESUPERVISOR);					
 				
 					break;
 					

@@ -1,16 +1,11 @@
-import Database.ProjectDB;
-import Database.RequestDB;
-import Requests.RequestType;
 import Users.Student;
-import Users.Supervisor;
 
 public class App {
 
 	public static void main(String[] args) {
-        RequestDB db = new RequestDB();
-        db.createRequest(RequestType.CHANGESUPERVISOR, new Student("h", "h", "h"), new Supervisor("y", "y", "y"));
-        db.createRequest(RequestType.CHANGETITLE, new Student("h", "h", "h"), new Supervisor("y", "y", "y"));
-        db.exportDB();
+
+        Student user = new Student("Hello", "Yes", "No");
+        user.startProgram();
 
         // Introduction to App 
         System.out.println("\n================================================================");

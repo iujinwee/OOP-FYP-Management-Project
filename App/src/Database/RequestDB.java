@@ -1,13 +1,7 @@
 package Database;
 
 import Users.UserDetails.*;
-import Requests.ChangeSupervisor;
-import Requests.ChangeTitle;
-import Requests.DeregisterProject;
-import Requests.RegisterProject;
-import Requests.Request;
-import Requests.RequestStatus;
-import Requests.RequestType;
+import Requests.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,22 +9,18 @@ import java.util.Scanner;
 public class RequestDB extends Database{
 
 	private static ArrayList<Object> requestList;
+	private ProjectDB projDB = new ProjectDB();
 
 	public RequestDB(){
 		super("request_list.xlsx", new Request());
 	}
     
-	public void createRequest(RequestType type, User fromUser, User toUser) {
+	public void createRequest(RequestType type, User fromUser, User toUser, int projID) {
         Scanner sc = new Scanner(System.in);
 		Request newReq;
 
 		switch (type) {
 			case CHANGETITLE:
-                ProjectDB projDB = new ProjectDB();
-                projDB.viewProjects(fromUser);
-
-                System.out.println("Select Project to change title:");
-                int projID = sc.nextInt();
 
 				System.out.println("Insert new title: ");
 				String newTitle = sc.next();
@@ -41,7 +31,10 @@ public class RequestDB extends Database{
 				break;
 
 			case CHANGESUPERVISOR:
-				System.out.println("Insert project ID: ");
+				// View Projects
+				projDB.viewProjects(fromUser);
+
+                System.out.println("Select Project to change supervisor:");
 				int projectID = sc.nextInt();
 
 				System.out.println("Insert new supervisor ID: ");
@@ -53,7 +46,10 @@ public class RequestDB extends Database{
 				break;
 
 			case REGISTERPROJECT:
-				System.out.println("Insert project ID: ");
+				// View Projects
+				projDB.viewProjects(fromUser);
+
+				System.out.println("Select Project to register:");
 				projectID = sc.nextInt();
 
 				newReq = new RegisterProject(super.size+1, projectID, fromUser, toUser);
@@ -62,7 +58,7 @@ public class RequestDB extends Database{
 				break;
 
 			case DEREGISTERPROJECT:
-				System.out.println("Insert project ID: ");
+				System.out.println("Select Project to deregister:");
 				projectID = sc.nextInt();
 				
 				newReq = new DeregisterProject(super.size+1, projectID, fromUser, toUser);

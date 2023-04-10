@@ -1,7 +1,5 @@
 package Requests;
-import Projects.Project;
-import Users.Student;
-import Users.Supervisor;
+
 import Users.UserDetails.User;
 
 public class Request {

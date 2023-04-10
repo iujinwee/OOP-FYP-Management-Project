@@ -11,7 +11,7 @@ public abstract class User implements UserInterface {
 	private String userID;
 	private String name;
 	private String email;
-	private Scanner sc;
+	public Scanner sc = new Scanner(System.in);
 	UserType type;
 
 	/**
@@ -27,7 +27,6 @@ public abstract class User implements UserInterface {
 		this.userID = userID;
 		this.name = name;
 		this.email = email;
-		this.sc = new Scanner(System.in);
 	}
 
 	public String getUserID() {
@@ -44,10 +43,6 @@ public abstract class User implements UserInterface {
 
 	public UserType getUserType(){
 		return this.type;
-	}
-
-	public Scanner getScanner(){
-		return this.sc;
 	}
 
 	// SETTER FUNCTIONS

@@ -94,6 +94,14 @@ public class Project {
 		return this.rejectedID;
 	}
 
+	public Student getStudent(){
+		return this.assignedTo;
+	}
+
+	public Supervisor getSupervisor(){
+		return this.supervisedBy;
+	}
+
 
 	// SETTER FUNCTIONS 
 	public void setProjectStatus(ProjectStatus status){

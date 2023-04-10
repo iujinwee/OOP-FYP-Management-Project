@@ -1,7 +1,7 @@
 package Users;
 
-import Requests.RequestDetails;
 import Users.UserDetails.UserType;
+import Requests.Request;
 
 public class FYP_Coordinator extends Supervisor {
 
@@ -16,7 +16,7 @@ public class FYP_Coordinator extends Supervisor {
 	 */
 	public FYP_Coordinator(String userID, String name, String email) {
 		super(userID, name, email);
-		super.setType(UserType.FYPCOORDINATOR);
+		// super.setType(UserType.FYPCOORDINATOR);
 	}
 
 	/**

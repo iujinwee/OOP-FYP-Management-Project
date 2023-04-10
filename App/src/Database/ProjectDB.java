@@ -91,6 +91,17 @@ public class ProjectDB extends Database{
 		return true;
 	}
 
+	public void viewPersonalProjects(User user){
+		System.out.println("\n========    Personal Project List    ========");
+		
+		for (Object obj: super.objectDB){
+			Project curProj = (Project) obj;
+			if(curProj.getSupervisorID().compareTo(user.getUserID())==0){
+				System.out.printf("[%d] %s\n", curProj.getProjectID(), curProj.getProjectTitle());
+			}
+		}
+	}
+
 	/**
 	 * 
 	 * @param userType
