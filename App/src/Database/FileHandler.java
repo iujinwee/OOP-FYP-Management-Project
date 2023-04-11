@@ -32,17 +32,14 @@ public class FileHandler {
         String pathname;
 
         // Path Name 
-        // final String OS = System.getProperty("os.name").toLowerCase();
-        // System.out.println(OS);
-        // if(OS.indexOf("mac")>=0){
-        //     pathname = System.getProperty("user.dir").concat(macDataPath);
+        final String OS = System.getProperty("os.name").toLowerCase();
+        if(OS.indexOf("mac")>=0){
+            pathname = System.getProperty("user.dir").concat(macDataPath);
 
-        // }else{
-        //     pathname = System.getProperty("user.dir").concat(dataPath);
-        // }
+        }else{
+            pathname = System.getProperty("user.dir").concat(dataPath);
+        }
         
-        pathname = System.getProperty("user.dir").concat(macDataPath);
-
         String finalPath = pathname.concat(filePath);
         ArrayList<Object> resultList = new ArrayList<>();
         Map<String, Integer> columnMap = new HashMap<>();

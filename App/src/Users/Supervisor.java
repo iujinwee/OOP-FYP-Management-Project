@@ -5,7 +5,6 @@ import java.util.*;
 import Database.ProjectDB;
 import Exceptions.*;
 import Projects.Project;
-import Projects.ProjectDB;
 import Requests.Request;
 import Database.FYPCoordinatorDB;
 import Database.RequestDB;
@@ -16,13 +15,11 @@ import Users.UserDetails.UserType;
 
 public class Supervisor extends User {
 
-	private String supervisorID;
 	private int numAssignedProjects=0;
 	private int choice = -1;
 	private int projectID=0;
-	private ProjectDB projDB = new ProjectDB();
-	private RequestDB reqDB =new RequestDB();
-	private Scanner sc;
+	private ProjectDB projDB = new ProjectDB();//to remove
+	private RequestDB reqDB =new RequestDB(); //to remove
 
 	/**
 	 * Supervisor constructor.
@@ -34,7 +31,6 @@ public class Supervisor extends User {
 	public Supervisor(String userID, String name,String email) {
 		super(userID, name, email);
 		super.setUserType(UserType.SUPERVISOR); 
-		this.supervisorID = super.getUserID(); 
 		this.sc = new Scanner(System.in);
 	}
 	public Supervisor() {}
@@ -59,6 +55,8 @@ public class Supervisor extends User {
 	public void getInput() throws InvalidInputException{
 		while (choice != 0){	
 
+			int projID; 
+
 			// Show Supervisor Menu
 			viewUserMenu();
 			// Get Input 
@@ -74,13 +72,13 @@ public class Supervisor extends User {
 				case 2: 
 					//Supervisor views his/her projects
 					System.out.println("Option [2] selected! - View Projects created by me.");
-					projDB.viewAllProjects(this);
+					projDB.viewPersonalProjects(this);
 					break;
 
 				case 3:
 					//Supervisor changes title of his/her projects
 					System.out.println("Option [3] selected! - Change Title of Project.");
-					projDB.viewAllProjects(this);
+					projDB.viewPersonalProjects(this);
 					System.out.println("Select Project ID for Title Change ");
 					projectID = sc.nextInt();
 					projDB.setNewTitle(projectID);
@@ -89,8 +87,14 @@ public class Supervisor extends User {
 				case 4:	
 					System.out.println("Option [4] selected! - Request to Transfer Student to Replacement Supervisor.");
 					//get fyp coordinator id 
-					FYPCoordinatorDB FYPdb = new FYPCoordinatorDB(); 
-					reqDB.createRequest(RequestType.CHANGESUPERVISOR,this.getUserID(),FYPdb.findInstance("ASFLI").getUserID());	
+					FYPCoordinatorDB FYPdb = new FYPCoordinatorDB(); //to remove
+
+					// View Projects
+					projDB.viewProjects(this);
+					System.out.println("Select Project to register:");
+					projID = super.sc.nextInt();
+					
+					reqDB.createRequest(RequestType.CHANGESUPERVISOR,this, FYPdb.findInstance("ASFLI"), projID);	
 					System.out.println("Request Sent.");
 	
 					//to check on missing link -> accept request -> enact change 			
@@ -99,7 +103,7 @@ public class Supervisor extends User {
 				case 5:
 					System.out.println("Option [5] selected! - Manage Incoming Requests.");
 					reqDB.viewPendingRequests(this);
-					manageRequests();
+					// manageRequests();
 					break;
 
 				default:
@@ -108,22 +112,22 @@ public class Supervisor extends User {
 		}
 	}
 
-	public void manageRequests() {
+	// public void manageRequests() {
 
-	// 	Request curRequest = reqDB.getRequest(reqID); // return Subclass
+	// // 	Request curRequest = reqDB.getRequest(reqID); // return Subclass
 
-		Request currentReq = reqDB.findInstance(reqID);
+	// 	Request currentReq = reqDB.findInstance(reqID);
 
-		System.out.println("Approve/ Reject");
-		System.out.println("[1] Approve");
-		System.out.println("[0] Reject");
-		int choice = sc.nextInt();
+	// 	System.out.println("Approve/ Reject");
+	// 	System.out.println("[1] Approve");
+	// 	System.out.println("[0] Reject");
+	// 	int choice = sc.nextInt();
 
-		currentReq.enactRequest(choice);
+	// 	currentReq.enactRequest(choice);
 
-		reqDB.exportDB();
+	// 	reqDB.exportDB();
 
-	}
+	// }
 
 
 	

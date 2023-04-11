@@ -2,10 +2,10 @@ package Users;
 
 import java.util.*;
 
+import Database.ProjectDB;
+import Database.RequestDB;
 import Exceptions.InvalidInputException;
-import Projects.ProjectDB;	//to change 
 import Requests.Request;
-import Requests.RequestDB;	//to change 
 import Users.UserDetails.UserType;
 import Requests.Request;
 
@@ -50,7 +50,7 @@ public class FYP_Coordinator extends Supervisor {
 
 			// Get Input 
 			System.out.println("\nEnter your option: ");
-			choice = super.getScanner().nextInt();
+			choice = super.sc.nextInt();
 
 			switch(choice){
 				case 1: 
@@ -60,7 +60,7 @@ public class FYP_Coordinator extends Supervisor {
 				case 2: 
 					System.out.println("Option [2] selected! - Manage Requests.");
 					reqDB.viewPendingRequests(this);
-					manageRequests();
+					// manageRequests();
 					break;
 				case 3:
 					System.out.println("Option [3] selected! - View Pending Requests.");
@@ -82,23 +82,23 @@ public class FYP_Coordinator extends Supervisor {
 		}
 	}
 
-	@Override
-	public void manageRequests() {
+	// @Override
+	// public void manageRequests() {
 
-		//manage requests
-		System.out.println("Enter RequestID to Approve/Reject: ");
-		int reqID = sc.nextInt();
+	// 	//manage requests
+	// 	System.out.println("Enter RequestID to Approve/Reject: ");
+	// 	int reqID = sc.nextInt();
 
-		Request currentReq = reqDB.findInstance(reqID);
+	// 	Request currentReq = reqDB.findInstance(reqID);
 
-		System.out.println("Approve/ Reject");
-		System.out.println("[1] Approve");
-		System.out.println("[0] Reject");
-		int choice = sc.nextInt();
+	// 	System.out.println("Approve/ Reject");
+	// 	System.out.println("[1] Approve");
+	// 	System.out.println("[0] Reject");
+	// 	int choice = sc.nextInt();
 
-		currentReq.enactRequest(choice);
+	// 	// currentReq.enactRequest(choice);
 
-		reqDB.exportDB();
+	// 	reqDB.exportDB();
 
-	}
-	}
+	// }
+}
