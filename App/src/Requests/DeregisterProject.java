@@ -1,9 +1,10 @@
 package Requests;
 import Database.ProjectDB;
+import Projects.Project;
 import Projects.ProjectStatus;
 import Users.UserDetails.*;;
 
-public class DeregisterProject extends Request{
+public class DeregisterProject extends Request implements EnactRequestInterface{
     
     private ProjectDB projDB = new ProjectDB();
 
@@ -14,7 +15,8 @@ public class DeregisterProject extends Request{
     public void enactRequest(int choice){
         switch(choice){
             case 1:
-                projDB.findInstance(getProjectID()).setProjectStatus(ProjectStatus.AVAILABLE);
+                Project selectedProject = projDB.findInstance(getProjectID());
+                selectedProject.setProjectStatus(ProjectStatus.AVAILABLE);
                 projDB.exportDB();
                 setRequestStatus(RequestStatus.APPROVED);
                 break;

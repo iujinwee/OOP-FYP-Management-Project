@@ -3,7 +3,7 @@ import Database.ProjectDB;
 import Projects.Project;
 import Users.UserDetails.*;
 
-public class ChangeTitle extends Request{
+public class ChangeTitle extends Request implements EnactRequestInterface{
 
     public ChangeTitle(int requestID, String newTitle, User fromUser, User toUser, int projectID) {
         super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGETITLE, projectID);

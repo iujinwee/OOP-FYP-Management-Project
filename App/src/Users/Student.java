@@ -6,8 +6,6 @@ import Users.UserDetails.*;
 import Requests.RequestType;
 
 public class Student extends User{
-
-	private int choice = -1;
  	
 	public Student() {}
 
@@ -37,11 +35,11 @@ public class Student extends User{
 
 	@Override
 	public void getInput() throws InvalidInputException{
+		int choice = -1;
 
-		int projID;
 		loadFiles(reload);
 		reload = false;
-
+		
 		while (choice != 0){	
 
 			// Show User Menu
@@ -54,55 +52,32 @@ public class Student extends User{
 			switch(choice){
 				case 1: 
 					System.out.println("\nOption [1] selected! - Show Available Projects");
-					projDB.viewProjects(this);
+					viewAvailableProjects();
 					break;
 
 				case 2: 
 					System.out.println("\nOption [2] selected! - Show Registered Project.");
-					projDB.viewPersonalProjects(this);
+					viewOwnProjects();
 					break;
 
 				case 3:
 					System.out.println("\nOption [3] selected! - Register Project.");
-
-					// View Projects
-					projDB.viewProjects(this);
-					System.out.println("Select Project to register:");
-					projID = super.sc.nextInt();
-					
-					reqDB.createRequest(RequestType.REGISTERPROJECT, this, ((Project) projDB.findInstance(projID)).getSupervisor(), projID);
-					reload = true;
+					registerProject();
 					break;
 
 				case 4:	
 					System.out.println("\nOption [4] selected! - Deregister Project.");
-					
-					// View Projects
-					projDB.viewPersonalProjects(this);
-					System.out.println("Select Project to deregister:");
-					projID = super.sc.nextInt();
-					projDB.findInstance(projID);
-
-					reqDB.createRequest(RequestType.DEREGISTERPROJECT, this, ((Project)projDB.currentInstance).getSupervisor(), projID);
-					reload = true;
+					deregisterProject();
 					break;
 
 				case 5:
 					System.out.println("\nOption [5] selected! - Change Assigned Project Title.");
-
-					// View Projects
-					projDB.viewPersonalProjects(this);
-					System.out.println("Select Assigned Project to change title:");
-					projID = super.sc.nextInt();
-					projDB.findInstance(projID);
-
-					reqDB.createRequest(RequestType.CHANGETITLE, this, ((Project)projDB.currentInstance).getSupervisor(), projID);
-					reload = true;
+					changeTitle();
 					break;
 
 				case 6: 
 					System.out.println("\nOption [6] selected! - View All Requests");
-					reqDB.viewAllRequests(this);
+					viewAllRequests();
 					break;				
 
 				case 0: 
@@ -114,4 +89,51 @@ public class Student extends User{
 			}
 		}
 	}	
+
+	private void viewAvailableProjects(){
+		projDB.viewProjects(this);
+	}
+
+	private void viewOwnProjects(){
+		projDB.viewPersonalProjects(this);
+	}
+
+	private void registerProject(){
+		
+		// View Projects
+		projDB.viewProjects(this);
+		System.out.println("Select Project to register:");
+		int projID = super.sc.nextInt();
+		
+		reqDB.createRequest(RequestType.REGISTERPROJECT, this, ((Project) projDB.findInstance(projID)).getSupervisor(), projID);
+		reload = true;
+	}
+
+	private void deregisterProject(){
+		
+		// View Projects
+		projDB.viewPersonalProjects(this);
+		System.out.println("Select Project to deregister:");
+		int projID = super.sc.nextInt();
+		projDB.findInstance(projID);
+
+		reqDB.createRequest(RequestType.DEREGISTERPROJECT, this, ((Project)projDB.currentInstance).getSupervisor(), projID);
+		reload = true;
+	}
+
+	private void changeTitle(){
+		
+		// View Projects
+		projDB.viewPersonalProjects(this);
+		System.out.println("Select Assigned Project to change title:");
+		int projID = super.sc.nextInt();
+		projDB.findInstance(projID);
+
+		reqDB.createRequest(RequestType.CHANGETITLE, this, ((Project)projDB.currentInstance).getSupervisor(), projID);
+		reload = true;
+	}
+
+	private void viewAllRequests(){
+		reqDB.viewAllRequests(this);
+	}
 }

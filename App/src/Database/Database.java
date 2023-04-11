@@ -3,7 +3,7 @@ package Database;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Database {
+public abstract class Database {
     public Object currentInstance;
     public int currentIndex; 
     public ArrayList<Object> objectDB; 
@@ -19,9 +19,7 @@ public class Database {
         }catch(Exception e){
             System.out.println("Error in Initializing File");
         }
-
         this.size = objectDB.size();
-
     }
 
     public void exportDB(){

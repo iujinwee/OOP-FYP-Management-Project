@@ -68,12 +68,8 @@ public class FileHandler {
                 }
 
                 
-                if(item.getClass().getSuperclass().getSimpleName().compareTo("Object")==0){
-                    className = item.getClass().getSimpleName();
-                }else{
-                    className = item.getClass().getSuperclass().getSimpleName();
-                }
-
+                className = item.getClass().getSimpleName();
+             
                 switch (className) {
                     case "Account":
                         String userID = getStringCellValue(row.getCell(columnMap.get("ID")));
@@ -87,16 +83,31 @@ public class FileHandler {
                         resultList.add(tempAccount);
 
                         break;
-                        
-                    case "User":
+
+                    case "Student":
+                        String stuid  = getStringCellValue(row.getCell(columnMap.get("ID")));
+                        String stuname  = getStringCellValue(row.getCell(columnMap.get("Name")));
+                        String stuemail  = getStringCellValue(row.getCell(columnMap.get("Email")));
+
+                        Student tempStu = (Student) item
+                            .getClass()
+                            .getDeclaredConstructor(String.class, String.class, String.class)
+                            .newInstance(stuid, stuname, stuemail);
+                        resultList.add(tempStu);
+
+                        break;
+
+                    case "FYP_Coordinator":
+                    case "Supervisor":
                         String id  = getStringCellValue(row.getCell(columnMap.get("ID")));
                         String name  = getStringCellValue(row.getCell(columnMap.get("Name")));
                         String email  = getStringCellValue(row.getCell(columnMap.get("Email")));
+                        int assigned = getNumericCellValue(row.getCell(columnMap.get("num_assigned")));
 
-                        User tempUser = (User) item
+                        Supervisor tempUser = (Supervisor) item
                             .getClass()
-                            .getDeclaredConstructor(String.class, String.class, String.class)
-                            .newInstance(id, name, email);
+                            .getDeclaredConstructor(String.class, String.class, String.class, int.class)
+                            .newInstance(id, name, email, assigned);
                         resultList.add(tempUser);
 
                         break;
@@ -214,19 +225,23 @@ public class FileHandler {
 
                 int column_count = 0; 
                 
-                if(item.getClass().getSuperclass().getSimpleName().compareTo("Object")==0){
-                    className = item.getClass().getSimpleName();
-                }else{
-                    className = item.getClass().getSuperclass().getSimpleName();
-                }
+                className = item.getClass().getSimpleName();
 
                 switch (className) {
-                    case "User":
-                        
-                        User current_user = (User) result.get(row_count++);
+                    case "Student":
+                        Student current_stu = (Student) result.get(row_count++);
+                        row.createCell(column_count++).setCellValue((String) current_stu.getUserID());
+                        row.createCell(column_count++).setCellValue((String) current_stu.getName());
+                        row.createCell(column_count++).setCellValue((String) current_stu.getEmail());
+                        break;
+
+                    case "FYP Coordinator":
+                    case "Supervisor":
+                        Supervisor current_user = (Supervisor) result.get(row_count++);
                         row.createCell(column_count++).setCellValue((String) current_user.getUserID());
                         row.createCell(column_count++).setCellValue((String) current_user.getName());
                         row.createCell(column_count++).setCellValue((String) current_user.getEmail());
+                        row.createCell(column_count++).setCellValue(current_user.getNumAssignedProjects());
                         break;
 
                     case "Project":

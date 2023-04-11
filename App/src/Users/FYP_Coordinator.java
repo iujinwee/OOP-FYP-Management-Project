@@ -1,21 +1,9 @@
 package Users;
 
-import java.util.*;
-
-import Database.ProjectDB;
-import Database.RequestDB;
 import Exceptions.InvalidInputException;
-import Requests.Request;
 import Users.UserDetails.UserType;
-import Requests.Request;
 
 public class FYP_Coordinator extends Supervisor {
-
-	private int choice = -1;
-	private String CoordinatorID;
-	private ProjectDB projDB;
-	private RequestDB reqDB;
-	Scanner sc= new Scanner (System.in);
 
 	public FYP_Coordinator() {}
 
@@ -26,9 +14,9 @@ public class FYP_Coordinator extends Supervisor {
 	 * @param name Name of the FYP coordinator.
 	 * @param email Email address of the FYP coordinator.
 	 */
-	public FYP_Coordinator(String userID, String name, String email) {
-		super(userID, name, email);
-		// super.setType(UserType.FYPCOORDINATOR);
+	public FYP_Coordinator(String userID, String name, String email, int numAssigned) {
+		super(userID, name, email, numAssigned);
+		super.setUserType(UserType.FYPCOORDINATOR);
 	}
 
 	public void viewUserMenu() {
@@ -42,6 +30,10 @@ public class FYP_Coordinator extends Supervisor {
 	
 	@Override
 	public void getInput() throws InvalidInputException{
+		int choice = -1;
+
+		loadFiles(reload);
+		reload = false;
 
 		while (choice != 0){	
 			

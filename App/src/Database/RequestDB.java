@@ -6,7 +6,9 @@ import Requests.RequestType;
 
 import java.util.Scanner;
 
-public class RequestDB extends Database{
+import Database.Interface.CreateRequestInterface;
+
+public class RequestDB extends Database implements CreateRequestInterface{
 
 	private ProjectDB projDB = new ProjectDB();
 	
@@ -15,7 +17,6 @@ public class RequestDB extends Database{
 	}
     
 	public void createRequest(RequestType type, User fromUser, User toUser, int projID) {
-        Scanner sc = new Scanner(System.in);
 		Request newReq;
 
 		switch (type) {
@@ -31,7 +32,7 @@ public class RequestDB extends Database{
 
 			case CHANGESUPERVISOR:
 				System.out.println("Insert new supervisor ID: ");
-				String newSupervisorID = sc.next();
+				String newSupervisorID = sc.next(); // TO CHECK IF VALID SUPERVISOR
 
 				newReq = new ChangeSupervisor(super.size+1, newSupervisorID, projID, fromUser, toUser);
 				super.objectDB.add(newReq);
@@ -54,50 +55,51 @@ public class RequestDB extends Database{
 
 	public void viewRequest(Request req){
 		System.out.printf("> Request #%d\n", req.getRequestID());
-		System.out.printf("  From: %s -> To: %s\n", req.getFromUser().getName(), req.getToUser().getName());
-		System.out.printf("\tType: %s | Status: %s\n", req.getRequestType(), req.getRequestStatus());
-		System.out.printf("\tProject Title: %s\n", (projDB.findInstance(req.getProjectID())).getProjectTitle());
+		System.out.printf("  Project Title: %s\n", (projDB.findInstance(req.getProjectID())).getProjectTitle());
+		System.out.printf("  From: %s | To: %s\n", req.getFromUser().getName(), req.getToUser().getName());
+		System.out.printf("  Type: %s | Status: %s\n", req.getRequestType(), req.getRequestStatus());
 		if(req.getNewSupervisor()!=null){
-			System.out.printf("\tNew Supervisor Name: %s\n", req.getNewSupervisor());	
+			System.out.printf("  New Supervisor Name: %s\n", req.getNewSupervisor());	
 		}
 		
 		if(req.getNewTitle()!=null){
-			System.out.printf("\tNew Title: %s\n", req.getToUser().getUserID());	
+			System.out.printf("  New Title: %s\n", req.getToUser().getUserID());	
 		}
 	}
 
 	public void viewPendingRequests(User user){
-		System.out.println("\nPending requests");
-		System.out.println("---------------------------------");
+		System.out.println("\n==========================================");
+		System.out.println("========     Pending Requests     ========");
+		System.out.println("==========================================\n");
 
-		switch(user.getUserType()){
+		int count = 0;
 
-			case STUDENT:
-			case SUPERVISOR:
-				for(Object request : objectDB){
-					Request req = (Request) request;
-					if(req.getToUser().equals(user) && req.getRequestStatus() == RequestStatus.PENDING){
-						viewRequest(req);
-					}
-				}
+		for(Object request : objectDB){
+			Request req = (Request) request;
+			if(req.getToUser() == null){
 				break;
+			}
+			if((req.getToUser().getUserID().compareTo(user.getUserID())==0) && (req.getRequestStatus().compareTo(RequestStatus.PENDING)==0)){
+				viewRequest(req);
+				count++;
+			}
+		}
 
-			case FYPCOORDINATOR:
-				for(Object request : objectDB){
-					Request req = (Request) request;
-					if(req.getRequestStatus() == RequestStatus.PENDING){
-						viewRequest(req);
-					}
-				}
-				break;
+		if(count==0){
+			System.out.println("=======     No Pending Requests     =======");
+		}else{
+			System.out.println("\n=========   END OF REQUEST LIST  ===========\n");
 		}
 	}
 
 	public void viewAllRequests(User user) {
+		int count = 0; 
+
 		switch(user.getUserType()){
 			case STUDENT:
-				System.out.println("\nRequests sent");
-				System.out.println("---------------------------------");
+				System.out.println("\n=========================================");
+				System.out.println("=========     Requests Sent     =========");
+				System.out.println("=========================================\n");
 				// System.out.println("Request ID\tFrom User\tTo User\tRequest Type\tRequest Status\tProject ID\tcontent");
 				for(Object request : objectDB){
 					Request req = (Request) request;
@@ -108,8 +110,9 @@ public class RequestDB extends Database{
 				break;
 
 			case SUPERVISOR:
-				System.out.println("\nRequests sent");
-				System.out.println("---------------------------------");
+				System.out.println("\n=========================================");
+				System.out.println("========    Outgoing Requests     =======");
+				System.out.println("=========================================\n");
 				// System.out.println("Request ID\tFrom User\tTo User\tRequest Type\tRequest Status\tProject ID\tcontent");
 				for(Object request : objectDB){
 					Request req = (Request) request;
@@ -117,9 +120,9 @@ public class RequestDB extends Database{
 						viewRequest(req);
 					}
 				}
-				System.out.println("\n---------------------------------");
-				System.out.println("Requests received");
-				System.out.println("---------------------------------");
+				System.out.println("\n===========================================");
+				System.out.println("========     Incoming Requests     ========");
+				System.out.println("===========================================\n");
 				// System.out.println("Request ID\tFrom User\tTo User\tRequest Type\tRequest Status\tProject ID\tcontent");
 				for(Object request : objectDB){
 					Request req = (Request) request;
@@ -148,6 +151,4 @@ public class RequestDB extends Database{
 		}
 		return new Request();
 	}
-
-
 }

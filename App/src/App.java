@@ -6,10 +6,16 @@ import Database.SupervisorDB;
 import Login.Account;
 import Users.UserDetails.User;
 import Users.FYP_Coordinator;
+import Users.Student;
+import Users.Supervisor;
 
 public class App {
 
 	public static void main(String[] args) {
+
+        Supervisor u = new Supervisor("ASMADHUKUMAR", "ASMADHUKUMAR", "E@ntu.sg", 0);
+        u.startProgram();
+
         AccountDB accountDB = new AccountDB();
         StudentDB studentDB = new StudentDB();
         SupervisorDB supervisorDB = new SupervisorDB();

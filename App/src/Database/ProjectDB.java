@@ -31,11 +31,15 @@ public class ProjectDB extends Database{
 			int newID = ++super.size; 
 			Project newProject = new Project(newID); // Default 
 			newProject.setSupervisor(supervisor); 
-			setNewTitle(newID); // Ask for input 
 
-            // Add and export new project
-            super.objectDB.add(newProject);
-            super.exportDB();
+			// Get Project Title
+			System.out.println("Input your project title:");
+			String title = sc.next();
+			
+			// Export database
+			newProject.setProjectTitle(title);
+			objectDB.add(newProject);
+			exportDB();
 		}
 		else {
 			System.out.println("Error! You are unable to create anymore projects!");
@@ -50,7 +54,7 @@ public class ProjectDB extends Database{
 	public void setNewTitle(int projectID) {
 
 		System.out.println("Input your project title");
-		String title = super.sc.nextLine();
+		String title = sc.next();
 
 		findInstance(projectID).setProjectTitle(title); // rmb to close scanner
         super.exportDB();
@@ -94,17 +98,38 @@ public class ProjectDB extends Database{
 	}
 
 	public void viewPersonalProjects(User user){
+		int count = 0;
+
 		System.out.println("\n===========================================");
 		System.out.println("======     Personal Project List     ======");
 		System.out.println("===========================================\n");
 		
 		for (Object obj: super.objectDB){
+			
 			Project curProj = (Project) obj;
-			if(curProj.getSupervisorID().compareTo(user.getUserID())==0){
-				System.out.printf("[%d] %s\n", curProj.getProjectID(), curProj.getProjectTitle());
+
+			switch(user.getUserType()){
+				case STUDENT: 
+					if(curProj.getStudentID().compareTo(user.getUserID())==0){
+						System.out.printf("[%d] %s\n", curProj.getProjectID(), curProj.getProjectTitle());
+						count++;
+						break;
+					}	
+				case SUPERVISOR:
+				case FYPCOORDINATOR:
+					if(curProj.getSupervisorID().compareTo(user.getUserID())==0){
+						System.out.printf("[%d] %s\n", curProj.getProjectID(), curProj.getProjectTitle());
+						count++;
+						break;
+					}
 			}
 		}
-		System.out.println("\n=========   END OF PROJECT LIST  ===========\n");
+
+		if(count == 0){
+			System.out.println("=======     NO PROJECTS FOUND!     =======");
+		}else{
+			System.out.println("\n=========   END OF PROJECT LIST  ===========\n");
+		}
 	}
 
 	/**

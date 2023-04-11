@@ -5,7 +5,7 @@ import Users.FYP_Coordinator;
 public class FYPCoordinatorDB extends Database{
 
     public FYPCoordinatorDB(){
-        super("FYP coordinator.xlsx", new FYP_Coordinator());
+        super("FYP_coordinator.xlsx", new FYP_Coordinator());
     }
 
     public FYP_Coordinator findInstance(String id) {
@@ -16,5 +16,14 @@ public class FYPCoordinatorDB extends Database{
             }
         }
         return new FYP_Coordinator();
+    }
+
+    public void viewDB(){
+        for (Object obj : objectDB){
+            FYP_Coordinator currentCoord = (FYP_Coordinator) obj;
+            System.out.printf("ID: %s", currentCoord.getUserID());
+            System.out.printf("Name: %s", currentCoord.getName());
+            System.out.printf("Email: %s", currentCoord.getEmail());
+        }
     }
 }
