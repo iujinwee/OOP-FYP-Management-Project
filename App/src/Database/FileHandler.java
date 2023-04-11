@@ -164,7 +164,16 @@ public class FileHandler {
 
     public static boolean saveExcelFile(String filePath, ArrayList<Object> result) {
         // Path Name 
-        String pathname = System.getProperty("user.dir").concat(dataPath);
+        String pathname;
+
+        // Path Name 
+        final String OS = System.getProperty("os.name").toLowerCase();
+        if(OS.indexOf("mac")>=0){
+            pathname = System.getProperty("user.dir").concat(macDataPath);
+
+        }else{
+            pathname = System.getProperty("user.dir").concat(dataPath);
+        }
         String finalPath = pathname.concat(filePath);
         boolean saveFile = true;
 

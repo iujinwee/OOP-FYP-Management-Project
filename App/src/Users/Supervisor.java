@@ -2,12 +2,10 @@ package Users;
 
 import java.util.*;
 
-import Database.ProjectDB;
 import Exceptions.*;
 import Projects.Project;
 import Requests.Request;
 import Database.FYPCoordinatorDB;
-import Database.RequestDB;
 import Requests.RequestStatus;
 import Requests.RequestType;
 import Users.UserDetails.User;
@@ -55,6 +53,9 @@ public class Supervisor extends User {
 
 			int projID; 
 
+			// Load files
+			loadFiles(reload);
+			
 			// Show Supervisor Menu
 			viewUserMenu();
 			// Get Input 
