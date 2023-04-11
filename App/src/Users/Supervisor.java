@@ -2,27 +2,17 @@ package Users;
 
 import java.util.*;
 
-import Database.ProjectDB;
-import Exceptions.InvalidInputException;
-import Exceptions.handleInvalidInput;
-import Projects.Project;
-import Requests.Request;
-import Requests.RequestDB;
-import Requests.RequestStatus;
+import Exceptions.*;
+import Database.FYPCoordinatorDB;
 import Requests.RequestType;
 import Users.UserDetails.User;
 import Users.UserDetails.UserType;
 
 public class Supervisor extends User {
 
-	private String supervisorID;
 	private int numAssignedProjects=0;
 	private int choice = -1;
-	private ProjectDB projDB;
-	private RequestDB reqDB;
-	private Scanner sc;
-
-	public Supervisor() {}
+	private int projectID=0;
 
 	/**
 	 * Supervisor constructor.
@@ -31,57 +21,17 @@ public class Supervisor extends User {
 	 * @param name Name of the supervisor.
 	 * @param email Email address of the supervisor.
 	 */
-	public Supervisor(String userID, String name, String email) {
+	public Supervisor(String userID, String name,String email) {
 		super(userID, name, email);
 		super.setUserType(UserType.SUPERVISOR); 
-		this.supervisorID = super.getUserID(); 
 		this.sc = new Scanner(System.in);
 	}
-
-	public String getSupervisorID() {
-		return this.supervisorID;
-	}
-
-	public void setSupervisorID(String supervisorID) {
-		this.supervisorID = supervisorID;
-	}
-	
+	public Supervisor() {}
 	public int getNumAssignedProjects(){
 		return this.numAssignedProjects;
 	}
-
-	public void loadMenu(User user){
-		handleInvalidInput handler = new handleInvalidInput(user.getScanner(), 3);
-
-		while(handler.checkAttempts()){
-			try{
-				// Load Database
-				// projDB = new ProjectDB();
-				// reqDB = new RequestDB();
-
-
-				getInput(user);
-				// Exit loop
-				break;
-			}catch(InvalidInputException e){
-				handler.handleInvalidInputException(e);
-
-			}catch(InputMismatchException e){
-				handler.handleInputMismatchException(e);
-			}
-		}
-		// Clearing System
-		System.out.println("Terminating Program...");
-		this.sc.close();
-		System.exit(0);
-	}
 	
 		
-	@Override
-	public void getInput() throws InvalidInputException {
-		
-	}
-
 	@Override
 	public void viewUserMenu() {
 
@@ -94,9 +44,15 @@ public class Supervisor extends User {
 		System.out.println("[0] Exit Program.");
 	}
 
-	public void getInput(User user) throws InvalidInputException{
+	@Override
+	public void getInput() throws InvalidInputException{
 		while (choice != 0){	
 
+			int projID; 
+
+			// Load files
+			loadFiles(reload);
+			
 			// Show Supervisor Menu
 			viewUserMenu();
 			// Get Input 
@@ -106,30 +62,43 @@ public class Supervisor extends User {
 			switch(choice){
 				case 1: 
 					System.out.println("Option [1] selected! - Create New Project.");
-					// projDB.createProject(user);
+					projDB.createProject((Supervisor) this);
 					break;
 
 				case 2: 
 					//Supervisor views his/her projects
 					System.out.println("Option [2] selected! - View Projects created by me.");
-					projDB.viewProjects(user);
+					projDB.viewPersonalProjects(this);
 					break;
 
 				case 3:
 					//Supervisor changes title of his/her projects
 					System.out.println("Option [3] selected! - Change Title of Project.");
-					// projDB.setProjectTitle(user);
-
+					projDB.viewPersonalProjects(this);
+					System.out.println("Select Project ID for Title Change ");
+					projectID = sc.nextInt();
+					projDB.setNewTitle(projectID);
 					break;
 
 				case 4:	
 					System.out.println("Option [4] selected! - Request to Transfer Student to Replacement Supervisor.");
-					reqDB.createRequest(RequestType.CHANGESUPERVISOR);					
-				
+					//get fyp coordinator id 
+					FYPCoordinatorDB FYPdb = new FYPCoordinatorDB(); //to remove
+
+					// View Projects
+					projDB.viewProjects(this);
+					System.out.println("Select Project to register:");
+					projID = super.sc.nextInt();
+					
+					reqDB.createRequest(RequestType.CHANGESUPERVISOR,this, FYPdb.findInstance("ASFLI"), projID);	
+					System.out.println("Request Sent.");
+	
+					//to check on missing link -> accept request -> enact change 			
 					break;
 					
 				case 5:
 					System.out.println("Option [5] selected! - Manage Incoming Requests.");
+					reqDB.viewPendingRequests(this);
 					// manageRequests();
 					break;
 
@@ -140,21 +109,22 @@ public class Supervisor extends User {
 	}
 
 	// public void manageRequests() {
-	// 	// View all Requests (To include in sub-class)
-	// 	reqDB.viewRequest(this.supervisorID); //to change this method parameter in reqDB?
 
-	// 	//manage requests
-	// 	System.out.println("Enter RequestID to Approve/Reject: ");
-	// 	int reqID = sc.nextInt();
+	// // 	Request curRequest = reqDB.getRequest(reqID); // return Subclass
 
-	// 	Request curRequest = reqDB.getRequest(reqID); // return Subclass
+	// 	Request currentReq = reqDB.findInstance(reqID);
 
 	// 	System.out.println("Approve/ Reject");
 	// 	System.out.println("[1] Approve");
-	// 	System.out.println("[0]");
+	// 	System.out.println("[0] Reject");
 	// 	int choice = sc.nextInt();
 
-	// 	curRequest.enactRequest(choice);
+	// 	currentReq.enactRequest(choice);
+
+	// 	reqDB.exportDB();
+
 	// }
+
+
 	
 }

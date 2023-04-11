@@ -24,6 +24,7 @@ public class Project {
 	public Project(){}
 
 	public Project(int id){
+		// Create Project
 		ArrayList<String> rejList = new ArrayList<>();
 		this.projectID = id; 
 		this.assignedTo = null;
@@ -31,14 +32,13 @@ public class Project {
 		this.projectStatus = ProjectStatus.AVAILABLE;
 	}
 
-	public Project(int id, String title, Student student, Supervisor supervisor, ArrayList<String> rejectedId) {
-		// Create Project
+	public Project(int id, String title, Student student, Supervisor supervisor, ProjectStatus status, ArrayList<String> rejectedId) {
 		this.projectID = id;
 		this.projectTitle = title;
 		this.supervisedBy = supervisor;
 		this.assignedTo = student;
 		this.rejectedID = rejectedId;
-		this.projectStatus = ProjectStatus.AVAILABLE;
+		this.projectStatus = status;
 	}
 
 	public void viewProjectDetails(ProjectStatus status) {
@@ -92,6 +92,14 @@ public class Project {
 
 	public ArrayList<String> getRejected(){
 		return this.rejectedID;
+	}
+
+	public Student getStudent(){
+		return this.assignedTo;
+	}
+
+	public Supervisor getSupervisor(){
+		return this.supervisedBy;
 	}
 
 

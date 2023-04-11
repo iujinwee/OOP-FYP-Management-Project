@@ -1,38 +1,38 @@
 package Requests;
 import Database.ProjectDB;
-import Projects.Project.*;
-import Users.Student;
-import Users.Supervisor;
+import Database.SupervisorDB;
+import Users.UserDetails.*;
 
 public class ChangeSupervisor extends Request{
-
-    private int newSupervisorID, projectID;
-
-    public ChangeSupervisor(int requestID, int newSupervisorID, int projectID) {
-        super(requestID);
-        setRequestType(RequestType.CHANGESUPERVISOR);
-        setToUser(/*FYP_Coordinator */);
-        this.newSupervisorID = newSupervisorID;
-        this.projectID = projectID;
+    private ProjectDB projDB = new ProjectDB();
+    
+    public ChangeSupervisor(int requestID, String newSupervisor, int projectID, User fromUser, User toUser) {
+        super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGESUPERVISOR, projectID);
+        super.setNewSupervisor(newSupervisor);
     }
 
-    public void enactRequest(Request req){
-        ProjectDB projdb = new ProjectDB();
-        projdb.setSupervisor(req.getTitle());
-        projdb.exportFile();
-    }
+    public void enactRequest(int choice){
+        switch(choice){
+            // Approve
+            case 1:
+                
+                SupervisorDB supDB = new SupervisorDB();
 
-    public void approve() {
-        //scan through project list for project with projectID
-        //scan through supervisor list for supervisor with newSupervisorID
-        //set project supervisor to newSupervisor
-        setRequestStatus(RequestStatus.APPROVED);
-        throw new UnsupportedOperationException();
-    }
+                projDB.findInstance(getProjectID()).setSupervisor(supDB.findInstance(super.getNewSupervisor()))\;
+                
+                projDB.exportDB();
+                setRequestStatus(RequestStatus.APPROVED);
+                break;
 
-    public void reject() {
-        setRequestStatus(RequestStatus.REJECTED);
-        throw new UnsupportedOperationException();
+            // Reject
+            case 0:
+                setRequestStatus(RequestStatus.REJECTED);
+                break;
+                
+            default:
+                System.out.println("Invalid choice");
+                break;
+        }
     }
     
 }

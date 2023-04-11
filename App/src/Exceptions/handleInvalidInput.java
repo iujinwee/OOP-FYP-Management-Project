@@ -8,9 +8,9 @@ public class handleInvalidInput {
     private int attempts = 0; 
     private int MAX_ATTEMPTS;
 
-    public handleInvalidInput(Scanner scanner, int MAX_ATTEMPTS){
+    public handleInvalidInput(Scanner scanner, int attempts){
         this.sc = scanner;
-        this.MAX_ATTEMPTS = MAX_ATTEMPTS;
+        this.MAX_ATTEMPTS = attempts;
     }
 	public void handleInputMismatchException(Exception e){
         System.out.println("\nERROR!");

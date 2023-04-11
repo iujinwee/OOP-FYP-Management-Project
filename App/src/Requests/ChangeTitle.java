@@ -1,29 +1,32 @@
 package Requests;
-import Projects.Project.Project;
-import Projects.Project.ProjectStatus;
-import Users.Student;
-import Users.Supervisor;
-import Users.User.User;
+import Database.ProjectDB;
+import Projects.Project;
+import Users.UserDetails.*;
 
 public class ChangeTitle extends Request{
-    
-    String newTitle;
 
-    public ChangeTitle(int requestID, String newTitle) {
-        super(requestID);
-        setRequestType(RequestType.CHANGETITLE);
-        setToUser(belongs.getSupervisor());
-        this.newTitle = newTitle;
+    public ChangeTitle(int requestID, String newTitle, User fromUser, User toUser, int projectID) {
+        super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGETITLE, projectID);
+        super.setNewTitle(newTitle);
     }
 
-    public void approve() {
-        modifies.setProjectTitle(newTitle);
-        setRequestStatus(RequestStatus.APPROVED);
-        throw new UnsupportedOperationException();
-    }
+    public void enactRequest(int choice){
+        switch(choice){
+            case 1:
+                ProjectDB projDB = new ProjectDB();
+                projDB.findInstance(getProjectID()).setProjectTitle(super.getNewTitle());
 
-    public void reject() {
-        setRequestStatus(RequestStatus.REJECTED);
-        throw new UnsupportedOperationException();
+                projDB.exportDB();
+                setRequestStatus(RequestStatus.APPROVED);
+                break;
+
+            case 0:
+                setRequestStatus(RequestStatus.REJECTED);
+                break;
+                
+            default:
+                System.out.println("Invalid choice");
+                break;
+        }
     }
 }

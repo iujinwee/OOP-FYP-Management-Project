@@ -1,38 +1,37 @@
 package Requests;
-import Projects.Project.Project;
-import Projects.Project.ProjectStatus;
-import Users.Student;
-import Users.Supervisor;
-import Users.User.User;
+import Database.ProjectDB;
+import Projects.ProjectStatus;
+import Users.*;
+import Users.UserDetails.*;;
 
 public class RegisterProject extends Request{
 
-    private int projectID;
-
-    public RegisterProject(int requestID, int projectID) {
-        super(requestID);
-        setRequestType(RequestType.REGISTERPROJECT);
-        setToUser(/*FYP_Coordinator*/);
-        this.projectID = projectID;
-        //scan through project list for project with projectID
-        //set project status to RESERVED
+    private ProjectDB projDB = new ProjectDB(); 
+    
+    public RegisterProject(int requestID, int projectID, User fromUser, User toUser) {
+        super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.REGISTERPROJECT, projectID);
+        projDB.findInstance(projectID).setProjectStatus(ProjectStatus.RESERVED);
+        projDB.exportDB();
     }
 
-    public void approve() {
-        //scan through project list for project with projectID
-        //set project status to ALLOCATED
+    public void enactRequest(int choice){
+        switch(choice){
+            case 1:
+                projDB.findInstance(super.getProjectID()).setProjectStatus(ProjectStatus.ALLOCATED);
+                projDB.findInstance(super.getProjectID()).setStudent((Student)super.getFromUser());
+                
+                projDB.exportDB();
+                break;
 
-        //allocate project to student
-
-        setRequestStatus(RequestStatus.APPROVED);
-        throw new UnsupportedOperationException();
-    }
-
-    public void reject() {
-        setRequestStatus(RequestStatus.REJECTED);
-        //scan through project list for project with projectID
-        //set project status to AVAILABLE
-        throw new UnsupportedOperationException();
+            case 0:
+                projDB.findInstance(getProjectID()).setProjectStatus(ProjectStatus.AVAILABLE);
+                setRequestStatus(RequestStatus.REJECTED);
+                projDB.exportDB();
+                break;
+            default:
+                System.out.println("Invalid choice");
+                break;
+        }
     }
     
 }

@@ -1,39 +1,31 @@
 package Requests;
-import Projects.Project.Project;
-import Projects.Project.ProjectStatus;
-import Users.Student;
-import Users.Supervisor;
-import Users.User.User;
+import Database.ProjectDB;
+import Projects.ProjectStatus;
+import Users.UserDetails.*;;
 
 public class DeregisterProject extends Request{
     
-    private int projectID;
+    private ProjectDB projDB = new ProjectDB();
 
-    public DeregisterProject(int requestID) {
-        super(requestID);
-        setRequestType(RequestType.DEREGISTERPROJECT);
-        setToUser(/*FYP_Coordinator*/);
-        projectID = modifies.getProjectID();
+    public DeregisterProject(int requestID, int projectID, User fromUser, User toUser) {
+        super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.DEREGISTERPROJECT, projectID);
     }
 
-    public void approve() {
-        modifies.setProjectStatus(ProjectStatus.AVAILABLE);
-        modifies.setStudent(null);
-        //does student have attribute projectID?
-        //if yes, set to null
-        //not sure how to make it unavailable for this particular student
-        //but available for other students
-        //maybe add a new attribute to student class
-        //called "unavailableProjects" or something
-        //and add projectID to that list
-
-        setRequestStatus(RequestStatus.APPROVED);
-        throw new UnsupportedOperationException();
+    public void enactRequest(int choice){
+        switch(choice){
+            case 1:
+                projDB.findInstance(getProjectID()).setProjectStatus(ProjectStatus.AVAILABLE);
+                projDB.exportDB();
+                setRequestStatus(RequestStatus.APPROVED);
+                break;
+            case 0:
+                projDB.findInstance(getProjectID()).addRejected(getFromUser().getUserID());
+                projDB.exportDB();
+                setRequestStatus(RequestStatus.REJECTED);
+                break;
+            default:
+                System.out.println("Invalid choice");
+                break;
+        }
     }
-
-    public void reject() {
-        setRequestStatus(RequestStatus.REJECTED);
-        throw new UnsupportedOperationException();
-    }
-    
 }

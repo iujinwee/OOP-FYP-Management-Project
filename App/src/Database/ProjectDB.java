@@ -15,9 +15,9 @@ public class ProjectDB extends Database{
 
     public Project findInstance(int id) {
         for (Object s: super.objectDB){
-            Project currenProject = (Project) s;
-            if(currenProject.getProjectID() == id){
-                return currenProject;
+            Project currentProject = (Project) s;
+            if(currentProject.getProjectID() == id){
+                return currentProject;
             }
         }
         return new Project();
@@ -44,7 +44,7 @@ public class ProjectDB extends Database{
 
     
 	/**
-	 * 
+	 * Function to get new title for the project and updates database.
 	 * @param newTitle
 	 */
 	public void setNewTitle(int projectID) {
@@ -52,27 +52,27 @@ public class ProjectDB extends Database{
 		System.out.println("Input your project title");
 		String title = super.sc.nextLine();
 
-		(findInstance(projectID)).setProjectTitle(title); // rmb to close scanner
+		findInstance(projectID).setProjectTitle(title); // rmb to close scanner
         super.exportDB();
 	}
 
 	public void changeSupervisor(int projectID, Supervisor supervisor) {
         
-		(findInstance(projectID)).setSupervisor(supervisor);
+		findInstance(projectID).setSupervisor(supervisor);
         
         super.exportDB();
 	}
 
 	public void setProjectStatus(int projectID, ProjectStatus updatedStatus) {
 		// if approved, then run countproject
-		(findInstance(projectID)).setProjectStatus(updatedStatus);
+		findInstance(projectID).setProjectStatus(updatedStatus);
 
         super.exportDB();
 	}
 
 	public void deregisterProject(int projectID, String studentID) { 
 		
-		(findInstance(projectID)).addRejected(studentID);
+		findInstance(projectID).addRejected(studentID);
 
         super.exportDB();
 	}
@@ -80,15 +80,31 @@ public class ProjectDB extends Database{
 	public boolean allocateStudent(int projectID, Student student){
 		
 		// Check if student has been rejected previously
-		if((findInstance(projectID)).getRejected().contains(student.getUserID())){
+		if(findInstance(projectID).getRejected().contains(student.getUserID())){
 			System.out.println("Student has been rejected previously.");
 			return false;
 		}
 
 		// Allocate student
-		(findInstance(projectID)).setStudent(student);
+		findInstance(projectID).setStudent(student);
+
+		// ExportDB
         super.exportDB();
 		return true;
+	}
+
+	public void viewPersonalProjects(User user){
+		System.out.println("\n===========================================");
+		System.out.println("======     Personal Project List     ======");
+		System.out.println("===========================================\n");
+		
+		for (Object obj: super.objectDB){
+			Project curProj = (Project) obj;
+			if(curProj.getSupervisorID().compareTo(user.getUserID())==0){
+				System.out.printf("[%d] %s\n", curProj.getProjectID(), curProj.getProjectTitle());
+			}
+		}
+		System.out.println("\n=========   END OF PROJECT LIST  ===========\n");
 	}
 
 	/**
@@ -96,7 +112,9 @@ public class ProjectDB extends Database{
 	 * @param userType
 	 */
 	public void viewProjects(User user) {
-		System.out.println("========    Project List    ========");
+		System.out.println("\n========================================");
+		System.out.println("=========     Project List     =========");
+		System.out.println("========================================\n");
 
 		for (Object obj: super.objectDB){
 			Project curProj = (Project) obj;
@@ -126,6 +144,7 @@ public class ProjectDB extends Database{
                     break;
             }
 		}
+		System.out.println("\n=========   END OF PROJECT LIST  ===========\n");
 	}
 
 	public boolean hasVacancy(Supervisor supervisor) {

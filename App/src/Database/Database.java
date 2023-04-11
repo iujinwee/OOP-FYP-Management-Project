@@ -15,12 +15,9 @@ public class Database {
         this.filePath = filePath;
 
         try{
-            // System.out.printf("Initializing %s Files...\n", o.getClass().getSimpleName());
             this.objectDB = FileHandler.readExcelFile(filePath, o);
-            // System.out.println("Files Initialized!");
         }catch(Exception e){
             System.out.println("Error in Initializing File");
-            // e.printStackTrace();
         }
 
         this.size = objectDB.size();
@@ -28,6 +25,8 @@ public class Database {
     }
 
     public void exportDB(){
+        System.out.printf("Updating %s Files...\n", this.getClass().getSimpleName());
         FileHandler.saveExcelFile(filePath, objectDB);
+        System.out.println("File Updated");
     }
 }

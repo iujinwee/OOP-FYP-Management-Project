@@ -14,19 +14,34 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import Projects.Project;
+import Projects.ProjectStatus;
 import Requests.Request;
+import Requests.RequestStatus;
+import Requests.RequestType;
 import Users.Student;
 import Users.Supervisor;
 import Users.UserDetails.User;
 import Login.Account;
 
 public class FileHandler {
-    private final static String dataPath = "\\App\\data\\";
-    
+    private final static String dataPath = "\\data\\";
+    private final static String macDataPath = "/App/data/";
+
     public static ArrayList<Object> readExcelFile(String filePath, Object item) {
-        
+        String pathname;
+        StudentDB stu;
+        SupervisorDB sup;
+        String className;
+
         // Path Name 
-        String pathname = System.getProperty("user.dir").concat(dataPath);
+        final String OS = System.getProperty("os.name").toLowerCase();
+        if(OS.indexOf("mac")>=0){
+            pathname = System.getProperty("user.dir").concat(macDataPath);
+
+        }else{
+            pathname = System.getProperty("user.dir").concat(dataPath);
+        }
+        
         String finalPath = pathname.concat(filePath);
         ArrayList<Object> resultList = new ArrayList<>();
         Map<String, Integer> columnMap = new HashMap<>();
@@ -48,8 +63,18 @@ public class FileHandler {
                     // skip header row
                     continue;
                 }
+                if(getStringCellValue(row.getCell(0))==""){
+                    break;
+                }
 
-                switch (item.getClass().getSimpleName()) {
+                
+                if(item.getClass().getSuperclass().getSimpleName().compareTo("Object")==0){
+                    className = item.getClass().getSimpleName();
+                }else{
+                    className = item.getClass().getSuperclass().getSimpleName();
+                }
+
+                switch (className) {
                     case "Account":
                         String userID = getStringCellValue(row.getCell(columnMap.get("ID")));
                         String password = getStringCellValue(row.getCell(columnMap.get("password")));
@@ -63,9 +88,7 @@ public class FileHandler {
 
                         break;
                         
-                    case "Student":
-                    case "Supervisor":
-                    case "FYP_Coordinator":
+                    case "User":
                         String id  = getStringCellValue(row.getCell(columnMap.get("ID")));
                         String name  = getStringCellValue(row.getCell(columnMap.get("Name")));
                         String email  = getStringCellValue(row.getCell(columnMap.get("Email")));
@@ -79,6 +102,8 @@ public class FileHandler {
                         break;
 
                     case "Project":
+                        stu = new StudentDB();
+                        sup = new SupervisorDB();
 
                         // Load Project Information
                         int projId  = getNumericCellValue(row.getCell(columnMap.get("ID")));
@@ -86,36 +111,54 @@ public class FileHandler {
                         String stuId  = getStringCellValue(row.getCell(columnMap.get("StudentID")));
                         String title  = getStringCellValue(row.getCell(columnMap.get("Title")));
                         String rejectString  = getStringCellValue(row.getCell(columnMap.get("Rejected")));
-                        StudentDB stu = new StudentDB();
-                        SupervisorDB sup = new SupervisorDB();
+                        ProjectStatus projStatus  = ProjectStatus.valueOf(getStringCellValue(row.getCell(columnMap.get("Status"))));
                         String[] rejectList = rejectString.split("|");
                         ArrayList<String> rejectStrList = new ArrayList<>(Arrays.asList(rejectList));
 
                         Project tempProject = (Project) item
                             .getClass()
-                            .getDeclaredConstructor(int.class, String.class, Student.class, Supervisor.class, ArrayList.class)
-                            .newInstance(projId, title, stu.findInstance(stuId), sup.findInstance(supId), rejectStrList);
+                            .getDeclaredConstructor(int.class, String.class, Student.class, Supervisor.class, ProjectStatus.class, ArrayList.class)
+                            .newInstance(projId, title, stu.findInstance(stuId), sup.findInstance(supId), projStatus, rejectStrList);
 
                         resultList.add(tempProject);
 
                         break;
 
-                    case "Request": 
-                        String reqId = getStringCellValue(row.getCell(columnMap.get("ID")));
-                        String fromUser = getStringCellValue(row.getCell(columnMap.get("fromUser")));
-                        String toUser = getStringCellValue(row.getCell(columnMap.get("toUser")));
-                        String type = getStringCellValue(row.getCell(columnMap.get("type")));
-                        String status = getStringCellValue(row.getCell(columnMap.get("status")));
-                        String projID = getStringCellValue(row.getCell(columnMap.get("projectID")));
-                        // String newTitle = getStringCellValue(row.getCell(columnMap.get("newTitle")));
-                        // String newSupervisor = getStringCellValue(row.getCell(columnMap.get("newSupervisor")));
+                    case "Request":                
+                        stu = new StudentDB();
+                        sup = new SupervisorDB();
 
-                        Request tempRequest = (Request) item.getClass().getDeclaredConstructor().newInstance(reqId, fromUser, toUser, type, status, projID);
-                        // if (newTitle!=""){
-                        //     tempRequest.addTitle(newTitle);
-                        // }else{
-                        //     tempRequest.addSupervisor(newSupervisor);
-                        // }
+                        int reqId = getNumericCellValue(row.getCell(columnMap.get("ID")));
+                        String fromUserID = getStringCellValue(row.getCell(columnMap.get("fromUser")));
+                        String toUserID = getStringCellValue(row.getCell(columnMap.get("toUser")));
+                        RequestType type = RequestType.valueOf(getStringCellValue(row.getCell(columnMap.get("type"))));
+                        RequestStatus reqStatus = RequestStatus.valueOf(getStringCellValue(row.getCell(columnMap.get("status"))));
+                        int projID = getNumericCellValue(row.getCell(columnMap.get("projectID")));
+                        String newTitle = getStringCellValue(row.getCell(columnMap.get("newTitle")));
+                        String newSupervisor = getStringCellValue(row.getCell(columnMap.get("newSupervisor")));
+                        
+                        User fromUser; 
+                        User toUser;
+
+                        fromUser = stu.findInstance(fromUserID);
+                        if(fromUser == null){
+                            fromUser = sup.findInstance(fromUserID);
+                        }
+                        toUser = sup.findInstance(toUserID);
+
+                        Request tempRequest = (Request) item
+                            .getClass()
+                            .getDeclaredConstructor(int.class, User.class, User.class, RequestStatus.class, RequestType.class, int.class)
+                            .newInstance(reqId, fromUser, toUser, reqStatus, type, projID);
+
+                        if (newTitle!=""){
+                            tempRequest.setNewTitle(newTitle);
+                        }
+
+                        if (newSupervisor!=""){
+                            tempRequest.setNewSupervisor(newSupervisor);
+                        }
+                        
                         resultList.add(tempRequest);
 
                         break;
@@ -132,31 +175,50 @@ public class FileHandler {
 
         }catch(IOException e){
             e.printStackTrace();
-            
+            System.out.println("Error in Reading Files.");
         } catch (ReflectiveOperationException e){
             e.printStackTrace();
+            System.out.println("Error in Reading Files.");
         }
         return resultList;
     }
 
     public static boolean saveExcelFile(String filePath, ArrayList<Object> result) {
         // Path Name 
-        String pathname = System.getProperty("user.dir").concat(dataPath);
+        String pathname;
+        String className;
+
+        // Path Name 
+        final String OS = System.getProperty("os.name").toLowerCase();
+        if(OS.indexOf("mac")>=0){
+            pathname = System.getProperty("user.dir").concat(macDataPath);
+
+        }else{
+            pathname = System.getProperty("user.dir").concat(dataPath);
+        }
         String finalPath = pathname.concat(filePath);
-        Map<String, Integer> columnMap = new HashMap<>();
         boolean saveFile = true;
 
         try {
             FileInputStream inputStream = new FileInputStream(new File(finalPath));
             XSSFWorkbook wb = new XSSFWorkbook(inputStream);   // Create Workbook
             XSSFSheet sheet = wb.getSheetAt(0);  // Change to Worksheet
-            
+
             // write header row to create column map
             int row_count = 0;
             for (Object item: result) {
                 Row row = sheet.getRow(row_count+1);
+                if(row == null){
+                    row = sheet.createRow(row_count+1);
+                }
 
-                int column_count = 0;
+                int column_count = 0; 
+                
+                if(item.getClass().getSuperclass().getSimpleName().compareTo("Object")==0){
+                    className = item.getClass().getSimpleName();
+                }else{
+                    className = item.getClass().getSuperclass().getSimpleName();
+                }
 
                 switch (item.getClass().getSimpleName()) {
                     case "Account":
@@ -171,27 +233,45 @@ public class FileHandler {
                     case "FYP_Coordinator":
                         
                         User current_user = (User) result.get(row_count++);
-                        row.getCell(column_count++).setCellValue((String) current_user.getUserID());
-                        row.getCell(column_count++).setCellValue((String) current_user.getName());
-                        row.getCell(column_count++).setCellValue((String) current_user.getEmail());
+                        row.createCell(column_count++).setCellValue((String) current_user.getUserID());
+                        row.createCell(column_count++).setCellValue((String) current_user.getName());
+                        row.createCell(column_count++).setCellValue((String) current_user.getEmail());
                         break;
 
                     case "Project":
                         Project current_proj = (Project) result.get(row_count++);
                         String rejected = String.join("|", current_proj.getRejected());
-                        row.getCell(column_count++).setCellValue(current_proj.getProjectID());
-                        row.getCell(column_count++).setCellValue(current_proj.getProjectTitle());
-                        row.getCell(column_count++).setCellValue(current_proj.getStudentID());
-                        row.getCell(column_count++).setCellValue(current_proj.getSupervisorID());
+                        row.createCell(column_count++).setCellValue(current_proj.getProjectID());
+                        row.createCell(column_count++).setCellValue(current_proj.getProjectTitle());
+                        row.createCell(column_count++).setCellValue(current_proj.getStudentID());
+                        row.createCell(column_count++).setCellValue(current_proj.getSupervisorID());
+                        row.createCell(column_count++).setCellValue(current_proj.getProjectStatus().toString());
                         row.createCell(column_count++).setCellValue(rejected);
                         break;
 
                     case "Request": 
-                        // Request current_req = (Request) result.get(row.getRowNum());
-                        // row.createCell(row.getRowNum()).setCellValue(current_req.getProjectTitle());
-                        // row.createCell(row.getRowNum()).setCellValue(current_req.getFromUser());
-                        // row.createCell(row.getRowNum()).setCellValue(current_req.getStudent());
-                        // break;
+                        Request current_req = (Request) result.get(row_count++);
+
+                        String type = "";
+
+                        if(current_req.getRequestType()!=null){
+                            type = current_req.getRequestType().toString();
+                        }
+
+                        String status = "";
+                        if(current_req.getRequestStatus()!=null){
+                            status = current_req.getRequestStatus().toString();
+                        }
+
+                        row.createCell(column_count++).setCellValue(current_req.getRequestID());
+                        row.createCell(column_count++).setCellValue(current_req.getFromUser().getUserID());
+                        row.createCell(column_count++).setCellValue(current_req.getToUser().getUserID());
+                        row.createCell(column_count++).setCellValue(type);
+                        row.createCell(column_count++).setCellValue(status);
+                        row.createCell(column_count++).setCellValue(current_req.getProjectID());
+                        row.createCell(column_count++).setCellValue(current_req.getNewTitle());
+                        row.createCell(column_count++).setCellValue(current_req.getNewSupervisor());
+                        break;
                         
                     default:
                         saveFile = false;
@@ -208,7 +288,7 @@ public class FileHandler {
 
         }catch(IOException e){
             e.printStackTrace();
-            
+            System.out.println("Error in Saving Files.");
         } 
         return saveFile;
     }
@@ -253,4 +333,3 @@ public class FileHandler {
         return value;
     }
 }
-

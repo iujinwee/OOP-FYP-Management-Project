@@ -1,19 +1,13 @@
 package Users;
-import java.util.*;
 
-import Database.ProjectDB;
-import Database.RequestDB;
 import Exceptions.InvalidInputException;
+import Projects.Project;
 import Users.UserDetails.*;
-import Requests.*;
+import Requests.RequestType;
 
 public class Student extends User{
 
-	ArrayList<Request> sends;
-	private String studentID;
 	private int choice = -1;
-	private ProjectDB projDB;
-	private RequestDB reqDB;
  	
 	public Student() {}
 
@@ -26,24 +20,12 @@ public class Student extends User{
 	 */
 	public Student(String userID, String name, String email) {
 		super(userID, name, email);
-		super.setType(UserType.STUDENT);
-		this.studentID = super.getUserID();
-	}
-
-	public String getStudentID() {
-		return this.studentID;
-	}
-
-	public void setStudentID(String studentID) {
-		this.studentID = studentID;
+		super.setUserType(UserType.STUDENT);
 	}
 	
-	public void viewRegisteredProject() {
-
-	}
-
+	@Override
 	public void viewUserMenu() {
-		System.out.println("=============  MENU  ==============");
+		System.out.println("\n=============  MENU  ==============");
 		System.out.println("[1] Show Available Projects.");
 		System.out.println("[2] Show Registered Project.");
 		System.out.println("[3] Register Project.");
@@ -56,46 +38,71 @@ public class Student extends User{
 	@Override
 	public void getInput() throws InvalidInputException{
 
+		int projID;
+		loadFiles(reload);
+		reload = false;
+
 		while (choice != 0){	
-			
-			// Load DB 
-			ProjectDB projDB = new ProjectDB();
-			RequestDB reqDB = new RequestDB();
 
 			// Show User Menu
 			viewUserMenu();
 
 			// Get Input 
 			System.out.println("\nEnter your option: ");
-			choice = super.getScanner().nextInt();
+			choice = super.sc.nextInt();
 
 			switch(choice){
 				case 1: 
-					System.out.println("Option [1] selected! - Show Available Projects");
-
-					projDB.viewAvailableProjects();
+					System.out.println("\nOption [1] selected! - Show Available Projects");
+					projDB.viewProjects(this);
 					break;
+
 				case 2: 
-					System.out.println("Option [2] selected! - Show Registered Project.");
-					projDB.viewRegisteredProjects(super.getUserID());
+					System.out.println("\nOption [2] selected! - Show Registered Project.");
+					projDB.viewPersonalProjects(this);
+					break;
 
-					break;
 				case 3:
-					System.out.println("Option [3] selected! - Register Project.");
-					reqDB.createRequest(RequestType.REGISTERPROJECT);
+					System.out.println("\nOption [3] selected! - Register Project.");
+
+					// View Projects
+					projDB.viewProjects(this);
+					System.out.println("Select Project to register:");
+					projID = super.sc.nextInt();
+					
+					reqDB.createRequest(RequestType.REGISTERPROJECT, this, ((Project) projDB.findInstance(projID)).getSupervisor(), projID);
+					reload = true;
 					break;
+
 				case 4:	
-					System.out.println("Option [4] selected! - Deregister Project.");
-					reqDB.createRequest(RequestType.DEREGISTERPROJECT);
+					System.out.println("\nOption [4] selected! - Deregister Project.");
+					
+					// View Projects
+					projDB.viewPersonalProjects(this);
+					System.out.println("Select Project to deregister:");
+					projID = super.sc.nextInt();
+					projDB.findInstance(projID);
+
+					reqDB.createRequest(RequestType.DEREGISTERPROJECT, this, ((Project)projDB.currentInstance).getSupervisor(), projID);
+					reload = true;
 					break;
+
 				case 5:
-					System.out.println("Option [5] selected! - Change Assigned Project Title.");
-					reqDB.createRequest(RequestType.CHANGETITLE);
+					System.out.println("\nOption [5] selected! - Change Assigned Project Title.");
+
+					// View Projects
+					projDB.viewPersonalProjects(this);
+					System.out.println("Select Assigned Project to change title:");
+					projID = super.sc.nextInt();
+					projDB.findInstance(projID);
+
+					reqDB.createRequest(RequestType.CHANGETITLE, this, ((Project)projDB.currentInstance).getSupervisor(), projID);
+					reload = true;
 					break;
 
 				case 6: 
-					System.out.println("Option [6] selected! - View All Requests");
-					reqDB.viewAllRequests(super.getUserID());
+					System.out.println("\nOption [6] selected! - View All Requests");
+					reqDB.viewAllRequests(this);
 					break;				
 
 				case 0: 
