@@ -15,9 +15,7 @@ public abstract class Database {
         this.filePath = filePath;
 
         try{
-            // System.out.printf("Initializing %s Files...\n", o.getClass().getSimpleName());
             this.objectDB = FileHandler.readExcelFile(filePath, o);
-            // System.out.println("Files Initialized!");
         }catch(Exception e){
             System.out.println("Error in Initializing File");
             // e.printStackTrace();
@@ -28,6 +26,8 @@ public abstract class Database {
     }
 
     public void exportDB(){
+        System.out.println("Saving Files...");
         FileHandler.saveExcelFile(filePath, objectDB);
+        System.out.println("File Saved");
     }
 }

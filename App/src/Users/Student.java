@@ -1,20 +1,15 @@
 package Users;
-import java.util.*;
 
 import Database.ProjectDB;
 import Database.RequestDB;
 import Exceptions.InvalidInputException;
 import Projects.Project;
 import Users.UserDetails.*;
-import Requests.*;
 import Requests.RequestType;
 
 public class Student extends User{
 
-	ArrayList<Request> sends;
 	private int choice = -1;
-	private ProjectDB projDB;
-	private RequestDB reqDB;
  	
 	public Student() {}
 
@@ -45,12 +40,12 @@ public class Student extends User{
 	@Override
 	public void getInput() throws InvalidInputException{
 
+		int projID;
+
 		while (choice != 0){	
-			
-			// Load DB 
-			projDB = new ProjectDB();
-			reqDB = new RequestDB();
-			int projID;
+
+			// Load files
+			loadFiles(reload);
 
 			// Show User Menu
 			viewUserMenu();
