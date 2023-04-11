@@ -1,7 +1,5 @@
 package Users;
 
-import Database.ProjectDB;
-import Database.RequestDB;
 import Exceptions.InvalidInputException;
 import Projects.Project;
 import Users.UserDetails.*;

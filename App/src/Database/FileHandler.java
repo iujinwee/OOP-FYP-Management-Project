@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -24,12 +25,21 @@ import Users.UserDetails.User;
 import Login.Account;
 
 public class FileHandler {
-    private final static String dataPath = "\\data\\";
+    private final static String dataPath = "\\App\\data\\";
+    private final static String macDataPath = "/App/data/";
     
     public static ArrayList<Object> readExcelFile(String filePath, Object item) {
-        
+        String pathname;
+
         // Path Name 
-        String pathname = System.getProperty("user.dir").concat(dataPath);
+        final String OS = System.getProperty("os.name").toLowerCase();
+        if(OS.indexOf("mac")>=0){
+            pathname = System.getProperty("user.dir").concat(macDataPath);
+
+        }else{
+            pathname = System.getProperty("user.dir").concat(dataPath);
+        }
+        
         String finalPath = pathname.concat(filePath);
         ArrayList<Object> resultList = new ArrayList<>();
         Map<String, Integer> columnMap = new HashMap<>();
@@ -154,7 +164,16 @@ public class FileHandler {
 
     public static boolean saveExcelFile(String filePath, ArrayList<Object> result) {
         // Path Name 
-        String pathname = System.getProperty("user.dir").concat(dataPath);
+        String pathname;
+
+        // Path Name 
+        final String OS = System.getProperty("os.name").toLowerCase();
+        if(OS.indexOf("mac")>=0){
+            pathname = System.getProperty("user.dir").concat(macDataPath);
+
+        }else{
+            pathname = System.getProperty("user.dir").concat(dataPath);
+        }
         String finalPath = pathname.concat(filePath);
         boolean saveFile = true;
 

@@ -1,20 +1,20 @@
 package Database;
 
-import Users.Student;
+import Users.FYP_Coordinator;
 
 public class FYPCoordinatorDB extends Database{
 
     public FYPCoordinatorDB(){
-        super("student_list.xlsx", new Student());
+        super("FYP coordinator.xlsx", new FYP_Coordinator());
     }
 
-    public Student findInstance(String id) {
+    public FYP_Coordinator findInstance(String id) {
         for (Object s: super.objectDB){
-            Student currentStudent = (Student) s;
-            if(currentStudent.getUserID().compareTo(id)==0){
-                return currentStudent;
+            FYP_Coordinator currentCoordinator = (FYP_Coordinator) s;
+            if(currentCoordinator.getUserID().compareTo(id)==0){
+                return currentCoordinator;
             }
         }
-        return new Student();
+        return new FYP_Coordinator();
     }
 }
