@@ -159,6 +159,13 @@ public class FileHandler {
                 int column_count = 0;
 
                 switch (item.getClass().getSimpleName()) {
+                    case "Account":
+                        Account current_account = (Account) result.get(row_count++);
+                        row.getCell(column_count++).setCellValue((String) current_account.getUserID());
+                        row.getCell(column_count++).setCellValue((String) current_account.getPassword());
+                        row.getCell(column_count++).setCellValue((String) current_account.getType());
+                        break;
+                        
                     case "Student":
                     case "Supervisor":
                     case "FYP_Coordinator":

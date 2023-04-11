@@ -52,6 +52,7 @@ public class App {
             loginAttempts++;
         }
         
+
         // Initialising user class based on user type
         switch(ca.getType()) {
             case "STUDENT":
