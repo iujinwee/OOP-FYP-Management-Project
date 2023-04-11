@@ -77,11 +77,13 @@ public class FileHandler {
                 switch (className) {
                     case "Account":
                         String userID = getStringCellValue(row.getCell(columnMap.get("ID")));
+                        String password = getStringCellValue(row.getCell(columnMap.get("password")));
+                        String acctype = getStringCellValue(row.getCell(columnMap.get("type")));
 
                         Account tempAccount = (Account) item
                             .getClass()
-                            .getDeclaredConstructor(String.class)
-                            .newInstance(userID);
+                            .getDeclaredConstructor(String.class, String.class, String.class)
+                            .newInstance(userID, password, acctype);
                         resultList.add(tempAccount);
 
                         break;

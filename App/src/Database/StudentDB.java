@@ -10,11 +10,18 @@ public class StudentDB extends Database{
 
     public Student findInstance(String id) {
         for (Object s: super.objectDB){
-            Student currentStudent = (Student) s;
-            if(currentStudent.getUserID().compareTo(id)==0){
-                return currentStudent;
+            Student temp = (Student) s;
+            if(temp.getUserID().compareTo(id)==0){
+                return temp;
             }
         }
-        return new Student();
+        return null;
+    }
+
+    public void showDB(){
+        for (Object s: super.objectDB){
+            Student temp = (Student) s;
+            System.out.println(temp.getUserID() + ", " + temp.getName() + ", " + temp.getEmail());
+        }
     }
 }

@@ -10,17 +10,18 @@ public class SupervisorDB extends Database{
 
     public Supervisor findInstance(String id) {
         for (Object s: super.objectDB){
-            Supervisor currentSupervisor = (Supervisor) s;
-            if(currentSupervisor.getUserID().compareTo(id)==0){
-                return currentSupervisor;
+            Supervisor temp = (Supervisor) s;
+            if(temp.getUserID().compareTo(id)==0){
+                return temp;
             }
         }
-        return new Supervisor();
+        return null;
     }
 
-    public void view(){
+    public void showDB(){
         for (Object s: super.objectDB){
-            System.out.println(((Supervisor)s).getName());
+            Supervisor temp = (Supervisor) s;
+            System.out.println(temp.getUserID() + ", " + temp.getName() + ", " + temp.getEmail());
         }
     }
 }

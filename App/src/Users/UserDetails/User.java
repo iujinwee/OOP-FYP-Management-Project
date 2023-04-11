@@ -25,9 +25,6 @@ public abstract class User implements UserInterface {
 	 * @param name Name of the user
 	 * @param email Email address of the user
 	 */
-
-	public User(){};
-	
 	public User(String userID, String name, String email) {
 		this.userID = userID;
 		this.name = name;
@@ -58,7 +55,7 @@ public abstract class User implements UserInterface {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -88,9 +85,9 @@ public abstract class User implements UserInterface {
 			}
 		}
 		// Clearing System
-		System.out.println("Terminating Program...");
-		this.sc.close();
-		System.exit(0);
+		// System.out.println("Terminating Program...");
+		// this.sc.close();
+		// System.exit(0);
    	}
 
 	@Override
