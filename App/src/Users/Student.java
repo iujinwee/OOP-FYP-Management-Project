@@ -20,11 +20,7 @@ public class Student extends User{
 	 */
 	public Student(String userID, String name, String email) {
 		super(userID, name, email);
-		super.setType(UserType.STUDENT);
-	}
-	
-	public void viewRegisteredProject() {
-
+		super.setUserType(UserType.STUDENT);
 	}
 	
 	@Override

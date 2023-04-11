@@ -13,8 +13,6 @@ public class Supervisor extends User {
 	private int numAssignedProjects=0;
 	private int choice = -1;
 	private int projectID=0;
-	
-	public Supervisor() {}
 
 	/**
 	 * Supervisor constructor.
@@ -23,15 +21,17 @@ public class Supervisor extends User {
 	 * @param name Name of the supervisor.
 	 * @param email Email address of the supervisor.
 	 */
-	public Supervisor(String userID, String name, String email) {
+	public Supervisor(String userID, String name,String email) {
 		super(userID, name, email);
 		super.setUserType(UserType.SUPERVISOR); 
 		this.sc = new Scanner(System.in);
 	}
+	public Supervisor() {}
 	public int getNumAssignedProjects(){
 		return this.numAssignedProjects;
 	}
-
+	
+		
 	@Override
 	public void viewUserMenu() {
 

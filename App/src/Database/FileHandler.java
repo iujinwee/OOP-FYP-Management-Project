@@ -88,9 +88,7 @@ public class FileHandler {
 
                         break;
                         
-                    case "Student":
-                    case "Supervisor":
-                    case "FYP_Coordinator":
+                    case "User":
                         String id  = getStringCellValue(row.getCell(columnMap.get("ID")));
                         String name  = getStringCellValue(row.getCell(columnMap.get("Name")));
                         String email  = getStringCellValue(row.getCell(columnMap.get("Email")));
@@ -326,4 +324,3 @@ public class FileHandler {
         return value;
     }
 }
-

@@ -5,8 +5,6 @@ import Database.StudentDB;
 import Database.SupervisorDB;
 import Login.Account;
 import Users.UserDetails.User;
-import Users.Student;
-import Users.Supervisor;
 import Users.FYP_Coordinator;
 
 public class App {
