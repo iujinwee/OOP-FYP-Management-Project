@@ -5,9 +5,6 @@ import Database.StudentDB;
 import Database.SupervisorDB;
 import Login.Account;
 import Users.UserDetails.User;
-import Users.Student;
-import Users.Supervisor;
-import Users.FYP_Coordinator;
 
 public class App {
 
@@ -29,7 +26,7 @@ public class App {
         // Login (Login with 5 attempts, use try, catch to handle invalid  inputs. once 5 attempts up, terminate program)
         String inputUserID;
         String inputPassword;
-        int loginAttempts = 5;
+        int loginAttempts = 1;
         while(loginAttempts <= 5) {
             System.out.println("Enter User ID: ");
             inputUserID = sc.nextLine();
@@ -51,7 +48,6 @@ public class App {
             
             loginAttempts++;
         }
-        
 
         // Initialising user class based on user type
         switch(ca.getType()) {
@@ -62,7 +58,7 @@ public class App {
                 user = supervisorDB.findInstance(ca.getUserID());
                 break;
             case "FYPCOORDINATOR":
-                user = new FYP_Coordinator();
+                user = ;
                 break;
         }
         
