@@ -10,6 +10,7 @@ import Requests.*;
 public class Student extends User{
 
 	ArrayList<Request> sends;
+	private String studentID;
 	private int choice = -1;
 	private ProjectDB projDB;
 	private RequestDB reqDB;

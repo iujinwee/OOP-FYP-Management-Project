@@ -18,7 +18,7 @@ public class StudentDB extends Database{
         return null;
     }
 
-    public void showStudentDB(){
+    public void showDB(){
         for (Object s: super.objectDB){
             Student temp = (Student) s;
             System.out.println(temp.getUserID() + ", " + temp.getName() + ", " + temp.getEmail());

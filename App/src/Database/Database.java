@@ -3,7 +3,7 @@ package Database;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class Database {
+public class Database {
     public Object currentInstance;
     public int currentIndex; 
     public ArrayList<Object> objectDB; 

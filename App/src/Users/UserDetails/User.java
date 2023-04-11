@@ -14,6 +14,8 @@ public abstract class User implements UserInterface {
 	private Scanner sc;
 	private UserType type;
 
+	public User() {}
+
 	/**
 	 * User constructor
 	 * @param userID Unique user ID of the user, the part of the email before @
@@ -80,8 +82,8 @@ public abstract class User implements UserInterface {
 			}
 		}
 		// Clearing System
-		System.out.println("Terminating Program...");
-		this.sc.close();
-		System.exit(0);
+		// System.out.println("Terminating Program...");
+		// this.sc.close();
+		// System.exit(0);
    	}
 }

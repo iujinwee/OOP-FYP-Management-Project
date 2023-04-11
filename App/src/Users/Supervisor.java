@@ -37,6 +37,14 @@ public class Supervisor extends User {
 		this.supervisorID = super.getUserID(); 
 		this.sc = new Scanner(System.in);
 	}
+
+	public String getSupervisorID() {
+		return this.supervisorID;
+	}
+
+	public void setSupervisorID(String supervisorID) {
+		this.supervisorID = supervisorID;
+	}
 	
 	public int getNumAssignedProjects(){
 		return this.numAssignedProjects;
@@ -148,12 +156,5 @@ public class Supervisor extends User {
 
 	// 	curRequest.enactRequest(choice);
 	// }
-
-	@Override
-	public void getInput() throws InvalidInputException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getInput'");
-	}
-
 	
 }

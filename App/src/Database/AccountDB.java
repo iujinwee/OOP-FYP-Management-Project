@@ -8,7 +8,6 @@ public class AccountDB extends Database {
         super("account_list.xlsx", new Account());
     }
 
-    @Override
     public Account findInstance(String id) {
         for(Object a : super.objectDB) {
             Account temp = (Account) a;
@@ -20,7 +19,7 @@ public class AccountDB extends Database {
         return null;
     }
 
-    public void showAccountDB() {
+    public void showDB() {
         for(Object a : super.objectDB) {
             Account temp = (Account) a;
             System.out.println(temp.getUserID() + ", " + temp.getPassword() + ", " + temp.getType());

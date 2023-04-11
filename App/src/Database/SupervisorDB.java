@@ -18,7 +18,7 @@ public class SupervisorDB extends Database{
         return null;
     }
 
-    public void showSupervisorDB(){
+    public void showDB(){
         for (Object s: super.objectDB){
             Supervisor temp = (Supervisor) s;
             System.out.println(temp.getUserID() + ", " + temp.getName() + ", " + temp.getEmail());

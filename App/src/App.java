@@ -15,7 +15,8 @@ public class App {
         AccountDB accountDB = new AccountDB();
         StudentDB studentDB = new StudentDB();
         SupervisorDB supervisorDB = new SupervisorDB();
-        accountDB.showAccountDB();
+        // accountDB.showDB();
+        // studentDB.showDB();
         Account ca = null; 
         User user = null;
         Scanner sc = new Scanner(System.in);
@@ -51,15 +52,13 @@ public class App {
             loginAttempts++;
         }
         
-        String userID = ca.getUserID();
-        
         // Initialising user class based on user type
         switch(ca.getType()) {
             case "STUDENT":
-                user = new Student();
+                user = studentDB.findInstance(ca.getUserID());
                 break;
             case "SUPERVISOR":
-                user = new Supervisor();
+                user = supervisorDB.findInstance(ca.getUserID());
                 break;
             case "FYPCOORDINATOR":
                 user = new FYP_Coordinator();
