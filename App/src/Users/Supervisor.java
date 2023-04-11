@@ -18,8 +18,6 @@ public class Supervisor extends User {
 	private int numAssignedProjects=0;
 	private int choice = -1;
 	private int projectID=0;
-	private ProjectDB projDB = new ProjectDB();//to remove
-	private RequestDB reqDB =new RequestDB(); //to remove
 
 	/**
 	 * Supervisor constructor.
