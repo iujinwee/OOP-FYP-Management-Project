@@ -3,10 +3,7 @@ package Users;
 import java.util.*;
 
 import Exceptions.*;
-import Projects.Project;
-import Requests.Request;
 import Database.FYPCoordinatorDB;
-import Requests.RequestStatus;
 import Requests.RequestType;
 import Users.UserDetails.User;
 import Users.UserDetails.UserType;

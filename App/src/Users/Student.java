@@ -39,11 +39,10 @@ public class Student extends User{
 	public void getInput() throws InvalidInputException{
 
 		int projID;
+		loadFiles(reload);
+		reload = false;
 
 		while (choice != 0){	
-
-			// Load files
-			loadFiles(reload);
 
 			// Show User Menu
 			viewUserMenu();
@@ -72,19 +71,22 @@ public class Student extends User{
 					projID = super.sc.nextInt();
 					
 					reqDB.createRequest(RequestType.REGISTERPROJECT, this, ((Project) projDB.findInstance(projID)).getSupervisor(), projID);
+					reload = true;
 					break;
 
 				case 4:	
 					System.out.println("\nOption [4] selected! - Deregister Project.");
 					
 					// View Projects
-					projDB.viewProjects(this);
+					projDB.viewPersonalProjects(this);
 					System.out.println("Select Project to deregister:");
 					projID = super.sc.nextInt();
 					projDB.findInstance(projID);
 
 					reqDB.createRequest(RequestType.DEREGISTERPROJECT, this, ((Project)projDB.currentInstance).getSupervisor(), projID);
+					reload = true;
 					break;
+
 				case 5:
 					System.out.println("\nOption [5] selected! - Change Assigned Project Title.");
 
@@ -95,6 +97,7 @@ public class Student extends User{
 					projDB.findInstance(projID);
 
 					reqDB.createRequest(RequestType.CHANGETITLE, this, ((Project)projDB.currentInstance).getSupervisor(), projID);
+					reload = true;
 					break;
 
 				case 6: 

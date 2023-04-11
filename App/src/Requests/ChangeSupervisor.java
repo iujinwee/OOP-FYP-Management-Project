@@ -4,7 +4,8 @@ import Database.SupervisorDB;
 import Users.UserDetails.*;
 
 public class ChangeSupervisor extends Request{
-
+    private ProjectDB projDB = new ProjectDB();
+    
     public ChangeSupervisor(int requestID, String newSupervisor, int projectID, User fromUser, User toUser) {
         super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGESUPERVISOR, projectID);
         super.setNewSupervisor(newSupervisor);
@@ -14,10 +15,10 @@ public class ChangeSupervisor extends Request{
         switch(choice){
             // Approve
             case 1:
-                ProjectDB projDB = new ProjectDB();
+                
                 SupervisorDB supDB = new SupervisorDB();
 
-                (projDB.findInstance(getProjectID())).setSupervisor(supDB.findInstance(super.getNewSupervisor()));
+                projDB.findInstance(getProjectID()).setSupervisor(supDB.findInstance(super.getNewSupervisor()))\;
                 
                 projDB.exportDB();
                 setRequestStatus(RequestStatus.APPROVED);

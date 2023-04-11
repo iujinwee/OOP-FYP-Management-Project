@@ -18,7 +18,6 @@ public abstract class Database {
             this.objectDB = FileHandler.readExcelFile(filePath, o);
         }catch(Exception e){
             System.out.println("Error in Initializing File");
-            // e.printStackTrace();
         }
 
         this.size = objectDB.size();
@@ -26,8 +25,8 @@ public abstract class Database {
     }
 
     public void exportDB(){
-        System.out.println("Saving Files...");
+        System.out.printf("Updating %s Files...\n", this.getClass().getSimpleName());
         FileHandler.saveExcelFile(filePath, objectDB);
-        System.out.println("File Saved");
+        System.out.println("File Updated");
     }
 }

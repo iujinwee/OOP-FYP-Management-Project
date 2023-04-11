@@ -16,7 +16,7 @@ public abstract class User implements UserInterface {
 	public Scanner sc;
 	public ProjectDB projDB;
 	public RequestDB reqDB;
-	public boolean reload = false;
+	public boolean reload = true;
 	UserType type;
 
 	/**
@@ -95,9 +95,8 @@ public abstract class User implements UserInterface {
 
 	@Override
 	public void loadFiles(boolean reload) {
-					
-		if(projDB==null | reqDB==null){
-			// Load DB 
+		// Load DB 
+		if(reload){
 			System.out.println("Initializing Files...");
 			projDB = new ProjectDB();
 			reqDB = new RequestDB();

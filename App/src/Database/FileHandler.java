@@ -3,7 +3,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -25,11 +24,14 @@ import Users.UserDetails.User;
 import Login.Account;
 
 public class FileHandler {
-    private final static String dataPath = "\\App\\data\\";
+    private final static String dataPath = "\\data\\";
     private final static String macDataPath = "/App/data/";
-    
+
     public static ArrayList<Object> readExcelFile(String filePath, Object item) {
         String pathname;
+        StudentDB stu;
+        SupervisorDB sup;
+        String className;
 
         // Path Name 
         final String OS = System.getProperty("os.name").toLowerCase();
@@ -65,7 +67,14 @@ public class FileHandler {
                     break;
                 }
 
-                switch (item.getClass().getSimpleName()) {
+                
+                if(item.getClass().getSuperclass().getSimpleName().compareTo("Object")==0){
+                    className = item.getClass().getSimpleName();
+                }else{
+                    className = item.getClass().getSuperclass().getSimpleName();
+                }
+
+                switch (className) {
                     case "Account":
                         String userID = getStringCellValue(row.getCell(columnMap.get("ID")));
 
@@ -93,6 +102,8 @@ public class FileHandler {
                         break;
 
                     case "Project":
+                        stu = new StudentDB();
+                        sup = new SupervisorDB();
 
                         // Load Project Information
                         int projId  = getNumericCellValue(row.getCell(columnMap.get("ID")));
@@ -101,8 +112,6 @@ public class FileHandler {
                         String title  = getStringCellValue(row.getCell(columnMap.get("Title")));
                         String rejectString  = getStringCellValue(row.getCell(columnMap.get("Rejected")));
                         ProjectStatus projStatus  = ProjectStatus.valueOf(getStringCellValue(row.getCell(columnMap.get("Status"))));
-                        StudentDB stu = new StudentDB();
-                        SupervisorDB sup = new SupervisorDB();
                         String[] rejectList = rejectString.split("|");
                         ArrayList<String> rejectStrList = new ArrayList<>(Arrays.asList(rejectList));
 
@@ -115,15 +124,27 @@ public class FileHandler {
 
                         break;
 
-                    case "Request": 
-                        String reqId = getStringCellValue(row.getCell(columnMap.get("ID")));
-                        String fromUser = getStringCellValue(row.getCell(columnMap.get("fromUser")));
-                        String toUser = getStringCellValue(row.getCell(columnMap.get("toUser")));
+                    case "Request":                
+                        stu = new StudentDB();
+                        sup = new SupervisorDB();
+
+                        int reqId = getNumericCellValue(row.getCell(columnMap.get("ID")));
+                        String fromUserID = getStringCellValue(row.getCell(columnMap.get("fromUser")));
+                        String toUserID = getStringCellValue(row.getCell(columnMap.get("toUser")));
                         RequestType type = RequestType.valueOf(getStringCellValue(row.getCell(columnMap.get("type"))));
                         RequestStatus reqStatus = RequestStatus.valueOf(getStringCellValue(row.getCell(columnMap.get("status"))));
-                        String projID = getStringCellValue(row.getCell(columnMap.get("projectID")));
+                        int projID = getNumericCellValue(row.getCell(columnMap.get("projectID")));
                         String newTitle = getStringCellValue(row.getCell(columnMap.get("newTitle")));
                         String newSupervisor = getStringCellValue(row.getCell(columnMap.get("newSupervisor")));
+                        
+                        User fromUser; 
+                        User toUser;
+
+                        fromUser = stu.findInstance(fromUserID);
+                        if(fromUser == null){
+                            fromUser = sup.findInstance(fromUserID);
+                        }
+                        toUser = sup.findInstance(toUserID);
 
                         Request tempRequest = (Request) item
                             .getClass()
@@ -165,6 +186,7 @@ public class FileHandler {
     public static boolean saveExcelFile(String filePath, ArrayList<Object> result) {
         // Path Name 
         String pathname;
+        String className;
 
         // Path Name 
         final String OS = System.getProperty("os.name").toLowerCase();
@@ -191,7 +213,12 @@ public class FileHandler {
                 }
 
                 int column_count = 0; 
-                String className = item.getClass().getSuperclass().getSimpleName();
+                
+                if(item.getClass().getSuperclass().getSimpleName().compareTo("Object")==0){
+                    className = item.getClass().getSimpleName();
+                }else{
+                    className = item.getClass().getSuperclass().getSimpleName();
+                }
 
                 switch (className) {
                     case "User":
