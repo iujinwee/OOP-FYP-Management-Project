@@ -18,6 +18,10 @@ import Requests.RequestClasses.ChangeTitleRequest;
 import Requests.RequestClasses.DeregisterProjectRequest;
 import Requests.RequestClasses.RegisterProjectRequest;
 import Requests.ViewRequestsPackage.ViewPendingRequests;
+import Requests.enactRequestsPackage.EnactChangeSupervisor;
+import Requests.enactRequestsPackage.EnactChangeTitle;
+import Requests.enactRequestsPackage.EnactDeregisterProject;
+import Requests.enactRequestsPackage.EnactRegisterProject;
 import Users.UserDetails.User;
 import Users.UserDetails.UserType;
 
@@ -141,24 +145,29 @@ public class Supervisor extends User {
 			System.out.println("Select Request to manage: ");
 			int reqID = sc.nextInt();
 
+			System.out.println("Approve or Reject Request? [1] Approve [0] Reject");
+			int choice = sc.nextInt();
+
 			// View requests 
 			Request req = reqDB.findInstance(reqID);
 
+			
+
 			switch(req.getRequestType()){
 				case CHANGESUPERVISOR:
-					new ChangeProjectSupervisor(req.getProjectID(), req.getNewSupervisor());
+					new EnactChangeSupervisor(reqID).enactRequest(choice);
 					break;
 
 				case CHANGETITLE: 
-					new ChangeProjectTitle(req.getProjectID(), req.getNewTitle());
+					new EnactChangeTitle(reqID).enactRequest(choice);
 					break;
 
 				case REGISTERPROJECT:
-					new RegisterProject(req.getProjectID(), (Student) req.getFromUser());
+					new EnactRegisterProject(reqID).enactRequest(choice);
 					break;
 
 				case DEREGISTERPROJECT: 
-					new DeregisterProject(req.getProjectID(), (Student) req.getFromUser());
+					new EnactDeregisterProject(reqID).enactRequest(choice);
 					break;
 			}
 		}

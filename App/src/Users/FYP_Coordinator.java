@@ -59,7 +59,7 @@ public class FYP_Coordinator extends Supervisor {
 				case 2: 
 					System.out.println("Option [2] selected! - Manage Requests.");
 					new ViewPendingRequests(this);
-					// manageRequests();
+					manageRequests();
 					break;
 
 				case 3:
