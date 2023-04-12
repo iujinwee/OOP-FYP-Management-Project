@@ -16,7 +16,10 @@ public class App {
         // Supervisor u = new Supervisor("ASMADHUKUMAR", "A S Madhukumar", "E@ntu.sg", 0);
         // u.startProgram();
 
-        Student u = new Student("YCHERN", "CHERN", "Test");
+        // Student u = new Student("YCHERN", "CHERN", "Test");
+        // u.startProgram();
+
+        FYP_Coordinator u = new FYP_Coordinator("ASFLI", "Li Fang", "ASFLI@NTU.EDU.SG");
         u.startProgram();
 
         AccountDB accountDB = new AccountDB();

@@ -2,6 +2,7 @@ package Requests.enactRequestsPackage;
 
 import Projects.ProjectClasses.ChangeProjectSupervisor;
 import Projects.ProjectClasses.RegisterProject;
+import Projects.Project;
 import Requests.RequestStatus;
 import Users.Student;
 
@@ -17,6 +18,8 @@ public class EnactRegisterProject extends EnactRequest {
             // Approve
             case 1:
                 new RegisterProject(request.getProjectID(), (Student) request.getFromUser());
+                Project selectedProject = projDB.findInstance(request.getProjectID());
+                selectedProject.setStudent((Student)request.getFromUser());
                 request.setRequestStatus(RequestStatus.APPROVED);
                 break;
 
