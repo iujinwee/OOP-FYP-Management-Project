@@ -13,7 +13,7 @@ public class App {
 
 	public static void main(String[] args) {
 
-        // Supervisor u = new Supervisor("ASMADHUKUMAR", "A S Madhukumar", "E@ntu.sg", 0);
+        // Supervisor u = new Supervisor("ASFLI", "A S Madhukumar", "E@ntu.sg", 0);
         // u.startProgram();
 
         // Student u = new Student("YCHERN", "CHERN", "Test");

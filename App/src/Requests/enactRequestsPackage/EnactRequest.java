@@ -6,7 +6,6 @@ import Database.ProjectDB;
 import Requests.ModifyRequestDB;
 import Requests.Request;
 import Requests.RequestType;
-import Requests.RequestClasses.EnactRequestInterface;
 
 public abstract class EnactRequest extends ModifyRequestDB implements EnactRequestInterface{
     
