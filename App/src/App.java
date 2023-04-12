@@ -24,6 +24,9 @@ public class App {
         // Student u = new Student("YCHERN", "CHERN", "Test");
         // u.startProgram();
 
+        // Student u = new Student("YCHERN", "CHERN", "Test");
+        // u.startProgram();
+
         AccountDB accountDB = new AccountDB();
         StudentDB studentDB = new StudentDB();
         SupervisorDB supervisorDB = new SupervisorDB();

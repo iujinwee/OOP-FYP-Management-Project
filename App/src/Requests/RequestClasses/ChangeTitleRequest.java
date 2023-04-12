@@ -22,24 +22,4 @@ public class ChangeTitleRequest extends Request {
         super.setNewTitle(newTitle);
         sc.close();
     }
-
-    // public void enactRequest(int choice){
-    //     switch(choice){
-    //         case 1:
-    //             ProjectDB projDB = new ProjectDB();
-    //             projDB.findInstance(getProjectID()).setProjectTitle(super.getNewTitle());
-
-    //             projDB.exportDB();
-    //             setRequestStatus(RequestStatus.APPROVED);
-    //             break;
-
-    //         case 0:
-    //             setRequestStatus(RequestStatus.REJECTED);
-    //             break;
-                
-    //         default:
-    //             System.out.println("Invalid choice");
-    //             break;
-    //     }
-    // }
 }
