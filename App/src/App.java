@@ -1,10 +1,10 @@
-import Users.Student;
+import Users.Supervisor;
 
 public class App {
 
 	public static void main(String[] args) {
 
-        Student user = new Student("Hello", "Yes", "No");
+        Supervisor user = new Supervisor("YPKE", "Yes", "No");
         user.startProgram();
 
         // Introduction to App 

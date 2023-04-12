@@ -40,7 +40,7 @@ public class Supervisor extends User {
 
 		System.out.println("=============  SUPERVISOR MENU  ==============");
 		System.out.println("[1] Create New Project");
-		System.out.println("[2] View Projects created by me");
+		System.out.println("[2] View Personal Projects");
 		System.out.println("[3] Change Title of Project");
 		System.out.println("[4] Request to Transfer Student to Replacement Supervisor");
 		System.out.println("[5] Manage Incoming Requests ");
@@ -55,7 +55,7 @@ public class Supervisor extends User {
 
 			// Load files
 			loadFiles(reload);
-			
+
 			// Show Supervisor Menu
 			viewUserMenu();
 			// Get Input 
@@ -65,12 +65,12 @@ public class Supervisor extends User {
 			switch(choice){
 				case 1: 
 					System.out.println("Option [1] selected! - Create New Project.");
-					projDB.createProject((Supervisor) this);
+					projDB.createProject(this);
 					break;
 
 				case 2: 
 					//Supervisor views his/her projects
-					System.out.println("Option [2] selected! - View Projects created by me.");
+					System.out.println("Option [2] selected! - View Personal Projects.");
 					projDB.viewPersonalProjects(this);
 					break;
 
@@ -85,24 +85,21 @@ public class Supervisor extends User {
 
 				case 4:	
 					System.out.println("Option [4] selected! - Request to Transfer Student to Replacement Supervisor.");
-					//get fyp coordinator id 
 					FYPCoordinatorDB FYPdb = new FYPCoordinatorDB(); //to remove
 
 					// View Projects
 					projDB.viewProjects(this);
-					System.out.println("Select Project to register:");
+					System.out.println("Select Project for Replacement of Supervisor:");
 					projID = super.sc.nextInt();
 					
 					reqDB.createRequest(RequestType.CHANGESUPERVISOR,this, FYPdb.findInstance("ASFLI"), projID);	
 					System.out.println("Request Sent.");
 	
-					//to check on missing link -> accept request -> enact change 			
 					break;
 					
 				case 5:
 					System.out.println("Option [5] selected! - Manage Incoming Requests.");
 					reqDB.viewPendingRequests(this);
-					// manageRequests();
 					break;
 
 				default:
@@ -110,6 +107,8 @@ public class Supervisor extends User {
 			}
 		}
 	}
+
+
 
 	// public void manageRequests() {
 
