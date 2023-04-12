@@ -1,6 +1,8 @@
-package Projects;
+package Projects.ViewProjectsPackage;
 
 import Database.ProjectDB;
+import Projects.Project;
+import Projects.ProjectStatus;
 import Users.UserDetails.User;
 
 public class ViewAvailableProjects extends ViewProjects{

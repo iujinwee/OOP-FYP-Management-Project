@@ -1,4 +1,6 @@
-package Projects;
+package Projects.ViewProjectsPackage;
+
+import Projects.Project;
 
 public interface ViewProjectInterface {
     abstract void initializeFiles();

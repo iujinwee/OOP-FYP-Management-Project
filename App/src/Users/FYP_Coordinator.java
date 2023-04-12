@@ -1,8 +1,8 @@
 package Users;
 
 import Exceptions.InvalidInputException;
-import Projects.ViewAvailableProjects;
-import Projects.ViewPersonalProjects;
+import Projects.ViewProjectsPackage.ViewAvailableProjects;
+import Projects.ViewProjectsPackage.ViewPersonalProjects;
 import Requests.ViewRequestsPackage.ViewAllRequestsHistory;
 import Requests.ViewRequestsPackage.ViewIncomingRequestsHistory;
 import Requests.ViewRequestsPackage.ViewOutgoingRequestsHistory;

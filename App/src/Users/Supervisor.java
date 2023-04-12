@@ -3,9 +3,9 @@ package Users;
 import java.util.*;
 
 import Exceptions.*;
-import Projects.ChangeProjectTitle;
-import Projects.CreateProject;
-import Projects.ViewPersonalProjects;
+import Projects.ProjectClasses.ChangeProjectTitle;
+import Projects.ProjectClasses.CreateProject;
+import Projects.ViewProjectsPackage.ViewPersonalProjects;
 import Database.FYPCoordinatorDB;
 import Requests.Request;
 import Requests.RequestType;

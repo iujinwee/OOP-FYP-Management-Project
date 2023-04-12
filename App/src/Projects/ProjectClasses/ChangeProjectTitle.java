@@ -1,4 +1,6 @@
-package Projects;
+package Projects.ProjectClasses;
+
+import Projects.ModifyProjectDB;
 
 public class ChangeProjectTitle extends ModifyProjectDB{
 

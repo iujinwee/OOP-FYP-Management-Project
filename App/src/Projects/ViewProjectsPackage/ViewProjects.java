@@ -1,6 +1,7 @@
-package Projects;
+package Projects.ViewProjectsPackage;
 
 import Database.ProjectDB;
+import Projects.Project;
 
 public abstract class ViewProjects implements ProjectInterface, ViewProjectInterface {
     

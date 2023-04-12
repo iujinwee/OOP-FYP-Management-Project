@@ -1,5 +1,6 @@
-package Projects;
+package Projects.ViewProjectsPackage;
 
+import Projects.Project;
 import Users.UserDetails.User;
 
 public class ViewPersonalProjects extends ViewProjects{

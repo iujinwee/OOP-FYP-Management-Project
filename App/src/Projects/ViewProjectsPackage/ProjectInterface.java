@@ -1,4 +1,4 @@
-package Projects;
+package Projects.ViewProjectsPackage;
 
 import Users.UserDetails.User;
 

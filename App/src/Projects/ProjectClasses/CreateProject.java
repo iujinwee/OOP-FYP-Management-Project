@@ -1,5 +1,7 @@
-package Projects;
+package Projects.ProjectClasses;
 
+import Projects.ModifyProjectDB;
+import Projects.Project;
 import Users.Supervisor;
 
 public class CreateProject extends ModifyProjectDB {
