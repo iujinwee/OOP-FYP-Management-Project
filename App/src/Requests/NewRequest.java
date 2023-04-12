@@ -2,6 +2,7 @@ package Requests;
 
 import Requests.RequestClasses.ChangeSupervisorRequest;
 import Requests.RequestClasses.ChangeTitleRequest;
+import Requests.RequestClasses.DeregisterProjectRequest;
 import Requests.RequestClasses.RegisterProjectRequest;
 import Users.UserDetails.User;
 
@@ -33,7 +34,7 @@ public class NewRequest extends ModifyRequestDB {
                 break;
 
             case CHANGETITLE:
-                new ChangeTitleRequest(reqDB.size+1, null, fromUser, toUser, projID);
+                new ChangeTitleRequest(reqDB.size+1, fromUser, toUser, projID);
                 break;
 
             case REGISTERPROJECT:
@@ -41,7 +42,7 @@ public class NewRequest extends ModifyRequestDB {
                 break;
 
             case DEREGISTERPROJECT:
-
+                new DeregisterProjectRequest(reqDB.size+1, projID, fromUser, toUser);
                 break;
 
             default:

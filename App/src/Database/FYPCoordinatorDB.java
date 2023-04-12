@@ -26,4 +26,12 @@ public class FYPCoordinatorDB extends Database{
             System.out.printf("Email: %s", currentCoord.getEmail());
         }
     }
+
+    public FYP_Coordinator findInstance() {
+        for (Object s: super.objectDB){
+            FYP_Coordinator currentCoordinator = (FYP_Coordinator) s;
+            return currentCoordinator;
+        }
+        return new FYP_Coordinator();
+    }
 }

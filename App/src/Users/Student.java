@@ -1,10 +1,14 @@
 package Users;
 
+import Database.FYPCoordinatorDB;
 import Exceptions.InvalidInputException;
 import Projects.Project;
+import Projects.ProjectStatus;
 import Projects.ViewProjectsPackage.ViewAvailableProjects;
 import Projects.ViewProjectsPackage.ViewPersonalProjects;
 import Users.UserDetails.*;
+import Requests.NewRequest;
+import Requests.RequestStatus;
 import Requests.RequestType;
 import Requests.ViewRequestsPackage.ViewOutgoingRequestsHistory;
 
@@ -98,8 +102,10 @@ public class Student extends User{
 		if((new ViewAvailableProjects(this)).count!=0){
 			System.out.println("Select Project to register:");
 			int projID = super.sc.nextInt();
+
+			FYPCoordinatorDB FYPDB = new FYPCoordinatorDB();
 			
-			reqDB.createRequest(RequestType.REGISTERPROJECT, this, ((Project) projDB.findInstance(projID)).getSupervisor(), projID);
+			new NewRequest(RequestType.REGISTERPROJECT, this, FYPDB.findInstance(), projID);
 			reload = true;
 		}
 	}
@@ -110,9 +116,10 @@ public class Student extends User{
 		if((new ViewPersonalProjects(this)).count!=0){
 			System.out.println("Select Project to deregister:");
 			int projID = super.sc.nextInt();
-			projDB.findInstance(projID);
 
-			reqDB.createRequest(RequestType.DEREGISTERPROJECT, this, ((Project)projDB.currentInstance).getSupervisor(), projID);
+			FYPCoordinatorDB FYPDB = new FYPCoordinatorDB();
+
+			new NewRequest(RequestType.DEREGISTERPROJECT, this, FYPDB.findInstance(), projID);
 			reload = true;
 		}
 	}
@@ -123,9 +130,8 @@ public class Student extends User{
 		if((new ViewPersonalProjects(this)).count!=0){
 			System.out.println("Select Assigned Project to change title:");
 			int projID = super.sc.nextInt();
-			projDB.findInstance(projID);
 
-			reqDB.createRequest(RequestType.CHANGETITLE, this, ((Project)projDB.currentInstance).getSupervisor(), projID);
+			new NewRequest(RequestType.CHANGETITLE, this, projDB.findInstance(projID).getSupervisor(), projID);
 			reload = true;
 		}
 	}
