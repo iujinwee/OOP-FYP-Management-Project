@@ -25,15 +25,15 @@ public abstract class ViewRequests implements RequestInterface, ViewRequestInter
 
     @Override
     public int viewRequest(Request req){
-		System.out.printf("> %s | Request #%d - %s\n", req.getRequestStatus(), req.getRequestID(), req.getRequestType().toString());
-		System.out.printf("  Project Title: %s\n", req.getProjectID());
-		System.out.printf("  From: %s | To: %s\n", req.getFromUser().getName(), req.getToUser().getName());
+		System.out.printf("> [%d] %s REQUEST - Project %d\n", req.getRequestID(), req.getRequestType().toString(), req.getProjectID());
+		System.out.printf("       STATUS: %s");
+		System.out.printf("       From: %s | To: %s\n", req.getFromUser().getName(), req.getToUser().getName());
 		if(req.getNewSupervisor()!=null){
-			System.out.printf("  New Supervisor Name: %s\n", req.getNewSupervisor());	
+			System.out.printf("       New Supervisor Name: %s\n", req.getNewSupervisor());	
 		}
 		
 		if(req.getNewTitle()!=null){
-			System.out.printf("  New Title: %s\n", req.getToUser().getUserID());	
+			System.out.printf("       New Title: %s\n", req.getToUser().getUserID());	
 		}
 		return 1;
 	}
