@@ -3,8 +3,11 @@ package Users;
 import java.util.*;
 
 import Exceptions.*;
+import Projects.ProjectClasses.ChangeProjectSupervisor;
 import Projects.ProjectClasses.ChangeProjectTitle;
 import Projects.ProjectClasses.CreateProject;
+import Projects.ProjectClasses.DeregisterProject;
+import Projects.ProjectClasses.RegisterProject;
 import Projects.ViewProjectsPackage.ViewPersonalProjects;
 import Database.FYPCoordinatorDB;
 import Requests.Request;
@@ -13,6 +16,7 @@ import Requests.RequestClasses.ChangeSupervisorRequest;
 import Requests.RequestClasses.ChangeTitleRequest;
 import Requests.RequestClasses.DeregisterProjectRequest;
 import Requests.RequestClasses.RegisterProjectRequest;
+import Requests.ViewRequestsPackage.ViewPendingRequests;
 import Users.UserDetails.User;
 import Users.UserDetails.UserType;
 
@@ -106,10 +110,14 @@ public class Supervisor extends User {
 		System.out.println("Select Project ID to change new title:");
 		projectID = sc.nextInt();
 
-		new ChangeProjectTitle(projectID);
+		System.out.println("Enter the new title:");
+		String newTitle = sc.next();
+
+		new ChangeProjectTitle(projectID, newTitle);
 	}
 
 	private void changeSupervisor(){
+
 		// View Projects
 		new ViewPersonalProjects(this);
 		System.out.println("Select Project ID to change new supervisor:");
@@ -127,43 +135,31 @@ public class Supervisor extends User {
 
 	public void manageRequests() {
 
-		if(reqDB.viewPendingRequests(this) != 0){
+		if((new ViewPendingRequests(this)).count != 0){
 
 			System.out.println("Select Request to manage: ");
 			int reqID = sc.nextInt();
 
 			// View requests 
 			Request req = reqDB.findInstance(reqID);
-			reqDB.viewRequest(req);
-
-			System.out.println("\n> Approve/ Reject");
-			System.out.println("[1] Approve");
-			System.out.println("[0] Reject");
 
 			switch(req.getRequestType()){
 				case CHANGESUPERVISOR:
-					ChangeSupervisorRequest cs = (ChangeSupervisorRequest) req;
-					cs.enactRequest(sc.nextInt());
+					new ChangeProjectSupervisor(req.getProjectID(), req.getNewSupervisor());
 					break;
 
 				case CHANGETITLE: 
-					ChangeTitleRequest ct = (ChangeTitleRequest) req;
-					ct.enactRequest(sc.nextInt());
+					new ChangeProjectTitle(req.getProjectID(), req.getNewTitle());
 					break;
 
 				case REGISTERPROJECT:
-					RegisterProjectRequest rp = (RegisterProjectRequest) req;
-					rp.enactRequest(sc.nextInt());
+					new RegisterProject(req.getProjectID(), (Student) req.getFromUser());
 					break;
 
 				case DEREGISTERPROJECT: 
-					DeregisterProjectRequest dp = (DeregisterProjectRequest) req;
-					dp.enactRequest(sc.nextInt());
+					new DeregisterProject(req.getProjectID(), (Student) req.getFromUser());
 					break;
 			}
-
-			reqDB.exportDB();
-			reload = true;
 		}
 	}
 }
