@@ -30,19 +30,21 @@ public class NewRequest extends ModifyRequestDB {
 
         switch(type){
             case CHANGESUPERVISOR:
-                new ChangeSupervisorRequest(reqDB.size+1, projID, fromUser, toUser);
+                reqDB.objectDB.add((new ChangeSupervisorRequest(reqDB.size+1, projID, fromUser, toUser)).createRequest());
                 break;
 
             case CHANGETITLE:
-                new ChangeTitleRequest(reqDB.size+1, fromUser, toUser, projID);
+                reqDB.objectDB.add((new ChangeTitleRequest(reqDB.size+1, fromUser, toUser, projID)).createRequest());
                 break;
 
             case REGISTERPROJECT:
-                new RegisterProjectRequest(reqDB.size+1, projID, fromUser, toUser);
+                RegisterProjectRequest rp = new RegisterProjectRequest(reqDB.size+1, projID, fromUser, toUser);
+                Request x = rp.createRequest();
+                reqDB.objectDB.add(x);
                 break;
 
             case DEREGISTERPROJECT:
-                new DeregisterProjectRequest(reqDB.size+1, projID, fromUser, toUser);
+                reqDB.objectDB.add((new DeregisterProjectRequest(reqDB.size+1, projID, fromUser, toUser)).createRequest());
                 break;
 
             default:

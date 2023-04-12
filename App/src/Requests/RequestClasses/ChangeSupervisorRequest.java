@@ -1,20 +1,23 @@
 package Requests.RequestClasses;
 import java.util.Scanner;
 
-import Database.ProjectDB;
+import Database.RequestDB;
 import Database.SupervisorDB;
-import Projects.ProjectClasses.ChangeProjectSupervisor;
 import Requests.Request;
 import Requests.RequestStatus;
 import Requests.RequestType;
 import Users.UserDetails.*;
 
-public class ChangeSupervisorRequest extends Request{
+public class ChangeSupervisorRequest extends Request implements CreateRequestInterface{
     private SupervisorDB supDB = new SupervisorDB();
     private String newSupervisor;
 
     public ChangeSupervisorRequest(int requestID, int projectID, User fromUser, User toUser) {
         super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGESUPERVISOR, projectID);
+    }    
+    
+    @Override
+    public Request createRequest() {
         
         supDB.view(); // View Supervisor DB
 
@@ -24,5 +27,7 @@ public class ChangeSupervisorRequest extends Request{
 
         super.setNewSupervisor(newSupervisor);
         sc.close();
-    }    
+        return this;
+    }
+
 }
