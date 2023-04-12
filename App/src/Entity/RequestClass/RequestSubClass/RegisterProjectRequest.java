@@ -23,7 +23,6 @@ public class RegisterProjectRequest extends Request implements CreateRequestInte
         Project selectedProject = projDB.findInstance(getProjectID());
 
         selectedProject.setProjectStatus(ProjectStatus.RESERVED);
-        selectedProject.setStudent((Student) getFromUser());
         System.out.printf("Project [%d]: %s has been reserved\n", selectedProject.getProjectID(), selectedProject.getProjectTitle());
 
         projDB.exportDB();
