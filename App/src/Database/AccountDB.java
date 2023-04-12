@@ -16,7 +16,7 @@ public class AccountDB extends Database {
                 return temp;
             }
         }
-        return null;
+        return new Account();
     }
 
     public void showDB() {
@@ -25,13 +25,5 @@ public class AccountDB extends Database {
             System.out.println(temp.getUserID() + ", " + temp.getPassword() + ", " + temp.getType());
         }
     }
-    
-    public void changePassword(Account account, String newPassword) {
-        Account temp = this.findInstance(account.getUserID());
-        if(temp.changePassword(newPassword)) {
-            super.exportDB();
-        }
-    }
-    
     
 }

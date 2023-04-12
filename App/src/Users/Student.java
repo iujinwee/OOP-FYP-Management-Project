@@ -1,6 +1,7 @@
 package Users;
 
 import Exceptions.InvalidInputException;
+import Login.Account;
 import Projects.Project;
 import Users.UserDetails.*;
 import Requests.RequestType;
@@ -32,6 +33,7 @@ public class Student extends User{
 		System.out.println("[4] Deregister Project.");
 		System.out.println("[5] Change Assigned Project Title.");
 		System.out.println("[6] View All Requests.");
+		System.out.println("[7] Change Password.");
 		System.out.println("[0] Exit Program.");
 	}
 
@@ -39,10 +41,12 @@ public class Student extends User{
 	public void getInput() throws InvalidInputException{
 
 		int projID;
+		Account acc;
+		boolean loggedin = true;
 		loadFiles(reload);
 		reload = false;
 
-		while (choice != 0){	
+		while (choice != 0 && loggedin){	
 
 			// Show User Menu
 			viewUserMenu();
@@ -103,7 +107,14 @@ public class Student extends User{
 				case 6: 
 					System.out.println("\nOption [6] selected! - View All Requests");
 					reqDB.viewAllRequests(this);
-					break;				
+					break;
+				
+				case 7:
+					System.out.println("\nOption [7] selected! - Change Password");
+					acc = accDB.findInstance(this.getUserID());
+					acc.changePassword(accDB);
+					loggedin = acc.login(accDB);
+					break;
 
 				case 0: 
 					System.out.println("Option [0] selected! - Exit Program");

@@ -3,6 +3,7 @@ package Users.UserDetails;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import Database.AccountDB;
 import Database.ProjectDB;
 import Database.RequestDB;
 import Exceptions.InvalidInputException;
@@ -14,6 +15,7 @@ public abstract class User implements UserInterface {
 	private String name;
 	private String email;
 	public Scanner sc;
+	public AccountDB accDB; 
 	public ProjectDB projDB;
 	public RequestDB reqDB;
 	public boolean reload = true;
@@ -98,6 +100,7 @@ public abstract class User implements UserInterface {
 		// Load DB 
 		if(reload){
 			System.out.println("Initializing Files...");
+			accDB = new AccountDB();
 			projDB = new ProjectDB();
 			reqDB = new RequestDB();
 			System.out.println("Files Initialized.");

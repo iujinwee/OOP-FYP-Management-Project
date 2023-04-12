@@ -1,10 +1,15 @@
 package Login;
 
+import java.util.Scanner;
+
+import Database.AccountDB;
+
 public class Account {
 
 	private String userID;
 	private String password;
 	private String type;
+	public Scanner sc = new Scanner(System.in);
 
 	public Account() {}
 
@@ -42,6 +47,10 @@ public class Account {
 		return this.password;
 	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public String getType() {
 		return this.type;
 	}
@@ -50,14 +59,46 @@ public class Account {
 		this.type = type;
 	}
 
+	public boolean login(AccountDB accDB) {
+        int loginAttempts = 1;
+        while(loginAttempts <= 5) {
+            System.out.println("Enter User ID: ");
+            String inputUserID = sc.nextLine();
+            System.out.println("Enter Password: ");
+            String inputPassword = sc.nextLine();
+
+            Account temp = accDB.findInstance(inputUserID);
+            if(temp.getUserID() != null) {
+                if(temp.authenticate(inputPassword)) {
+                    this.setUserID(temp.getUserID());
+					this.setPassword(temp.getPassword());
+					this.setType(temp.getType());
+                    System.out.println("Log in successful");
+                    return true;
+                } else {
+                    System.out.println("Incorrect password!");
+                }
+            } else {
+                System.out.println("Invalid user ID!");
+            }
+            
+            loginAttempts++;
+        }
+		return false;
+	}
+
 	/**
 	 * Changes password of the account.
 	 * @param newPassword The new password after changing.
 	 * @return Whether password successfully changed.
 	 */
-	public boolean changePassword(String newPassword) {
+	public boolean changePassword(AccountDB accDB) {
+		
+		System.out.println("Enter new password: ");
+		String newPassword = sc.nextLine();
 		if(newPassword != this.password) {
 			this.password = newPassword;
+			accDB.exportDB();
 			System.out.println("Password successfully changed");
 			return true;
 		} else {
