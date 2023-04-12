@@ -19,6 +19,10 @@ public class SupervisorDB extends Database{
     }
 
     public void view(){
+        System.out.println("\n================================");
+        System.out.println("======   SUPERVISOR LIST  ======");
+        System.out.println("================================\n");
+        
         for (Object s: super.objectDB){
             System.out.println(((Supervisor)s).getName());
         }

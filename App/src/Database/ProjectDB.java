@@ -43,22 +43,6 @@ public class ProjectDB extends Database{
         super.exportDB();
 	}
 
-	public boolean allocateStudent(int projectID, Student student){
-		
-		// Check if student has been rejected previously
-		if(findInstance(projectID).getRejected().contains(student.getUserID())){
-			System.out.println("Student has been rejected previously.");
-			return false;
-		}
-
-		// Allocate student
-		findInstance(projectID).setStudent(student);
-
-		// ExportDB
-        super.exportDB();
-		return true;
-	}
-
 	public boolean hasVacancy(Supervisor supervisor) {
 		//get number of assigned projects 
 		//if more than limit, set all projects under that supervisor as unavailable
