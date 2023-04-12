@@ -10,6 +10,7 @@ import Projects.ProjectClasses.DeregisterProject;
 import Projects.ProjectClasses.RegisterProject;
 import Projects.ViewProjectsPackage.ViewPersonalProjects;
 import Database.FYPCoordinatorDB;
+import Requests.NewRequest;
 import Requests.Request;
 import Requests.RequestType;
 import Requests.RequestClasses.ChangeSupervisorRequest;
@@ -126,7 +127,7 @@ public class Supervisor extends User {
 		//get fyp coordinator id 
 		FYPCoordinatorDB FYPdb = new FYPCoordinatorDB(); //to remove
 
-		reqDB.createRequest(RequestType.CHANGESUPERVISOR, this, FYPdb.findInstance(), projID);	
+		new NewRequest(RequestType.CHANGESUPERVISOR, this, FYPdb.findInstance(), projID);
 		System.out.println("Request Sent.\n");
 
 		//to check on missing link -> accept request -> enact change 			
