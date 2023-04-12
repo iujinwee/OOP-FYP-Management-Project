@@ -13,7 +13,10 @@ public class App {
 
 	public static void main(String[] args) {
 
-        Supervisor u = new Supervisor("ASMADHUKUMAR", "ASMADHUKUMAR", "E@ntu.sg", 0);
+        // Supervisor u = new Supervisor("ASMADHUKUMAR", "A S Madhukumar", "E@ntu.sg", 0);
+        // u.startProgram();
+        
+        Student u = new Student("YCHERN", "CHERN", "Test");
         u.startProgram();
 
         AccountDB accountDB = new AccountDB();
@@ -34,6 +37,7 @@ public class App {
         String inputUserID;
         String inputPassword;
         int loginAttempts = 5;
+        
         while(loginAttempts <= 5) {
             System.out.println("Enter User ID: ");
             inputUserID = sc.nextLine();

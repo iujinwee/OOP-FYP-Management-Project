@@ -2,11 +2,16 @@ package Users;
 
 import Exceptions.InvalidInputException;
 import Projects.Project;
+import Projects.ViewAvailableProjects;
+import Projects.ViewPersonalProjects;
 import Users.UserDetails.*;
 import Requests.RequestType;
+import Requests.ViewRequestsPackage.ViewOutgoingRequestsHistory;
 
 public class Student extends User{
  	
+	private String studentID;
+	private boolean assigned; 
 	public Student() {}
 
 	/**
@@ -37,9 +42,6 @@ public class Student extends User{
 	public void getInput() throws InvalidInputException{
 		int choice = -1;
 
-		loadFiles(reload);
-		reload = false;
-		
 		while (choice != 0){	
 
 			// Show User Menu
@@ -52,12 +54,12 @@ public class Student extends User{
 			switch(choice){
 				case 1: 
 					System.out.println("\nOption [1] selected! - Show Available Projects");
-					viewAvailableProjects();
+					new ViewAvailableProjects(this);
 					break;
 
 				case 2: 
 					System.out.println("\nOption [2] selected! - Show Registered Project.");
-					viewOwnProjects();
+					new ViewPersonalProjects(this);
 					break;
 
 				case 3:
@@ -90,50 +92,45 @@ public class Student extends User{
 		}
 	}	
 
-	private void viewAvailableProjects(){
-		projDB.viewProjects(this);
-	}
-
-	private void viewOwnProjects(){
-		projDB.viewPersonalProjects(this);
-	}
-
 	private void registerProject(){
 		
 		// View Projects
-		projDB.viewProjects(this);
-		System.out.println("Select Project to register:");
-		int projID = super.sc.nextInt();
-		
-		reqDB.createRequest(RequestType.REGISTERPROJECT, this, ((Project) projDB.findInstance(projID)).getSupervisor(), projID);
-		reload = true;
+		if((new ViewAvailableProjects(this)).count!=0){
+			System.out.println("Select Project to register:");
+			int projID = super.sc.nextInt();
+			
+			reqDB.createRequest(RequestType.REGISTERPROJECT, this, ((Project) projDB.findInstance(projID)).getSupervisor(), projID);
+			reload = true;
+		}
 	}
 
 	private void deregisterProject(){
 		
 		// View Projects
-		projDB.viewPersonalProjects(this);
-		System.out.println("Select Project to deregister:");
-		int projID = super.sc.nextInt();
-		projDB.findInstance(projID);
+		if((new ViewPersonalProjects(this)).count!=0){
+			System.out.println("Select Project to deregister:");
+			int projID = super.sc.nextInt();
+			projDB.findInstance(projID);
 
-		reqDB.createRequest(RequestType.DEREGISTERPROJECT, this, ((Project)projDB.currentInstance).getSupervisor(), projID);
-		reload = true;
+			reqDB.createRequest(RequestType.DEREGISTERPROJECT, this, ((Project)projDB.currentInstance).getSupervisor(), projID);
+			reload = true;
+		}
 	}
 
 	private void changeTitle(){
 		
 		// View Projects
-		projDB.viewPersonalProjects(this);
-		System.out.println("Select Assigned Project to change title:");
-		int projID = super.sc.nextInt();
-		projDB.findInstance(projID);
+		if((new ViewPersonalProjects(this)).count!=0){
+			System.out.println("Select Assigned Project to change title:");
+			int projID = super.sc.nextInt();
+			projDB.findInstance(projID);
 
-		reqDB.createRequest(RequestType.CHANGETITLE, this, ((Project)projDB.currentInstance).getSupervisor(), projID);
-		reload = true;
+			reqDB.createRequest(RequestType.CHANGETITLE, this, ((Project)projDB.currentInstance).getSupervisor(), projID);
+			reload = true;
+		}
 	}
 
 	private void viewAllRequests(){
-		reqDB.viewAllRequests(this);
+		new ViewOutgoingRequestsHistory(this);
 	}
 }

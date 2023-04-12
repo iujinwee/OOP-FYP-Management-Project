@@ -1,6 +1,12 @@
 package Users;
 
 import Exceptions.InvalidInputException;
+import Projects.ViewAvailableProjects;
+import Projects.ViewPersonalProjects;
+import Requests.ViewRequestsPackage.ViewAllRequestsHistory;
+import Requests.ViewRequestsPackage.ViewIncomingRequestsHistory;
+import Requests.ViewRequestsPackage.ViewOutgoingRequestsHistory;
+import Requests.ViewRequestsPackage.ViewPendingRequests;
 import Users.UserDetails.UserType;
 
 public class FYP_Coordinator extends Supervisor {
@@ -47,22 +53,28 @@ public class FYP_Coordinator extends Supervisor {
 			switch(choice){
 				case 1: 
 					System.out.println("Option [1] selected! - View All Requests");
-					reqDB.viewAllRequests(this);
+					new ViewAllRequestsHistory(this);
 					break;
+
 				case 2: 
 					System.out.println("Option [2] selected! - Manage Requests.");
-					reqDB.viewPendingRequests(this);
+					new ViewPendingRequests(this);
 					// manageRequests();
 					break;
+
 				case 3:
 					System.out.println("Option [3] selected! - View Pending Requests.");
-					reqDB.viewPendingRequests(this);
+					new ViewPendingRequests(this);
 					break;
+
 				case 4:	
 					System.out.println("Option [4] selected! - View Projects.");
-					//in projectDB - will ask to view all or only view 
-					projDB.viewProjects(this);
+					viewProjectOption();
 					break;
+
+				case 5: 
+					System.out.println("Option [5] selected! - Generate Project Report."); 
+				
 			
 				case 0: 
 					System.out.println("Option [0] selected! - Exit Program");
@@ -71,6 +83,23 @@ public class FYP_Coordinator extends Supervisor {
 				default:
 					throw new InvalidInputException(choice);
 			}
+		}
+	}
+
+	private void viewProjectOption(){
+		System.out.println("[1] View Personal Projects");
+		System.out.println("[2] View All Projects");
+		System.out.println("[0] Exit");
+
+		switch(sc.nextInt()){
+			case 1:
+				new ViewPersonalProjects(this);
+				break;
+			case 2:
+				new ViewAvailableProjects(this);
+				break;
+			case 0:
+				break;
 		}
 	}
 

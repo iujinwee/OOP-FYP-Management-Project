@@ -64,6 +64,20 @@ public class Request {
 		return this.newTitle;
 	}
 
+	public String getfromUserID(){
+		if(fromUser!=null){
+			return fromUser.getUserID();
+		}
+		return "";
+	}
+
+	public String gettoUserID(){
+		if(toUser!=null){
+			return toUser.getUserID();
+		}
+		return "";
+	}
+
 	public String getNewSupervisor(){
 		return this.newSupervisorID;
 	}

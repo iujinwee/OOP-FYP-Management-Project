@@ -3,7 +3,6 @@ package Database;
 import Projects.Project;
 import Projects.ProjectStatus;
 import Users.*;
-import Users.UserDetails.User;
 
 public class ProjectDB extends Database{
 
@@ -22,44 +21,7 @@ public class ProjectDB extends Database{
         }
         return new Project();
     }
-
-    public void createProject(Supervisor supervisor) {
-		//ask rest of project details here
-		//if num of assigned > 2 then cannot create project alr 
-		//else num of assigned +1
-		if (hasVacancy(supervisor)) {
-			int newID = ++super.size; 
-			Project newProject = new Project(newID); // Default 
-			newProject.setSupervisor(supervisor); 
-
-			// Get Project Title
-			System.out.println("Input your project title:");
-			String title = sc.next();
-			
-			// Export database
-			newProject.setProjectTitle(title);
-			objectDB.add(newProject);
-			exportDB();
-		}
-		else {
-			System.out.println("Error! You are unable to create anymore projects!");
-		}
-	}
-
     
-	/**
-	 * Function to get new title for the project and updates database.
-	 * @param newTitle
-	 */
-	public void setNewTitle(int projectID) {
-
-		System.out.println("Input your project title");
-		String title = sc.next();
-
-		findInstance(projectID).setProjectTitle(title); // rmb to close scanner
-        super.exportDB();
-	}
-
 	public void changeSupervisor(int projectID, Supervisor supervisor) {
         
 		findInstance(projectID).setSupervisor(supervisor);
@@ -97,81 +59,6 @@ public class ProjectDB extends Database{
 		return true;
 	}
 
-	public void viewPersonalProjects(User user){
-		int count = 0;
-
-		System.out.println("\n===========================================");
-		System.out.println("======     Personal Project List     ======");
-		System.out.println("===========================================\n");
-		
-		for (Object obj: super.objectDB){
-			
-			Project curProj = (Project) obj;
-
-			switch(user.getUserType()){
-				case STUDENT: 
-					if(curProj.getStudentID().compareTo(user.getUserID())==0){
-						System.out.printf("[%d] %s\n", curProj.getProjectID(), curProj.getProjectTitle());
-						count++;
-						break;
-					}	
-				case SUPERVISOR:
-				case FYPCOORDINATOR:
-					if(curProj.getSupervisorID().compareTo(user.getUserID())==0){
-						System.out.printf("[%d] %s\n", curProj.getProjectID(), curProj.getProjectTitle());
-						count++;
-						break;
-					}
-			}
-		}
-
-		if(count == 0){
-			System.out.println("=======     NO PROJECTS FOUND!     =======");
-		}else{
-			System.out.println("\n=========   END OF PROJECT LIST  ===========\n");
-		}
-	}
-
-	/**
-	 * 
-	 * @param userType
-	 */
-	public void viewProjects(User user) {
-		System.out.println("\n========================================");
-		System.out.println("=========     Project List     =========");
-		System.out.println("========================================\n");
-
-		for (Object obj: super.objectDB){
-			Project curProj = (Project) obj;
-
-            switch(user.getUserType()){
-                // Supervisor can access his/ her own projects
-                case SUPERVISOR: 
-                    if(curProj.getSupervisorID().compareTo(user.getUserID())==0){
-                        System.out.printf("[%d] %s\n", curProj.getProjectID(), curProj.getProjectTitle());
-                    }
-                    break;
-
-                // Student can only access available projects 
-                case STUDENT: 
-                    if(curProj.getProjectStatus()==ProjectStatus.AVAILABLE){
-                        System.out.printf("[%d] %s\n", curProj.getProjectID(), curProj.getProjectTitle());
-                    }
-                    break;
-
-                // FYP Coordinator can access all projects
-                case FYPCOORDINATOR: 
-                    System.out.printf("[%d] %s\n", curProj.getProjectID(), curProj.getProjectTitle());
-                    break;
-
-                default:
-                    System.out.println("No Projects Found!");
-                    break;
-            }
-		}
-		System.out.println("\n=========   END OF PROJECT LIST  ===========\n");
-	}
-
 	public boolean hasVacancy(Supervisor supervisor) {
 		//get number of assigned projects 
 		//if more than limit, set all projects under that supervisor as unavailable
@@ -186,5 +73,4 @@ public class ProjectDB extends Database{
 		}
 		return true;
 	}
-
 }

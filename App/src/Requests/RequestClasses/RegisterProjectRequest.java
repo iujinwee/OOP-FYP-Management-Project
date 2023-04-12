@@ -1,20 +1,24 @@
-package Requests;
+package Requests.RequestClasses;
 import Database.ProjectDB;
 import Projects.Project;
 import Projects.ProjectStatus;
+import Requests.Request;
+import Requests.RequestStatus;
+import Requests.RequestType;
 import Users.*;
 import Users.UserDetails.*;;
 
-public class RegisterProject extends Request implements EnactRequestInterface{
+public class RegisterProjectRequest extends Request implements EnactRequestInterface{
 
     private ProjectDB projDB = new ProjectDB(); 
     
-    public RegisterProject(int requestID, int projectID, User fromUser, User toUser) {
+    public RegisterProjectRequest(int requestID, int projectID, User fromUser, User toUser) {
         super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.REGISTERPROJECT, projectID);
         Project selectedProject = projDB.findInstance(projectID);
 
         selectedProject.setProjectStatus(ProjectStatus.RESERVED);
-        System.out.printf("Project [%d]: %s has been reserved", selectedProject.getProjectID(), selectedProject.getProjectTitle());
+        selectedProject.setStudent((Student) fromUser);
+        System.out.printf("Project [%d]: %s has been reserved\n", selectedProject.getProjectID(), selectedProject.getProjectTitle());
 
         projDB.exportDB();
     }

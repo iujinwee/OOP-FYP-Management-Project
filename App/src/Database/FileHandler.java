@@ -270,8 +270,8 @@ public class FileHandler {
                         }
 
                         row.createCell(column_count++).setCellValue(current_req.getRequestID());
-                        row.createCell(column_count++).setCellValue(current_req.getFromUser().getUserID());
-                        row.createCell(column_count++).setCellValue(current_req.getToUser().getUserID());
+                        row.createCell(column_count++).setCellValue(current_req.getfromUserID());
+                        row.createCell(column_count++).setCellValue(current_req.gettoUserID());
                         row.createCell(column_count++).setCellValue(type);
                         row.createCell(column_count++).setCellValue(status);
                         row.createCell(column_count++).setCellValue(current_req.getProjectID());

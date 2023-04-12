@@ -1,14 +1,17 @@
-package Requests;
+package Requests.RequestClasses;
 import Database.ProjectDB;
 import Projects.Project;
 import Projects.ProjectStatus;
+import Requests.Request;
+import Requests.RequestStatus;
+import Requests.RequestType;
 import Users.UserDetails.*;;
 
-public class DeregisterProject extends Request implements EnactRequestInterface{
+public class DeregisterProjectRequest extends Request implements EnactRequestInterface{
     
     private ProjectDB projDB = new ProjectDB();
 
-    public DeregisterProject(int requestID, int projectID, User fromUser, User toUser) {
+    public DeregisterProjectRequest(int requestID, int projectID, User fromUser, User toUser) {
         super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.DEREGISTERPROJECT, projectID);
     }
 
