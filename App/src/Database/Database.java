@@ -3,7 +3,7 @@ package Database;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Database {
+public abstract class Database {
     public Object currentInstance;
     public int currentIndex; 
     public ArrayList<Object> objectDB; 
@@ -19,14 +19,13 @@ public class Database {
         }catch(Exception e){
             System.out.println("Error in Initializing File");
         }
-
         this.size = objectDB.size();
-
     }
 
     public void exportDB(){
-        System.out.printf("Updating %s Files...\n", this.getClass().getSimpleName());
+        String className = this.getClass().getSimpleName();
+        System.out.printf("\nUpdating %s Files...\n", className);
         FileHandler.saveExcelFile(filePath, objectDB);
-        System.out.println("File Updated");
+        System.out.printf("%s Files Updated.\n", className);
     }
 }

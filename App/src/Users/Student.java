@@ -1,15 +1,22 @@
 package Users;
 
+import Database.FYPCoordinatorDB;
 import Exceptions.InvalidInputException;
 import Login.Account;
 import Projects.Project;
+import Projects.ProjectStatus;
+import Projects.ViewProjectsPackage.ViewAvailableProjects;
+import Projects.ViewProjectsPackage.ViewPersonalProjects;
 import Users.UserDetails.*;
+import Requests.NewRequest;
+import Requests.RequestStatus;
 import Requests.RequestType;
+import Requests.ViewRequestsPackage.ViewOutgoingRequestsHistory;
 
 public class Student extends User{
-
-	private int choice = -1;
  	
+	private String studentID;
+	private boolean assigned; 
 	public Student() {}
 
 	/**
@@ -39,12 +46,12 @@ public class Student extends User{
 
 	@Override
 	public void getInput() throws InvalidInputException{
-
-		int projID;
+		
 		Account acc;
 		boolean loggedin = true;
 		loadFiles(reload);
 		reload = false;
+		int choice = -1;
 
 		while (choice != 0 && loggedin){	
 
@@ -58,55 +65,32 @@ public class Student extends User{
 			switch(choice){
 				case 1: 
 					System.out.println("\nOption [1] selected! - Show Available Projects");
-					projDB.viewProjects(this);
+					new ViewAvailableProjects(this);
 					break;
 
 				case 2: 
 					System.out.println("\nOption [2] selected! - Show Registered Project.");
-					projDB.viewPersonalProjects(this);
+					new ViewPersonalProjects(this);
 					break;
 
 				case 3:
 					System.out.println("\nOption [3] selected! - Register Project.");
-
-					// View Projects
-					projDB.viewProjects(this);
-					System.out.println("Select Project to register:");
-					projID = super.sc.nextInt();
-					
-					reqDB.createRequest(RequestType.REGISTERPROJECT, this, ((Project) projDB.findInstance(projID)).getSupervisor(), projID);
-					reload = true;
+					registerProject();
 					break;
 
 				case 4:	
 					System.out.println("\nOption [4] selected! - Deregister Project.");
-					
-					// View Projects
-					projDB.viewPersonalProjects(this);
-					System.out.println("Select Project to deregister:");
-					projID = super.sc.nextInt();
-					projDB.findInstance(projID);
-
-					reqDB.createRequest(RequestType.DEREGISTERPROJECT, this, ((Project)projDB.currentInstance).getSupervisor(), projID);
-					reload = true;
+					deregisterProject();
 					break;
 
 				case 5:
 					System.out.println("\nOption [5] selected! - Change Assigned Project Title.");
-
-					// View Projects
-					projDB.viewPersonalProjects(this);
-					System.out.println("Select Assigned Project to change title:");
-					projID = super.sc.nextInt();
-					projDB.findInstance(projID);
-
-					reqDB.createRequest(RequestType.CHANGETITLE, this, ((Project)projDB.currentInstance).getSupervisor(), projID);
-					reload = true;
+					changeTitle();
 					break;
 
 				case 6: 
 					System.out.println("\nOption [6] selected! - View All Requests");
-					reqDB.viewAllRequests(this);
+					viewAllRequests();
 					break;
 				
 				case 7:
@@ -125,4 +109,47 @@ public class Student extends User{
 			}
 		}
 	}	
+
+	private void registerProject(){
+		
+		// View Projects
+		if((new ViewAvailableProjects(this)).count!=0){
+			System.out.println("Select Project to register:");
+			int projID = super.sc.nextInt();
+
+			FYPCoordinatorDB FYPDB = new FYPCoordinatorDB();
+			
+			new NewRequest(RequestType.REGISTERPROJECT, this, FYPDB.findInstance(), projID);
+		}
+	}
+
+	private void deregisterProject(){
+		
+		// View Projects
+		if((new ViewPersonalProjects(this)).count!=0){
+			System.out.println("Select Project to deregister:");
+			int projID = super.sc.nextInt();
+
+			FYPCoordinatorDB FYPDB = new FYPCoordinatorDB();
+
+			new NewRequest(RequestType.DEREGISTERPROJECT, this, FYPDB.findInstance(), projID);
+			reload = true;
+		}
+	}
+
+	private void changeTitle(){
+		
+		// View Projects
+		if((new ViewPersonalProjects(this)).count!=0){
+			System.out.println("Select Assigned Project to change title:");
+			int projID = super.sc.nextInt();
+
+			new NewRequest(RequestType.CHANGETITLE, this, projDB.findInstance(projID).getSupervisor(), projID);
+			reload = true;
+		}
+	}
+
+	private void viewAllRequests(){
+		new ViewOutgoingRequestsHistory(this);
+	}
 }
