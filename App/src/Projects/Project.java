@@ -77,14 +77,14 @@ public class Project {
 	}
 
 	public String getSupervisorID(){
-		if(supervisedBy.getUserID()!=null){
+		if((supervisedBy!=null)&&(supervisedBy.getUserID()!=null)){
 			return supervisedBy.getUserID();
 		}
 		return "";
 	}
 
 	public String getStudentID(){
-		if(assignedTo.getUserID()!=null){
+		if((assignedTo!=null)&&(assignedTo.getUserID()!=null)){
 			return assignedTo.getUserID();
 		}
 		return "";
