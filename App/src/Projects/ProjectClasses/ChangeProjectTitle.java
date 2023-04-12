@@ -5,9 +5,11 @@ import Projects.ModifyProjectDB;
 public class ChangeProjectTitle extends ModifyProjectDB{
 
     private int projID;
+    private String newTitle;
     
-    public ChangeProjectTitle(int projID){
+    public ChangeProjectTitle(int projID, String newTitle){
         this.projID = projID;
+        this.newTitle = newTitle;
         initializeFiles();
         updateDB();
         exportDB();
@@ -15,11 +17,7 @@ public class ChangeProjectTitle extends ModifyProjectDB{
     
     @Override
 	public void updateDB() {
-
-		System.out.println("Input the new project title:");
-		String title = projDB.sc.next();
-
-		projDB.findInstance(projID).setProjectTitle(title);
+		projDB.findInstance(projID).setProjectTitle(newTitle);
 	}
 
 }
