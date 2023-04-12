@@ -255,6 +255,9 @@ public class FileHandler {
                 int column_count = 0;
 
                 className = item.getClass().getSimpleName();
+                if((className.contains("Request") )|| (className.contains("Enact"))){
+                    className = "Request";
+                }
 
                 switch (className) {
                     case "Student":
@@ -264,7 +267,7 @@ public class FileHandler {
                         row.createCell(column_count++).setCellValue((String) current_stu.getEmail());
                         break;
 
-                    case "FYP Coordinator":
+                    case "FYP_Coordinator":
                     case "Supervisor":
                         Supervisor current_user = (Supervisor) result.get(row_count++);
                         row.createCell(column_count++).setCellValue((String) current_user.getUserID());

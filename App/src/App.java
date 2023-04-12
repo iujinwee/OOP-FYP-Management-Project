@@ -15,17 +15,11 @@ public class App {
 
 	public static void main(String[] args) {
 
-        Supervisor u = new Supervisor("ASMADHUKUMAR", "A S Madhukumar", "E@ntu.sg", 0);
+        // Supervisor u = new Supervisor("ASMADHUKUMAR", "A S Madhukumar", "E@ntu.sg", 0);
+        // u.startProgram();
+
+        Student u = new Student("YCHERN", "CHERN", "Test");
         u.startProgram();
-        
-        // Student u = new Student("YCHERN", "YCHERN", "Test");
-        // u.startProgram();
-
-        // Student u = new Student("YCHERN", "CHERN", "Test");
-        // u.startProgram();
-
-        // Student u = new Student("YCHERN", "CHERN", "Test");
-        // u.startProgram();
 
         AccountDB accountDB = new AccountDB();
         StudentDB studentDB = new StudentDB();
