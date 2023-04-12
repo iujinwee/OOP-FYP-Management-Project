@@ -20,8 +20,8 @@ public class FYP_Coordinator extends Supervisor {
 	 * @param name Name of the FYP coordinator.
 	 * @param email Email address of the FYP coordinator.
 	 */
-	public FYP_Coordinator(String userID, String name, String email, int numAssigned) {
-		super(userID, name, email, numAssigned);
+	public FYP_Coordinator(String userID, String name, String email) {
+		super(userID, name, email, 0);
 		super.setUserType(UserType.FYPCOORDINATOR);
 	}
 

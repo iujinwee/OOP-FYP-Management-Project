@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
 import Database.AccountDB;
+import Database.FYPCoordinatorDB; //TO REMOVE
+import Database.ProjectDB;
 import Database.StudentDB;
 import Database.SupervisorDB;
 import Login.Account;
@@ -13,11 +15,11 @@ public class App {
 
 	public static void main(String[] args) {
 
-        // Supervisor u = new Supervisor("ASMADHUKUMAR", "A S Madhukumar", "E@ntu.sg", 0);
-        // u.startProgram();
-        
-        Student u = new Student("YCHERN", "CHERN", "Test");
+        Supervisor u = new Supervisor("ASMADHUKUMAR", "A S Madhukumar", "E@ntu.sg", 0);
         u.startProgram();
+        
+        // Student u = new Student("YCHERN", "YCHERN", "Test");
+        // u.startProgram();
 
         AccountDB accountDB = new AccountDB();
         StudentDB studentDB = new StudentDB();

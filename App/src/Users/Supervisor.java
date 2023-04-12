@@ -7,6 +7,7 @@ import Projects.ProjectClasses.ChangeProjectTitle;
 import Projects.ProjectClasses.CreateProject;
 import Projects.ViewProjectsPackage.ViewPersonalProjects;
 import Database.FYPCoordinatorDB;
+import Requests.NewRequest;
 import Requests.Request;
 import Requests.RequestType;
 import Requests.RequestClasses.ChangeSupervisorRequest;
@@ -116,17 +117,18 @@ public class Supervisor extends User {
 		int projID = sc.nextInt();
 						
 		//get fyp coordinator id 
-		FYPCoordinatorDB FYPdb = new FYPCoordinatorDB(); //to remove
+		FYPCoordinatorDB FYPdb = new FYPCoordinatorDB(); 
 
-		reqDB.createRequest(RequestType.CHANGESUPERVISOR, this, FYPdb.findInstance("ASFLI"), projID);	
+		new NewRequest(RequestType.CHANGESUPERVISOR, this, FYPdb.findInstance("ASFLI"), projID);
 		System.out.println("Request Sent.\n");
 
-		//to check on missing link -> accept request -> enact change 			
 		reload = true;
 	}
 
 	public void manageRequests() {
 
+		//ask which request
+		//instantiate based on type of request
 		if(reqDB.viewPendingRequests(this) != 0){
 
 			System.out.println("Select Request to manage: ");

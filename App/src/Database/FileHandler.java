@@ -18,6 +18,7 @@ import Projects.ProjectStatus;
 import Requests.Request;
 import Requests.RequestStatus;
 import Requests.RequestType;
+import Users.FYP_Coordinator;
 import Users.Student;
 import Users.Supervisor;
 import Users.UserDetails.User;
@@ -84,6 +85,18 @@ public class FileHandler {
 
                         break;
 
+                    case "FYP_Coordinator":
+                        String coordid  = getStringCellValue(row.getCell(columnMap.get("ID")));
+                        String coordname  = getStringCellValue(row.getCell(columnMap.get("Name")));
+                        String coordemail  = getStringCellValue(row.getCell(columnMap.get("Email")));
+
+                        FYP_Coordinator tempCoord = (FYP_Coordinator) item
+                            .getClass()
+                            .getDeclaredConstructor(String.class, String.class, String.class)
+                            .newInstance(coordid, coordname, coordemail);
+                        resultList.add(tempCoord);
+                        break;
+
                     case "Student":
                         String stuid  = getStringCellValue(row.getCell(columnMap.get("ID")));
                         String stuname  = getStringCellValue(row.getCell(columnMap.get("Name")));
@@ -97,7 +110,6 @@ public class FileHandler {
 
                         break;
 
-                    case "FYP_Coordinator":
                     case "Supervisor":
                         String id  = getStringCellValue(row.getCell(columnMap.get("ID")));
                         String name  = getStringCellValue(row.getCell(columnMap.get("Name")));
