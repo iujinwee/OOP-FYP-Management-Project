@@ -22,26 +22,26 @@ public class ProjectDB extends Database{
         return new Project();
     }
     
-	public void changeSupervisor(int projectID, Supervisor supervisor) {
+	// public void changeSupervisor(int projectID, Supervisor supervisor) {
         
-		findInstance(projectID).setSupervisor(supervisor);
+	// 	findInstance(projectID).setSupervisor(supervisor);
         
-        super.exportDB();
-	}
+    //     super.exportDB();
+	// }
 
-	public void setProjectStatus(int projectID, ProjectStatus updatedStatus) {
-		// if approved, then run countproject
-		findInstance(projectID).setProjectStatus(updatedStatus);
+	// public void setProjectStatus(int projectID, ProjectStatus updatedStatus) {
+	// 	// if approved, then run countproject
+	// 	findInstance(projectID).setProjectStatus(updatedStatus);
 
-        super.exportDB();
-	}
+    //     super.exportDB();
+	// }
 
-	public void deregisterProject(int projectID, String studentID) { 
+	// public void deregisterProject(int projectID, String studentID) { 
 		
-		findInstance(projectID).addRejected(studentID);
+	// 	findInstance(projectID).addRejected(studentID);
 
-        super.exportDB();
-	}
+    //     super.exportDB();
+	// }
 
 	public boolean hasVacancy(Supervisor supervisor) {
 		//get number of assigned projects 
