@@ -1,17 +1,29 @@
-package Entity.UserClass;
+package Users;
 
 import java.util.*;
 
-import Controller.Request.CreateRequestController.NewRequest;
-import Controller.Request.ViewRequestController.ControllerObject.ViewPendingRequests;
-import Controller.Project.ModifyProjectController.ControllerObject.*;
-import Controller.Project.ViewProjectController.ViewPersonalProjects;
-import Entity.DatabaseClass.FYPCoordinatorDB;
-import Entity.RequestClass.Request;
-import Entity.RequestClass.RequestType;
-import Entity.UserClass.UserDetails.*;
 import Exceptions.*;
-
+import Projects.ProjectClasses.ChangeProjectSupervisor;
+import Projects.ProjectClasses.ChangeProjectTitle;
+import Projects.ProjectClasses.CreateProject;
+import Projects.ProjectClasses.DeregisterProject;
+import Projects.ProjectClasses.RegisterProject;
+import Projects.ViewProjectsPackage.ViewPersonalProjects;
+import Database.FYPCoordinatorDB;
+import Requests.NewRequest;
+import Requests.Request;
+import Requests.RequestType;
+import Requests.RequestClasses.ChangeSupervisorRequest;
+import Requests.RequestClasses.ChangeTitleRequest;
+import Requests.RequestClasses.DeregisterProjectRequest;
+import Requests.RequestClasses.RegisterProjectRequest;
+import Requests.ViewRequestsPackage.ViewPendingRequests;
+import Requests.enactRequestsPackage.EnactChangeSupervisor;
+import Requests.enactRequestsPackage.EnactChangeTitle;
+import Requests.enactRequestsPackage.EnactDeregisterProject;
+import Requests.enactRequestsPackage.EnactRegisterProject;
+import Users.UserDetails.User;
+import Users.UserDetails.UserType;
 
 public class Supervisor extends User {
 
@@ -41,7 +53,7 @@ public class Supervisor extends User {
 	@Override
 	public void viewUserMenu() {
 
-		System.out.println("=============  SUPERVISOR MENU  ==============");
+		System.out.println("\n=============  SUPERVISOR MENU  ==============");
 		System.out.println("[1] Create New Project");
 		System.out.println("[2] View Projects created by me");
 		System.out.println("[3] Change Title of Project");
@@ -119,36 +131,43 @@ public class Supervisor extends User {
 		//get fyp coordinator id 
 		FYPCoordinatorDB FYPdb = new FYPCoordinatorDB(); //to remove
 
-		new NewRequest(RequestType.CHANGESUPERVISOR,this, FYPdb.findInstance(), projID);
+		new NewRequest(RequestType.CHANGESUPERVISOR, this, FYPdb.findInstance(), projID);
 		System.out.println("Request Sent.\n");
 
+		//to check on missing link -> accept request -> enact change 			
+		reload = true;
 	}
 
 	public void manageRequests() {
 
-		if((new ViewPendingRequests(this)).requests.size() != 0){
+		if((new ViewPendingRequests(this)).count != 0){
 
 			System.out.println("Select Request to manage: ");
 			int reqID = sc.nextInt();
 
+			System.out.println("Approve or Reject Request? [1] Approve [0] Reject");
+			int choice = sc.nextInt();
+
 			// View requests 
 			Request req = reqDB.findInstance(reqID);
 
+			
+
 			switch(req.getRequestType()){
 				case CHANGESUPERVISOR:
-					new ChangeProjectSupervisor(req.getProjectID(), req.getNewSupervisor());
+					new EnactChangeSupervisor(reqID).enactRequest(choice);
 					break;
 
 				case CHANGETITLE: 
-					new ChangeProjectTitle(req.getProjectID(), req.getNewTitle());
+					new EnactChangeTitle(reqID).enactRequest(choice);
 					break;
 
 				case REGISTERPROJECT:
-					new RegisterProject(req.getProjectID(), (Student) req.getFromUser());
+					new EnactRegisterProject(reqID).enactRequest(choice);
 					break;
 
 				case DEREGISTERPROJECT: 
-					new DeregisterProject(req.getProjectID(), (Student) req.getFromUser());
+					new EnactDeregisterProject(reqID).enactRequest(choice);
 					break;
 			}
 		}

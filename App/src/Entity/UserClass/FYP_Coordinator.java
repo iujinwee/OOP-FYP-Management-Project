@@ -1,14 +1,13 @@
-package Entity.UserClass;
+package Users;
 
 import Exceptions.InvalidInputException;
-
-import java.util.InputMismatchException;
-
-import Controller.Project.ViewProjectController.*;
-import Controller.Request.ManageRequestController.ManageRequest;
-import Controller.Request.ViewRequestController.ControllerObject.ViewAllRequestsHistory;
-import Controller.Request.ViewRequestController.ControllerObject.ViewPendingRequests;
-import Entity.UserClass.UserDetails.*;
+import Projects.ViewProjectsPackage.ViewAvailableProjects;
+import Projects.ViewProjectsPackage.ViewPersonalProjects;
+import Requests.ViewRequestsPackage.ViewAllRequestsHistory;
+import Requests.ViewRequestsPackage.ViewIncomingRequestsHistory;
+import Requests.ViewRequestsPackage.ViewOutgoingRequestsHistory;
+import Requests.ViewRequestsPackage.ViewPendingRequests;
+import Users.UserDetails.UserType;
 
 public class FYP_Coordinator extends Supervisor {
 
@@ -27,7 +26,7 @@ public class FYP_Coordinator extends Supervisor {
 	}
 
 	public void viewUserMenu() {
-		System.out.println("\n=============  MENU  ==============");
+		System.out.println("=============  MENU  ==============");
 		System.out.println("[1] View All Requests.");
 		System.out.println("[2] Manage Requests.");
 		System.out.println("[3] View Pending Requests.");
@@ -39,43 +38,46 @@ public class FYP_Coordinator extends Supervisor {
 	public void getInput() throws InvalidInputException{
 		int choice = -1;
 
+		loadFiles(reload);
+		reload = false;
+
 		while (choice != 0){	
 			
 			// Show User Menu
 			viewUserMenu();
 
 			// Get Input 
-			System.out.printf("\nEnter Option: ");
-			choice = sc.nextInt();
+			System.out.println("\nEnter your option: ");
+			choice = super.sc.nextInt();
 
 			switch(choice){
 				case 1: 
-					System.out.println("Option [1] selected! - View All Requests\n");
+					System.out.println("Option [1] selected! - View All Requests");
 					new ViewAllRequestsHistory(this);
 					break;
 
 				case 2: 
-					System.out.println("Option [2] selected! - Manage Requests.\n");
-					new ManageRequest(this);
-
+					System.out.println("Option [2] selected! - Manage Requests.");
+					new ViewPendingRequests(this);
+					manageRequests();
 					break;
 
 				case 3:
-					System.out.println("Option [3] selected! - View Pending Requests.\n");
+					System.out.println("Option [3] selected! - View Pending Requests.");
 					new ViewPendingRequests(this);
 					break;
 
 				case 4:	
-					System.out.println("Option [4] selected! - View Projects.\n");
+					System.out.println("Option [4] selected! - View Projects.");
 					viewProjectOption();
 					break;
 
 				case 5: 
-					System.out.println("Option [5] selected! - Generate Project Report.\n"); 
+					System.out.println("Option [5] selected! - Generate Project Report."); 
 				
 			
 				case 0: 
-					System.out.println("Option [0] selected! - Exit Program\n");
+					System.out.println("Option [0] selected! - Exit Program");
 					break;
 
 				default:
@@ -88,8 +90,7 @@ public class FYP_Coordinator extends Supervisor {
 		System.out.println("[1] View Personal Projects");
 		System.out.println("[2] View All Projects");
 		System.out.println("[0] Exit");
-		System.out.printf("\nEnter Option: ");
-		
+
 		switch(sc.nextInt()){
 			case 1:
 				new ViewPersonalProjects(this);
@@ -101,4 +102,24 @@ public class FYP_Coordinator extends Supervisor {
 				break;
 		}
 	}
+
+	// @Override
+	// public void manageRequests() {
+
+	// 	//manage requests
+	// 	System.out.println("Enter RequestID to Approve/Reject: ");
+	// 	int reqID = sc.nextInt();
+
+	// 	Request currentReq = reqDB.findInstance(reqID);
+
+	// 	System.out.println("Approve/ Reject");
+	// 	System.out.println("[1] Approve");
+	// 	System.out.println("[0] Reject");
+	// 	int choice = sc.nextInt();
+
+	// 	// currentReq.enactRequest(choice);
+
+	// 	reqDB.exportDB();
+
+	// }
 }
