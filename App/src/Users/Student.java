@@ -106,7 +106,6 @@ public class Student extends User{
 			FYPCoordinatorDB FYPDB = new FYPCoordinatorDB();
 			
 			new NewRequest(RequestType.REGISTERPROJECT, this, FYPDB.findInstance(), projID);
-			reload = true;
 		}
 	}
 
