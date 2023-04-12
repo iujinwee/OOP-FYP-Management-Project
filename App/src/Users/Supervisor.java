@@ -136,9 +136,6 @@ public class Supervisor extends User {
 	public void manageRequests() {
 
 		if((new ViewPendingRequests(this)).count != 0){
-		//ask which request
-		//instantiate based on type of request
-		if(reqDB.viewPendingRequests(this) != 0){
 
 			System.out.println("Select Request to manage: ");
 			int reqID = sc.nextInt();
