@@ -3,6 +3,7 @@ package Users;
 import java.util.*;
 
 import Exceptions.*;
+import Login.Account;
 import Database.FYPCoordinatorDB;
 import Requests.RequestType;
 import Users.UserDetails.User;
@@ -12,7 +13,7 @@ public class Supervisor extends User {
 
 	private int numAssignedProjects=0;
 	private int choice = -1;
-	private int projectID=0;
+	private int projectID = 0;
 
 	/**
 	 * Supervisor constructor.
@@ -41,14 +42,17 @@ public class Supervisor extends User {
 		System.out.println("[3] Change Title of Project");
 		System.out.println("[4] Request to Transfer Student to Replacement Supervisor");
 		System.out.println("[5] Manage Incoming Requests ");
+		System.out.println("[6] Change Password ");
 		System.out.println("[0] Exit Program.");
 	}
 
 	@Override
 	public void getInput() throws InvalidInputException{
-		while (choice != 0){	
+		int projID; 
+		Account acc;
+		boolean loggedin = true;
 
-			int projID; 
+		while (choice != 0 && loggedin){	
 
 			// Load files
 			loadFiles(reload);
@@ -100,6 +104,13 @@ public class Supervisor extends User {
 					System.out.println("Option [5] selected! - Manage Incoming Requests.");
 					reqDB.viewPendingRequests(this);
 					// manageRequests();
+					break;
+
+				case 6:
+					System.out.println("\nOption [7] selected! - Change Password");
+					acc = accDB.findInstance(this.getUserID());
+					acc.changePassword(accDB);
+					loggedin = acc.login(accDB);
 					break;
 
 				default:
