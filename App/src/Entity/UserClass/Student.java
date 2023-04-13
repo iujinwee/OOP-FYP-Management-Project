@@ -116,12 +116,11 @@ public class Student extends User {
 	}	
 
 	private void registerProject() throws InvalidInputException{
-		ViewAvailableProjects projs = new ViewAvailableProjects(this);
 
 		if (this.numRegisteredReq==1){
 			System.out.println("You've already sent a request to register a project");
-		}	
-		else{
+		}	else{
+		ViewAvailableProjects projs = new ViewAvailableProjects(this);
 			// View Projects
 			if(projs.projects.size()!=0){
 				System.out.printf("Select Project to register: ");
