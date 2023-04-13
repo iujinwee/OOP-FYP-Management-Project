@@ -96,7 +96,7 @@ public class Account {
 		
 		System.out.println("Enter new password: ");
 		String newPassword = sc.nextLine();
-		if(newPassword != this.password) {
+		if(newPassword.compareTo(this.password)!=0) {
 			this.password = newPassword;
 			accDB.exportDB();
 			System.out.println("Password successfully changed");

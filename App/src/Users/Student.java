@@ -46,7 +46,7 @@ public class Student extends User{
 
 	@Override
 	public void getInput() throws InvalidInputException{
-		
+
 		Account acc;
 		boolean loggedin = true;
 		loadFiles(reload);
@@ -96,8 +96,10 @@ public class Student extends User{
 				case 7:
 					System.out.println("\nOption [7] selected! - Change Password");
 					acc = accDB.findInstance(this.getUserID());
-					acc.changePassword(accDB);
-					loggedin = acc.login(accDB);
+					boolean changed = acc.changePassword(accDB);
+					if(changed){
+						loggedin = acc.login(accDB);
+					}
 					break;
 
 				case 0: 

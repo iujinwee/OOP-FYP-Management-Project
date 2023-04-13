@@ -16,8 +16,8 @@ public class App {
         // Supervisor u = new Supervisor("ASFLI", "A S Madhukumar", "E@ntu.sg", 0);
         // u.startProgram();
 
-        Student u = new Student("YCHERN", "CHERN", "Test");
-        u.startProgram();
+        // Student u = new Student("YCHERN", "CHERN", "Test");
+        // u.startProgram();
 
         AccountDB accDB = new AccountDB();
         StudentDB studentDB = new StudentDB();

@@ -107,8 +107,10 @@ public class Supervisor extends User {
 				case 6:
 					System.out.println("\nOption [6] selected! - Change Password");
 					acc = accDB.findInstance(this.getUserID());
-					acc.changePassword(accDB);
-					loggedin = acc.login(accDB);
+					boolean changed = acc.changePassword(accDB);
+					if(changed) {
+						loggedin = acc.login(accDB);
+					}
 					break;
 
 				case 0: 

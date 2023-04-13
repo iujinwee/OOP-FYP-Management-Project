@@ -1,6 +1,7 @@
 package Users;
 
 import Exceptions.InvalidInputException;
+import Login.Account;
 import Projects.ViewProjectsPackage.ViewAvailableProjects;
 import Projects.ViewProjectsPackage.ViewPersonalProjects;
 import Requests.ViewRequestsPackage.ViewAllRequestsHistory;
@@ -27,21 +28,25 @@ public class FYP_Coordinator extends Supervisor {
 
 	public void viewUserMenu() {
 		System.out.println("=============  MENU  ==============");
-		System.out.println("[1] View All Requests.");
-		System.out.println("[2] Manage Requests.");
-		System.out.println("[3] View Pending Requests.");
-		System.out.println("[4] View Projects.");
+		System.out.println("[1] View All Requests ");
+		System.out.println("[2] Manage Requests ");
+		System.out.println("[3] View Pending Requests ");
+		System.out.println("[4] View Projects ");
+		System.out.println("[5] Generate Project Report ");
+		System.out.println("[6] Change Password ");
 		System.out.println("[0] Exit Program.");
 	}
 	
 	@Override
 	public void getInput() throws InvalidInputException{
-		int choice = -1;
-
+		
+		Account acc;
+		boolean loggedin = true;
 		loadFiles(reload);
 		reload = false;
+		int choice = -1;
 
-		while (choice != 0){	
+		while (choice != 0 && loggedin){	
 			
 			// Show User Menu
 			viewUserMenu();
@@ -74,7 +79,10 @@ public class FYP_Coordinator extends Supervisor {
 
 				case 5: 
 					System.out.println("Option [5] selected! - Generate Project Report."); 
+					break;
 				
+				case 6:
+					
 			
 				case 0: 
 					System.out.println("Option [0] selected! - Exit Program");
