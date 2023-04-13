@@ -29,7 +29,7 @@ public class RegisterProject extends ModifyProjectDB{
             // Allocate student
             Project currentProj = projDB.findInstance(projID);
             currentProj.setStudent(student);
-            currentProj.setProjectStatus(ProjectStatus.RESERVED);
+            currentProj.setProjectStatus(ProjectStatus.ALLOCATED);
 
             System.out.printf("Successfully Registered for Project [%d] %s\n", currentProj.getProjectID(), currentProj.getProjectTitle());
         }

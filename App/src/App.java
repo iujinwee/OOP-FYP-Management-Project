@@ -13,14 +13,14 @@ public class App {
 
 	public static void main(String[] args) {
 
-        // Supervisor u = new Supervisor("ASFLI", "A S Madhukumar", "E@ntu.sg", 0);
-        // u.startProgram();
+        Supervisor u = new Supervisor("ASMADHUKUMAR", "A S Madhukumar", "ASMADHUKUMAR@NTU.EDU.SG", 1);
+        u.startProgram();
 
         // Student u = new Student("YCHERN", "CHERN", "Test");
         // u.startProgram();
 
-        FYP_Coordinator u = new FYP_Coordinator("ASFLI", "Li Fang", "ASFLI@NTU.EDU.SG");
-        u.startProgram();
+        // FYP_Coordinator u = new FYP_Coordinator("ASFLI", "Li Fang", "ASFLI@NTU.EDU.SG");
+        // u.startProgram();
 
         AccountDB accountDB = new AccountDB();
         StudentDB studentDB = new StudentDB();

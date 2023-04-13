@@ -26,7 +26,7 @@ public abstract class ViewRequests implements RequestInterface, ViewRequestInter
     @Override
     public int viewRequest(Request req){
 		System.out.printf("> [%d] %s REQUEST - Project %d\n", req.getRequestID(), req.getRequestType().toString(), req.getProjectID());
-		System.out.printf("       STATUS: %s");
+		System.out.printf("       STATUS: %s", req.getRequestStatus().toString());
 		System.out.printf("       From: %s | To: %s\n", req.getFromUser().getName(), req.getToUser().getName());
 		if(req.getNewSupervisor()!=null){
 			System.out.printf("       New Supervisor Name: %s\n", req.getNewSupervisor());	
