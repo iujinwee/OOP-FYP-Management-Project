@@ -5,7 +5,7 @@ import java.util.*;
 import Controller.Request.CreateRequestController.NewRequest;
 import Controller.Request.ViewRequestController.ControllerObject.ViewPendingRequests;
 import Controller.Project.ModifyProjectController.ControllerObject.*;
-import Controller.Project.ViewProjectController.ViewPersonalProjects;
+import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
 import Entity.DatabaseClass.FYPCoordinatorDB;
 import Entity.RequestClass.Request;
 import Entity.RequestClass.RequestType;

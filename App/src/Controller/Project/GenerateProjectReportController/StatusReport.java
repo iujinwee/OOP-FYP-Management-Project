@@ -29,8 +29,8 @@ public class StatusReport extends ViewProjectsController{
     public void header() {
         System.out.println("PROJECT REPORT (STATUS)");
         System.out.println("=========================");
-        System.out.println(String.format("%-4s %-80s %-10s %-15s %-15s", "ID", "Title", "Status", "Student", "Supervisor"));
-        System.out.println("-------------------------");
+        System.out.println(String.format("%-4s %-85s %-10s %-15s %-15s", "ID", "Title", "Status", "Student", "Supervisor"));
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
     }
 
     @Override
@@ -39,9 +39,9 @@ public class StatusReport extends ViewProjectsController{
         printList(reservedProjs);
         printList(availableProjs);
         printList(unavailableProjs);
-        System.out.println("-------------------------");
-        System.out.println(String.format("Total: %-5d | Allocated: %-5d | Reserved: %-5d | Available: %-5d | Unavailable: %-5d ", projDB.size, allocatedProjs.size(), reservedProjs.size(), availableProjs.size(), unavailableProjs.size()));
-        System.out.println("-------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println(String.format("Total: %-4d | Allocated: %-5d | Reserved: %-5d | Available: %-5d | Unavailable: %-5d ", projDB.size, allocatedProjs.size(), reservedProjs.size(), availableProjs.size(), unavailableProjs.size()));
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
 
     }
 
@@ -81,7 +81,7 @@ public class StatusReport extends ViewProjectsController{
     private void printList(ArrayList<Project> arr){
         if(arr.size()!=0){
             for(Project p : arr){    
-                System.out.println(String.format("%-4s %-80s %-10s %-15s %-15s", p.getProjectID(), p.getProjectTitle(), p.getProjectStatus(), p.getStudent().getName(), p.getSupervisor().getName()));
+                System.out.println(String.format("%-4s %-85s %-10s %-15s %-15s", p.getProjectID(), p.getProjectTitle(), p.getProjectStatus(), p.getStudent().getName(), p.getSupervisor().getName()));
             }
         }        
     }
