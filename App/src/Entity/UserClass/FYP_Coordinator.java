@@ -4,6 +4,7 @@ import Exceptions.InvalidInputException;
 
 import java.util.InputMismatchException;
 
+import Controller.Project.GenerateProjectReportController.GenerateReport;
 import Controller.Project.ViewProjectController.*;
 import Controller.Request.ManageRequestController.ManageRequest;
 import Controller.Request.ViewRequestController.ControllerObject.ViewAllRequestsHistory;
@@ -32,6 +33,7 @@ public class FYP_Coordinator extends Supervisor {
 		System.out.println("[2] Manage Requests.");
 		System.out.println("[3] View Pending Requests.");
 		System.out.println("[4] View Projects.");
+		System.out.println("[5] Generate Project Report.");
 		System.out.println("[0] Exit Program.");
 	}
 	
@@ -80,9 +82,8 @@ public class FYP_Coordinator extends Supervisor {
 
 				case 5: 
 					System.out.println("Option [5] selected! - Generate Project Report.\n"); 
-				
-				case 6:
-					
+					new GenerateReport();
+					break;
 			
 				case 0: 
 					System.out.println("Option [0] selected! - Exit Program\n");
