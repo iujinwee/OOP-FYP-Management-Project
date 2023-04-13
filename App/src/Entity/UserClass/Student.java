@@ -1,7 +1,7 @@
 package Entity.UserClass;
 
-import Controller.Project.ViewProjectController.ViewAvailableProjects;
-import Controller.Project.ViewProjectController.ViewPersonalProjects;
+import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
+import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
 import Controller.Request.CreateRequestController.NewRequest;
 import Controller.Request.ViewRequestController.ControllerObject.ViewOutgoingRequestsHistory;
 import Entity.DatabaseClass.FYPCoordinatorDB;

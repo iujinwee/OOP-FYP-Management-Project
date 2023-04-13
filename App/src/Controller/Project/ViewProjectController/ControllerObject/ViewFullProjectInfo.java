@@ -1,5 +1,6 @@
-package Controller.Project.ViewProjectController;
+package Controller.Project.ViewProjectController.ControllerObject;
 
+import Controller.Project.ViewProjectController.ViewProjectsController;
 import Entity.ProjectClass.Project;
 import Entity.UserClass.UserDetails.User;
 

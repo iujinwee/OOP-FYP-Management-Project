@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import Boundaries.Menu.GetInputInterface;
 import Boundaries.Request.ViewRequestListInterface;
-import Controller.Project.ViewProjectController.ViewFullProjectInfo;
+import Controller.Project.ViewProjectController.ControllerObject.ViewFullProjectInfo;
 import Controller.Request.EnactRequestController.ControllerObject.*;
 import Controller.Request.ViewRequestController.ControllerObject.ViewPendingRequests;
 import Entity.DatabaseClass.ProjectDB;
