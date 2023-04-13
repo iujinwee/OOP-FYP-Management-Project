@@ -27,6 +27,25 @@ public class ManageRequest implements GetInputInterface, ViewRequestListInterfac
     }
 
     @Override
+    public void body(User user) {
+        pend = new ViewPendingRequests(user);
+
+        // Check if pending request
+        if(pend.requests.size()!=0){
+            try{
+                getInput(); // Get selection of request
+
+            }catch(InvalidInputException e){
+                handler.handleInvalidInputException(e);
+                
+            }catch(InputMismatchException e){
+                sc.nextLine();
+                handler.handleInputMismatchException(e);
+            }
+        }
+    }
+
+    @Override
     public void getInput() throws InvalidInputException {
         System.out.printf("Enter Request ID to manage request: ");
         int choice = sc.nextInt();
@@ -60,25 +79,6 @@ public class ManageRequest implements GetInputInterface, ViewRequestListInterfac
             }
         }else{
             throw new InvalidInputException(choice);
-        }
-    }
-
-    @Override
-    public void body(User user) {
-        pend = new ViewPendingRequests(user);
-
-        // Check if pending request
-        if(pend.requests.size()!=0){
-            try{
-                getInput(); // Get selection of request
-
-            }catch(InvalidInputException e){
-                handler.handleInvalidInputException(e);
-                
-            }catch(InputMismatchException e){
-                sc.nextLine();
-                handler.handleInputMismatchException(e);
-            }
         }
     }
 
