@@ -16,20 +16,26 @@ public abstract class EnactRequestController extends AccessRequestDBController i
     
     public ProjectDB projDB;
     public Request request;
+    private handleInvalidInput selectionHandler = new handleInvalidInput();
+    private boolean enacted = false;
 
     public EnactRequestController(int reqID){
         loadFiles();
         this.request = reqDB.findInstance(reqID);
+
         updateDB();
-        exportDB();
+        
+        if(enacted){
+            exportDB();
+        }
     }
 
     @Override
     public void loadFiles() {
         super.loadFiles();
-        System.out.println("Initializing ProjectDB...");
-        projDB = new ProjectDB();
-        System.out.println("ProjectDB Initialized.");
+        // System.out.println("Initializing ProjectDB...");
+        // projDB = new ProjectDB();
+        // System.out.println("ProjectDB Initialized.");
     }
 
     @Override
@@ -38,24 +44,20 @@ public abstract class EnactRequestController extends AccessRequestDBController i
         System.out.printf("\n> Choose to accept/ reject [Request #%s]\n", request.getRequestID());
         System.out.println("[1] Approve");
         System.out.println("[0] Reject");
-
+        
         Scanner sc = new Scanner(System.in);
-        int choice = sc.nextInt();
-        handleInvalidInput handler = new handleInvalidInput(sc, 3);
-        
-        while(handler.checkAttempts()){
-            try{
-                enactRequest(choice);
-                break;
-            }catch(InvalidInputException e){
-                handler.handleInvalidInputException(e);
+            int choice = sc.nextInt();
+    
+        try{
+            enactRequest(choice);
+            enacted = true;
 
-            }catch(InputMismatchException e){
-                handler.handleInputMismatchException(e);
-            }
+        }catch(InvalidInputException e){
+            selectionHandler.handleInvalidInputException(e);
+
+        }catch(InputMismatchException e){
+            selectionHandler.handleInputMismatchException(e);
         }
-        
-        sc.close();
     }
 
     @Override
@@ -65,18 +67,24 @@ public abstract class EnactRequestController extends AccessRequestDBController i
             case 1:
                 approve();
                 request.setRequestStatus(RequestStatus.APPROVED);
+                System.out.println("\n==============================");
                 System.out.printf("Request #%d has been approved.", request.getRequestID());
+                System.out.println("==============================\n");
+
                 break;
 
             // Reject
             case 0:
                 reject();
                 request.setRequestStatus(RequestStatus.REJECTED);
+                System.out.println("\n==============================");
                 System.out.printf("Request #%d has been rejected.", request.getRequestID());
+                System.out.println("==============================\n");
+
                 break;
                 
             default:
-                throw new InvalidInputException();
+                throw new InvalidInputException(choice);
         }
     }
 }

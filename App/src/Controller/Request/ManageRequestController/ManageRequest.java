@@ -15,12 +15,12 @@ import Exceptions.InvalidInputException;
 import Exceptions.handleInvalidInput;
 
 public class ManageRequest implements GetInputInterface, ViewRequestListInterface{
-    Scanner sc = new Scanner(System.in);
-    ViewPendingRequests pend;
-    handleInvalidInput handler;
+    private Scanner sc = new Scanner(System.in);
+    private ViewPendingRequests pend;
+    private handleInvalidInput handler = new handleInvalidInput();
+    private Request selectedRequest;
 
-    public ManageRequest(User user, handleInvalidInput handler){
-        this.handler = handler;
+    public ManageRequest(User user){
         header();
         body(user);
         footer();
@@ -28,12 +28,13 @@ public class ManageRequest implements GetInputInterface, ViewRequestListInterfac
 
     @Override
     public void getInput() throws InvalidInputException {
-        System.out.println("Enter Request ID to manage request:");
+        System.out.printf("Enter Request ID to manage request: ");
         int choice = sc.nextInt();
+
         if(pend.requests.contains(choice)){
 
             // Display Request
-            Request selectedRequest = pend.reqDB.findInstance(choice);
+            selectedRequest = pend.reqDB.findInstance(choice);
             new ViewFullProjectInfo((new ProjectDB()).findInstance(choice));
 
             // Enact request based on Request Type
@@ -55,8 +56,10 @@ public class ManageRequest implements GetInputInterface, ViewRequestListInterfac
                     break;
 
                 default:
-                    throw new InvalidInputException();
+                    throw new InvalidInputException(choice);
             }
+        }else{
+            throw new InvalidInputException(choice);
         }
     }
 
@@ -73,6 +76,7 @@ public class ManageRequest implements GetInputInterface, ViewRequestListInterfac
                 handler.handleInvalidInputException(e);
                 
             }catch(InputMismatchException e){
+                sc.nextLine();
                 handler.handleInputMismatchException(e);
             }
         }
@@ -80,17 +84,15 @@ public class ManageRequest implements GetInputInterface, ViewRequestListInterfac
 
     @Override
     public void header() {
-        System.out.println("===========================================");
-        System.out.println("=========     REQUEST MANAGER     =========");
-        System.out.println("===========================================");
+        System.out.println("*******************************************");
+        System.out.println("*********     REQUEST MANAGER     *********");
+        System.out.println("*******************************************");
     }
 
     @Override
     public void footer() {
         if(pend.requests.size()==0){
-            System.out.println("\n========    No Pending Requests.    ========");
-        }else{
-            System.out.println("\n=========    Request %d has been resolved.    =========");
+            System.out.println("\n*********    No Pending Requests.    *********\n");
         }
     }
 }

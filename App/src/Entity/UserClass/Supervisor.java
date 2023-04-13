@@ -156,8 +156,6 @@ public class Supervisor extends User {
 		new NewRequest(RequestType.CHANGESUPERVISOR,this, FYPdb.findInstance(), projID);
 		System.out.println("Request Sent.\n");
 
-		//to check on missing link -> accept request -> enact change 			
-		reload = true;
 	}
 
 	public void manageRequests() {

@@ -27,13 +27,11 @@ public class FYP_Coordinator extends Supervisor {
 	}
 
 	public void viewUserMenu() {
-		System.out.println("=============  MENU  ==============");
-		System.out.println("[1] View All Requests ");
-		System.out.println("[2] Manage Requests ");
-		System.out.println("[3] View Pending Requests ");
-		System.out.println("[4] View Projects ");
-		System.out.println("[5] Generate Project Report ");
-		System.out.println("[6] Change Password ");
+		System.out.println("\n=============  MENU  ==============");
+		System.out.println("[1] View All Requests.");
+		System.out.println("[2] Manage Requests.");
+		System.out.println("[3] View Pending Requests.");
+		System.out.println("[4] View Projects.");
 		System.out.println("[0] Exit Program.");
 	}
 	
@@ -55,8 +53,8 @@ public class FYP_Coordinator extends Supervisor {
 			viewUserMenu();
 
 			// Get Input 
-			System.out.println("\nEnter your option: ");
-			choice = super.sc.nextInt();
+			System.out.printf("\nEnter Option: ");
+			choice = sc.nextInt();
 
 			switch(choice){
 				case 1: 
@@ -66,7 +64,7 @@ public class FYP_Coordinator extends Supervisor {
 
 				case 2: 
 					System.out.println("Option [2] selected! - Manage Requests.\n");
-					new ManageRequest(this, handler);
+					new ManageRequest(this);
 
 					break;
 
@@ -100,7 +98,8 @@ public class FYP_Coordinator extends Supervisor {
 		System.out.println("[1] View Personal Projects");
 		System.out.println("[2] View All Projects");
 		System.out.println("[0] Exit");
-
+		System.out.printf("\nEnter Option: ");
+		
 		switch(sc.nextInt()){
 			case 1:
 				new ViewPersonalProjects(this);
