@@ -19,8 +19,15 @@ public class App {
         Supervisor u = new Supervisor("ASMADHUKUMAR", "A S Madhukumar", "ASMADHUKUMAR@NTU.EDU.SG", 2);
         u.startProgram();
 
+<<<<<<< HEAD
         // Student u = new StudentDB().findInstance("YCHERN");
         // u.startProgram();
+=======
+        Student u = new Student("CT113", "CALVIN", "Test");
+        u.startProgram();
+
+        new WelcomePage();
+>>>>>>> 54a51fb (Limit No. Register Project Request feature)
 
         // FYP_Coordinator m = new FYP_Coordinator("ASFLI", "LI FANG", "Y");
         // m.startProgram();

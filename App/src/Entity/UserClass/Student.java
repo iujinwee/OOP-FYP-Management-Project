@@ -13,9 +13,8 @@ import Exceptions.InvalidInputException;
 public class Student extends User {
 
 	private boolean assigned; 
-
-	public Student() {
-	}
+	public int numRegisteredReq; 
+	public Student() {}
 
 	/**
 	 * Student constructor.
@@ -27,15 +26,7 @@ public class Student extends User {
 	public Student(String userID, String name, String email, Boolean bool) {
 		super(userID, name, email);
 		super.setUserType(UserType.STUDENT);
-		setAssigned(bool);
-	}
-
-	public boolean getAssigned(){
-		return this.assigned;
-	}
-
-	public void setAssigned(boolean bool){
-		this.assigned = bool;
+		numRegisteredReq = 0 ; 
 	}
 
 	@Override
@@ -122,5 +113,82 @@ public class Student extends User {
 						throw new InvalidInputException(choice);
 				}
 		}
+	}	
+
+	private void registerProject() throws InvalidInputException{
+		ViewAvailableProjects projs = new ViewAvailableProjects(this);
+
+		if (this.numRegisteredReq==1){
+			System.out.println("You've already sent a request to register a project");
+		}	
+		else{
+			// View Projects
+			if(projs.projects.size()!=0){
+				System.out.printf("Select Project to register: ");
+				int projID = sc.nextInt();
+				
+				if(projs.projects.contains(projID)){
+					FYPCoordinatorDB FYPDB = new FYPCoordinatorDB();
+					new NewRequest(RequestType.REGISTERPROJECT, this, FYPDB.findInstance(), projID);
+					this.numRegisteredReq+=1;
+				}else{
+					throw new InvalidInputException(projID);
+				}
+			}
+		}
+	}
+
+	private void deregisterProject() throws InvalidInputException{
+		// View Projects
+		handleInvalidInput handler = new handleInvalidInput();
+		ViewPersonalProjects projs = new ViewPersonalProjects(this);
+
+		if(projs.projects.size()!=0){
+			int choice;
+
+			// header
+			System.out.println("Deregister this project?");
+			System.out.println("[1] Yes");
+			System.out.println("[0] No");
+
+			// getinput
+			try{
+				choice = sc.nextInt();
+				switch(choice){
+					case 1:
+						FYPCoordinatorDB FYPDB = new FYPCoordinatorDB();
+						new NewRequest(RequestType.DEREGISTERPROJECT, this, FYPDB.findInstance(), projs.projects.get(0));
+
+					case 0:
+						break;
+
+					default: 
+						throw new InvalidInputException(choice);
+				}
+			}catch(InvalidInputException e){
+				handler.handleInvalidInputException(e);
+			}catch(InputMismatchException e){
+				handler.handleInputMismatchException(e);
+			}	
+		}
+	}
+
+	private void changeTitle() throws InvalidInputException{
+		ViewPersonalProjects projs = new ViewPersonalProjects(this);
+		// View Projects
+		if(projs.projects.size()!=0){
+			System.out.printf("Select Assigned Project to change title: ");
+			int projID = super.sc.nextInt();
+			
+			if(projs.projects.contains(projID)){
+				new NewRequest(RequestType.CHANGETITLE, this, projDB.findInstance(projID).getSupervisor(), projID);
+			}else{
+				throw new InvalidInputException(projID);
+			}
+		}
+	}
+
+	private void viewAllRequests(){
+		new ViewOutgoingRequestsHistory(this);
 	}
 }
