@@ -1,7 +1,7 @@
 package Controller.Request.CreateRequestController;
 
-import Controller.Request.ModifyRequestController;
-import Entity.RequestClass.Request;
+import Boundaries.Request.ViewRequestListInterface;
+import Controller.Request.AccessRequestDBController;
 import Entity.RequestClass.RequestType;
 import Entity.RequestClass.RequestSubClass.ChangeSupervisorRequest;
 import Entity.RequestClass.RequestSubClass.ChangeTitleRequest;
@@ -9,7 +9,7 @@ import Entity.RequestClass.RequestSubClass.DeregisterProjectRequest;
 import Entity.RequestClass.RequestSubClass.RegisterProjectRequest;
 import Entity.UserClass.UserDetails.User;
 
-public class NewRequest extends ModifyRequestController {
+public class NewRequest extends AccessRequestDBController implements ViewRequestListInterface {
 
     private RequestType type;
     private User fromUser;
@@ -23,13 +23,32 @@ public class NewRequest extends ModifyRequestController {
         this.projID = projID;
 
         loadFiles();
+        header();
+        body(fromUser);
+        footer();
+    }
+
+    @Override
+    public void header() {
+        System.out.println("==================================================");
+        System.out.printf("====     Creating %s Request     ====\n", type.toString());
+        System.out.println("==================================================");
+    }
+    
+    @Override
+    public void body(User user) {
         updateDB();
         exportDB();
     }
 
     @Override
+    public void footer() {
+        System.out.println("==========      Request has been created!     ===========");
+
+    }
+
+    @Override
     public void updateDB() {
-        System.out.printf("Creating %s Request\n", type.toString());
 
         switch(type){
             case CHANGESUPERVISOR:
@@ -41,9 +60,7 @@ public class NewRequest extends ModifyRequestController {
                 break;
 
             case REGISTERPROJECT:
-                RegisterProjectRequest rp = new RegisterProjectRequest(reqDB.size+1, projID, fromUser, toUser);
-                Request x = rp.createRequest();
-                reqDB.objectDB.add(x);
+                reqDB.objectDB.add((new RegisterProjectRequest(reqDB.size+1, projID, fromUser, toUser)).createRequest());
                 break;
 
             case DEREGISTERPROJECT:
@@ -54,4 +71,5 @@ public class NewRequest extends ModifyRequestController {
                 break;
         }
     }
+
 }

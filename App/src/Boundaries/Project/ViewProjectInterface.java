@@ -3,5 +3,6 @@ package Boundaries.Project;
 import Entity.ProjectClass.Project;
 
 public interface ViewProjectInterface {
-    abstract public int viewProject(Project proj);
+    abstract public int viewBasicProjectInfo(Project proj);
+    abstract public void viewFullProjectInfo(Project proj);
 }

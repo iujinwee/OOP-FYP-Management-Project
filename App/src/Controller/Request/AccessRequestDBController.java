@@ -5,9 +5,8 @@ import Boundaries.Database.LoadFilesInterface;
 import Boundaries.Database.UpdateDBInterface;
 import Entity.DatabaseClass.RequestDB;
 
-public abstract class ModifyRequestController implements LoadFilesInterface, UpdateDBInterface, ExportDBInterface{
+public abstract class AccessRequestDBController implements LoadFilesInterface, UpdateDBInterface, ExportDBInterface{
 
-    public boolean filesInitialized = false; 
     public RequestDB reqDB;
 
     @Override

@@ -32,12 +32,12 @@ public class ViewPendingRequests extends ViewRequestController {
                 switch(user.getUserType()){
                     case SUPERVISOR:
                         if(req.getToUser().getUserID().compareTo(user.getUserID())==0){
-                            count += viewRequest(req);
+                            requests.add(viewRequest(req));
                         }
                         break;
     
                     case FYPCOORDINATOR:
-                        count += viewRequest(req);
+                        requests.add(viewRequest(req));
                         break;
     
                     default:

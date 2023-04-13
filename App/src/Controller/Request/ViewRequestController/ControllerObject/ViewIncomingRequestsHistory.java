@@ -27,7 +27,7 @@ public class ViewIncomingRequestsHistory extends ViewRequestController{
 			}
 
             if(req.gettoUserID().compareTo(user.getUserID())==0){
-                count += viewRequest(req);
+                requests.add(viewRequest(req));
             }            
 		}
     }

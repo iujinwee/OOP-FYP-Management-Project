@@ -29,7 +29,7 @@ public class Student extends User{
 	
 	@Override
 	public void viewUserMenu() {
-		System.out.println("\n=============  MENU  ==============");
+		System.out.println("=============  MENU  ==============");
 		System.out.println("[1] Show Available Projects.");
 		System.out.println("[2] Show Registered Project.");
 		System.out.println("[3] Register Project.");
@@ -50,7 +50,7 @@ public class Student extends User{
 
 			// Get Input 
 			System.out.println("\nEnter your option: ");
-			choice = super.sc.nextInt();
+			choice = sc.nextInt();
 
 			switch(choice){
 				case 1: 

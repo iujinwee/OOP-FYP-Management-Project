@@ -16,11 +16,11 @@ public abstract class User implements GetInputInterface, UserProgramInterface, L
 	private String userID;
 	private String name;
 	private String email;
-	public Scanner sc;
 	public ProjectDB projDB;
 	public RequestDB reqDB;
-	public boolean reload = true;
-	UserType type;
+	public Scanner sc = new Scanner(System.in);
+	public handleInvalidInput handler = new handleInvalidInput(sc, 3);
+	private UserType type;
 
 	/**
 	 * User constructor
@@ -72,10 +72,8 @@ public abstract class User implements GetInputInterface, UserProgramInterface, L
 
 	@Override
 	public void startProgram() {
-		sc = new Scanner(System.in);
-		handleInvalidInput handler = new handleInvalidInput(sc, 3);
 
-        System.out.printf("You are currently signed in as a %s.\n", type);
+        System.out.printf("You are currently signed in as a %s.\n\n", type);
 
 		while(handler.checkAttempts()){
 			try{

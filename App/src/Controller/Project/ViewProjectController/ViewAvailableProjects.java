@@ -30,20 +30,23 @@ public class ViewAvailableProjects extends ViewProjectsController{
                 // Supervisor can access his/ her own projects
                 case SUPERVISOR: 
                     if(curProj.getSupervisorID().compareTo(user.getUserID())==0){
-						projects.add(viewProject(curProj));
+						projects.add(curProj.getProjectID());
+                        viewBasicProjectInfo(curProj);
                     }
                     break;
 
                 // Student can only access available projects 
                 case STUDENT: 
                     if(curProj.getProjectStatus()==ProjectStatus.AVAILABLE){
-						projects.add(viewProject(curProj));
+						projects.add(curProj.getProjectID());
+                        viewBasicProjectInfo(curProj);
                     }
                     break;
 
                 // FYP Coordinator can access all projects
                 case FYPCOORDINATOR: 
-                    projects.add(viewProject(curProj));
+                    projects.add(curProj.getProjectID());
+                    viewBasicProjectInfo(curProj);
                     break;
 
                 default:

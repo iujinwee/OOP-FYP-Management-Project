@@ -41,7 +41,7 @@ public class Supervisor extends User {
 	@Override
 	public void viewUserMenu() {
 
-		System.out.println("\n=============  SUPERVISOR MENU  ==============");
+		System.out.println("=============  SUPERVISOR MENU  ==============");
 		System.out.println("[1] Create New Project");
 		System.out.println("[2] View Projects created by me");
 		System.out.println("[3] Change Title of Project");
@@ -128,7 +128,7 @@ public class Supervisor extends User {
 
 	public void manageRequests() {
 
-		if((new ViewPendingRequests(this)).count != 0){
+		if((new ViewPendingRequests(this)).requests.size() != 0){
 
 			System.out.println("Select Request to manage: ");
 			int reqID = sc.nextInt();

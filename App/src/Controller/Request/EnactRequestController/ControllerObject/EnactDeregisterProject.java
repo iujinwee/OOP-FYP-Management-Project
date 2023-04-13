@@ -7,28 +7,19 @@ import Entity.UserClass.Student;
 
 public class EnactDeregisterProject extends EnactRequestController {
 
+    Student dereg = (Student) request.getFromUser();
+
     public EnactDeregisterProject(int reqID){
         super(reqID);
     }
+    
+    @Override
+    public void approve() {
+        new DeregisterProject(request.getProjectID(), dereg);
+    }
 
     @Override
-    public void enactRequest(int choice){
-        switch(choice){
-            // Approve
-            case 1:
-                Student dereg = (Student) request.getFromUser();
-                new DeregisterProject(request.getProjectID(), dereg);
-                request.setRequestStatus(RequestStatus.APPROVED);
-                break;
-
-            // Reject
-            case 0:
-                request.setRequestStatus(RequestStatus.REJECTED);
-                break;
-                
-            default:
-                System.out.println("Invalid choice");
-                break;
-        }
+    public void reject() {
+        projDB.findInstance(request.getProjectID()).addRejected(dereg.getUserID());
     }
 }

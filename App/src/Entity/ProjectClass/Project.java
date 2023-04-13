@@ -41,29 +41,6 @@ public class Project {
 		this.projectStatus = status;
 	}
 
-	public void viewProjectDetails(ProjectStatus status) {
-		// View Project Details
-		System.out.println("===================================================");
-		System.out.println("=========         Project Details         =========");
-		System.out.println("===================================================");
-		System.out.println("> Project");
-		System.out.println("Project ID: " + projectID);
-		System.out.println("Project Title: " + projectTitle);
-		System.out.println("Project Status: " + projectStatus);
-
-		System.out.println("\n> Supervisor-in-charge");
-		System.out.println("Supervisor Name: " + supervisedBy.getName());
-		System.out.println("Supervisor Email: " + supervisedBy.getEmail());
-		System.out.println("==================================================");
-
-		if((status == ProjectStatus.ALLOCATED) | (status == ProjectStatus.RESERVED)){
-			System.out.println("\n> Assigned Student");
-			System.out.println("Student Name: " + assignedTo.getName());
-			System.out.println("Student Email: " + assignedTo.getEmail());
-			System.out.println("===================================================");
-		}
-	}
-	
 	public int getProjectID(){
 		return projectID;
 	}

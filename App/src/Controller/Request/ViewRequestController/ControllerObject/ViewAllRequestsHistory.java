@@ -20,12 +20,12 @@ public class ViewAllRequestsHistory extends ViewRequestController{
     @Override
     public void body(User user) {
         for(Object obj : reqDB.objectDB){
-			Request req = (Request) obj;
+          Request req = (Request) obj;
 
-			if(req.getToUser() == null){
-				break;
-			}
-            count += viewRequest(req);
-		}
+          if(req.getToUser() == null){
+            break;
+          }
+          requests.add(viewRequest(req));
+        }
     }
 }
