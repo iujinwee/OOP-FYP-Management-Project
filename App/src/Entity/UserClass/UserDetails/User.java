@@ -16,28 +16,29 @@ public abstract class User implements GetInputInterface, UserProgramInterface, L
 	private String userID;
 	private String name;
 	private String email;
+	private UserType type;
 	// public AccountDB accDB; 
 	public ProjectDB projDB;
 	public RequestDB reqDB;
 	public Scanner sc = new Scanner(System.in);
 	public handleInvalidInput handler = new handleInvalidInput(sc, 3);
-	private UserType type;
+	
 
+	public User(){};
+	
 	/**
 	 * User constructor
 	 * @param userID Unique user ID of the user, the part of the email before @
 	 * @param name Name of the user
 	 * @param email Email address of the user
 	 */
-
-	public User(){};
-	
 	public User(String userID, String name, String email) {
 		this.userID = userID;
 		this.name = name;
 		this.email = email;
 	}
 
+	// GETTER FUNCTIONS
 	public String getUserID() {
 		return this.userID;
 	}

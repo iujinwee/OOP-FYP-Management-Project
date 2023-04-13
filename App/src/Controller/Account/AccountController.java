@@ -2,10 +2,9 @@ package Controller.Account;
 
 import Boundaries.Database.ExportDBInterface;
 import Boundaries.Database.LoadFilesInterface;
-import Boundaries.Database.UpdateDBInterface;
 import Entity.DatabaseClass.AccountDB;
 
-public abstract class AccountController implements LoadFilesInterface, UpdateDBInterface, ExportDBInterface{
+public abstract class AccountController implements LoadFilesInterface, ExportDBInterface{
 
     public boolean filesInitialized = false; 
     public AccountDB accDB;

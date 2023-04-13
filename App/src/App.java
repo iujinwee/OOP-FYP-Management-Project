@@ -13,6 +13,7 @@ import Entity.AccountClass.Account;
 import Entity.DatabaseClass.AccountDB;
 import Entity.DatabaseClass.StudentDB;
 import Entity.DatabaseClass.SupervisorDB;
+import Entity.DatabaseClass.FYP_CoordinatorDB;
 import Entity.UserClass.FYP_Coordinator;
 import Entity.UserClass.Student;
 import Entity.UserClass.UserDetails.User;
@@ -32,8 +33,8 @@ public class App {
         AccountDB accDB = new AccountDB();
         StudentDB studentDB = new StudentDB();
         SupervisorDB supervisorDB = new SupervisorDB();
-        FYPCoordinatorDB fypCoordinatorDB = new FYPCoordinatorDB();
-        accDB.showDB();
+        FYP_CoordinatorDB fyp_coordinatorDB = new FYP_CoordinatorDB();
+        accDB.viewDB();
         // studentDB.showDB();
         Account ca = new Account(); 
         User user = null;
@@ -56,7 +57,7 @@ public class App {
                 user = supervisorDB.findInstance(ca.getUserID());
                 break;
             case "FYPCOORDINATOR":
-                user =  fypCoordinatorDB.findInstance(ca.getUserID());
+                user =  fyp_coordinatorDB.findInstance(ca.getUserID());
                 break;
         }
         

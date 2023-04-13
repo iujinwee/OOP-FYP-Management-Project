@@ -2,7 +2,7 @@ package Entity.AccountClass;
 
 import java.util.Scanner;
 
-import Database.AccountDB;
+import Entity.DatabaseClass.AccountDB;
 
 public class Account {
 
@@ -16,6 +16,7 @@ public class Account {
 	/**
 	 * Account constructor, created with default password
 	 * @param userID Correct user ID of the account for login.
+	 * @param type Account type, which will then correspond to user type.
 	 */
 	public Account(String userID, String type) {
 		this.userID = userID;
@@ -35,30 +36,32 @@ public class Account {
 		this.type = type; 
 	}
 
+	// GETTER FUNCTIONS
 	public String getUserID() {
 		return this.userID;
-	}
-	
-	public void setUserID(String userID) {
-		this.userID = userID;
 	}
 
 	public String getPassword() {
 		return this.password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public String getType() {
 		return this.type;
+	}
+
+	//SETTER FUNCTIONS
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public void setType(String type) {
 		this.type = type;
 	}
-
+	
 	public boolean login(AccountDB accDB) {
         int loginAttempts = 1;
         while(loginAttempts <= 5) {

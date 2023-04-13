@@ -4,7 +4,7 @@ import Controller.Project.ViewProjectController.ViewAvailableProjects;
 import Controller.Project.ViewProjectController.ViewPersonalProjects;
 import Controller.Request.CreateRequestController.NewRequest;
 import Controller.Request.ViewRequestController.ControllerObject.ViewOutgoingRequestsHistory;
-import Entity.DatabaseClass.FYPCoordinatorDB;
+import Entity.DatabaseClass.FYP_CoordinatorDB;
 import Entity.RequestClass.RequestType;
 import Entity.UserClass.UserDetails.*;
 import Exceptions.InvalidInputException;
@@ -12,7 +12,7 @@ import Exceptions.InvalidInputException;
 public class Student extends User{
  	
 	private String studentID;
-	private boolean assigned; 
+	// private boolean assigned; 
 	public Student() {}
 
 	/**
@@ -25,6 +25,17 @@ public class Student extends User{
 	public Student(String userID, String name, String email) {
 		super(userID, name, email);
 		super.setUserType(UserType.STUDENT);
+		this.studentID = super.getUserID();
+	}
+
+	// GETTER FUNCTIONS
+	public String getStudentID() {
+		return this.studentID;
+	}
+
+	// SETTER FUNCTIONS
+	public void setStudentID(String studentID) {
+		this.studentID = studentID;
 	}
 	
 	@Override

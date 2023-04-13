@@ -6,7 +6,7 @@ import Controller.Request.CreateRequestController.NewRequest;
 import Controller.Request.ViewRequestController.ControllerObject.ViewPendingRequests;
 import Controller.Project.ModifyProjectController.ControllerObject.*;
 import Controller.Project.ViewProjectController.ViewPersonalProjects;
-import Entity.DatabaseClass.FYPCoordinatorDB;
+import Entity.DatabaseClass.FYP_CoordinatorDB;
 import Entity.RequestClass.Request;
 import Entity.RequestClass.RequestType;
 import Entity.UserClass.UserDetails.*;
@@ -14,8 +14,11 @@ import Exceptions.*;
 
 public class Supervisor extends User {
 
+	private String supervisorID;
 	private int numAssignedProjects=0;
 	private int projectID = 0;
+
+	public Supervisor() {}
 
 	/**
 	 * Supervisor constructor.
@@ -24,16 +27,31 @@ public class Supervisor extends User {
 	 * @param name Name of the supervisor.
 	 * @param email Email address of the supervisor.
 	 */
-	public Supervisor(String userID, String name,String email, int numAssigned) {
+	public Supervisor(String userID, String name, String email, int numAssigned) {
 		super(userID, name, email);
 		this.numAssignedProjects = numAssigned;
 		super.setUserType(UserType.SUPERVISOR); 
-		this.sc = new Scanner(System.in);
+		this.supervisorID = super.getUserID();
 	}
-	public Supervisor() {}
+
+	// GETTER FUNCTIONS
+	public String getSupervisorID() {
+		return this.supervisorID;
+	}
+
 	public int getNumAssignedProjects(){
 		return this.numAssignedProjects;
 	}
+
+	// SETTER FUNCTIONS
+	public void setSupervisorID(String supervisorID) {
+		this.supervisorID = supervisorID;
+	}
+
+	public void setNumAssignedProjects(int numAssigned) {
+		this.numAssignedProjects = numAssigned;
+	}
+	
 	
 		
 	@Override

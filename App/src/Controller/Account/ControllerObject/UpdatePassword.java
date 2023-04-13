@@ -1,4 +1,6 @@
-package Controller.Account;
+package Controller.Account.ControllerObject;
+
+import Controller.Account.AccountController;
 
 public class UpdatePassword extends AccountController {
 

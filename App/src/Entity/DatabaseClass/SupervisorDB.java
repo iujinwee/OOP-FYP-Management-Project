@@ -8,11 +8,17 @@ public class SupervisorDB extends Database{
         super("faculty_list.xlsx", new Supervisor());
     }
 
+    /**
+     * Find instance of Supervisor object in SupervisorDB, matched by the User ID, not case sensitive.
+     * @param id Input User ID to be found.
+     * @return Supervisor object.
+     */
     public Supervisor findInstance(String id) {
-        for (Object s: super.objectDB){
-            Supervisor currentSupervisor = (Supervisor) s;
-            if(currentSupervisor.getUserID().compareTo(id)==0){
-                return currentSupervisor;
+        for(Object s : super.objectDB){
+            Supervisor temp = (Supervisor) s;
+            String correctID = temp.getUserID().toLowerCase();
+            if(correctID.compareTo(id.toLowerCase())==0){
+                return temp;
             }
         }
         return new Supervisor();
