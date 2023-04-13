@@ -41,24 +41,25 @@ public abstract class ViewProjectsController implements LoadFilesInterface, View
     public void viewFullProjectInfo(Project proj) {
         
        // View Project Details
-		System.out.println("> Project");
-		System.out.println("Project ID: " + proj.getProjectID());
-		System.out.println("Project Title: " + proj.getProjectTitle());
-		System.out.println("Project Status: " + proj.getProjectStatus());
-        System.out.println("==================================================");
+       System.out.println("================================================================");
+		System.out.println("| > Project");
+		System.out.println("| Project ID: " + proj.getProjectID());
+		System.out.println("| Project Title: " + proj.getProjectTitle());
+		System.out.println("| Project Status: " + proj.getProjectStatus());
+        System.out.println("================================================================");
 
-		System.out.println("\n> Supervisor-in-charge");
-		System.out.println("Supervisor Name: " + proj.getSupervisor().getName());
-		System.out.println("Supervisor Email: " + proj.getSupervisor().getEmail());
-        System.out.println("==================================================");
+		System.out.println("| > Supervisor-in-charge");
+		System.out.println("| Supervisor Name: " + proj.getSupervisor().getName());
+		System.out.println("| Supervisor Email: " + proj.getSupervisor().getEmail());
+        System.out.println("================================================================");
 
         ProjectStatus status = proj.getProjectStatus();
 
 		if((status == ProjectStatus.ALLOCATED) | (status == ProjectStatus.RESERVED)){
-			System.out.println("\n> Assigned Student");
-			System.out.println("Student Name: " + proj.getStudent().getName());
-			System.out.println("Student Email: " + proj.getStudent().getEmail());
-            System.out.println("==================================================");
+			System.out.println("| > Assigned Student");
+			System.out.println("| Student Name: " + proj.getStudent().getName());
+			System.out.println("| Student Email: " + proj.getStudent().getEmail());
+            System.out.println("================================================================");
 		}
     }
 }

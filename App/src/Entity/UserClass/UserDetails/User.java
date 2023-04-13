@@ -19,7 +19,7 @@ public abstract class User implements GetInputInterface, UserProgramInterface, L
 	public ProjectDB projDB;
 	public RequestDB reqDB;
 	public Scanner sc = new Scanner(System.in);
-	public handleInvalidInput handler = new handleInvalidInput(sc, 3);
+	public handleInvalidInput menuHandler = new handleInvalidInput(3);
 	private UserType type;
 
 	/**
@@ -75,22 +75,22 @@ public abstract class User implements GetInputInterface, UserProgramInterface, L
 
         System.out.printf("You are currently signed in as a %s.\n\n", type);
 
-		while(handler.checkAttempts()){
+		while(menuHandler.checkAttempts()){
 			try{
 				getInput();
 				break; // Break out of loop
 
 			}catch(InvalidInputException e){
-				handler.handleInvalidInputException(e);
+				menuHandler.handleInvalidInputException(e);
 
 			}catch(InputMismatchException e){
-				handler.handleInputMismatchException(e);
-
+				menuHandler.handleInputMismatchException(e);
+				sc.nextLine();
 			}
 		}
 		// Clearing System
 		System.out.println("Terminating Program...");
-		this.sc.close();
+		sc.close();
 		System.exit(0);
    	}
 

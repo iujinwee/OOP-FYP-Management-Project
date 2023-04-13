@@ -43,7 +43,7 @@ public class NewRequest extends AccessRequestDBController implements ViewRequest
 
     @Override
     public void footer() {
-        System.out.println("==========      Request has been created!     ===========");
+        System.out.println("==========      Request has been created!     ===========\n");
 
     }
 

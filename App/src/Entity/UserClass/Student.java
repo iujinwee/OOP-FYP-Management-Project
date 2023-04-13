@@ -49,7 +49,7 @@ public class Student extends User{
 			viewUserMenu();
 
 			// Get Input 
-			System.out.println("\nEnter your option: ");
+			System.out.printf("\nEnter Option: ");
 			choice = sc.nextInt();
 
 			switch(choice){
@@ -98,8 +98,8 @@ public class Student extends User{
 
 		// View Projects
 		if(projs.projects.size()!=0){
-			System.out.println("Select Project to register:");
-			int projID = super.sc.nextInt();
+			System.out.printf("Select Project to register: ");
+			int projID = sc.nextInt();
 			
 			if(projs.projects.contains(projID)){
 				FYPCoordinatorDB FYPDB = new FYPCoordinatorDB();
@@ -130,7 +130,7 @@ public class Student extends User{
 		ViewPersonalProjects projs = new ViewPersonalProjects(this);
 		// View Projects
 		if(projs.projects.size()!=0){
-			System.out.println("Select Assigned Project to change title:");
+			System.out.printf("Select Assigned Project to change title: ");
 			int projID = super.sc.nextInt();
 			
 			if(projs.projects.contains(projID)){

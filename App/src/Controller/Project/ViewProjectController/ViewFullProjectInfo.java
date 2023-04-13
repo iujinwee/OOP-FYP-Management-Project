@@ -14,9 +14,9 @@ public class ViewFullProjectInfo extends ViewProjectsController{
 
     @Override
     public void header() {
-        System.out.println("==================================");
-        System.out.println("=======   Project Details  =======");
-        System.out.println("==================================");
+        System.out.println("\n****************************************************************");
+        System.out.println("****************         Project Details        ****************");
+        System.out.println("****************************************************************\n");
     }
 
     @Override
