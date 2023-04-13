@@ -13,6 +13,7 @@ public class Student extends User{
  	
 	private String studentID;
 	private boolean assigned; 
+	public int numRegisteredReq; 
 	public Student() {}
 
 	/**
@@ -25,6 +26,7 @@ public class Student extends User{
 	public Student(String userID, String name, String email) {
 		super(userID, name, email);
 		super.setUserType(UserType.STUDENT);
+		numRegisteredReq = 0 ; 
 	}
 	
 	@Override
@@ -96,16 +98,22 @@ public class Student extends User{
 	private void registerProject() throws InvalidInputException{
 		ViewAvailableProjects projs = new ViewAvailableProjects(this);
 
-		// View Projects
-		if(projs.projects.size()!=0){
-			System.out.printf("Select Project to register: ");
-			int projID = sc.nextInt();
-			
-			if(projs.projects.contains(projID)){
-				FYPCoordinatorDB FYPDB = new FYPCoordinatorDB();
-				new NewRequest(RequestType.REGISTERPROJECT, this, FYPDB.findInstance(), projID);
-			}else{
-				throw new InvalidInputException(projID);
+		if (this.numRegisteredReq==1){
+			System.out.println("You've already sent a request to register a project");
+		}	
+		else{
+			// View Projects
+			if(projs.projects.size()!=0){
+				System.out.printf("Select Project to register: ");
+				int projID = sc.nextInt();
+				
+				if(projs.projects.contains(projID)){
+					FYPCoordinatorDB FYPDB = new FYPCoordinatorDB();
+					new NewRequest(RequestType.REGISTERPROJECT, this, FYPDB.findInstance(), projID);
+					this.numRegisteredReq+=1;
+				}else{
+					throw new InvalidInputException(projID);
+				}
 			}
 		}
 	}

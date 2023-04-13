@@ -21,7 +21,7 @@ public class RegisterProject extends ModifyProjectController{
     @Override
 	public void updateDB() {		
 
-		// Check if student has been rejected previously
+        // Check if student has been rejected previously
 		if(projDB.findInstance(projID).getRejected().contains(student.getUserID())){
 			System.out.println("Student has been rejected previously.");
 		}else{
