@@ -1,4 +1,4 @@
-package Login;
+package Entity.AccountClass;
 
 public class Account {
 

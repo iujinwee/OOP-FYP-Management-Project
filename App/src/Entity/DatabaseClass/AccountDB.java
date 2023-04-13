@@ -1,6 +1,6 @@
 package Entity.DatabaseClass;
 
-import Login.Account;
+import Entity.AccountClass.Account;
 
 public class AccountDB extends Database {
     

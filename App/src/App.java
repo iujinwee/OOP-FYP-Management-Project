@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
+import Entity.AccountClass.Account;
 import Entity.DatabaseClass.AccountDB;
 import Entity.DatabaseClass.StudentDB;
 import Entity.DatabaseClass.SupervisorDB;
 import Entity.UserClass.FYP_Coordinator;
 import Entity.UserClass.Student;
 import Entity.UserClass.UserDetails.User;
-import Login.Account;
 
 public class App {
 
