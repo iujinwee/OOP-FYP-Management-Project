@@ -1,31 +1,26 @@
 import java.util.Scanner;
 
-import Controller.ViewUserMenuController.WelcomePage;
-import Entity.AccountClass.Account;
-import Entity.DatabaseClass.AccountDB;
-import Entity.DatabaseClass.StudentDB;
-import Entity.DatabaseClass.SupervisorDB;
-import Entity.UserClass.FYP_Coordinator;
-import Entity.UserClass.Student;
-import Entity.UserClass.UserDetails.User;
+import Database.AccountDB;
+import Database.StudentDB;
+import Database.SupervisorDB;
+import Login.Account;
+import Users.UserDetails.User;
+import Users.FYP_Coordinator;
+import Users.Student;
+import Users.Supervisor;
 
 public class App {
 
 	public static void main(String[] args) {
 
-        // Supervisor u = new Supervisor("ASFLI", "A S Madhukumar", "E@ntu.sg", 0);
-        // u.startProgram();
+        Supervisor u = new Supervisor("ASMADHUKUMAR", "A S Madhukumar", "ASMADHUKUMAR@NTU.EDU.SG", 1);
+        u.startProgram();
 
         // Student u = new Student("YCHERN", "CHERN", "Test");
         // u.startProgram();
 
-        Student u = new Student("CT113", "CALVIN", "Test");
-        u.startProgram();
-
-        new WelcomePage();
-
-        // FYP_Coordinator m = new FYP_Coordinator("ASFLI", "LI FANG", "Y");
-        // m.startProgram();
+        // FYP_Coordinator u = new FYP_Coordinator("ASFLI", "Li Fang", "ASFLI@NTU.EDU.SG");
+        // u.startProgram();
 
         AccountDB accountDB = new AccountDB();
         StudentDB studentDB = new StudentDB();

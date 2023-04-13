@@ -10,6 +10,7 @@ import Projects.ProjectClasses.DeregisterProject;
 import Projects.ProjectClasses.RegisterProject;
 import Projects.ViewProjectsPackage.ViewPersonalProjects;
 import Database.FYPCoordinatorDB;
+import Database.SupervisorDB;
 import Requests.NewRequest;
 import Requests.Request;
 import Requests.RequestType;
@@ -127,11 +128,10 @@ public class Supervisor extends User {
 		new ViewPersonalProjects(this);
 		System.out.println("Select Project ID to change new supervisor:");
 		int projID = sc.nextInt();
-						
-		//get fyp coordinator id 
-		FYPCoordinatorDB FYPdb = new FYPCoordinatorDB(); //to remove
+		
+		FYPCoordinatorDB fypDB = new FYPCoordinatorDB();
 
-		new NewRequest(RequestType.CHANGESUPERVISOR, this, FYPdb.findInstance(), projID);
+		new NewRequest(RequestType.CHANGESUPERVISOR, this, fypDB.findInstance(), projID);
 		System.out.println("Request Sent.\n");
 
 		//to check on missing link -> accept request -> enact change 			
@@ -145,13 +145,11 @@ public class Supervisor extends User {
 			System.out.println("Select Request to manage: ");
 			int reqID = sc.nextInt();
 
-			System.out.println("Approve or Reject Request? [1] Approve [0] Reject");
-			int choice = sc.nextInt();
-
 			// View requests 
 			Request req = reqDB.findInstance(reqID);
 
-			
+			System.out.println("Approve or Reject Request? [1] Approve [0] Reject");
+			int choice = sc.nextInt();
 
 			switch(req.getRequestType()){
 				case CHANGESUPERVISOR:
