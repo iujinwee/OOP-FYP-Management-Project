@@ -268,7 +268,11 @@ public class FileHandler {
 
                     case "Project":
                         Project current_proj = (Project) result.get(row_count++);
-                        String rejected = String.join("|", current_proj.getRejected());
+                        StringBuilder sb = new StringBuilder();
+                        for (String s :  current_proj.getRejected()) {
+                            sb.append(s).append("|");
+                        }
+                        String rejected = sb.toString();
                         row.createCell(column_count++).setCellValue(current_proj.getProjectID());
                         row.createCell(column_count++).setCellValue(current_proj.getProjectTitle());
                         row.createCell(column_count++).setCellValue(current_proj.getStudentID());

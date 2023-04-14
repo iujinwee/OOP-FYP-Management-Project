@@ -32,7 +32,7 @@ public abstract class ViewProjectsController implements LoadFilesInterface, View
 
     @Override
     public int viewBasicProjectInfo(Project proj){
-		System.out.printf("%s | [%d] %s \n",  proj.getProjectStatus(), proj.getProjectID(), proj.getProjectTitle());
+		System.out.printf("| %-10s | [%-2d] %s \n",  proj.getProjectStatus(), proj.getProjectID(), proj.getProjectTitle());
 		return proj.getProjectID();
 	}
     
