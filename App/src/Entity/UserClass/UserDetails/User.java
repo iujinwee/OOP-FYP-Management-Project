@@ -16,8 +16,6 @@ public abstract class User implements GetInputInterface, UserProgramInterface, L
 	private String userID;
 	private String name;
 	private String email;
-	public ProjectDB projDB;
-	public RequestDB reqDB;
 	public Scanner sc = new Scanner(System.in);
 	public handleInvalidInput menuHandler = new handleInvalidInput(3);
 	private UserType type;
@@ -93,12 +91,4 @@ public abstract class User implements GetInputInterface, UserProgramInterface, L
 		sc.close();
 		System.exit(0);
    	}
-
-	@Override
-	public void loadFiles() {
-		System.out.println("Initializing Files...");
-		projDB = new ProjectDB();
-		reqDB = new RequestDB();
-		System.out.println("Files Initialized.");
-	}
 }
