@@ -1,28 +1,32 @@
 package Exceptions;
 
-import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class handleInvalidInput {
     
-    private Scanner sc;
     private int attempts = 0; 
-    private int MAX_ATTEMPTS;
+    private int MAX_ATTEMPTS = 0;
 
-    public handleInvalidInput(Scanner scanner, int attempts){
-        this.sc = scanner;
+    public handleInvalidInput(){}
+
+    public handleInvalidInput(int attempts){
         this.MAX_ATTEMPTS = attempts;
     }
-	public void handleInputMismatchException(Exception e){
+
+	public void handleInputMismatchException(InputMismatchException e){
         System.out.println("\nERROR!");
-		System.out.println("Invalid Input. Please enter a number.");
-		System.out.printf("Remaining Attempts left: %d\n\n", MAX_ATTEMPTS - ++attempts);
-        sc.nextLine();
+		System.out.println("Invalid Input. Please enter a number.\n");
+        if(MAX_ATTEMPTS!=0){
+            System.out.printf("Remaining Attempts left: %d\n\n", MAX_ATTEMPTS - ++attempts);
+        }
 	}	
 
-	public void handleInvalidInputException(Exception e){
+	public void handleInvalidInputException(InvalidInputException e){
         System.out.println("\nERROR!");
-		System.out.printf("Invalid Input. %s\n", e.getMessage());
-		System.out.printf("Remaining Attempts left: %d\n\n", MAX_ATTEMPTS - ++attempts);
+		System.out.println("Invalid Input. Please select one of the following options.\n");
+        if(MAX_ATTEMPTS!=0){
+            System.out.printf("Remaining Attempts left: %d\n\n", MAX_ATTEMPTS - ++attempts);
+        }
 	}	
 
     public boolean checkAttempts(){
