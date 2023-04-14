@@ -6,12 +6,10 @@ import java.util.Scanner;
 import Boundaries.Database.LoadFilesInterface;
 import Boundaries.Menu.GetInputInterface;
 import Boundaries.Menu.UserProgramInterface;
-import Entity.DatabaseClass.ProjectDB;
-import Entity.DatabaseClass.RequestDB;
 import Exceptions.InvalidInputException;
 import Exceptions.handleInvalidInput;
 
-public abstract class User implements GetInputInterface, UserProgramInterface, LoadFilesInterface {
+public abstract class User implements GetInputInterface, UserProgramInterface{
 
 	private String userID;
 	private String name;
