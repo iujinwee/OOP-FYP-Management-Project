@@ -16,9 +16,8 @@ public abstract class ViewProjectsController implements LoadFilesInterface, View
 
     @Override
     public void loadFiles() {
-        System.out.println("\nInitializing ProjectDB...");
+        System.out.println("\nLoading...");
         projDB = new ProjectDB();
-        System.out.println("ProjectDB Initialized.\n");
     }
 
     @Override
@@ -32,7 +31,7 @@ public abstract class ViewProjectsController implements LoadFilesInterface, View
 
     @Override
     public int viewBasicProjectInfo(Project proj){
-		System.out.printf("| %-10s | [%-2d] %s \n",  proj.getProjectStatus(), proj.getProjectID(), proj.getProjectTitle());
+		System.out.printf("| %-11s | [%-2d] %s \n",  proj.getProjectStatus(), proj.getProjectID(), proj.getProjectTitle());
 		return proj.getProjectID();
 	}
     

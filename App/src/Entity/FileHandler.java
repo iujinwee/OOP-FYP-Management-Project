@@ -91,11 +91,12 @@ public class FileHandler {
                         String stuid = getStringCellValue(row.getCell(columnMap.get("ID")));
                         String stuname = getStringCellValue(row.getCell(columnMap.get("Name")));
                         String stuemail = getStringCellValue(row.getCell(columnMap.get("Email")));
+                        Boolean bool = Boolean.parseBoolean(getStringCellValue(row.getCell(columnMap.get("Assigned"))).toUpperCase());
 
                         Student tempStu = (Student) item
                                 .getClass()
-                                .getDeclaredConstructor(String.class, String.class, String.class)
-                                .newInstance(stuid, stuname, stuemail);
+                                .getDeclaredConstructor(String.class, String.class, String.class, Boolean.class)
+                                .newInstance(stuid, stuname, stuemail, bool);
                         resultList.add(tempStu);
 
                         break;
@@ -139,7 +140,7 @@ public class FileHandler {
                         String rejectString = getStringCellValue(row.getCell(columnMap.get("Rejected")));
                         ProjectStatus projStatus = ProjectStatus
                                 .valueOf(getStringCellValue(row.getCell(columnMap.get("Status"))));
-                        String[] rejectList = rejectString.split("|");
+                        String[] rejectList = rejectString.split(",");
                         ArrayList<String> rejectStrList = new ArrayList<>(Arrays.asList(rejectList));
 
                         Project tempProject = (Project) item
@@ -255,6 +256,7 @@ public class FileHandler {
                         row.createCell(column_count++).setCellValue((String) current_stu.getUserID());
                         row.createCell(column_count++).setCellValue((String) current_stu.getName());
                         row.createCell(column_count++).setCellValue((String) current_stu.getEmail());
+                        row.createCell(column_count++).setCellValue(current_stu.getAssigned() ? "TRUE" : "FALSE");
                         break;
 
                     case "FYP_Coordinator":
@@ -268,11 +270,15 @@ public class FileHandler {
 
                     case "Project":
                         Project current_proj = (Project) result.get(row_count++);
+                        
                         StringBuilder sb = new StringBuilder();
-                        for (String s :  current_proj.getRejected()) {
-                            sb.append(s).append("|");
+                        for (String s : current_proj.getRejected()) {
+                            if (!s.isEmpty()) {
+                                sb.append(s).append(",");
+                            }
                         }
                         String rejected = sb.toString();
+
                         row.createCell(column_count++).setCellValue(current_proj.getProjectID());
                         row.createCell(column_count++).setCellValue(current_proj.getProjectTitle());
                         row.createCell(column_count++).setCellValue(current_proj.getStudentID());

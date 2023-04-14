@@ -35,7 +35,7 @@ public class ViewPersonalProjects extends ViewProjectsController{
 
 			switch(user.getUserType()){
 				case STUDENT: 
-				boolean own = curProj.getStudentID().compareTo(user.getUserID())==0;
+					boolean own = curProj.getStudentID().compareTo(user.getUserID())==0;
 					if(own && allocated){
 						projects.add(curProj.getProjectID());
 						viewFullProjectInfo(curProj);
