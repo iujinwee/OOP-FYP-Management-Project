@@ -23,7 +23,6 @@ public class ChangeTitleRequest extends Request implements CreateRequestInterfac
         newTitle = sc.next();
 
         super.setNewTitle(newTitle);
-        sc.close();
         return this;
     }
 }
