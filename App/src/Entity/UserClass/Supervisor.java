@@ -21,7 +21,6 @@ public class Supervisor extends User {
 
 	private int numAssignedProjects=0;
 	private int choice = -1;
-	private int projectID=0;
 
 	/**
 	 * Supervisor constructor.
@@ -109,31 +108,40 @@ public class Supervisor extends User {
 		}
 	}
 
-	private void changeProjectTitle(){
-		new ViewPersonalProjects(this);
+	private void changeProjectTitle() throws InvalidInputException{
+		// View Projects
+		ViewPersonalProjects projs = new ViewPersonalProjects(this);
+
 		System.out.println("Select Project ID to change new title:");
-		projectID = sc.nextInt();
+		int projID = sc.nextInt();
 
-		System.out.println("Enter the new title:");
-		String newTitle = sc.next();
+		boolean own = projs.projects.contains(projID);
+		if(own){	
+			System.out.println("Enter the new title:");
+			String newTitle = sc.next();
+			new ChangeProjectTitle(projID, newTitle);
 
-		new ChangeProjectTitle(projectID, newTitle);
+		}else{
+			throw new InvalidInputException(projID);
+		}
 	}
 
 	private void changeSupervisor() throws InvalidInputException{
 
 		// View Projects
 		ViewPersonalProjects projs = new ViewPersonalProjects(this);
-		
+
 		if(projs.projects.size() != 0){
 			System.out.println("Select Project ID to change new supervisor:");
-			int projID = sc.nextInt();
-			ProjectDB projDB = new ProjectDB();
+			int projID = sc.nextInt();	
+			boolean own = projs.projects.contains(projID);
+			boolean allocated = (projs.projDB.findInstance(projID).getProjectStatus() == ProjectStatus.ALLOCATED);
 
-			if(projDB.findInstance(projID).getProjectStatus() != ProjectStatus.ALLOCATED){
+
+			if(!allocated){
 				System.out.println("Project is not allocated to any student yet!");
 			}
-			else if(projs.projects.contains(projID) && projDB.findInstance(projID).getProjectStatus() == ProjectStatus.ALLOCATED){
+			else if(own && allocated){
 				FYPCoordinatorDB fypDB = new FYPCoordinatorDB();
 				new NewRequest(RequestType.CHANGESUPERVISOR, this, fypDB.findInstance(), projID);
 			}else{
@@ -150,36 +158,4 @@ public class Supervisor extends User {
 		this.numAssignedProjects = this.numAssignedProjects - 1;
 	}
 
-	// public void manageRequests() {
-
-	// 	if((new ViewPendingRequests(this)).requests.size() != 0){
-
-	// 		System.out.println("Select Request to manage: ");
-	// 		int reqID = sc.nextInt();
-
-	// 		// View requests 
-	// 		Request req = reqDB.findInstance(reqID);
-
-	// 		System.out.println("Approve or Reject Request? [1] Approve [0] Reject");
-	// 		int choice = sc.nextInt();
-
-	// 		switch(req.getRequestType()){
-	// 			case CHANGESUPERVISOR:
-	// 				new EnactChangeSupervisor(reqID).enactRequest(choice);
-	// 				break;
-
-	// 			case CHANGETITLE: 
-	// 				new EnactChangeTitle(reqID).enactRequest(choice);
-	// 				break;
-
-	// 			case REGISTERPROJECT:
-	// 				new EnactRegisterProject(reqID).enactRequest(choice);
-	// 				break;
-
-	// 			case DEREGISTERPROJECT: 
-	// 				new EnactDeregisterProject(reqID).enactRequest(choice);
-	// 				break;
-	// 		}
-	// 	}
-	// }
 }
