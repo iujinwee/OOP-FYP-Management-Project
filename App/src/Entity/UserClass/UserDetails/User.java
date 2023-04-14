@@ -3,7 +3,6 @@ package Entity.UserClass.UserDetails;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Boundaries.Database.LoadFilesInterface;
 import Boundaries.Menu.GetInputInterface;
 import Boundaries.Menu.UserProgramInterface;
 import Exceptions.InvalidInputException;
