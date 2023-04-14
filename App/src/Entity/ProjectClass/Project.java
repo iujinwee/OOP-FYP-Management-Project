@@ -98,7 +98,6 @@ public class Project {
 	}
 
 	public void addRejected(String studentID){
-		this.assignedTo = null;
 		this.getRejected().add(studentID);
 	}
 }

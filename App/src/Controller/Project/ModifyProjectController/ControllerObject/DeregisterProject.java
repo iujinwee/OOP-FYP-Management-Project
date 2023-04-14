@@ -2,6 +2,7 @@ package Controller.Project.ModifyProjectController.ControllerObject;
 
 import Controller.Project.ModifyProjectController.ModifyProjectController;
 import Entity.ProjectClass.ProjectStatus;
+import Entity.ProjectClass.Project;
 import Entity.UserClass.Student;
 import Entity.DatabaseClass.SupervisorDB;
 
@@ -19,9 +20,11 @@ public class DeregisterProject extends ModifyProjectController{
     }
     
     @Override
-	public void updateDB() {		
-        projDB.findInstance(projID).addRejected(student.getUserID());
-        projDB.findInstance(projID).setProjectStatus(ProjectStatus.AVAILABLE);
+	public void updateDB() {	
+        Project currentProj = projDB.findInstance(projID);
+        currentProj.addRejected(student.getUserID());
+        currentProj.setProjectStatus(ProjectStatus.AVAILABLE);
+        currentProj.setStudent(null);
         SupervisorDB supDB = new SupervisorDB();
         supDB.findInstance(projDB.findInstance(projID).getSupervisorID()).removeAssignedProjects();
         supDB.exportDB();
