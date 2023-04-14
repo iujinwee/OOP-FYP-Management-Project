@@ -1,0 +1,5 @@
+@startuml
+    !define ROOTPATH ../App/src
+    !include ROOTPATH/Boundaries/**/*.java
+    !include ROOTPATH/Controller/**/*.java
+@enduml
