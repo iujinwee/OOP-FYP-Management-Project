@@ -27,7 +27,6 @@ public class ViewPersonalProjects extends ViewProjectsController{
         for (Object obj: projDB.objectDB){
 			
 			Project curProj = (Project) obj;
-			boolean own = curProj.getStudentID().compareTo(user.getUserID())==0;
 			boolean allocated = curProj.getProjectStatus().compareTo(ProjectStatus.ALLOCATED)==0;
 
 			if (curProj.getStudent()==null){
@@ -36,6 +35,7 @@ public class ViewPersonalProjects extends ViewProjectsController{
 
 			switch(user.getUserType()){
 				case STUDENT: 
+				boolean own = curProj.getStudentID().compareTo(user.getUserID())==0;
 					if(own && allocated){
 						projects.add(curProj.getProjectID());
 						viewFullProjectInfo(curProj);
@@ -44,8 +44,8 @@ public class ViewPersonalProjects extends ViewProjectsController{
 
 				case SUPERVISOR:
 				case FYPCOORDINATOR:
-
-					if(own){
+				boolean created = curProj.getSupervisorID().compareTo(user.getUserID())==0;
+					if(created){
 						projects.add(curProj.getProjectID());
 						viewBasicProjectInfo(curProj);
 					}

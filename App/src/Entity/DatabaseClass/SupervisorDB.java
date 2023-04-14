@@ -24,7 +24,7 @@ public class SupervisorDB extends Database{
         System.out.println("================================\n");
         
         for (Object s: super.objectDB){
-            System.out.println(((Supervisor)s).getName());
+            System.out.println(((Supervisor)s).getName() + " (" + ((Supervisor)s).getUserID() + ")");
         }
     }
 }

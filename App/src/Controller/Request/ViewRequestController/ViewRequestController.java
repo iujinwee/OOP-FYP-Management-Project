@@ -42,11 +42,11 @@ public abstract class ViewRequestController implements LoadFilesInterface, ViewR
 		System.out.printf("      STATUS: %s\n", req.getRequestStatus().toString());
 		System.out.printf("      From: %s | To: %s\n", req.getFromUser().getName(), req.getToUser().getName());
 		if(req.getNewSupervisor()!=null){
-			System.out.printf("       New Supervisor Name: %s\n", req.getNewSupervisor());	
+			System.out.printf("      New Supervisor Name: %s\n", req.getNewSupervisor());	
 		}
 		
 		if(req.getNewTitle()!=null){
-			System.out.printf("       New Title: %s\n", req.getToUser().getUserID());	
+			System.out.printf("      New Title: %s\n", req.getNewTitle());	
 		}
         System.out.println("\n");
 		return req.getRequestID();
