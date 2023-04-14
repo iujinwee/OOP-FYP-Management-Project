@@ -14,7 +14,6 @@ public abstract class ModifyProjectController implements LoadFilesInterface, Upd
     public void loadFiles() {
         System.out.println("\nInitializing ProjectDB...");
         projDB = new ProjectDB();
-        System.out.println("ProjectDB Initialized.\n");
     }
 
     @Override

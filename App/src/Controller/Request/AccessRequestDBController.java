@@ -13,7 +13,7 @@ public abstract class AccessRequestDBController implements LoadFilesInterface, U
     public void loadFiles() {
         System.out.println("\nInitializing RequestDB...");
         reqDB = new RequestDB();
-        System.out.println("RequestDB Initialized.\n");
+        // System.out.println("RequestDB Initialized.\n");
     }
 
     @Override

@@ -81,7 +81,11 @@ public class StatusReport extends ViewProjectsController{
     private void printList(ArrayList<Project> arr){
         if(arr.size()!=0){
             for(Project p : arr){    
-                System.out.println(String.format("%-4s %-85s %-10s %-15s %-15s", p.getProjectID(), p.getProjectTitle(), p.getProjectStatus(), p.getStudent().getName(), p.getSupervisor().getName()));
+                String stuName = p.getStudent().getName();
+                if (stuName == null){
+                    stuName = "< EMPTY >";
+                }
+                System.out.println(String.format("%-4s %-85s %-10s %-15s %-15s", p.getProjectID(), p.getProjectTitle(), p.getProjectStatus(), stuName , p.getSupervisor().getName()));
             }
         }        
     }
