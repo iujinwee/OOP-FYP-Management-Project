@@ -10,7 +10,7 @@ public class SupervisorDB extends Database{
 
     public Supervisor findInstance(String id) {
         for (Object s: super.objectDB){
-            if(((Supervisor) s).getUserID().compareTo(id)==0){
+            if(((Supervisor) s).getUserID().toLowerCase().compareTo(id.toLowerCase())==0){
                 return ((Supervisor) s);
             }
         }
