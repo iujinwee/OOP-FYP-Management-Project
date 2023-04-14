@@ -26,7 +26,6 @@ public class ChangeSupervisorRequest extends Request implements CreateRequestInt
         newSupervisor = sc.next();
 
         super.setNewSupervisor(newSupervisor);
-        sc.close();
         return this;
     }
 
