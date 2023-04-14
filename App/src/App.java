@@ -16,14 +16,14 @@ public class App {
 
         new WelcomePage();
 
-        // Supervisor u = new Supervisor("ASMADHUKUMAR", "A S Madhukumar", "ASMADHUKUMAR@NTU.EDU.SG", 1);
-        // u.startProgram();
+        Supervisor u = new Supervisor("ASMADHUKUMAR", "A S Madhukumar", "ASMADHUKUMAR@NTU.EDU.SG", 1);
+        u.startProgram();
 
         // Student u = new Student("YCHERN", "CHERN", "Test");
         // u.startProgram();
 
-        FYP_Coordinator m = new FYP_Coordinator("ASFLI", "LI FANG", "Y");
-        m.startProgram();
+        // FYP_Coordinator m = new FYP_Coordinator("ASFLI", "LI FANG", "Y");
+        // m.startProgram();
 
         AccountDB accountDB = new AccountDB();
         StudentDB studentDB = new StudentDB();
