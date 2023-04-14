@@ -4,6 +4,7 @@ import java.util.*;
 
 import Controller.Project.ModifyProjectController.ControllerObject.*;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
+import Controller.Request.CreateRequestController.ControllerObject.NewChangeSupervisorRequest;
 import Controller.Request.ManageRequestController.*;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewIncomingRequestsHistory;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewOutgoingRequestsHistory;
@@ -78,7 +79,7 @@ public class Supervisor extends User {
 
 				case 4:	
 					System.out.println("Option [4] selected! - Request to Transfer Student to Replacement Supervisor.");
-					// changeSupervisor();
+					new NewChangeSupervisorRequest(this);
 					break;
 					
 				case 5:
@@ -118,30 +119,6 @@ public class Supervisor extends User {
 			throw new InvalidInputException(projID);
 		}
 	}
-
-	// private void changeSupervisor() throws InvalidInputException{
-
-	// 	// View Projects
-	// 	ViewPersonalProjects projs = new ViewPersonalProjects(this);
-
-	// 	if(projs.projects.size() != 0){
-	// 		System.out.println("Select Project ID to change new supervisor:");
-	// 		int projID = sc.nextInt();	
-	// 		boolean own = projs.projects.contains(projID);
-	// 		boolean allocated = (projs.projDB.findInstance(projID).getProjectStatus() == ProjectStatus.ALLOCATED);
-
-
-	// 		if(!allocated){
-	// 			System.out.println("Project is not allocated to any student yet!");
-	// 		}
-	// 		else if(own && allocated){
-	// 			FYPCoordinatorDB fypDB = new FYPCoordinatorDB();
-	// 			new NewRequest(RequestType.CHANGESUPERVISOR, this, fypDB.findInstance(), projID);
-	// 		}else{
-	// 			throw new InvalidInputException(projID);
-	// 		}
-	// 	}
-	// }
 
 	public void addAssignedProjects(){
 		this.numAssignedProjects = this.numAssignedProjects + 1;

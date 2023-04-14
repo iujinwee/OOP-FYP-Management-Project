@@ -28,7 +28,7 @@ import Entity.UserClass.Supervisor;
 import Entity.UserClass.UserDetails.User;
 
 public class FileHandler {
-    private final static String dataPath = "\\data\\";
+    private final static String dataPath = "\\App\\data\\";
     private final static String macDataPath = "/App/data/";
 
     public static ArrayList<Object> readExcelFile(String filePath, Object item) {

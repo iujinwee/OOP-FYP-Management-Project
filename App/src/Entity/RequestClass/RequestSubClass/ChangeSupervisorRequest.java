@@ -14,35 +14,38 @@ public class ChangeSupervisorRequest extends Request implements CreateRequestInt
     private SupervisorDB supDB = new SupervisorDB();
     private String newSupervisor;
 
-    public ChangeSupervisorRequest(int requestID, int projectID, User fromUser, User toUser) {
+    public ChangeSupervisorRequest(int requestID, int projectID, User fromUser, User toUser, String newSupervisor) {
         super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGESUPERVISOR, projectID);
+        this.newSupervisor = newSupervisor;
+
     }    
     
     @Override
     public Request createRequest() {
         
-        handleInvalidInput handler = new handleInvalidInput(3);
-        supDB.view(); // View Supervisor DB
+        // handleInvalidInput handler = new handleInvalidInput(3);
+        // supDB.view(); // View Supervisor DB
 
-        Scanner sc = new Scanner(System.in);
+        // Scanner sc = new Scanner(System.in);
         
-        while(handler.checkAttempts()){
-            try{
-                System.out.println("Key in ID of new supervisor:");
-                newSupervisor = sc.next();
+        // while(handler.checkAttempts()){
+        //     try{
+        //         System.out.println("Key in ID of new supervisor:");
+        //         newSupervisor = sc.next();
 
-                if(supDB.findInstance(newSupervisor)!=null){
-                    setNewSupervisor(newSupervisor);
-                    System.out.printf("Request to change supervisor to [%s] has been sent.\n", supDB.findInstance(newSupervisor).getName());
-                    break;
-                }else{
-                    throw new InvalidInputException(newSupervisor);
-                }
-            }catch(InvalidInputException e){
-                handler.handleInvalidInputException(e);
-            }
-        }
+        //         if(supDB.findInstance(newSupervisor)!=null){
+        //             setNewSupervisor(newSupervisor);
+        //             System.out.printf("Request to change supervisor to [%s] has been sent.\n", supDB.findInstance(newSupervisor).getName());
+        //             break;
+        //         }else{
+        //             throw new InvalidInputException(newSupervisor);
+        //         }
+        //     }catch(InvalidInputException e){
+        //         handler.handleInvalidInputException(e);
+        //     }
+        // }
 
+        setNewSupervisor(newSupervisor);
 
         return this;
     }
