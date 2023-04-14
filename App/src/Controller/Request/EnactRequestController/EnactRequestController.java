@@ -58,7 +58,6 @@ public abstract class EnactRequestController extends AccessRequestDBController i
         }catch(InputMismatchException e){
             selectionHandler.handleInputMismatchException(e);
         }
-        sc.close();
     }
 
     @Override

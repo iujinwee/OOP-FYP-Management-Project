@@ -14,9 +14,6 @@ public class EnactChangeSupervisor extends EnactRequestController {
     @Override
     public void approve() {
         new ChangeProjectSupervisor(request.getProjectID(), request.getNewSupervisor());
-        SupervisorDB supDB = new SupervisorDB();
-        supDB.findInstance(request.getfromUserID()).addAssignedProjects();
-        supDB.exportDB();
     }
 
     @Override
