@@ -30,7 +30,10 @@ public class RegisterProject extends ModifyProjectController{
             currentProj.setStudent(student);
             currentProj.setProjectStatus(ProjectStatus.ALLOCATED);
 
+            System.out.println("=================================================================================");
             System.out.printf("Successfully Registered for Project [%d] %s\n", currentProj.getProjectID(), currentProj.getProjectTitle());
+            System.out.println("=================================================================================");
+
         }
 	}
 

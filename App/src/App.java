@@ -16,13 +16,13 @@ public class App {
         // Supervisor u = new Supervisor("ASFLI", "A S Madhukumar", "E@ntu.sg", 0);
         // u.startProgram();
 
-        // Student u = new Student("YCHERN", "CHERN", "Test");
-        // u.startProgram();
+        Student u = new Student("YCHERN", "CHERN", "Test");
+        u.startProgram();
 
         new WelcomePage();
 
-        FYP_Coordinator m = new FYP_Coordinator("ASFLI", "LI FANG", "Y");
-        m.startProgram();
+        // FYP_Coordinator m = new FYP_Coordinator("ASFLI", "LI FANG", "Y");
+        // m.startProgram();
 
         AccountDB accountDB = new AccountDB();
         StudentDB studentDB = new StudentDB();
