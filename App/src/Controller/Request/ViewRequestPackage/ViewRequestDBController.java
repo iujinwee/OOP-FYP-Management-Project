@@ -7,7 +7,6 @@ import Boundaries.Menu.HeaderInterface;
 import Boundaries.Menu.UserBodyInterface;
 import Boundaries.Request.ViewRequestInterface;
 import Controller.Request.LoadRequestDBController;
-import Entity.DatabaseClass.RequestDB;
 import Entity.DatabaseClass.SupervisorDB;
 import Entity.RequestClass.Request;
 import Entity.UserClass.UserDetails.User;

@@ -1,7 +1,5 @@
 package Entity.RequestClass.RequestSubClass;
 
-import java.util.Scanner;
-
 import Boundaries.Request.CreateRequestInterface;
 import Entity.RequestClass.Request;
 import Entity.RequestClass.RequestStatus;

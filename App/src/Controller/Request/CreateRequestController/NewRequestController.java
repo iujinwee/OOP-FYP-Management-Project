@@ -57,30 +57,4 @@ public abstract class NewRequestController extends RequestDBManager implements G
     public void exportDB() {
         super.exportDB();
     }
-
-    // @Override
-    // public void updateDB() {
-
-    //     switch(type){
-    //         case CHANGESUPERVISOR:
-    //             reqDB.objectDB.add((new ChangeSupervisorRequest(reqDB.size+1, projID, fromUser, toUser)).createRequest());
-    //             break;
-
-    //         case CHANGETITLE:
-    //             reqDB.objectDB.add((new ChangeTitleRequest(reqDB.size+1, fromUser, toUser, projID)).createRequest());
-    //             break;
-
-    //         case REGISTERPROJECT:
-    //             reqDB.objectDB.add((new RegisterProjectRequest(reqDB.size+1, projID, fromUser, toUser)).createRequest());
-    //             break;
-
-    //         case DEREGISTERPROJECT:
-    //             reqDB.objectDB.add((new DeregisterProjectRequest(reqDB.size+1, projID, fromUser, toUser)).createRequest());
-    //             break;
-
-    //         default:
-    //             break;
-    //     }
-    // }
-
 }
