@@ -171,7 +171,7 @@ public class FileHandler {
                         User toUser;
 
                         fromUser = stu.findInstance(fromUserID);
-                        if (fromUser == null) {
+                        if(fromUser.getUserID() == null){
                             fromUser = sup.findInstance(fromUserID);
                         }
                         toUser = sup.findInstance(toUserID);
