@@ -72,7 +72,7 @@ public class Account {
 
             Account temp = accDB.findInstance(inputUserID);
             if(temp.getUserID() != null) {
-                if(temp.authenticate(inputPassword)) {
+                if(temp.checkPassword(inputPassword)) {
                     this.setUserID(temp.getUserID());
 					this.setPassword(temp.getPassword());
 					this.setType(temp.getType());
@@ -109,13 +109,13 @@ public class Account {
 			return false;
 		}
 	}
-
+	
 	/**
 	 * Used to check whether password is correct, for successful log in. 
 	 * @param inputPassword Password that user tries to input to login.
 	 * @return Whether input password is correct.
 	 */
-	public boolean authenticate(String inputPassword) {
+	public boolean checkPassword(String inputPassword) {
 		if(inputPassword.compareTo(this.password) == 0) {
 			return true;
 		} else {

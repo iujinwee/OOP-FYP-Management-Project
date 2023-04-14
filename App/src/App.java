@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import Controller.Account.Login;
 import Controller.ViewUserMenuController.WelcomePage;
 import Entity.AccountClass.Account;
 import Entity.DatabaseClass.AccountDB;
@@ -19,8 +20,6 @@ public class App {
         // Student u = new Student("YCHERN", "CHERN", "Test");
         // u.startProgram();
 
-        new WelcomePage();
-
         // FYP_Coordinator m = new FYP_Coordinator("ASFLI", "LI FANG", "Y");
         // m.startProgram();
 
@@ -33,14 +32,17 @@ public class App {
         Account ca = new Account(); 
         User user = null;
         Scanner sc = new Scanner(System.in);
-
+        
         // Introduction to App 
         System.out.println("\n================================================================");
         System.out.println("======    Welcome to Final Year Project Management App    ======");
         System.out.println("================================================================\n");
 
+        // Welcome Page
+        new WelcomePage();
+
         // Login (Login with 5 attempts, use try, catch to handle invalid  inputs. once 5 attempts up, terminate program)
-        ca.login(accDB);
+        new Login();
 
         // Initialising user class based on user type
         switch(ca.getType()) {
