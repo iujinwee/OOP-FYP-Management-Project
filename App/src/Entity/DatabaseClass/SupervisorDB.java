@@ -10,9 +10,8 @@ public class SupervisorDB extends Database{
 
     public Supervisor findInstance(String id) {
         for (Object s: super.objectDB){
-            Supervisor currentSupervisor = (Supervisor) s;
-            if(currentSupervisor.getUserID().compareTo(id)==0){
-                return currentSupervisor;
+            if(((Supervisor) s).getUserID().compareTo(id)==0){
+                return ((Supervisor) s);
             }
         }
         return new Supervisor();
