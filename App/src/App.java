@@ -22,8 +22,8 @@ public class App {
         Student u = new Student("YCHERN", "CHERN", "Test");
         u.startProgram();
 
-        FYP_Coordinator m = new FYP_Coordinator("ASFLI", "LI FANG", "Y");
-        m.startProgram();
+        // FYP_Coordinator m = new FYP_Coordinator("ASFLI", "LI FANG", "Y");
+        // m.startProgram();
 
         AccountDB accountDB = new AccountDB();
         StudentDB studentDB = new StudentDB();
