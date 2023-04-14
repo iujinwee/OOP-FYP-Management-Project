@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
-import Database.AccountDB;
-import Database.StudentDB;
-import Database.SupervisorDB;
-import Login.Account;
-import Users.UserDetails.User;
-import Users.FYP_Coordinator;
-import Users.Student;
-import Users.Supervisor;
+import Controller.ViewUserMenuController.WelcomePage;
+import Entity.AccountClass.Account;
+import Entity.DatabaseClass.AccountDB;
+import Entity.DatabaseClass.StudentDB;
+import Entity.DatabaseClass.SupervisorDB;
+import Entity.UserClass.FYP_Coordinator;
+import Entity.UserClass.Student;
+import Entity.UserClass.UserDetails.User;
 
 public class App {
 
@@ -19,8 +19,10 @@ public class App {
         // Student u = new Student("YCHERN", "CHERN", "Test");
         // u.startProgram();
 
-        FYP_Coordinator u = new FYP_Coordinator("ASFLI", "Li Fang", "ASFLI@NTU.EDU.SG");
-        u.startProgram();
+        new WelcomePage();
+
+        FYP_Coordinator m = new FYP_Coordinator("ASFLI", "LI FANG", "Y");
+        m.startProgram();
 
         AccountDB accountDB = new AccountDB();
         StudentDB studentDB = new StudentDB();
