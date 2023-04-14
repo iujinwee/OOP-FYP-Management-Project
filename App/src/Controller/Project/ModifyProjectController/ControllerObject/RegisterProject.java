@@ -1,6 +1,7 @@
 package Controller.Project.ModifyProjectController.ControllerObject;
 
 import Controller.Project.ModifyProjectController.ModifyProjectController;
+import Entity.DatabaseClass.SupervisorDB;
 import Entity.ProjectClass.Project;
 import Entity.ProjectClass.ProjectStatus;
 import Entity.UserClass.Student;
@@ -29,6 +30,9 @@ public class RegisterProject extends ModifyProjectController{
             Project currentProj = projDB.findInstance(projID);
             currentProj.setStudent(student);
             currentProj.setProjectStatus(ProjectStatus.ALLOCATED);
+            SupervisorDB supDB = new SupervisorDB();
+            supDB.findInstance(currentProj.getSupervisor().getUserID()).addAssignedProjects();
+            supDB.exportDB();
 
             System.out.printf("Successfully Registered for Project [%d] %s\n", currentProj.getProjectID(), currentProj.getProjectTitle());
         }

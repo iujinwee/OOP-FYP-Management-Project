@@ -54,7 +54,7 @@ public class ManageRequest implements GetInputInterface, ViewRequestListInterfac
 
             // Display Request
             selectedRequest = pend.reqDB.findInstance(choice);
-            new ViewFullProjectInfo((new ProjectDB()).findInstance(choice));
+            new ViewFullProjectInfo((new ProjectDB()).findInstance(selectedRequest.getProjectID()));
 
             // Enact request based on Request Type
             switch(selectedRequest.getRequestType()){

@@ -7,19 +7,20 @@ import Entity.DatabaseClass.StudentDB;
 import Entity.DatabaseClass.SupervisorDB;
 import Entity.UserClass.FYP_Coordinator;
 import Entity.UserClass.Student;
+import Entity.UserClass.Supervisor;
 import Entity.UserClass.UserDetails.User;
 
 public class App {
 
 	public static void main(String[] args) {
 
-        Supervisor u = new Supervisor("ASMADHUKUMAR", "A S Madhukumar", "ASMADHUKUMAR@NTU.EDU.SG", 1);
-        u.startProgram();
+        new WelcomePage();
+
+        // Supervisor u = new Supervisor("ASMADHUKUMAR", "A S Madhukumar", "ASMADHUKUMAR@NTU.EDU.SG", 1);
+        // u.startProgram();
 
         // Student u = new Student("YCHERN", "CHERN", "Test");
         // u.startProgram();
-
-        new WelcomePage();
 
         FYP_Coordinator m = new FYP_Coordinator("ASFLI", "LI FANG", "Y");
         m.startProgram();

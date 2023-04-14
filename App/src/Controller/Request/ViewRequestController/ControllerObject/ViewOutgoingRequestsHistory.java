@@ -22,7 +22,7 @@ public class ViewOutgoingRequestsHistory extends ViewRequestController{
         for(Object obj : reqDB.objectDB){
 			Request req = (Request) obj;
 
-			if(req.getFromUser() == null){
+			if(req.getfromUserID() == null){
 				break;
 			}
 

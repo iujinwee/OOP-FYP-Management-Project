@@ -22,7 +22,7 @@ public class ChangeSupervisorRequest extends Request implements CreateRequestInt
         supDB.view(); // View Supervisor DB
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Select the supervisor to change to:");
+        System.out.println("Key in ID of new supervisor:");
         newSupervisor = sc.next();
 
         super.setNewSupervisor(newSupervisor);

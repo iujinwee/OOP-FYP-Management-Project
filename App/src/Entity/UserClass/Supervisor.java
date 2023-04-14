@@ -3,10 +3,15 @@ package Entity.UserClass;
 import java.util.*;
 
 import Controller.Request.CreateRequestController.NewRequest;
+import Controller.Request.ViewRequestController.ControllerObject.ViewIncomingRequestsHistory;
+import Controller.Request.ViewRequestController.ControllerObject.ViewOutgoingRequestsHistory;
 import Controller.Request.ViewRequestController.ControllerObject.ViewPendingRequests;
 import Controller.Project.ModifyProjectController.ControllerObject.*;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
+import Controller.Request.ManageRequestController.*;
 import Entity.DatabaseClass.FYPCoordinatorDB;
+import Entity.DatabaseClass.ProjectDB;
+import Entity.ProjectClass.ProjectStatus;
 import Entity.RequestClass.Request;
 import Entity.RequestClass.RequestType;
 import Entity.UserClass.UserDetails.*;
@@ -46,6 +51,7 @@ public class Supervisor extends User {
 		System.out.println("[3] Change Title of Project");
 		System.out.println("[4] Request to Transfer Student to Replacement Supervisor");
 		System.out.println("[5] Manage Incoming Requests ");
+		System.out.println("[6] View all incoming and outgoing requests");
 		System.out.println("[0] Exit Program.");
 	}
 
@@ -85,7 +91,13 @@ public class Supervisor extends User {
 					
 				case 5:
 					System.out.println("Option [5] selected! - Manage Incoming Requests.");
-					manageRequests();
+					new ManageRequest(this);
+					break;
+
+				case 6:
+					System.out.println("Option [6] selected! - View all incoming and outgoing requests.");
+					new ViewIncomingRequestsHistory(this);
+					new ViewOutgoingRequestsHistory(this);
 					break;
 
 				case 0: 
@@ -108,50 +120,66 @@ public class Supervisor extends User {
 		new ChangeProjectTitle(projectID, newTitle);
 	}
 
-	private void changeSupervisor(){
+	private void changeSupervisor() throws InvalidInputException{
 
 		// View Projects
-		new ViewPersonalProjects(this);
-		System.out.println("Select Project ID to change new supervisor:");
-		int projID = sc.nextInt();
+		ViewPersonalProjects projs = new ViewPersonalProjects(this);
 		
-		FYPCoordinatorDB fypDB = new FYPCoordinatorDB();
+		if(projs.projects.size() != 0){
+			System.out.println("Select Project ID to change new supervisor:");
+			int projID = sc.nextInt();
+			ProjectDB projDB = new ProjectDB();
 
-		new NewRequest(RequestType.CHANGESUPERVISOR, this, fypDB.findInstance(), projID);
-		System.out.println("Request Sent.\n");
-
-	}
-
-	public void manageRequests() {
-
-		if((new ViewPendingRequests(this)).requests.size() != 0){
-
-			System.out.println("Select Request to manage: ");
-			int reqID = sc.nextInt();
-
-			// View requests 
-			Request req = reqDB.findInstance(reqID);
-
-			System.out.println("Approve or Reject Request? [1] Approve [0] Reject");
-			int choice = sc.nextInt();
-
-			switch(req.getRequestType()){
-				case CHANGESUPERVISOR:
-					new EnactChangeSupervisor(reqID).enactRequest(choice);
-					break;
-
-				case CHANGETITLE: 
-					new EnactChangeTitle(reqID).enactRequest(choice);
-					break;
-
-				case REGISTERPROJECT:
-					new EnactRegisterProject(reqID).enactRequest(choice);
-					break;
-
-				case DEREGISTERPROJECT: 
-					new EnactDeregisterProject(reqID).enactRequest(choice);
-					break;
+			if(projDB.findInstance(projID).getProjectStatus() != ProjectStatus.ALLOCATED){
+				System.out.println("Project is not allocated to any student yet!");
+			}
+			else if(projs.projects.contains(projID) && projDB.findInstance(projID).getProjectStatus() == ProjectStatus.ALLOCATED){
+				FYPCoordinatorDB fypDB = new FYPCoordinatorDB();
+				new NewRequest(RequestType.CHANGESUPERVISOR, this, fypDB.findInstance(), projID);
+			}else{
+				throw new InvalidInputException(projID);
 			}
 		}
 	}
+
+	public void addAssignedProjects(){
+		this.numAssignedProjects = this.numAssignedProjects + 1;
+	}
+
+	public void removeAssignedProjects(){
+		this.numAssignedProjects = this.numAssignedProjects - 1;
+	}
+
+	// public void manageRequests() {
+
+	// 	if((new ViewPendingRequests(this)).requests.size() != 0){
+
+	// 		System.out.println("Select Request to manage: ");
+	// 		int reqID = sc.nextInt();
+
+	// 		// View requests 
+	// 		Request req = reqDB.findInstance(reqID);
+
+	// 		System.out.println("Approve or Reject Request? [1] Approve [0] Reject");
+	// 		int choice = sc.nextInt();
+
+	// 		switch(req.getRequestType()){
+	// 			case CHANGESUPERVISOR:
+	// 				new EnactChangeSupervisor(reqID).enactRequest(choice);
+	// 				break;
+
+	// 			case CHANGETITLE: 
+	// 				new EnactChangeTitle(reqID).enactRequest(choice);
+	// 				break;
+
+	// 			case REGISTERPROJECT:
+	// 				new EnactRegisterProject(reqID).enactRequest(choice);
+	// 				break;
+
+	// 			case DEREGISTERPROJECT: 
+	// 				new EnactDeregisterProject(reqID).enactRequest(choice);
+	// 				break;
+	// 		}
+	// 	}
+	// }
 }

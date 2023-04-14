@@ -5,6 +5,7 @@ import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalPro
 import Controller.Request.CreateRequestController.NewRequest;
 import Controller.Request.ViewRequestController.ControllerObject.ViewOutgoingRequestsHistory;
 import Entity.DatabaseClass.FYPCoordinatorDB;
+import Entity.DatabaseClass.ProjectDB;
 import Entity.RequestClass.RequestType;
 import Entity.UserClass.UserDetails.*;
 import Exceptions.InvalidInputException;
@@ -134,6 +135,7 @@ public class Student extends User{
 			int projID = super.sc.nextInt();
 			
 			if(projs.projects.contains(projID)){
+				ProjectDB projDB = new ProjectDB();
 				new NewRequest(RequestType.CHANGETITLE, this, projDB.findInstance(projID).getSupervisor(), projID);
 			}else{
 				throw new InvalidInputException(projID);
