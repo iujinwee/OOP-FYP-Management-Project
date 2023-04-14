@@ -81,7 +81,7 @@ public class App {
         
         // Show menu depending on user type
         user.startProgram();
-        user.viewUserMenu();
+        // user.viewUserMenu();
 
         // Execute choice of user
         // Changing password

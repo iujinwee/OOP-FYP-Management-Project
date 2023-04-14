@@ -1,21 +1,14 @@
 package Entity.UserClass;
 
-import java.util.InputMismatchException;
 
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
-import Controller.Request.CreateRequestController.NewRequestController;
 import Controller.Request.CreateRequestController.ControllerObject.NewChangeTitleRequest;
 import Controller.Request.CreateRequestController.ControllerObject.NewDeregisterRequest;
 import Controller.Request.CreateRequestController.ControllerObject.NewRegisterRequest;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewOutgoingRequestsHistory;
-import Entity.DatabaseClass.FYPCoordinatorDB;
-import Entity.DatabaseClass.ProjectDB;
-import Entity.ProjectClass.Project;
-import Entity.RequestClass.RequestType;
 import Entity.UserClass.UserDetails.*;
 import Exceptions.InvalidInputException;
-import Exceptions.handleInvalidInput;
 
 public class Student extends User {
 

@@ -2,7 +2,6 @@ package Controller.Project.GenerateProjectReportController;
 
 import java.util.ArrayList;
 
-import Boundaries.Project.ViewProjectListInterface;
 import Controller.Project.ViewProjectController.ViewProjectsController;
 import Entity.ProjectClass.Project;
 import Entity.UserClass.UserDetails.User;

@@ -1,11 +1,7 @@
 package Entity.UserClass;
 
 import Exceptions.InvalidInputException;
-
-import java.util.InputMismatchException;
-
 import Controller.Project.GenerateProjectReportController.GenerateReport;
-import Controller.Project.ViewProjectController.*;
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
 import Controller.Request.ManageRequestController.RequestManager;

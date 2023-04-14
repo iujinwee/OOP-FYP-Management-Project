@@ -2,18 +2,11 @@ package Entity.UserClass;
 
 import java.util.*;
 
-import Controller.Request.CreateRequestController.NewRequestController;
 import Controller.Project.ModifyProjectController.ControllerObject.*;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
 import Controller.Request.ManageRequestController.*;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewIncomingRequestsHistory;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewOutgoingRequestsHistory;
-import Controller.Request.ViewRequestPackage.ControllerObject.ViewPendingRequests;
-import Entity.DatabaseClass.FYPCoordinatorDB;
-import Entity.DatabaseClass.ProjectDB;
-import Entity.ProjectClass.ProjectStatus;
-import Entity.RequestClass.Request;
-import Entity.RequestClass.RequestType;
 import Entity.UserClass.UserDetails.*;
 import Exceptions.*;
 

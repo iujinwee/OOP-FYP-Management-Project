@@ -1,10 +1,12 @@
 package Controller.Project.GenerateProjectReportController;
 
 import Boundaries.Database.LoadFilesInterface;
-import Boundaries.Project.ViewProjectListInterface;
+import Boundaries.Menu.FooterInterface;
+import Boundaries.Menu.HeaderInterface;
+import Boundaries.Menu.UserBodyInterface;
 import Entity.DatabaseClass.ProjectDB;
 
-public abstract class GenerateReportController implements ViewProjectListInterface, LoadFilesInterface{
+public abstract class GenerateReportController implements HeaderInterface, UserBodyInterface, FooterInterface, LoadFilesInterface{
 
     private ProjectDB projDB;
 
