@@ -34,7 +34,10 @@ public class RegisterProject extends ModifyProjectController{
             supDB.findInstance(currentProj.getSupervisor().getUserID()).addAssignedProjects();
             supDB.exportDB();
 
+            System.out.println("=================================================================================");
             System.out.printf("Successfully Registered for Project [%d] %s\n", currentProj.getProjectID(), currentProj.getProjectTitle());
+            System.out.println("=================================================================================");
+
         }
 	}
 

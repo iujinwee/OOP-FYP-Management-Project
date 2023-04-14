@@ -1,5 +1,7 @@
 package Entity.UserClass;
 
+import java.util.InputMismatchException;
+
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
 import Controller.Request.CreateRequestController.NewRequest;
@@ -9,6 +11,7 @@ import Entity.DatabaseClass.ProjectDB;
 import Entity.RequestClass.RequestType;
 import Entity.UserClass.UserDetails.*;
 import Exceptions.InvalidInputException;
+import Exceptions.handleInvalidInput;
 
 public class Student extends User{
  	
@@ -112,18 +115,37 @@ public class Student extends User{
 	}
 
 	private void deregisterProject() throws InvalidInputException{
-		ViewPersonalProjects projs = new ViewPersonalProjects(this);
 		// View Projects
+		handleInvalidInput handler = new handleInvalidInput();
+		ViewPersonalProjects projs = new ViewPersonalProjects(this);
+
 		if(projs.projects.size()!=0){
-			System.out.println("Select Project to deregister:");
-			int projID = super.sc.nextInt();
-			
-			if(projs.projects.contains(projID)){
-				FYPCoordinatorDB FYPDB = new FYPCoordinatorDB();
-				new NewRequest(RequestType.DEREGISTERPROJECT, this, FYPDB.findInstance(), projID);
-			}else{
-				throw new InvalidInputException(projID);
-			}
+			int choice;
+
+			// header
+			System.out.println("Deregister this project?");
+			System.out.println("[1] Yes");
+			System.out.println("[0] No");
+
+			// getinput
+			try{
+				choice = sc.nextInt();
+				switch(choice){
+					case 1:
+						FYPCoordinatorDB FYPDB = new FYPCoordinatorDB();
+						new NewRequest(RequestType.DEREGISTERPROJECT, this, FYPDB.findInstance(), projs.projects.get(0));
+
+					case 0:
+						break;
+
+					default: 
+						throw new InvalidInputException(choice);
+				}
+			}catch(InvalidInputException e){
+				handler.handleInvalidInputException(e);
+			}catch(InputMismatchException e){
+				handler.handleInputMismatchException(e);
+			}	
 		}
 	}
 

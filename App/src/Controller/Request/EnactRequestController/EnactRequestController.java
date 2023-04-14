@@ -33,9 +33,6 @@ public abstract class EnactRequestController extends AccessRequestDBController i
     @Override
     public void loadFiles() {
         super.loadFiles();
-        // System.out.println("Initializing ProjectDB...");
-        // projDB = new ProjectDB();
-        // System.out.println("ProjectDB Initialized.");
     }
 
     @Override
@@ -68,7 +65,7 @@ public abstract class EnactRequestController extends AccessRequestDBController i
                 approve();
                 request.setRequestStatus(RequestStatus.APPROVED);
                 System.out.println("\n==============================");
-                System.out.printf("Request #%d has been approved.", request.getRequestID());
+                System.out.printf("Request #%d has been approved.\n", request.getRequestID());
                 System.out.println("==============================\n");
 
                 break;
