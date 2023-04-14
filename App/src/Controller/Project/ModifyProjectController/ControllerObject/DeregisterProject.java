@@ -4,6 +4,7 @@ import Controller.Project.ModifyProjectController.ModifyProjectController;
 import Entity.ProjectClass.ProjectStatus;
 import Entity.ProjectClass.Project;
 import Entity.UserClass.Student;
+import Entity.UserClass.Supervisor;
 import Entity.DatabaseClass.SupervisorDB;
 
 public class DeregisterProject extends ModifyProjectController{
@@ -26,7 +27,16 @@ public class DeregisterProject extends ModifyProjectController{
         currentProj.setProjectStatus(ProjectStatus.AVAILABLE);
         currentProj.setStudent(null);
         SupervisorDB supDB = new SupervisorDB();
-        supDB.findInstance(projDB.findInstance(projID).getSupervisorID()).removeAssignedProjects();
+        Supervisor curSup = supDB.findInstance(currentProj.getSupervisorID());
+        curSup.removeAssignedProjects();
+        if(curSup.getNumAssignedProjects() < 2){
+            for (Object obj : projDB.objectDB) {
+                Project curProject = (Project) obj;
+                if (curSup.getUserID().compareTo(curProject.getSupervisorID())==0 && curProject.getProjectStatus() == ProjectStatus.UNAVAILABLE) {
+                    curProject.setProjectStatus(ProjectStatus.AVAILABLE);
+                }
+            }
+        }
         supDB.exportDB();
         System.out.printf("Successfully deregistered %s from Project [%d]\n", student.getName(), projID);
 	}

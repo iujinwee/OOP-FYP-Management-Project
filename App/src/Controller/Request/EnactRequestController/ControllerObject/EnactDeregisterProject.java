@@ -3,8 +3,6 @@ package Controller.Request.EnactRequestController.ControllerObject;
 import Controller.Request.EnactRequestController.EnactRequestController;
 import Controller.Project.ModifyProjectController.ControllerObject.DeregisterProject;
 import Entity.UserClass.Student;
-import Entity.DatabaseClass.ProjectDB;
-import Entity.ProjectClass.ProjectStatus;
 
 public class EnactDeregisterProject extends EnactRequestController {
 

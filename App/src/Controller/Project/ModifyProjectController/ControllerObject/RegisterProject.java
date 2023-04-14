@@ -5,6 +5,7 @@ import Entity.DatabaseClass.SupervisorDB;
 import Entity.ProjectClass.Project;
 import Entity.ProjectClass.ProjectStatus;
 import Entity.UserClass.Student;
+import Entity.UserClass.Supervisor;
 
 public class RegisterProject extends ModifyProjectController{
 
@@ -31,7 +32,16 @@ public class RegisterProject extends ModifyProjectController{
             currentProj.setStudent(student);
             currentProj.setProjectStatus(ProjectStatus.ALLOCATED);
             SupervisorDB supDB = new SupervisorDB();
-            supDB.findInstance(currentProj.getSupervisor().getUserID()).addAssignedProjects();
+            Supervisor curSup = supDB.findInstance(currentProj.getSupervisor().getUserID());
+            curSup.addAssignedProjects();
+            if(curSup.getNumAssignedProjects() == 2){
+                for (Object obj : projDB.objectDB) {
+                    Project curProject = (Project) obj;
+                    if (curSup.getUserID().compareTo(curProject.getSupervisorID())==0 && curProject.getProjectStatus() == ProjectStatus.AVAILABLE) {
+                        curProject.setProjectStatus(ProjectStatus.UNAVAILABLE);
+                    }
+                }
+            }
             supDB.exportDB();
 
             System.out.println("=================================================================================");
