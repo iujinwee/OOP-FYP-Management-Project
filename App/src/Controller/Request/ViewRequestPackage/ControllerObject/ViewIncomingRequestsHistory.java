@@ -1,19 +1,19 @@
-package Controller.Request.ViewRequestController.ControllerObject;
+package Controller.Request.ViewRequestPackage.ControllerObject;
 
-import Controller.Request.ViewRequestController.ViewRequestController;
+import Controller.Request.ViewRequestPackage.ViewRequestDBController;
 import Entity.RequestClass.Request;
 import Entity.UserClass.UserDetails.User;
 
-public class ViewOutgoingRequestsHistory extends ViewRequestController{
+public class ViewIncomingRequestsHistory extends ViewRequestDBController{
     
-    public ViewOutgoingRequestsHistory(User user){
+    public ViewIncomingRequestsHistory(User user){
         super(user);
     }
 
     @Override
     public void header() {
 		System.out.println("\n=============================================");
-		System.out.println("=====     Outgoing Requests History     =====");
+		System.out.println("=====     Incoming Requests History     =====");
 		System.out.println("=============================================\n");
     }
 
@@ -22,11 +22,11 @@ public class ViewOutgoingRequestsHistory extends ViewRequestController{
         for(Object obj : reqDB.objectDB){
 			Request req = (Request) obj;
 
-			if(req.getfromUserID() == null){
+			if(req.gettoUserID() == null){
 				break;
 			}
 
-            if(req.getfromUserID().compareTo(user.getUserID())==0){
+            if(req.gettoUserID().compareTo(user.getUserID())==0){
                 requests.add(viewRequest(req));
             }            
 		}

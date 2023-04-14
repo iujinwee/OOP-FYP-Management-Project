@@ -16,11 +16,11 @@ public class App {
 
         new WelcomePage();
 
-        Supervisor u = new Supervisor("ASMADHUKUMAR", "A S Madhukumar", "ASMADHUKUMAR@NTU.EDU.SG", 2);
-        u.startProgram();
-
-        // Student u = new Student("YCHERN", "CHERN", "Test");
+        // Supervisor u = new Supervisor("ASMADHUKUMAR", "A S Madhukumar", "ASMADHUKUMAR@NTU.EDU.SG", 2);
         // u.startProgram();
+
+        Student u = new StudentDB().findInstance("YCHERN");
+        u.startProgram();
 
         // FYP_Coordinator m = new FYP_Coordinator("ASFLI", "LI FANG", "Y");
         // m.startProgram();

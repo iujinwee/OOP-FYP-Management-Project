@@ -33,6 +33,7 @@ public class ChangeSupervisorRequest extends Request implements CreateRequestInt
 
                 if(supDB.findInstance(newSupervisor)!=null){
                     setNewSupervisor(newSupervisor);
+                    System.out.printf("Request to change supervisor to [%s] has been sent.\n", supDB.findInstance(newSupervisor).getName());
                     break;
                 }else{
                     throw new InvalidInputException(newSupervisor);

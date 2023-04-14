@@ -3,24 +3,26 @@ package Controller.Request.ManageRequestController;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import Boundaries.Menu.FooterInterface;
 import Boundaries.Menu.GetInputInterface;
-import Boundaries.Request.ViewRequestListInterface;
+import Boundaries.Menu.HeaderInterface;
+import Boundaries.Menu.UserBodyInterface;
 import Controller.Project.ViewProjectController.ControllerObject.ViewFullProjectInfo;
 import Controller.Request.EnactRequestController.ControllerObject.*;
-import Controller.Request.ViewRequestController.ControllerObject.ViewPendingRequests;
+import Controller.Request.ViewRequestPackage.ControllerObject.ViewPendingRequests;
 import Entity.DatabaseClass.ProjectDB;
 import Entity.RequestClass.Request;
 import Entity.UserClass.UserDetails.User;
 import Exceptions.InvalidInputException;
 import Exceptions.handleInvalidInput;
 
-public class ManageRequest implements GetInputInterface, ViewRequestListInterface{
+public class RequestManager implements GetInputInterface, HeaderInterface, UserBodyInterface, FooterInterface{
     private Scanner sc = new Scanner(System.in);
     private ViewPendingRequests pend;
     private handleInvalidInput handler = new handleInvalidInput();
     private Request selectedRequest;
 
-    public ManageRequest(User user){
+    public RequestManager(User user){
         header();
         body(user);
         footer();

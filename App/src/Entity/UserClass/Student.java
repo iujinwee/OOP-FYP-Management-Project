@@ -4,8 +4,11 @@ import java.util.InputMismatchException;
 
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
-import Controller.Request.CreateRequestController.NewRequest;
-import Controller.Request.ViewRequestController.ControllerObject.ViewOutgoingRequestsHistory;
+import Controller.Request.CreateRequestController.NewRequestController;
+import Controller.Request.CreateRequestController.ControllerObject.NewChangeTitleRequest;
+import Controller.Request.CreateRequestController.ControllerObject.NewDeregisterRequest;
+import Controller.Request.CreateRequestController.ControllerObject.NewRegisterRequest;
+import Controller.Request.ViewRequestPackage.ControllerObject.ViewOutgoingRequestsHistory;
 import Entity.DatabaseClass.FYPCoordinatorDB;
 import Entity.DatabaseClass.ProjectDB;
 import Entity.ProjectClass.Project;
@@ -16,7 +19,7 @@ import Exceptions.handleInvalidInput;
 
 public class Student extends User {
 
-	private boolean assigned;
+	private boolean assigned; 
 
 	public Student() {
 	}
@@ -28,9 +31,18 @@ public class Student extends User {
 	 * @param name   Name of the student.
 	 * @param email  Email address of the student.
 	 */
-	public Student(String userID, String name, String email) {
+	public Student(String userID, String name, String email, Boolean bool) {
 		super(userID, name, email);
 		super.setUserType(UserType.STUDENT);
+		setAssigned(bool);
+	}
+
+	public boolean getAssigned(){
+		return this.assigned;
+	}
+
+	public void setAssigned(boolean bool){
+		this.assigned = bool;
 	}
 
 	@Override
@@ -57,137 +69,65 @@ public class Student extends User {
 
 			System.out.printf("\nEnter Option: ");
 			choice = sc.nextInt();
-			ProjectDB projDB = new ProjectDB();
 
-			for(Object obj: projDB.objectDB){
-				Project curProject = (Project) obj;
-				if(curProject.getStudentID().equals(this.getUserID())){
-					assigned = true;
-					break;
-				}
-			}
-
-			if((choice == 1 || choice == 3) && assigned == true){
-					System.out.println("You are already assigned to a project!");
-				}
-
-			if((choice == 2 || choice == 4 || choice == 5) && assigned == false){
-					System.out.println("You are not assigned to a project!");
-				}
-
-			else{
 				switch(choice){
 					case 1: 
 						System.out.println("\nOption [1] selected! - Show Available Projects");
-						new ViewAvailableProjects(this);
+						if(!assigned){
+							new ViewAvailableProjects(this);
+						}else{
+							System.out.println("You are already assigned to a project!\n");
+						}
 						break;
 		
 					case 2: 
 						System.out.println("\nOption [2] selected! - Show Registered Project.");
-						new ViewPersonalProjects(this);
+						if(assigned){
+							new ViewPersonalProjects(this);
+						}else{
+							System.out.println("You are not assigned to a project!\n");
+						}
 						break;
 		
 					case 3:
 						System.out.println("\nOption [3] selected! - Register Project.");
-						registerProject();
+						if(!assigned){
+							new NewRegisterRequest(this);
+						}else{
+							System.out.println("You are already assigned to a project!\n");
+						}
 						break;
 		
 					case 4:	
 						System.out.println("\nOption [4] selected! - Deregister Project.");
-						deregisterProject();
+						if(assigned){
+							new NewDeregisterRequest(this);
+						}else{
+							System.out.println("You are not assigned to a project!\n");
+						}
 						break;
 		
 					case 5:
 						System.out.println("\nOption [5] selected! - Change Assigned Project Title.");
-						changeTitle();
+						if(assigned){
+							new NewChangeTitleRequest(this);
+						}else{
+							System.out.println("You are not assigned to a project!\n");
+						}
 						break;
 		
 					case 6: 
 						System.out.println("\nOption [6] selected! - View All Requests");
-						viewAllRequests();
+						new ViewOutgoingRequestsHistory(this);
 						break;				
 		
 					case 0: 
-						System.out.println("Option [0] selected! - Exit Program");
+						System.out.println("Option [0] selected! - Exit Program\n");
 						break;
 		
 					default:
 						throw new InvalidInputException(choice);
 				}
-			}
 		}
-	}
-
-	private void registerProject() throws InvalidInputException {
-		ViewAvailableProjects projs = new ViewAvailableProjects(this);
-
-		// View Projects
-		if (projs.projects.size() != 0) {
-			System.out.printf("Select Project to register: ");
-			int projID = sc.nextInt();
-
-			if (projs.projects.contains(projID)) {
-				FYPCoordinatorDB FYPDB = new FYPCoordinatorDB();
-				new NewRequest(RequestType.REGISTERPROJECT, this, FYPDB.findInstance(), projID);
-			} else {
-				throw new InvalidInputException(projID);
-			}
-		}
-	}
-
-	private void deregisterProject() throws InvalidInputException {
-		// View Projects
-		handleInvalidInput handler = new handleInvalidInput();
-		ViewPersonalProjects projs = new ViewPersonalProjects(this);
-
-		if (projs.projects.size() != 0) {
-			int choice;
-
-			// header
-			System.out.println("Deregister this project?");
-			System.out.println("[1] Yes");
-			System.out.println("[0] No");
-
-			// getinput
-			try {
-				choice = sc.nextInt();
-				switch (choice) {
-					case 1:
-						FYPCoordinatorDB FYPDB = new FYPCoordinatorDB();
-						new NewRequest(RequestType.DEREGISTERPROJECT, this, FYPDB.findInstance(),
-								projs.projects.get(0));
-
-					case 0:
-						break;
-
-					default:
-						throw new InvalidInputException(choice);
-				}
-			} catch (InvalidInputException e) {
-				handler.handleInvalidInputException(e);
-			} catch (InputMismatchException e) {
-				handler.handleInputMismatchException(e);
-			}
-		}
-	}
-
-	private void changeTitle() throws InvalidInputException {
-		ViewPersonalProjects projs = new ViewPersonalProjects(this);
-		// View Projects
-		if (projs.projects.size() != 0) {
-			System.out.printf("Select Assigned Project to change title: ");
-			int projID = super.sc.nextInt();
-
-			if (projs.projects.contains(projID)) {
-				ProjectDB projDB = new ProjectDB();
-				new NewRequest(RequestType.CHANGETITLE, this, projDB.findInstance(projID).getSupervisor(), projID);
-			} else {
-				throw new InvalidInputException(projID);
-			}
-		}
-	}
-
-	private void viewAllRequests() {
-		new ViewOutgoingRequestsHistory(this);
 	}
 }

@@ -8,9 +8,9 @@ import Controller.Project.GenerateProjectReportController.GenerateReport;
 import Controller.Project.ViewProjectController.*;
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
-import Controller.Request.ManageRequestController.ManageRequest;
-import Controller.Request.ViewRequestController.ControllerObject.ViewAllRequestsHistory;
-import Controller.Request.ViewRequestController.ControllerObject.ViewPendingRequests;
+import Controller.Request.ManageRequestController.RequestManager;
+import Controller.Request.ViewRequestPackage.ControllerObject.ViewAllRequestsHistory;
+import Controller.Request.ViewRequestPackage.ControllerObject.ViewPendingRequests;
 import Entity.UserClass.UserDetails.*;
 
 public class FYP_Coordinator extends Supervisor {
@@ -60,7 +60,7 @@ public class FYP_Coordinator extends Supervisor {
 
 				case 2: 
 					System.out.println("Option [2] selected! - Manage Requests.\n");
-					new ManageRequest(this);
+					new RequestManager(this);
 
 					break;
 

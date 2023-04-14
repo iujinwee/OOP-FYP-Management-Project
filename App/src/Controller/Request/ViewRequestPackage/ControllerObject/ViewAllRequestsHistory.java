@@ -1,10 +1,10 @@
-package Controller.Request.ViewRequestController.ControllerObject;
+package Controller.Request.ViewRequestPackage.ControllerObject;
 
-import Controller.Request.ViewRequestController.ViewRequestController;
+import Controller.Request.ViewRequestPackage.ViewRequestDBController;
 import Entity.RequestClass.Request;
 import Entity.UserClass.UserDetails.User;
 
-public class ViewAllRequestsHistory extends ViewRequestController{
+public class ViewAllRequestsHistory extends ViewRequestDBController{
     
     public ViewAllRequestsHistory(User user){
         super(user);
