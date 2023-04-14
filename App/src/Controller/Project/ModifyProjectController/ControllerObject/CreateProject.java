@@ -20,7 +20,7 @@ public class CreateProject extends ModifyProjectController {
         //ask rest of project details here
 		//if num of assigned > 2 then cannot create project alr 
 		//else num of assigned +1
-		if (projDB.hasVacancy(supervisor)) {
+		if (this.supervisor.getNumAssignedProjects() < 2) {
 			int newID = ++projDB.size; 
 			Project newProject = new Project(newID); // Default 
 			newProject.setSupervisor(supervisor); 

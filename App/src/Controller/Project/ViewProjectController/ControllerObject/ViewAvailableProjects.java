@@ -51,7 +51,7 @@ public class ViewAvailableProjects extends ViewProjectsController{
                     break;
 
                 default:
-                    System.out.println("No Projects Found!");
+                    System.out.println("Invalid User Type.");
                     break;
             }
 		}
