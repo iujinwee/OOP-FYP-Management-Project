@@ -32,10 +32,12 @@ public class ChangeProjectSupervisor extends ModifyProjectController{
     @Override
 	public void updateDB() {		
 
-        projDB.findInstance(projID).setSupervisor(supervisor);
+        
         supDB = new SupervisorDB();
+        supDB.findInstance(projDB.findInstance(projID).getSupervisor().getUserID()).removeAssignedProjects();
         supDB.findInstance(supervisor.getUserID()).addAssignedProjects();
         supDB.exportDB();
+        projDB.findInstance(projID).setSupervisor(supervisor);
 
         System.out.printf("Successfully changed supervisor to %s\n", supervisor.getName());
 	}

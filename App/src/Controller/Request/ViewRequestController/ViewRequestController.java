@@ -6,6 +6,7 @@ import Boundaries.Database.LoadFilesInterface;
 import Boundaries.Request.ViewRequestInterface;
 import Boundaries.Request.ViewRequestListInterface;
 import Entity.DatabaseClass.RequestDB;
+import Entity.DatabaseClass.SupervisorDB;
 import Entity.RequestClass.Request;
 import Entity.UserClass.UserDetails.User;
 
@@ -42,7 +43,8 @@ public abstract class ViewRequestController implements LoadFilesInterface, ViewR
 		System.out.printf("      STATUS: %s\n", req.getRequestStatus().toString());
 		System.out.printf("      From: %s | To: %s\n", req.getFromUser().getName(), req.getToUser().getName());
 		if(req.getNewSupervisor()!=null){
-			System.out.printf("      New Supervisor Name: %s\n", req.getNewSupervisor());	
+            SupervisorDB supDB = new SupervisorDB();
+			System.out.printf("      New Supervisor Name: %s\n", (supDB.findInstance(req.getNewSupervisor())).getName());	
 		}
 		
 		if(req.getNewTitle()!=null){
