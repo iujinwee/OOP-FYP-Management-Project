@@ -22,21 +22,8 @@ public class App {
 
         // FYP_Coordinator m = new FYP_Coordinator("ASFLI", "LI FANG", "Y");
         // m.startProgram();
-
-        AccountDB accDB = new AccountDB();
-        StudentDB studentDB = new StudentDB();
-        SupervisorDB supervisorDB = new SupervisorDB();
-        FYP_CoordinatorDB fyp_coordinatorDB = new FYP_CoordinatorDB();
-        accDB.viewDB();
-        // studentDB.showDB();
-        Account ca = new Account(); 
-        User user = null;
-        Scanner sc = new Scanner(System.in);
         
-        // Introduction to App 
-        System.out.println("\n================================================================");
-        System.out.println("======    Welcome to Final Year Project Management App    ======");
-        System.out.println("================================================================\n");
+        User user = null;
 
         // Welcome Page
         new WelcomePage();
@@ -45,22 +32,20 @@ public class App {
         new Login();
 
         // Initialising user class based on user type
-        switch(ca.getType()) {
-            case "STUDENT":
-                user = studentDB.findInstance(ca.getUserID());
-                break;
-            case "SUPERVISOR":
-                user = supervisorDB.findInstance(ca.getUserID());
-                break;
-            case "FYPCOORDINATOR":
-                user =  fyp_coordinatorDB.findInstance(ca.getUserID());
-                break;
-        }
+        // switch(ca.getType()) {
+        //     case "STUDENT":
+        //         user = studentDB.findInstance(ca.getUserID());
+        //         break;
+        //     case "SUPERVISOR":
+        //         user = supervisorDB.findInstance(ca.getUserID());
+        //         break;
+        //     case "FYPCOORDINATOR":
+        //         user =  fyp_coordinatorDB.findInstance(ca.getUserID());
+        //         break;
+        // }
         
         // Show menu depending on user type
-        user.startProgram();
-        user.viewUserMenu();
+        // user.viewUserMenu();
 
-        sc.close();
-	}
+    }
 }
