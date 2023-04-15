@@ -4,7 +4,7 @@ import Entity.UserClass.UserDetails.*;
 
 public class Supervisor extends User {
 
-	private int numAssignedProjects=0;
+	private int numAssignedProjects;
 	private String supervisorID;
 
 	/**
@@ -16,7 +16,7 @@ public class Supervisor extends User {
 	 */
 	public Supervisor(String userID, String name, String email, int numAssigned) {
 		super(userID, name, email);
-		this.numAssignedProjects = numAssigned;
+		setNumAssignedProjects(numAssigned);
 		super.setUserType(UserType.SUPERVISOR); 
 		this.supervisorID = super.getUserID();
 	}

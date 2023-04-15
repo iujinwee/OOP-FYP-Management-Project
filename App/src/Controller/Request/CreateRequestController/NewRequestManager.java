@@ -13,7 +13,7 @@ import Entity.UserClass.UserDetails.User;
 import Exceptions.InvalidInputException;
 import Exceptions.handleInvalidInput;
 
-public abstract class NewRequestController extends RequestDBManager implements GetInputInterface, HeaderInterface, BodyInterface, FooterInterface {
+public abstract class NewRequestManager extends RequestDBManager implements GetInputInterface, HeaderInterface, BodyInterface, FooterInterface {
 
     public RequestType type;
     public boolean created;
@@ -23,7 +23,7 @@ public abstract class NewRequestController extends RequestDBManager implements G
     handleInvalidInput handler = new handleInvalidInput();
     public Scanner sc = new Scanner(System.in);
 
-    public NewRequestController(User user){
+    public NewRequestManager(User user){
         super();
         this.fromUser = user;
     }

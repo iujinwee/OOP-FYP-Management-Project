@@ -6,8 +6,6 @@ import Controller.Project.LoadProjectDBController;
 
 public abstract class ModifyProjectController extends LoadProjectDBController implements UpdateDBInterface, ExportDBInterface{
 
-    public boolean filesInitialized = false; 
-
     public ModifyProjectController(){
         super();
     }

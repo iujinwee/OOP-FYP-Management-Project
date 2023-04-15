@@ -4,16 +4,16 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Boundaries.Menu.GetInputInterface;
-import Boundaries.Project.GenerateReportInterface;
+import Boundaries.Menu.ViewUserMenuInterface;
 import Exceptions.InvalidInputException;
 import Exceptions.handleInvalidInput;
 
-public class GenerateReport implements GenerateReportInterface, GetInputInterface {
+public class GenerateReport implements ViewUserMenuInterface, GetInputInterface {
     
     private handleInvalidInput handler = new handleInvalidInput();
 
     public GenerateReport(){
-        displayOptions();
+        viewUserMenu();
 
         try{
             getInput();
@@ -26,7 +26,7 @@ public class GenerateReport implements GenerateReportInterface, GetInputInterfac
     }
 
     @Override
-    public void displayOptions() {
+    public void viewUserMenu() {
 		System.out.println("Generate Report (Search Filters)");
         System.out.println("=================================");
 		System.out.println("[1] By Status");

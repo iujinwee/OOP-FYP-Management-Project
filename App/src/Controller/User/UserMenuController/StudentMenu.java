@@ -7,6 +7,9 @@ import Controller.Request.CreateRequestController.ControllerObject.NewChangeTitl
 import Controller.Request.CreateRequestController.ControllerObject.NewDeregisterRequest;
 import Controller.Request.CreateRequestController.ControllerObject.NewRegisterRequest;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewOutgoingRequestsHistory;
+import Entity.DatabaseClass.RequestDB;
+import Entity.RequestClass.Request;
+import Entity.RequestClass.RequestStatus;
 import Entity.UserClass.Student;
 import Exceptions.InvalidInputException;
 
@@ -14,6 +17,7 @@ import Exceptions.InvalidInputException;
 public class StudentMenu extends UserMenuController {
     
     private Student student;
+    private int pendingCount; 
 
     public StudentMenu(Student student) {
         this.student = student;
@@ -40,9 +44,10 @@ public class StudentMenu extends UserMenuController {
         int choice = -1;
         while (choice != 0){	
 
+            this.pendingCount  = checkPending();
+            
 			// Show User Menu
 			viewUserMenu();
-
 
 			System.out.printf("\nEnter Option: ");
 			choice = sc.nextInt();
@@ -68,33 +73,42 @@ public class StudentMenu extends UserMenuController {
     
                 case 3:
                     System.out.println("\nOption [3] selected! - Register Project.");
-                    if(!student.getAssigned()){
-                        new NewRegisterRequest(student);
-                    }else{
+
+                    if(student.getAssigned()){
                         System.out.println("You are already assigned to a project!\n");
+                    }else if(pendingCount!=0){
+                        System.out.println("You already have a pending request!\n");   
+                    }else{
+                        new NewRegisterRequest(student);
                     }
                     break;
     
                 case 4:	
                     System.out.println("\nOption [4] selected! - Deregister Project.");
-                    if(student.getAssigned()){
-                        new NewDeregisterRequest(student);
-                    }else{
+
+                    if(!student.getAssigned()){
                         System.out.println("You are not assigned to a project!\n");
+                    }else if(pendingCount!=0){
+                        System.out.println("You already have a pending request!\n");   
+                    }else{
+                        new NewDeregisterRequest(student);
                     }
                     break;
-    
+
                 case 5:
                     System.out.println("\nOption [5] selected! - Change Assigned Project Title.");
-                    if(student.getAssigned()){
-                        new NewChangeTitleRequest(student);
-                    }else{
+
+                    if(!student.getAssigned()){
                         System.out.println("You are not assigned to a project!\n");
+                    }else if(pendingCount!=0){
+                        System.out.println("You already have a pending request!\n");   
+                    }else{
+                        new NewChangeTitleRequest(student);
                     }
                     break;
     
                 case 6: 
-                    System.out.println("\nOption [6] selected! - View All Requests");
+                    System.out.println("\nOption [6] selected! - View Request Status and History.");
                     new ViewOutgoingRequestsHistory(student);
                     break;				
                     
@@ -114,6 +128,22 @@ public class StudentMenu extends UserMenuController {
             
         }
         sc.close();
+    }
+
+    private int checkPending(){
+        RequestDB d = new RequestDB();
+        int count = 0; 
+
+        for (Object o : d.objectDB){
+            Request r = (Request)o;
+            boolean pend = r.getRequestStatus().compareTo(RequestStatus.PENDING)==0;
+            boolean own = r.getFromUser().getUserID().compareTo(student.getUserID())==0;
+
+            if(pend && own){
+                count++;
+            }
+        }
+        return count; 
     }
         
 }

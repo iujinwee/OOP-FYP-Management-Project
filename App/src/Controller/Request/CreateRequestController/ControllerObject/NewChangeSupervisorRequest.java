@@ -1,7 +1,7 @@
 package Controller.Request.CreateRequestController.ControllerObject;
 
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
-import Controller.Request.CreateRequestController.NewRequestController;
+import Controller.Request.CreateRequestController.NewRequestManager;
 import Entity.DatabaseClass.FYP_CoordinatorDB;
 import Entity.DatabaseClass.SupervisorDB;
 import Entity.ProjectClass.ProjectStatus;
@@ -11,7 +11,7 @@ import Entity.UserClass.UserDetails.User;
 import Exceptions.InvalidInputException;
 import Exceptions.handleInvalidInput;
 
-public class NewChangeSupervisorRequest extends NewRequestController{
+public class NewChangeSupervisorRequest extends NewRequestManager{
 
     FYP_CoordinatorDB FYPDB = new FYP_CoordinatorDB();
     SupervisorDB supDB = new SupervisorDB();

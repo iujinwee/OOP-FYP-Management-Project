@@ -30,6 +30,13 @@ public class ViewPendingRequests extends ViewRequestDBController {
             // Filter only PENDING requests
             if(req.getRequestStatus().compareTo(RequestStatus.PENDING)==0){
                 switch(user.getUserType()){
+
+                    case STUDENT: 
+                        if(req.getToUser().getUserID().compareTo(user.getUserID())==0){
+                            requests.add(viewRequest(req));
+                        }
+                        break;
+
                     // View His/Her Pending
                     case SUPERVISOR:
                         if(req.getToUser().getUserID().compareTo(user.getUserID())==0){

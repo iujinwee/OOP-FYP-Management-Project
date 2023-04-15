@@ -108,9 +108,9 @@ public class Project {
     
 	public int viewFullProjectInfo() {
 
-		System.out.println("\n****************************************************************");
-        System.out.println("****************         Project Details        ****************");
-        System.out.println("****************************************************************\n");
+		// System.out.println("\n****************************************************************");
+        // System.out.println("****************         Project Details        ****************");
+        // System.out.println("****************************************************************\n");
 
        // View Project Details
        System.out.println("================================================================");

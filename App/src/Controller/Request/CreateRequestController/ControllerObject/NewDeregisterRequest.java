@@ -1,14 +1,14 @@
 package Controller.Request.CreateRequestController.ControllerObject;
 
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
-import Controller.Request.CreateRequestController.NewRequestController;
+import Controller.Request.CreateRequestController.NewRequestManager;
 import Entity.DatabaseClass.FYP_CoordinatorDB;
 import Entity.RequestClass.RequestType;
 import Entity.RequestClass.RequestSubClass.DeregisterProjectRequest;
 import Entity.UserClass.UserDetails.User;
 import Exceptions.InvalidInputException;
 
-public class NewDeregisterRequest extends NewRequestController{
+public class NewDeregisterRequest extends NewRequestManager{
 
     FYP_CoordinatorDB FYPDB = new FYP_CoordinatorDB();
 

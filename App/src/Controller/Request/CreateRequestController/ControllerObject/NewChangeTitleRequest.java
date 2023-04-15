@@ -1,14 +1,14 @@
 package Controller.Request.CreateRequestController.ControllerObject;
 
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
-import Controller.Request.CreateRequestController.NewRequestController;
+import Controller.Request.CreateRequestController.NewRequestManager;
 import Entity.DatabaseClass.FYP_CoordinatorDB;
 import Entity.RequestClass.RequestType;
 import Entity.RequestClass.RequestSubClass.ChangeTitleRequest;
 import Entity.UserClass.UserDetails.User;
 import Exceptions.InvalidInputException;
 
-public class NewChangeTitleRequest extends NewRequestController{
+public class NewChangeTitleRequest extends NewRequestManager{
 
     FYP_CoordinatorDB FYPDB = new FYP_CoordinatorDB();
     String newTitle;

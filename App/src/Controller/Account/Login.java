@@ -26,10 +26,10 @@ public class Login extends LoadAccountDBController {
                     new InitializeUser(acc);
                     break;
                 } else {
-                    System.out.println("Incorrect Passwprd!");
+                    System.out.println("\nIncorrect Password!");
                 }
             } else {
-                System.out.println("Invalid User ID!");
+                System.out.println("\nInvalid User ID!");
             }
             
             loginAttempts++;
@@ -44,9 +44,10 @@ public class Login extends LoadAccountDBController {
     }
     
     public void getLoginInputs() {
-        System.out.println("Enter User ID: ");
+        System.out.println("\n> LOGIN");
+        System.out.printf("Enter User ID: ");
         inputUserID = sc.nextLine();
-        System.out.println("Enter Password: ");
+        System.out.printf("Enter Password: ");
         inputPassword = sc.nextLine();
     }
 

@@ -3,7 +3,7 @@ package Controller.Request.CreateRequestController.ControllerObject;
 import java.util.Scanner;
 
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
-import Controller.Request.CreateRequestController.NewRequestController;
+import Controller.Request.CreateRequestController.NewRequestManager;
 import Entity.DatabaseClass.FYP_CoordinatorDB;
 import Entity.RequestClass.RequestType;
 import Entity.RequestClass.RequestSubClass.RegisterProjectRequest;
@@ -11,7 +11,7 @@ import Entity.UserClass.UserDetails.User;
 import Exceptions.InvalidInputException;
 import Exceptions.handleInvalidInput;
 
-public class NewRegisterRequest extends NewRequestController{
+public class NewRegisterRequest extends NewRequestManager{
 
     handleInvalidInput handler = new handleInvalidInput();
     Scanner sc = new Scanner(System.in);
