@@ -19,6 +19,10 @@ public class StudentMenu extends UserMenuController {
     private Student student;
     private int pendingCount; 
 
+    /**
+	 * Student Menu Constructor.
+	 * @param student Student Object
+	 */
     public StudentMenu(Student student) {
         this.student = student;
 
@@ -38,6 +42,10 @@ public class StudentMenu extends UserMenuController {
 		System.out.println("[0] Exit Program.");
     }
 
+    
+    /** 
+     * @throws InvalidInputException
+     */
     @Override
     public void getInput() throws InvalidInputException {
 

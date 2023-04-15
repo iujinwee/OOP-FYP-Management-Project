@@ -15,6 +15,10 @@ public class SupervisorMenu extends UserMenuController {
 
     private Supervisor supervisor;
 
+	/**
+	 * Supervisor Menu Constructor.
+	 * @param supervisor Supervisor Object
+	 */
     public SupervisorMenu(Supervisor supervisor) {
 		this.supervisor = supervisor;
 
@@ -34,7 +38,11 @@ public class SupervisorMenu extends UserMenuController {
 		System.out.println("[0] Exit Program.");
     }
 
-    @Override
+    
+	/** 
+	 * @throws InvalidInputException
+	 */
+	@Override
     public void getInput() throws InvalidInputException {
 
         int choice = -1;

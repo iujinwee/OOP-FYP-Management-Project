@@ -9,9 +9,9 @@ public class SupervisorDB extends Database{
     }
 
     /**
-     * Find instance of Supervisor object in SupervisorDB, matched by the User ID, not case sensitive.
-     * @param id Input User ID to be found.
-     * @return Supervisor object.
+     * Method to find instance of Supervisor object in SupervisorDB, matched by the User ID, not case sensitive.
+     * @param id Input User ID to be found
+     * @return Supervisor object
      */
     public Supervisor findInstance(String id) {
         for (Object s: super.objectDB){

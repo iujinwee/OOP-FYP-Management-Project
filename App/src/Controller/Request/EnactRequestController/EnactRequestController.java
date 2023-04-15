@@ -52,6 +52,11 @@ public abstract class EnactRequestController extends RequestDBManager implements
         }
     }
 
+    
+    /** 
+     * @param choice
+     * @throws InvalidInputException
+     */
     @Override
     public void enactRequest(int choice) throws InvalidInputException{
         switch(choice){

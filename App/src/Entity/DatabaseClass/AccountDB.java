@@ -9,9 +9,9 @@ public class AccountDB extends Database {
     }
 
     /**
-     * Find instance of Account object in AccountDB, matched by the User ID, not case sensitive.
-     * @param id Input User ID to be found.
-     * @return Account object.
+     * Method to find instance of Account object in AccountDB, matched by the User ID, not case sensitive.
+     * @param id Input User ID to be found
+     * @return Account object
      */
     public Account findInstance(String id) {
         for(Object a : super.objectDB) {

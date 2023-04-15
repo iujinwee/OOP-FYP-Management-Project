@@ -14,6 +14,11 @@ public class ChangeSupervisorRequest extends Request implements CreateRequestInt
         this.newSupervisor = newSupervisor;
     }    
     
+    
+    /** 
+     * Method to create a new request.
+     * @return Request
+     */
     @Override
     public Request createRequest() {
 

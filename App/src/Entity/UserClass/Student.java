@@ -12,9 +12,10 @@ public class Student extends User {
 	/**
 	 * Student constructor.
 	 * 
-	 * @param userID Unique ID of the student.
-	 * @param name   Name of the student.
-	 * @param email  Email address of the student.
+	 * @param userID Unique ID of the student
+	 * @param name   Name of the student
+	 * @param email  Email address of the student
+	 * @param bool 
 	 */
 	public Student(String userID, String name, String email, Boolean assigned) {
 		super(userID, name, email);
@@ -23,6 +24,10 @@ public class Student extends User {
 		setAssigned(assigned);
 	}
 
+	
+	/** 
+	 * @return boolean
+	 */
 	public boolean getAssigned(){
 		return this.assigned;
 	}
@@ -32,11 +37,19 @@ public class Student extends User {
 	}
 
 	// GETTER FUNCTIONS
+	/** 
+	 * Method used to get unique ID of student.
+	 * @return Unique ID of student
+	 */
 	public String getStudentID() {
 		return this.studentID;
 	}
 
 	// SETTER FUNCTIONS
+	/** 
+	 * Method used to set unique ID of student.
+	 * @param studentID Unique ID of student
+	 */
 	public void setStudentID(String studentID) {
 		this.studentID = studentID;
 	}

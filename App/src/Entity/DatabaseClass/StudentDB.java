@@ -9,9 +9,9 @@ public class StudentDB extends Database{
     }
 
     /**
-     * Find instance of Student object in StudentDB, matched by the User ID, not case sensitive.
-     * @param id Input User ID to be found.
-     * @return Student object.
+     * Method to find instance of Student object in StudentDB, matched by the User ID, not case sensitive.
+     * @param id Input User ID to be found
+     * @return Student object
      */
     public Student findInstance(String id) {
         for(Object s : super.objectDB){

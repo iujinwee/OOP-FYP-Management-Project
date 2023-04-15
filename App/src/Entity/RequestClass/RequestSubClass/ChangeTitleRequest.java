@@ -14,6 +14,10 @@ public class ChangeTitleRequest extends Request implements CreateRequestInterfac
         super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGETITLE, projectID);
         this.newTitle = newTitle;
     }
+    
+    /** 
+     * @return Request
+     */
     @Override
     public Request createRequest() {
         super.setNewTitle(newTitle);

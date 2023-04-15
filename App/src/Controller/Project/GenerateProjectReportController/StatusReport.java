@@ -69,7 +69,11 @@ public class StatusReport extends ViewProjectsController implements BodyInterfac
         }
     }
 
-    private void printList(ArrayList<Project> arr) {
+    
+    /** 
+     * @param arr
+     */
+    private void printList(ArrayList<Project> arr){
         if(arr.size()!=0){
             for(Project p : arr){    
                 String stuName = p.getStudent().getName();

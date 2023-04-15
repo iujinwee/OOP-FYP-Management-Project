@@ -60,6 +60,11 @@ public class Login extends LoadAccountDBController implements HeaderInterface, F
         this.inputPassword = sc.nextLine();
     }
 
+    
+    /** 
+     * @param inputUserID
+     * @return boolean
+     */
     public boolean checkUserID(String inputUserID) {
         temp = accDB.findInstance(inputUserID);
         if(temp.getUserID() != null) {
