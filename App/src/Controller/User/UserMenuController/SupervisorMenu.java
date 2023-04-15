@@ -4,6 +4,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Controller.Account.AccessAccountDBController.ChangePassword;
+import Controller.Project.ModifyProjectController.ControllerObject.ChangeProjectTitle;
+import Controller.Project.ModifyProjectController.ControllerObject.CreateProject;
+import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
+import Controller.Request.CreateRequestController.ControllerObject.NewChangeSupervisorRequest;
+import Controller.Request.ManageRequestController.RequestManager;
+import Controller.Request.ViewRequestPackage.ControllerObject.ViewIncomingRequestsHistory;
+import Controller.Request.ViewRequestPackage.ControllerObject.ViewOutgoingRequestsHistory;
 import Entity.UserClass.Supervisor;
 import Exceptions.handleInvalidInput;
 import Exceptions.InvalidInputException;
@@ -12,7 +19,8 @@ public class SupervisorMenu extends UserMenuController {
 
     private Supervisor supervisor;
     private handleInvalidInput handler = new handleInvalidInput(3);
-    
+	Scanner sc = new Scanner(System.in);
+
     public SupervisorMenu(Supervisor supervisor) {
         this.supervisor = supervisor;
 
@@ -43,7 +51,6 @@ public class SupervisorMenu extends UserMenuController {
 
     @Override
     public void getInput() throws InvalidInputException {
-        Scanner sc = new Scanner(System.in);
 
         int choice = -1;
         while(choice != 0) {
@@ -55,28 +62,39 @@ public class SupervisorMenu extends UserMenuController {
             switch(choice){
 				case 1: 
 					System.out.println("Option [1] selected! - Create New Project.");
+					new CreateProject(supervisor);
 					break;
 
 				case 2: 
 					//Supervisor views his/her projects
 					System.out.println("Option [2] selected! - View Projects created by me.");
+					new ViewPersonalProjects(supervisor);
 					break;
 
 				case 3:
 					//Supervisor changes title of his/her projects
 					System.out.println("Option [3] selected! - Change Title of Project.");
+					changeProjectTitle();
 					break;
 
 				case 4:	
 					System.out.println("Option [4] selected! - Request to Transfer Student to Replacement Supervisor.");
+					new NewChangeSupervisorRequest(supervisor);
 					break;
 					
 				case 5:
 					System.out.println("Option [5] selected! - Manage Incoming Requests.");
+					new RequestManager(supervisor);
 					break;
 
 				case 6:
-					System.out.println("\nOption [6] selected! - Change Password");
+					System.out.println("Option [6] selected! - View all incoming and outgoing requests.");
+					new ViewIncomingRequestsHistory(supervisor);
+					new ViewOutgoingRequestsHistory(supervisor);
+					break;
+
+				case 7:
+					System.out.println("\nOption [7] selected! - Change Password");
 					System.out.println("Enter new password: ");
                     String newPassword = sc.next();
                     new ChangePassword(supervisor.getUserID(), newPassword);
@@ -92,6 +110,24 @@ public class SupervisorMenu extends UserMenuController {
         }
         sc.close();
     }
+
+	private void changeProjectTitle() throws InvalidInputException{
+		// View Projects
+		ViewPersonalProjects projs = new ViewPersonalProjects(supervisor);
+
+		System.out.println("Select Project ID to change new title:");
+		int projID = sc.nextInt();
+
+		boolean own = projs.projects.contains(projID);
+		if(own){	
+			System.out.println("Enter the new title:");
+			String newTitle = sc.next();
+			new ChangeProjectTitle(projID, newTitle);
+
+		}else{
+			throw new InvalidInputException(projID);
+		}
+	}
 }
 
 

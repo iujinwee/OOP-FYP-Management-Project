@@ -2,7 +2,7 @@ package Controller.Request.CreateRequestController.ControllerObject;
 
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
 import Controller.Request.CreateRequestController.NewRequestController;
-import Entity.DatabaseClass.FYPCoordinatorDB;
+import Entity.DatabaseClass.FYP_CoordinatorDB;
 import Entity.DatabaseClass.SupervisorDB;
 import Entity.ProjectClass.ProjectStatus;
 import Entity.RequestClass.RequestType;
@@ -13,7 +13,7 @@ import Exceptions.handleInvalidInput;
 
 public class NewChangeSupervisorRequest extends NewRequestController{
 
-    FYPCoordinatorDB FYPDB = new FYPCoordinatorDB();
+    FYP_CoordinatorDB FYPDB = new FYP_CoordinatorDB();
     SupervisorDB supDB = new SupervisorDB();
     String newSupervisor;
 

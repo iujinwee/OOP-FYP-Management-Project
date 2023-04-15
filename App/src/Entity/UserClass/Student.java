@@ -47,9 +47,4 @@ public class Student extends User {
 	public void setStudentID(String studentID) {
 		this.studentID = studentID;
 	}
-	
-
-	// private void registerProject() throws InvalidInputException{
-	// 	ViewAvailableProjects projs = new ViewAvailableProjects(this);
-
 }

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
 import Controller.Request.CreateRequestController.NewRequestController;
-import Entity.DatabaseClass.FYPCoordinatorDB;
+import Entity.DatabaseClass.FYP_CoordinatorDB;
 import Entity.RequestClass.RequestType;
 import Entity.RequestClass.RequestSubClass.RegisterProjectRequest;
 import Entity.UserClass.UserDetails.User;
@@ -30,7 +30,7 @@ public class NewRegisterRequest extends NewRequestController{
 
     @Override
     public void updateDB() {
-        FYPCoordinatorDB FYPDB = new FYPCoordinatorDB();
+        FYP_CoordinatorDB FYPDB = new FYP_CoordinatorDB();
 
         reqDB.objectDB.add((new RegisterProjectRequest(reqDB.size+1, projID, fromUser, FYPDB.findInstance())).createRequest());
     }
