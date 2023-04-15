@@ -42,14 +42,17 @@ public class CreateChangeSupervisorRequest extends CreateRequest{
 		if (projs.projects.size() != 0) {
 
 			System.out.printf("Select Project ID to change new supervisor: ");
-            int projID = sc.nextInt();	
+            projID = sc.nextInt();	
+
+             // Check for invalid project ID
+             if(!projs.projects.contains(projID)) {
+                throw new InvalidInputException(projID);
+            }
+            
             // View Info
             projs.projDB.findInstance(projID).viewFullProjectInfo();
             
-            // Check for invalid project ID
-            if(!projs.projects.contains(projID)) {
-                throw new InvalidInputException(projID);
-            }
+           
 
 			boolean allocated = (projs.projDB.findInstance(projID).getProjectStatus() == ProjectStatus.ALLOCATED);
 

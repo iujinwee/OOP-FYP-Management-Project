@@ -82,7 +82,7 @@ public class SupervisorMenu extends CheckInputUserMenu {
 					break;
 
 				case 6:
-					System.out.println("Option [6] selected! - View All Incoming and Outgoing Requests");
+					System.out.println("Option [6] selected! - View Request Status and History");
 					new ViewIncomingRequestsHistory(supervisor);
 					new ViewOutgoingRequestsHistory(supervisor);
 					break;

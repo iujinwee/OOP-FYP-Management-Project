@@ -29,6 +29,11 @@ public class WelcomePage extends CheckInputWelcomePage implements HeaderInterfac
     }
 
     @Override
+    public void footer() {
+        System.out.println("\nExiting Program...\n");
+    }
+
+    @Override
     public void viewUserMenu() {
 		System.out.println("Welcome");
         System.out.println("=======================");
