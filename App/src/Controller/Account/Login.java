@@ -42,7 +42,7 @@ public class Login extends LoadAccountDBController implements HeaderInterface, F
     public void header() {
         System.out.println("\n********************************************");
         System.out.println("************     LOGIN PAGE     ************");
-        System.out.println("********************************************\n");
+        System.out.println("********************************************");
     }
 
     @Override

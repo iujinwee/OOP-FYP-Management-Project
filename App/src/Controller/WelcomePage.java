@@ -3,6 +3,7 @@ package Controller;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import Boundaries.Menu.FooterInterface;
 import Boundaries.Menu.GetInputInterface;
 import Boundaries.Menu.HeaderInterface;
 import Boundaries.Menu.ViewUserMenuInterface;
@@ -11,7 +12,7 @@ import Controller.Account.ModifyAccountDBController.CreateNewAccount;
 import Exceptions.handleInvalidInput;
 import Exceptions.InvalidInputException;
 
-public class WelcomePage implements HeaderInterface, ViewUserMenuInterface, GetInputInterface {
+public class WelcomePage implements HeaderInterface, ViewUserMenuInterface, GetInputInterface, FooterInterface {
     
     private handleInvalidInput handler = new handleInvalidInput(3);
     public Scanner sc = new Scanner(System.in);
@@ -31,6 +32,8 @@ public class WelcomePage implements HeaderInterface, ViewUserMenuInterface, GetI
                 handler.handleInvalidInputException(e);
             }
         } 
+        
+        footer();
     }
     
     @Override
@@ -42,6 +45,11 @@ public class WelcomePage implements HeaderInterface, ViewUserMenuInterface, GetI
         System.out.println("**   █─── ──░█── ░█───    ░█──░█ ▀──▀ ▀──▀ ▀──▀ ▀▀▀▀ ▀▀▀ ▀───▀ ▀▀▀ ▀──▀ ──▀──    ░█─░█ ░█─── ░█───   **");
         System.out.println("**                                                                                                   **");    
         System.out.println("*******************************************************************************************************");
+    }
+
+    @Override
+    public void footer() {
+        System.out.println("\nExiting Program...\n");
     }
 
     @Override

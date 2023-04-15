@@ -1,5 +1,6 @@
 package Controller.User.UserMenuController;
 
+import Controller.WelcomePage;
 import Controller.Account.ModifyAccountDBController.ChangePassword;
 import Controller.Project.GenerateProjectReportController.GenerateReport;
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
@@ -84,6 +85,7 @@ public class FYP_CoordinatorMenu extends UserMenuController{
 			
 				case 0: 
 					System.out.println("\nOption [0] selected! - Exit Program\n");
+					new WelcomePage();
 					break;
 
 				default:

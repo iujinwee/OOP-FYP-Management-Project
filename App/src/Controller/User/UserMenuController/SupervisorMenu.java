@@ -1,5 +1,6 @@
 package Controller.User.UserMenuController;
 
+import Controller.WelcomePage;
 import Controller.Account.ModifyAccountDBController.ChangePassword;
 import Controller.Project.ModifyProjectController.ControllerObject.ChangeProjectTitle;
 import Controller.Project.ModifyProjectController.ControllerObject.CreateProject;
@@ -93,6 +94,7 @@ public class SupervisorMenu extends UserMenuController {
 
 				case 0: 
 					System.out.println("\nOption [0] selected! - Exit Program");
+					new WelcomePage();
 					break;
 
 				default:

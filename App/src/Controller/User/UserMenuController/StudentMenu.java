@@ -1,5 +1,6 @@
 package Controller.User.UserMenuController;
 
+import Controller.WelcomePage;
 import Controller.Account.ModifyAccountDBController.ChangePassword;
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
@@ -127,6 +128,7 @@ public class StudentMenu extends UserMenuController {
             
                 case 0: 
                     System.out.println("\nOption [0] selected! - Exit Program");
+                    new WelcomePage();
                     break;
     
                 default:
