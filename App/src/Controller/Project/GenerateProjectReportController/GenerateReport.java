@@ -9,7 +9,8 @@ import Exceptions.InvalidInputException;
 import Exceptions.handleInvalidInput;
 
 public class GenerateReport implements GenerateReportInterface, GetInputInterface {
-    handleInvalidInput handler = new handleInvalidInput();
+    
+    private handleInvalidInput handler = new handleInvalidInput();
 
     public GenerateReport(){
         displayOptions();
@@ -57,7 +58,5 @@ public class GenerateReport implements GenerateReportInterface, GetInputInterfac
             default: 
                 throw new InvalidInputException(choice);
         }
-        
     }
-
 }

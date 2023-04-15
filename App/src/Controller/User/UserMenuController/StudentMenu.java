@@ -12,11 +12,10 @@ import Exceptions.InvalidInputException;
 public class StudentMenu extends UserMenuController {
     
     private Student student;
-    handleInvalidInput handler = new handleInvalidInput(3);
+    private handleInvalidInput handler = new handleInvalidInput(3);
 
     public StudentMenu(Student student) {
         this.student = student;
-        viewUserMenu();
 
         while(handler.checkAttempts()) {
             try {    
@@ -47,11 +46,13 @@ public class StudentMenu extends UserMenuController {
     public void getInput() throws InvalidInputException {
         Scanner sc = new Scanner(System.in);
 
-        System.out.printf("\nEnter option: ");
-        int choice = sc.nextInt();
+        int choice = -1;
         while(choice != 0) {
             viewUserMenu();
-            
+
+            System.out.printf("\nEnter option: ");
+            choice = sc.nextInt();
+
             switch(choice) {
                 case 1: 
 					System.out.println("\nOption [1] selected! - Show Available Projects");
@@ -80,7 +81,7 @@ public class StudentMenu extends UserMenuController {
                 case 7:
                     System.out.println("\nOption [7] selected! - Change Password");
                     System.out.println("Enter new password: ");
-                    String newPassword = sc.nextLine();
+                    String newPassword = sc.next();
                     new ChangePassword(student.getUserID(), newPassword);
             
                 case 0: 
@@ -90,8 +91,9 @@ public class StudentMenu extends UserMenuController {
                 default:
                     throw new InvalidInputException(choice);
             }
+            
         }
-        
+        sc.close();
     }
         
 }

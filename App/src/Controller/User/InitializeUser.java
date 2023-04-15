@@ -28,10 +28,10 @@ public class InitializeUser extends LoadUsersDBController implements StartProgra
                 break;
             case "SUPERVISOR":
                 Supervisor supervisor = supDB.findInstance(acc.getUserID());
-                // new SupervisorMenu(supervisor);
+                new SupervisorMenu(supervisor);
                 break;
             case "FYPCOORDINATOR":
-                user = fypcoordDB.findInstance(acc.getUserID());
+                
                 break;
         }
 

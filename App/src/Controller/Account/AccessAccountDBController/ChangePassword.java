@@ -2,6 +2,7 @@ package Controller.Account.AccessAccountDBController;
 
 import Controller.Account.Login;
 import Entity.AccountClass.Account;
+import Entity.DatabaseClass.AccountDB;
 
 public class ChangePassword extends AccessAccountDBController {
 
@@ -14,6 +15,11 @@ public class ChangePassword extends AccessAccountDBController {
         loadFiles();
         updateDB();
     }
+    
+    @Override
+    public void loadFiles() {
+        accDB = new AccountDB();
+    }
 
     @Override
     public void updateDB() {
@@ -24,8 +30,8 @@ public class ChangePassword extends AccessAccountDBController {
             exportDB();
             new Login();
 		} else {
-            System.out.println("ERROR!");
-			System.out.println("New password cannot be the same as old password.");
+            System.out.println("\nERROR!");
+			System.out.println("New password cannot be the same as old password.\n");
 		}
     }
     

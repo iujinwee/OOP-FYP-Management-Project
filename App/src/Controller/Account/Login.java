@@ -38,13 +38,13 @@ public class Login extends LoadAccountDBController {
     }
     
     public void header() {
-        System.out.println("\n********************************************");
+        System.out.println("********************************************");
         System.out.println("************     LOGIN PAGE     ************");
-        System.out.println("********************************************\n");
+        System.out.println("********************************************");
     }
     
     public void getLoginInputs() {
-        System.out.println("\nEnter User ID: ");
+        System.out.println("Enter User ID: ");
         inputUserID = sc.nextLine();
         System.out.println("Enter Password: ");
         inputPassword = sc.nextLine();
