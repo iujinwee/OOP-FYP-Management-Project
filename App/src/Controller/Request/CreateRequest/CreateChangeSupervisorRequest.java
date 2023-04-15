@@ -52,7 +52,15 @@ public class CreateChangeSupervisorRequest extends CreateRequest{
             // View Info
             projs.projDB.findInstance(projID).viewFullProjectInfo();
             
-           
+            // Check for invalid project ID
+            if(!projs.projects.contains(projID)) {
+                throw new InvalidInputException(projID);
+            }
+            
+            // View Info
+            projs.projDB.findInstance(projID).viewFullProjectInfo();
+            
+            
 
 			boolean allocated = (projs.projDB.findInstance(projID).getProjectStatus() == ProjectStatus.ALLOCATED);
 

@@ -6,6 +6,8 @@ import Boundaries.Request.Classes.ViewAllRequestsHistory;
 import Boundaries.Request.Classes.ViewPendingRequests;
 import Controller.Account.ModifyAccountDB.ChangePassword;
 import Controller.Menu.CheckInputUserMenu;
+import Controller.Project.GetInputModifyProject.CreateProject;
+import Controller.Project.ModifyProject.ChangeProjectSupervisor;
 import Controller.Request.ManageRequest.ManageRequest;
 import Entity.UserClass.FYP_Coordinator;
 import Exceptions.InvalidInputException;
@@ -27,14 +29,15 @@ public class FYP_CoordinatorMenu extends CheckInputUserMenu{
     @Override
     public void viewUserMenu() {
         System.out.println("\n=============  FYP COORDINATOR MENU  ==============");
-		System.out.println("[1] View All Requests");
-		System.out.println("[2] Manage Requests");
-		System.out.println("[3] View Pending Requests");
-		System.out.println("[4] View Projects");
-		System.out.println("[5] Generate Project Report");
-        System.out.println("[6] Change Password");
-        System.out.println("[7] Log Out");
-		System.out.println("[0] Exit Program");
+		System.out.println("[1] View All Requests.");
+		System.out.println("[2] Manage Requests.");
+		System.out.println("[3] View Pending Requests.");
+		System.out.println("[4] Create New Project.");
+		System.out.println("[5] Transfer Student to Replacement Supervisor");
+		System.out.println("[6] View Projects.");
+		System.out.println("[7] Generate Project Report.");
+        System.out.println("[8] Change Password ");
+		System.out.println("[0] Exit Program.");
     }
 
     
@@ -53,43 +56,54 @@ public class FYP_CoordinatorMenu extends CheckInputUserMenu{
 
             switch(choice){
 				case 1: 
-					System.out.println("Option [1] selected! - View All Requests\n");
+					System.out.println("Option [1] selected! - View All Requests.\n");
 					new ViewAllRequestsHistory(fyp_coordinator);
 					break;
 
 				case 2: 
-					System.out.println("Option [2] selected! - Manage Requests\n");
+					System.out.println("Option [2] selected! - Manage Requests.\n");
 					new ManageRequest(fyp_coordinator);
 
 					break;
 
 				case 3:
-					System.out.println("Option [3] selected! - View Pending Requests\n");
+					System.out.println("Option [3] selected! - View Pending Requests.\n");
 					new ViewPendingRequests(fyp_coordinator);
 					break;
 
-				case 4:	
-					System.out.println("Option [4] selected! - View Projects\n");
+				case 4:
+					System.out.println("Option [4] selected! - Create New Project.\n");
+					new CreateProject(fyp_coordinator);
+					break;
+				
+				case 5: 
+					System.out.println("Option [5] selected! - Transfer Student to Replacement Supervisor.\n");
+					new ChangeProjectSupervisor(fyp_coordinator);
+					break;
+				
+				case 6:	
+				
+					System.out.println("Option [6] selected! - View Projects.\n");
 					viewProjectOption();
 					break;
 
-				case 5: 
-					System.out.println("Option [5] selected! - Generate Project Report\n"); 
+				case 7: 
+					System.out.println("Option [7] selected! - Generate Project Report.\n"); 
 					new GenerateReportMenu();
 					break;
 
-                case 6:
-                    System.out.println("\nOption [6] selected! - Change Password");
+                case 8:
+                    System.out.println("\nOption [8] selected! - Change Password.\n");
                     new ChangePassword(fyp_coordinator.getUserID());
                     break;
 				
-				case 7:
-                    System.out.println("\nOption [7] selected! - Log Out\n");
+				case 9:
+                    System.out.println("\nOption [9] selected! - Log Out.\n");
                     new WelcomePage();
                     break;
 				
 				case 0: 
-					System.out.println("\nOption [0] selected! - Exit Program\n");
+					System.out.println("\nOption [0] selected! - Exit Program.\n");
 					new WelcomePage();
 					break;
 
@@ -98,7 +112,7 @@ public class FYP_CoordinatorMenu extends CheckInputUserMenu{
 			}
 		}
     }
-
+	
 	/**
 	 * Method to view different project options for FYP coordinator.
 	 */
