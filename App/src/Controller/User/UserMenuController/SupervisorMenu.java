@@ -59,7 +59,7 @@ public class SupervisorMenu extends UserMenuController {
 				case 3:
 					//Supervisor changes title of his/her projects
 					System.out.println("Option [3] selected! - Change Title of Project.");
-					changeProjectTitle();
+					new ChangeProjectTitle(supervisor);
 					break;
 
 				case 4:	
@@ -95,24 +95,6 @@ public class SupervisorMenu extends UserMenuController {
         }
         sc.close();
     }
-
-	private void changeProjectTitle() throws InvalidInputException{
-		// View Projects
-		ViewPersonalProjects projs = new ViewPersonalProjects(supervisor);
-
-		System.out.println("Select Project ID to change new title:");
-		int projID = sc.nextInt();
-
-		boolean own = projs.projects.contains(projID);
-		if(own){	
-			System.out.println("Enter the new title:");
-			String newTitle = sc.next();
-			new ChangeProjectTitle(projID, newTitle);
-
-		}else{
-			throw new InvalidInputException(projID);
-		}
-	}
 }
 
 

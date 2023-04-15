@@ -19,13 +19,18 @@ public abstract class GetInputModifyProjectController extends ModifyProjectContr
     
 	@Override
 	public void handleException() {
-        try{
-            getInput();
-        }catch(InvalidInputException e){
-            handler.handleInvalidInputException(e);
-        }catch(InputMismatchException e){
-            handler.handleInputMismatchException(e);
-            sc.nextLine();
+        while(handler.checkAttempts()){
+            try{
+                getInput();
+                break;
+                
+            }catch(InvalidInputException e){
+                handler.handleInvalidInputException(e);
+            }catch(InputMismatchException e){
+                handler.handleInputMismatchException(e);
+                sc.nextLine();
+            }
         }
+        
 	}
 }

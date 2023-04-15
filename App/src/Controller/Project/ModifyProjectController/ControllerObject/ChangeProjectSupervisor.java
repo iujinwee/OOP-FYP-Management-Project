@@ -19,15 +19,6 @@ public class ChangeProjectSupervisor extends ModifyProjectController{
         updateDB();
         exportDB();
     }
-
-    @Override
-    public void loadFiles() {
-        super.loadFiles();
-
-        System.out.println("\nInitializing SupervisorDB...");
-        this.supDB = new SupervisorDB();
-        System.out.println("SupervisorDB Initialized.\n");
-    }
     
     @Override
 	public void updateDB() {		
