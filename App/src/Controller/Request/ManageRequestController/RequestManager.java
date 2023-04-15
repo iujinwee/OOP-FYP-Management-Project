@@ -75,8 +75,9 @@ public class RequestManager implements GetInputInterface, HeaderInterface, UserB
                 case REGISTERPROJECT:
                     // Check if student have deregistered previously.
                     if(proj.getRejected().contains(selectedRequest.getfromUserID())){
-                        System.out.println("****************          << ALERT >>         *****************");
+                        System.out.println("\n\n****************          << ALERT >>         *****************");
                         System.out.println("****    Requesting Student have deregistered previously!   ****");
+                        System.out.println("****         P.S. Approval is at your discretion.          ****");
                         System.out.println("***************************************************************");
                     }   
                     
