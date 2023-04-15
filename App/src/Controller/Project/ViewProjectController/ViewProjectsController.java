@@ -17,7 +17,7 @@ public abstract class ViewProjectsController extends LoadProjectDBController imp
     @Override
     public void footer() {
         if(projects.size()==0) {
-			System.out.println("=======     NO PROJECTS FOUND!     =======");
+			System.out.println("\n=========     NO PROJECTS FOUND!     =========\n");
 		} else {
 			System.out.println("\n=========   END OF PROJECT LIST  ===========\n");
 		}

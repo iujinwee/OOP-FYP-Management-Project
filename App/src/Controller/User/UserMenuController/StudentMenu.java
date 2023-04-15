@@ -24,8 +24,8 @@ public class StudentMenu extends UserMenuController {
     @Override
     public void viewUserMenu() {
         System.out.println("=============  STUDENT MENU  ==============");
-		System.out.println("[1] Show Available Projects.");
-		System.out.println("[2] Show Registered Project.");
+		System.out.println("[1] View Available Projects.");
+		System.out.println("[2] View Registered Project.");
 		System.out.println("[3] Register Project.");
 		System.out.println("[4] Deregister Project.");
 		System.out.println("[5] Change Assigned Project Title.");
@@ -48,7 +48,7 @@ public class StudentMenu extends UserMenuController {
 
             switch(choice){
                 case 1: 
-                    System.out.println("\nOption [1] selected! - Show Available Projects");
+                    System.out.println("\nOption [1] selected! - View Available Projects");
                     if(!student.getAssigned()){
                         new ViewAvailableProjects(student);
                     }else{
@@ -57,7 +57,7 @@ public class StudentMenu extends UserMenuController {
                     break;
     
                 case 2: 
-                    System.out.println("\nOption [2] selected! - Show Registered Project.");
+                    System.out.println("\nOption [2] selected! - View Registered Project.");
                     if(student.getAssigned()){
                         new ViewPersonalProjects(student);
                     }else{
