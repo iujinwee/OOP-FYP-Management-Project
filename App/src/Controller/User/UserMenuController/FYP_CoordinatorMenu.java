@@ -2,7 +2,7 @@ package Controller.User.UserMenuController;
 
 import Controller.WelcomePage;
 import Controller.Account.ModifyAccountDBController.ChangePassword;
-import Controller.Project.GenerateProjectReportController.GenerateReport;
+import Controller.Project.GenerateProjectReportController.GenerateReportController;
 import Controller.Project.ModifyProjectController.ControllerObject.ChangeProjectSupervisor;
 import Controller.Project.ModifyProjectController.ControllerObject.CreateProject;
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
@@ -90,7 +90,7 @@ public class FYP_CoordinatorMenu extends UserMenuController{
 
 				case 7: 
 					System.out.println("Option [7] selected! - Generate Project Report.\n"); 
-					new GenerateReport();
+					new GenerateReportController();
 					break;
 
                 case 8:
@@ -108,10 +108,7 @@ public class FYP_CoordinatorMenu extends UserMenuController{
 			}
 		}
     }
-
-	private void ViewPersonalProjects(FYP_Coordinator fyp_coordinator2) {
-	}
-
+	
 	/**
 	 * Method to view different project options for FYP coordinator.
 	 */

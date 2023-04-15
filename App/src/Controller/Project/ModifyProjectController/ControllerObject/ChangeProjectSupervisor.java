@@ -4,6 +4,7 @@ import java.util.Scanner;
 import Controller.Project.ModifyProjectController.GetInputModifyProjectController;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
 import Entity.DatabaseClass.SupervisorDB;
+import Entity.ProjectClass.Project;
 import Entity.ProjectClass.ProjectStatus;
 import Entity.UserClass.FYP_Coordinator;
 import Entity.UserClass.Supervisor;
@@ -112,31 +113,6 @@ public class ChangeProjectSupervisor extends GetInputModifyProjectController {
             }           
 		}
     }
-   
-    @Override
-	public void updateDB() {		
-        projDB = new ProjectDB();
-        supDB = new SupervisorDB();
-        supDB.findInstance(projDB.findInstance(projID).getSupervisor().getUserID()).removeAssignedProjects();
-        // if(supDB.findInstance(projDB.findInstance(projID).getSupervisor().getUserID()).getNumAssignedProjects() < 2){
-        //     for (Object obj : projDB.objectDB) {
-        //         Project curProject = (Project) obj;
-        //         if (supDB.findInstance(supervisor.getUserID()).getUserID().compareTo(curProject.getSupervisorID())==0 && curProject.getProjectStatus() == ProjectStatus.UNAVAILABLE) {
-        //             curProject.setProjectStatus(ProjectStatus.AVAILABLE); // TO CHANGE
-        //         }
-        //     }
-        // }
-        supDB.findInstance(supervisor.getUserID()).addAssignedProjects();
-        projDB.findInstance(projID).setSupervisor(supervisor);
-        // if(supervisor.getNumAssignedProjects() == 2){
-        //     for (Object obj : projDB.objectDB) {
-        //         Project curProject = (Project) obj;
-        //         if (supDB.findInstance(supervisor.getUserID()).getUserID().compareTo(curProject.getSupervisorID())==0 && curProject.getProjectStatus() == ProjectStatus.AVAILABLE) {
-        //             curProject.setProjectStatus(ProjectStatus.UNAVAILABLE); // TO CHANGE
-        //         }
-        //     }
-        // }
-        supDB.exportDB();
         
 
     @Override
