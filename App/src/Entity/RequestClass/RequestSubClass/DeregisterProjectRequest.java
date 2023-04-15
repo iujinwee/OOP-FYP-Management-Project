@@ -14,6 +14,10 @@ public class DeregisterProjectRequest extends Request implements CreateRequestIn
     public DeregisterProjectRequest(int requestID, int projectID, User fromUser, User toUser) {
         super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.DEREGISTERPROJECT, projectID);
     }
+    
+    /** 
+     * @return Request
+     */
     @Override
     public Request createRequest() {
         

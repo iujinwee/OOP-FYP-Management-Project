@@ -50,6 +50,11 @@ public class Login extends LoadAccountDBController {
         inputPassword = sc.nextLine();
     }
 
+    
+    /** 
+     * @param inputUserID
+     * @return boolean
+     */
     public boolean checkUserID(String inputUserID) {
         temp = accDB.findInstance(inputUserID);
         if(temp.getUserID() != null) {

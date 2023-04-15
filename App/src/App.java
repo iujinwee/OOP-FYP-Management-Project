@@ -2,7 +2,11 @@ import Controller.Account.Login;
 
 public class App {
 
-	public static void main(String[] args) {
+	
+    /** 
+     * @param args
+     */
+    public static void main(String[] args) {
 
         welcomePage(); 
 

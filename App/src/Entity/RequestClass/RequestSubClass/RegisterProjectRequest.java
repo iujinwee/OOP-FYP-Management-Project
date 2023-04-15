@@ -16,6 +16,10 @@ public class RegisterProjectRequest extends Request implements CreateRequestInte
         super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.REGISTERPROJECT, projectID);
     }
 
+    
+    /** 
+     * @return Request
+     */
     @Override
     public Request createRequest() {
 

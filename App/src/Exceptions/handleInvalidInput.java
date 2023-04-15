@@ -13,7 +13,11 @@ public class handleInvalidInput {
         this.MAX_ATTEMPTS = attempts;
     }
 
-	public void handleInputMismatchException(InputMismatchException e){
+	
+    /** 
+     * @param e
+     */
+    public void handleInputMismatchException(InputMismatchException e){
         System.out.println("\nERROR!");
 		System.out.println("Invalid Input. Please enter a number.\n");
         if(MAX_ATTEMPTS!=0){

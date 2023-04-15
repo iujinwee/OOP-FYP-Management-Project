@@ -34,6 +34,10 @@ public class GenerateReport implements GenerateReportInterface, GetInputInterfac
         System.out.println("[0] Back");
     }
 
+    
+    /** 
+     * @throws InvalidInputException
+     */
     @Override
     public void getInput() throws InvalidInputException {
         Scanner sc = new Scanner(System.in);

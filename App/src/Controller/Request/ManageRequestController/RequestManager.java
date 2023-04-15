@@ -27,6 +27,10 @@ public class RequestManager implements GetInputInterface, HeaderInterface, UserB
         footer();
     }
 
+    
+    /** 
+     * @param user
+     */
     @Override
     public void body(User user) {
         pend = new ViewPendingRequests(user);

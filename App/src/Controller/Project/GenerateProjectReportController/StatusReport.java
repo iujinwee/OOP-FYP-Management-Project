@@ -69,6 +69,10 @@ public class StatusReport extends ViewProjectsController implements BodyInterfac
         }
     }
 
+    
+    /** 
+     * @param arr
+     */
     private void printList(ArrayList<Project> arr){
         if(arr.size()!=0){
             for(Project p : arr){    
