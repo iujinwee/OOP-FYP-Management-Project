@@ -1,9 +1,11 @@
-package Controller.User.UserMenuController;
+package Controller.Menu;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Boundaries.Menu.*;
+import Boundaries.Menu.Interfaces.ExceptionHandlerInterface;
+import Boundaries.Menu.Interfaces.GetInputInterface;
+import Boundaries.Menu.Interfaces.ViewUserMenuInterface;
 import Exceptions.InvalidInputException;
 import Exceptions.handleInvalidInput;
 

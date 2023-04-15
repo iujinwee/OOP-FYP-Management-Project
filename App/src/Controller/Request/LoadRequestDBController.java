@@ -1,6 +1,6 @@
 package Controller.Request;
 
-import Boundaries.Database.LoadFilesInterface;
+import Controller.Database.LoadFilesInterface;
 import Entity.DatabaseClass.RequestDB;
 
 public abstract class LoadRequestDBController implements LoadFilesInterface {

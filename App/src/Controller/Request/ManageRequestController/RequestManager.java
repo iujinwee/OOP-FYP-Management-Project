@@ -3,10 +3,10 @@ package Controller.Request.ManageRequestController;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Boundaries.Menu.FooterInterface;
-import Boundaries.Menu.GetInputInterface;
-import Boundaries.Menu.HeaderInterface;
-import Boundaries.Menu.UserBodyInterface;
+import Boundaries.Menu.Interfaces.FooterInterface;
+import Boundaries.Menu.Interfaces.GetInputInterface;
+import Boundaries.Menu.Interfaces.HeaderInterface;
+import Boundaries.Menu.Interfaces.UserBodyInterface;
 import Controller.Request.EnactRequestController.ControllerObject.*;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewPendingRequests;
 import Entity.DatabaseClass.ProjectDB;

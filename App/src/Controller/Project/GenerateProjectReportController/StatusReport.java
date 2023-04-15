@@ -2,11 +2,11 @@ package Controller.Project.GenerateProjectReportController;
 
 import java.util.ArrayList;
 
-import Boundaries.Menu.BodyInterface;
-import Controller.Project.ViewProjectController.ViewProjectsController;
+import Boundaries.Menu.Interfaces.BodyInterface;
+import Boundaries.Project.Classes.ViewProjects;
 import Entity.ProjectClass.Project;
 
-public class StatusReport extends ViewProjectsController implements BodyInterface {
+public class StatusReport extends ViewProjects implements BodyInterface {
 
     private ArrayList<Project> availableProjs = new ArrayList<>(); 
     private ArrayList<Project> unavailableProjs = new ArrayList<>(); 

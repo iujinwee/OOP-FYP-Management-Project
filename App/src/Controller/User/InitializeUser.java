@@ -1,7 +1,9 @@
 package Controller.User;
 
-import Boundaries.Menu.StartProgramInterface;
-import Controller.User.UserMenuController.*;
+import Boundaries.Menu.Classes.FYP_CoordinatorMenu;
+import Boundaries.Menu.Classes.StudentMenu;
+import Boundaries.Menu.Classes.SupervisorMenu;
+import Boundaries.Menu.Interfaces.StartProgramInterface;
 import Entity.AccountClass.Account;
 import Entity.UserClass.Student;
 import Entity.UserClass.Supervisor;

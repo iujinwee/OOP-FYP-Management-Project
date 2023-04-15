@@ -2,8 +2,8 @@ package Controller.Account;
 
 import java.util.Scanner;
 
-import Boundaries.Menu.FooterInterface;
-import Boundaries.Menu.HeaderInterface;
+import Boundaries.Menu.Interfaces.FooterInterface;
+import Boundaries.Menu.Interfaces.HeaderInterface;
 import Controller.User.InitializeUser;
 import Entity.AccountClass.Account;
 

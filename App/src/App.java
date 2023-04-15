@@ -1,4 +1,4 @@
-import Boundaries.WelcomePage;
+import Boundaries.Menu.Classes.WelcomePage;
 
 public class App {
 

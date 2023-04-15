@@ -1,16 +1,16 @@
-package Controller.Project.ViewProjectController;
+package Boundaries.Project.Classes;
 
 import java.util.ArrayList;
 
-import Boundaries.Menu.FooterInterface;
-import Boundaries.Menu.HeaderInterface;
+import Boundaries.Menu.Interfaces.FooterInterface;
+import Boundaries.Menu.Interfaces.HeaderInterface;
 import Controller.Project.LoadProjectDBController;
 
-public abstract class ViewProjectsController extends LoadProjectDBController implements HeaderInterface, FooterInterface {
+public abstract class ViewProjects extends LoadProjectDBController implements HeaderInterface, FooterInterface {
     
     public ArrayList<Integer> projects = new ArrayList<>();
 
-    public ViewProjectsController() {
+    public ViewProjects() {
         super();
     }
     

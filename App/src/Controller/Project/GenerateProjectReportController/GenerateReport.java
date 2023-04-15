@@ -3,8 +3,8 @@ package Controller.Project.GenerateProjectReportController;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Boundaries.Menu.GetInputInterface;
-import Boundaries.Menu.ViewUserMenuInterface;
+import Boundaries.Menu.Interfaces.GetInputInterface;
+import Boundaries.Menu.Interfaces.ViewUserMenuInterface;
 import Exceptions.InvalidInputException;
 import Exceptions.handleInvalidInput;
 

@@ -2,9 +2,9 @@ package Controller.Request.ViewRequestPackage;
 
 import java.util.ArrayList;
 
-import Boundaries.Menu.FooterInterface;
-import Boundaries.Menu.HeaderInterface;
-import Boundaries.Menu.UserBodyInterface;
+import Boundaries.Menu.Interfaces.FooterInterface;
+import Boundaries.Menu.Interfaces.HeaderInterface;
+import Boundaries.Menu.Interfaces.UserBodyInterface;
 import Boundaries.Request.ViewRequestInterface;
 import Controller.Request.LoadRequestDBController;
 import Entity.DatabaseClass.SupervisorDB;

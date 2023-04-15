@@ -1,4 +1,4 @@
-package Boundaries.Menu;
+package Boundaries.Menu.Interfaces;
 
 import Entity.UserClass.UserDetails.User;
 

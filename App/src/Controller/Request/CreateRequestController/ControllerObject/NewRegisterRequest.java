@@ -2,7 +2,7 @@ package Controller.Request.CreateRequestController.ControllerObject;
 
 import java.util.Scanner;
 
-import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
+import Boundaries.Project.Classes.ViewAvailableProjects;
 import Controller.Request.CreateRequestController.NewRequestManager;
 import Entity.DatabaseClass.FYP_CoordinatorDB;
 import Entity.RequestClass.RequestType;

@@ -1,7 +1,7 @@
 package Controller.Project.ModifyProjectController;
 
-import Boundaries.Database.ExportDBInterface;
-import Boundaries.Database.UpdateDBInterface;
+import Controller.Database.ExportDBInterface;
+import Controller.Database.UpdateDBInterface;
 import Controller.Project.LoadProjectDBController;
 
 public abstract class ModifyProjectController extends LoadProjectDBController implements UpdateDBInterface, ExportDBInterface {

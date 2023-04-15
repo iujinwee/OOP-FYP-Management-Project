@@ -1,10 +1,10 @@
-package Boundaries;
+package Boundaries.Menu.Classes;
 
 import java.util.Scanner;
 
-import Controller.WelcomePageController;
 import Controller.Account.Login;
 import Controller.Account.ModifyAccountDBController.CreateNewAccount;
+import Controller.Menu.WelcomePageController;
 import Exceptions.InvalidInputException;
 
 public class WelcomePage extends WelcomePageController {

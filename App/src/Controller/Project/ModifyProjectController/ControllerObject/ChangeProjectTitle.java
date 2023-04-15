@@ -1,7 +1,7 @@
 package Controller.Project.ModifyProjectController.ControllerObject;
 
+import Boundaries.Project.Classes.ViewPersonalProjects;
 import Controller.Project.ModifyProjectController.GetInputModifyProjectController;
-import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
 import Entity.UserClass.Supervisor;
 import Exceptions.InvalidInputException;
 

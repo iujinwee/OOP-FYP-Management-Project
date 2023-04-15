@@ -1,9 +1,9 @@
-package Controller.User.UserMenuController;
+package Boundaries.Menu.Classes;
 
-import Boundaries.WelcomePage;
+import Boundaries.Project.Classes.ViewAvailableProjects;
+import Boundaries.Project.Classes.ViewPersonalProjects;
 import Controller.Account.ModifyAccountDBController.ChangePassword;
-import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
-import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
+import Controller.Menu.UserMenuController;
 import Controller.Request.CreateRequestController.ControllerObject.NewChangeTitleRequest;
 import Controller.Request.CreateRequestController.ControllerObject.NewDeregisterRequest;
 import Controller.Request.CreateRequestController.ControllerObject.NewRegisterRequest;

@@ -2,7 +2,7 @@ package Controller.Account.ModifyAccountDBController;
 
 import java.util.Scanner;
 
-import Boundaries.Menu.FooterInterface;
+import Boundaries.Menu.Interfaces.FooterInterface;
 import Controller.Account.Login;
 import Entity.AccountClass.Account;
 

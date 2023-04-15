@@ -1,7 +1,7 @@
 package Controller.User.ModifyUsersDBController;
 
-import Boundaries.Database.ExportDBInterface;
-import Boundaries.Database.UpdateDBInterface;
+import Controller.Database.ExportDBInterface;
+import Controller.Database.UpdateDBInterface;
 import Controller.User.LoadUsersDBController;
 
 public abstract class ModifyUsersDBController extends LoadUsersDBController implements UpdateDBInterface, ExportDBInterface {

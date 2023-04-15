@@ -1,8 +1,8 @@
 package Controller.Project.GenerateProjectReportController;
 
-import Boundaries.Menu.FooterInterface;
-import Boundaries.Menu.HeaderInterface;
-import Boundaries.Menu.UserBodyInterface;
+import Boundaries.Menu.Interfaces.FooterInterface;
+import Boundaries.Menu.Interfaces.HeaderInterface;
+import Boundaries.Menu.Interfaces.UserBodyInterface;
 import Controller.Project.LoadProjectDBController;
 
 public abstract class GenerateReportController extends LoadProjectDBController implements HeaderInterface, UserBodyInterface, FooterInterface {

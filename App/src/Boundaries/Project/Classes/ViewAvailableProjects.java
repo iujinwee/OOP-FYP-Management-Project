@@ -1,12 +1,11 @@
-package Controller.Project.ViewProjectController.ControllerObject;
+package Boundaries.Project.Classes;
 
-import Boundaries.Menu.UserBodyInterface;
-import Controller.Project.ViewProjectController.ViewProjectsController;
+import Boundaries.Menu.Interfaces.UserBodyInterface;
 import Entity.ProjectClass.Project;
 import Entity.ProjectClass.ProjectStatus;
 import Entity.UserClass.UserDetails.User;
 
-public class ViewAvailableProjects extends ViewProjectsController implements UserBodyInterface {
+public class ViewAvailableProjects extends ViewProjects implements UserBodyInterface {
 
     public ViewAvailableProjects(User user){
         super();

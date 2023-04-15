@@ -1,4 +1,4 @@
-package Boundaries.Project;
+package Boundaries.Project.Interfaces;
 
 import Entity.ProjectClass.Project;
 

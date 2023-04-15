@@ -1,7 +1,7 @@
 package Controller.Request;
 
-import Boundaries.Database.ExportDBInterface;
-import Boundaries.Database.UpdateDBInterface;
+import Controller.Database.ExportDBInterface;
+import Controller.Database.UpdateDBInterface;
 
 public abstract class RequestDBManager extends LoadRequestDBController implements UpdateDBInterface, ExportDBInterface{
 

@@ -3,9 +3,9 @@ package Controller.Account.ModifyAccountDBController;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Boundaries.WelcomePage;
-import Boundaries.Menu.GetInputInterface;
-import Boundaries.Menu.ViewUserMenuInterface;
+import Boundaries.Menu.Classes.WelcomePage;
+import Boundaries.Menu.Interfaces.GetInputInterface;
+import Boundaries.Menu.Interfaces.ViewUserMenuInterface;
 import Controller.User.ModifyUsersDBController.*;
 import Entity.AccountClass.Account;
 import Exceptions.InvalidInputException;

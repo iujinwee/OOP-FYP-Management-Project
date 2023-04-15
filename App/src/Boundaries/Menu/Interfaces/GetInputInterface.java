@@ -1,4 +1,4 @@
-package Boundaries.Menu;
+package Boundaries.Menu.Interfaces;
 
 import Exceptions.InvalidInputException;
 

@@ -1,6 +1,6 @@
 package Controller.Request.CreateRequestController.ControllerObject;
 
-import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
+import Boundaries.Project.Classes.ViewPersonalProjects;
 import Controller.Request.CreateRequestController.NewRequestManager;
 import Entity.DatabaseClass.FYP_CoordinatorDB;
 import Entity.RequestClass.RequestType;

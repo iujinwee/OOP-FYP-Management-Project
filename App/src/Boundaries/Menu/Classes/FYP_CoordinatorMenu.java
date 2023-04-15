@@ -1,10 +1,10 @@
-package Controller.User.UserMenuController;
+package Boundaries.Menu.Classes;
 
-import Boundaries.WelcomePage;
+import Boundaries.Project.Classes.ViewAvailableProjects;
+import Boundaries.Project.Classes.ViewPersonalProjects;
 import Controller.Account.ModifyAccountDBController.ChangePassword;
+import Controller.Menu.UserMenuController;
 import Controller.Project.GenerateProjectReportController.GenerateReport;
-import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
-import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
 import Controller.Request.ManageRequestController.RequestManager;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewAllRequestsHistory;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewPendingRequests;

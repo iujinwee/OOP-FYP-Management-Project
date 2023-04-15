@@ -1,6 +1,6 @@
 package Controller.Account;
 
-import Boundaries.Database.LoadFilesInterface;
+import Controller.Database.LoadFilesInterface;
 import Entity.DatabaseClass.AccountDB;
 
 public class LoadAccountDBController implements LoadFilesInterface {
