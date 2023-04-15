@@ -12,12 +12,12 @@ public class InitializeUser extends LoadUsersDBController implements StartProgra
     private Account acc;
     
     public InitializeUser(Account acc) {
-        loadFiles();
-        
         this.acc = acc;
+        loadFiles();
         startProgram();
     }
 
+    @Override
     public void startProgram() {
 
         System.out.printf("You are currently signed in as a %s.\n\n", acc.getType());

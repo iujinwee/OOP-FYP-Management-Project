@@ -24,6 +24,7 @@ public class ChangePassword extends AccessAccountDBController {
     @Override
     public void updateDB() {
         Account temp =  accDB.findInstance(userID);
+        
         if(newPassword.compareTo(temp.getPassword()) != 0) {
 			temp.setPassword(newPassword);
 			System.out.println("========= Password successfully changed. =========");
