@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import Boundaries.Menu.FooterInterface;
 import Boundaries.Menu.HeaderInterface;
 import Controller.Project.LoadProjectDBController;
-import Entity.DatabaseClass.ProjectDB;
 
 public abstract class ViewProjectsController extends LoadProjectDBController implements HeaderInterface, FooterInterface {
     

@@ -1,6 +1,5 @@
 package Controller.Project.GenerateProjectReportController;
 
-import Boundaries.Database.LoadFilesInterface;
 import Boundaries.Menu.FooterInterface;
 import Boundaries.Menu.HeaderInterface;
 import Boundaries.Menu.UserBodyInterface;
