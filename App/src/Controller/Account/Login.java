@@ -15,18 +15,14 @@ public class Login extends LoadAccountDBController {
 
     public Login() {
         loadFiles();
-        accDB.viewDB(); // only for debugging and trialing purposes
         header();
         int loginAttempts = 1;
         while (loginAttempts <= 5) {
             getLoginInputs();
             if(checkUserID(inputUserID)) {
                 if(checkPassword(inputPassword)) {
-                    acc.setUserID(temp.getUserID());
-			        acc.setPassword(temp.getPassword());
-					acc.setType(temp.getType());
+                    setupAccount();
                     System.out.println("================= Login successful! =================");
-                    
                     new InitializeUser(acc);
                     break;
                 } else {
@@ -37,7 +33,8 @@ public class Login extends LoadAccountDBController {
             }
             
             loginAttempts++;
-        } 
+        }
+        sc.close();
     }
     
     public void header() {
@@ -47,7 +44,7 @@ public class Login extends LoadAccountDBController {
     }
     
     public void getLoginInputs() {
-        System.out.println("Enter User ID: ");
+        System.out.println("\nEnter User ID: ");
         inputUserID = sc.nextLine();
         System.out.println("Enter Password: ");
         inputPassword = sc.nextLine();
@@ -69,4 +66,10 @@ public class Login extends LoadAccountDBController {
 			return false;
 		}
 	}
+
+    public void setupAccount() {
+        acc.setUserID(temp.getUserID());
+		acc.setPassword(temp.getPassword());
+		acc.setType(temp.getType());
+    }
 }

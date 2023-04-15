@@ -9,7 +9,7 @@ import Entity.RequestClass.RequestType;
 import Entity.UserClass.UserDetails.*;
 import Exceptions.InvalidInputException;
 
-public class Student extends User{
+public class Student extends User {
  	
 	private String studentID;
 	// private boolean assigned; 
@@ -38,18 +38,6 @@ public class Student extends User{
 		this.studentID = studentID;
 	}
 	
-	@Override
-	public void viewUserMenu() {
-		System.out.println("=============  MENU  ==============");
-		System.out.println("[1] Show Available Projects.");
-		System.out.println("[2] Show Registered Project.");
-		System.out.println("[3] Register Project.");
-		System.out.println("[4] Deregister Project.");
-		System.out.println("[5] Change Assigned Project Title.");
-		System.out.println("[6] View All Requests.");
-		System.out.println("[7] Change Password.");
-		System.out.println("[0] Exit Program.");
-	}
 
 	@Override
 	public void getInput() throws InvalidInputException{
@@ -102,6 +90,7 @@ public class Student extends User{
 				
 				case 7:
 					System.out.println("\nOption [7] selected! - Change Password");
+					changePassword();
 					acc = accDB.findInstance(this.getUserID());
 					boolean changed = acc.changePassword(accDB);
 					if(changed){
@@ -128,7 +117,7 @@ public class Student extends User{
 			int projID = sc.nextInt();
 			
 			if(projs.projects.contains(projID)){
-				FYPCoordinatorDB FYPDB = new FYPCoordinatorDB();
+				FYP_CoordinatorDB FYPDB = new FYP_CoordinatorDB();
 				new NewRequest(RequestType.REGISTERPROJECT, this, FYPDB.findInstance(), projID);
 			}else{
 				throw new InvalidInputException(projID);
@@ -165,6 +154,11 @@ public class Student extends User{
 				throw new InvalidInputException(projID);
 			}
 		}
+	}
+
+	private void changePassword (){
+		System.out.println("Enter new password: ");
+		String newPassword = sc.nextLine();
 	}
 
 	private void viewAllRequests(){

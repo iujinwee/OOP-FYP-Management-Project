@@ -1,27 +1,15 @@
 package Entity.UserClass.UserDetails;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Boundaries.Database.LoadFilesInterface;
-import Boundaries.Menu.GetInputInterface;
-import Boundaries.Menu.UserProgramInterface;
-import Entity.DatabaseClass.ProjectDB;
-import Entity.DatabaseClass.RequestDB;
-import Exceptions.InvalidInputException;
-import Exceptions.handleInvalidInput;
-
-public abstract class User implements GetInputInterface, UserProgramInterface, LoadFilesInterface {
+public class User {
 
 	private String userID;
 	private String name;
 	private String email;
 	private UserType type;
-	// public AccountDB accDB; 
-	public ProjectDB projDB;
-	public RequestDB reqDB;
+
 	public Scanner sc = new Scanner(System.in);
-	public handleInvalidInput menuHandler = new handleInvalidInput(3);
 
 	public User(){};
 	
@@ -71,35 +59,4 @@ public abstract class User implements GetInputInterface, UserProgramInterface, L
 		this.type = type;
 	}
 
-	@Override
-	public void startProgram() {
-
-        System.out.printf("You are currently signed in as a %s.\n\n", type);
-
-		while(menuHandler.checkAttempts()){
-			try{
-				getInput();
-				break; // Break out of loop
-
-			}catch(InvalidInputException e){
-				menuHandler.handleInvalidInputException(e);
-
-			}catch(InputMismatchException e){
-				menuHandler.handleInputMismatchException(e);
-				sc.nextLine();
-			}
-		}
-		// Clearing System
-		System.out.println("Terminating Program...");
-		sc.close();
-		System.exit(0);
-   	}
-
-	@Override
-	public void loadFiles() {
-		System.out.println("Initializing Files...");
-		projDB = new ProjectDB();
-		reqDB = new RequestDB();
-		System.out.println("Files Initialized.");
-	}
 }

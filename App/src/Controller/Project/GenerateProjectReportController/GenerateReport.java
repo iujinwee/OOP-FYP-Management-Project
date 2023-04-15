@@ -57,7 +57,7 @@ public class GenerateReport implements GenerateReportInterface, GetInputInterfac
             default: 
                 throw new InvalidInputException(choice);
         }
-
+        
     }
 
 }
