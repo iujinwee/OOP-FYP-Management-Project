@@ -4,6 +4,12 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Controller.Account.AccessAccountDBController.ChangePassword;
+import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
+import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
+import Controller.Request.CreateRequestController.ControllerObject.NewChangeTitleRequest;
+import Controller.Request.CreateRequestController.ControllerObject.NewDeregisterRequest;
+import Controller.Request.CreateRequestController.ControllerObject.NewRegisterRequest;
+import Controller.Request.ViewRequestPackage.ControllerObject.ViewOutgoingRequestsHistory;
 import Entity.UserClass.Student;
 import Exceptions.handleInvalidInput;
 import Exceptions.InvalidInputException;
@@ -47,36 +53,65 @@ public class StudentMenu extends UserMenuController {
         Scanner sc = new Scanner(System.in);
 
         int choice = -1;
-        while(choice != 0) {
-            viewUserMenu();
+        while (choice != 0){	
 
-            System.out.printf("\nEnter option: ");
-            choice = sc.nextInt();
+			// Show User Menu
+			viewUserMenu();
 
-            switch(choice) {
+
+			System.out.printf("\nEnter Option: ");
+			choice = sc.nextInt();
+
+            switch(choice){
                 case 1: 
-					System.out.println("\nOption [1] selected! - Show Available Projects");
-					break;
-
-				case 2: 
-					System.out.println("\nOption [2] selected! - Show Registered Project.");
-					break;
-
-				case 3:
-					System.out.println("\nOption [3] selected! - Register Project.");
-					break;
-
-				case 4:	
-					System.out.println("\nOption [4] selected! - Deregister Project.");
-					break;
-
-				case 5:
-					System.out.println("\nOption [5] selected! - Change Assigned Project Title.");
-					break;
-
-				case 6: 
-					System.out.println("\nOption [6] selected! - View All Requests");
-					break;
+                    System.out.println("\nOption [1] selected! - Show Available Projects");
+                    if(!student.getAssigned()){
+                        new ViewAvailableProjects(student);
+                    }else{
+                        System.out.println("You are already assigned to a project!\n");
+                    }
+                    break;
+    
+                case 2: 
+                    System.out.println("\nOption [2] selected! - Show Registered Project.");
+                    if(student.getAssigned()){
+                        new ViewPersonalProjects(student);
+                    }else{
+                        System.out.println("You are not assigned to a project!\n");
+                    }
+                    break;
+    
+                case 3:
+                    System.out.println("\nOption [3] selected! - Register Project.");
+                    if(!student.getAssigned()){
+                        new NewRegisterRequest(student);
+                    }else{
+                        System.out.println("You are already assigned to a project!\n");
+                    }
+                    break;
+    
+                case 4:	
+                    System.out.println("\nOption [4] selected! - Deregister Project.");
+                    if(student.getAssigned()){
+                        new NewDeregisterRequest(student);
+                    }else{
+                        System.out.println("You are not assigned to a project!\n");
+                    }
+                    break;
+    
+                case 5:
+                    System.out.println("\nOption [5] selected! - Change Assigned Project Title.");
+                    if(student.getAssigned()){
+                        new NewChangeTitleRequest(student);
+                    }else{
+                        System.out.println("You are not assigned to a project!\n");
+                    }
+                    break;
+    
+                case 6: 
+                    System.out.println("\nOption [6] selected! - View All Requests");
+                    new ViewOutgoingRequestsHistory(student);
+                    break;				
                     
                 case 7:
                     System.out.println("\nOption [7] selected! - Change Password");

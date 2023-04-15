@@ -6,7 +6,6 @@ import Entity.ProjectClass.ProjectStatus;
 import Entity.RequestClass.Request;
 import Entity.RequestClass.RequestStatus;
 import Entity.RequestClass.RequestType;
-import Entity.UserClass.Student;
 import Entity.UserClass.UserDetails.User;
 
 public class RegisterProjectRequest extends Request implements CreateRequestInterface{
@@ -23,8 +22,7 @@ public class RegisterProjectRequest extends Request implements CreateRequestInte
         Project selectedProject = projDB.findInstance(getProjectID());
 
         selectedProject.setProjectStatus(ProjectStatus.RESERVED);
-        selectedProject.setStudent((Student) getFromUser());
-        System.out.printf("Project [%d]: %s has been reserved\n", selectedProject.getProjectID(), selectedProject.getProjectTitle());
+        System.out.printf("Project [%d]: %s has been reserved.\n", selectedProject.getProjectID(), selectedProject.getProjectTitle());
 
         projDB.exportDB();
         return this;

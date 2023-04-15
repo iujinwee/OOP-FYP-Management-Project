@@ -12,21 +12,17 @@ public class ChangeSupervisorRequest extends Request implements CreateRequestInt
     private SupervisorDB supDB = new SupervisorDB();
     private String newSupervisor;
 
-    public ChangeSupervisorRequest(int requestID, int projectID, User fromUser, User toUser) {
+    public ChangeSupervisorRequest(int requestID, int projectID, User fromUser, User toUser, String newSupervisor) {
         super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGESUPERVISOR, projectID);
+        this.newSupervisor = newSupervisor;
+
     }    
     
     @Override
     public Request createRequest() {
-        
-        supDB.view(); // View Supervisor DB
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Select the supervisor to change to:");
-        newSupervisor = sc.next();
+        setNewSupervisor(newSupervisor);
 
-        super.setNewSupervisor(newSupervisor);
-        sc.close();
         return this;
     }
 
