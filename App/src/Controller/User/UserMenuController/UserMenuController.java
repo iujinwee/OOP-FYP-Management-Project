@@ -5,4 +5,5 @@ import Boundaries.Menu.ViewUserMenuInterface;
 
 public abstract class UserMenuController implements ViewUserMenuInterface, GetInputInterface {
     
+    public UserMenuController() {}
 }

@@ -1,11 +1,12 @@
 package Controller.Project.ViewProjectController.ControllerObject;
 
+import Boundaries.Menu.UserBodyInterface;
 import Controller.Project.ViewProjectController.ViewProjectsController;
 import Entity.ProjectClass.Project;
 import Entity.ProjectClass.ProjectStatus;
 import Entity.UserClass.UserDetails.*;
 
-public class ViewPersonalProjects extends ViewProjectsController {
+public class ViewPersonalProjects extends ViewProjectsController implements UserBodyInterface {
 
     public ViewPersonalProjects(User user){
 		super();
