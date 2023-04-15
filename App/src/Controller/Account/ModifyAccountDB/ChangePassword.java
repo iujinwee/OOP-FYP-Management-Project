@@ -10,6 +10,7 @@ public class ChangePassword extends ModifyAccountDB implements FooterInterface {
 
     private String userID;
     private String newPassword;
+    public Scanner sc = new Scanner(System.in);
 
     public ChangePassword(String userID) {
         super();
@@ -20,8 +21,6 @@ public class ChangePassword extends ModifyAccountDB implements FooterInterface {
     @Override
     public void updateDB() {
         Account temp =  accDB.findInstance(userID);
-
-        Scanner sc = new Scanner(System.in);
         System.out.printf("Enter New Password: ");
         this.newPassword = sc.next();
         

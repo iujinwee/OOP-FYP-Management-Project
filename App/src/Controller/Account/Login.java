@@ -13,6 +13,7 @@ public class Login extends LoadAccountDB implements HeaderInterface, FooterInter
     private Account temp;
     private String inputUserID;
     private String inputPassword;
+    public Scanner sc = new Scanner(System.in);
 
     public Login() {
         super();
@@ -51,8 +52,6 @@ public class Login extends LoadAccountDB implements HeaderInterface, FooterInter
     }
     
     public void getLoginInputs() {
-        Scanner sc = new Scanner(System.in);
-        
         System.out.println(">LOGIN");
         System.out.printf("Enter User ID: ");
         this.inputUserID = sc.nextLine().trim();

@@ -2,19 +2,21 @@ package Boundaries.Menu.Classes;
 
 import java.util.Scanner;
 
+import Boundaries.Menu.Interfaces.FooterInterface;
 import Boundaries.Menu.Interfaces.HeaderInterface;
 import Controller.Account.Login;
 import Controller.Account.ModifyAccountDB.CreateNewAccount;
 import Controller.Menu.CheckInputWelcomePage;
 import Exceptions.InvalidInputException;
 
-public class WelcomePage extends CheckInputWelcomePage implements HeaderInterface {
+public class WelcomePage extends CheckInputWelcomePage implements HeaderInterface, FooterInterface {
     
     public Scanner sc = new Scanner(System.in);
 
     public WelcomePage(){
         header(); 
         handleException();
+        footer();
     }
     
     @Override
@@ -30,7 +32,7 @@ public class WelcomePage extends CheckInputWelcomePage implements HeaderInterfac
 
     @Override
     public void footer() {
-        System.out.println("\nExiting Program...\n");
+        System.out.println("\nTerminating Program...\n");
     }
 
     @Override
