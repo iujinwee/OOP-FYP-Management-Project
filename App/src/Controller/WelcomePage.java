@@ -17,6 +17,9 @@ public class WelcomePage implements HeaderInterface, ViewUserMenuInterface, GetI
     private handleInvalidInput handler = new handleInvalidInput(3);
     public Scanner sc = new Scanner(System.in);
 
+    /**
+	 * Welcome Page Constructor.
+	 */
     public WelcomePage(){
 
         header();
