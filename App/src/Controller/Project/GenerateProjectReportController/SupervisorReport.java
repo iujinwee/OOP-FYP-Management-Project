@@ -10,10 +10,10 @@ import Controller.Project.ViewProjectController.ViewProjectsController;
 import Entity.ProjectClass.Project;
 import Entity.UserClass.Supervisor;
 
-public class SupervisorReport extends ViewProjectsController implements BodyInterface{
+public class SupervisorReport extends ViewProjectsController implements BodyInterface {
 
     private Map<Supervisor, ArrayList<Project>> projectsBySupervisor;
-    ArrayList<Supervisor> supervisors;
+    private ArrayList<Supervisor> supervisors;
 
     private ArrayList<Project> availableProjs = new ArrayList<>(); 
     private ArrayList<Project> unavailableProjs = new ArrayList<>(); 
@@ -21,7 +21,7 @@ public class SupervisorReport extends ViewProjectsController implements BodyInte
     private ArrayList<Project> allocatedProjs = new ArrayList<>(); 
 
 
-    public SupervisorReport(){
+    public SupervisorReport() {
         // Loading Status Report 
         super();
         sortProjectList();
@@ -38,7 +38,7 @@ public class SupervisorReport extends ViewProjectsController implements BodyInte
     }
 
     @Override
-    public void header(){
+    public void header() {
         System.out.println(String.format("%-4s %-85s %-10s %-15s %-15s", "ID", "Title", "Status", "Student", "Supervisor"));
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
  
@@ -48,7 +48,8 @@ public class SupervisorReport extends ViewProjectsController implements BodyInte
     public void footer() {
         System.out.println("\n=========   END OF PROJECT REPORT  ===========\n");
     }
-    private void sortProjectList(){
+
+    private void sortProjectList() {
         // Group projects by supervisor
         projectsBySupervisor = new HashMap<>();
         for (Object o : projDB.objectDB) {
@@ -104,16 +105,15 @@ public class SupervisorReport extends ViewProjectsController implements BodyInte
         }
      }
     
-    private void printList(ArrayList<Project> arr){
-        if(arr.size()!=0){
-            for(Project p : arr){    
+    private void printList(ArrayList<Project> arr) {
+        if(arr.size()!=0) {
+            for(Project p : arr) {    
                 String stu = p.getStudent().getName();
-                if(stu==null){
+                if(stu==null) {
                     stu = "< EMPTY >";
                 } 
                 System.out.println(String.format("%-4s %-85s %-10s %-15s %-15s", p.getProjectID(), p.getProjectTitle(), p.getProjectStatus(), stu, p.getSupervisor().getName()));
             }
         }        
     }
-    
 }

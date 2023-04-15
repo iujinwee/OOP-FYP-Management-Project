@@ -2,27 +2,29 @@ package Controller.Account;
 
 import java.util.Scanner;
 
+import Boundaries.Menu.FooterInterface;
+import Boundaries.Menu.HeaderInterface;
 import Controller.User.InitializeUser;
 import Entity.AccountClass.Account;
 
-public class Login extends LoadAccountDBController {
+public class Login extends LoadAccountDBController implements HeaderInterface, FooterInterface {
     
     private Account acc = new Account();
     private Account temp;
     private String inputUserID;
     private String inputPassword;
-    private Scanner sc = new Scanner(System.in);
 
     public Login() {
-        loadFiles();
+        super();
+        
         header();
         int loginAttempts = 1;
-        while (loginAttempts <= 5) {
+        while (loginAttempts <= 3) {
             getLoginInputs();
             if(checkUserID(inputUserID)) {
                 if(checkPassword(inputPassword)) {
                     setupAccount();
-                    System.out.println("================= Login successful! =================");
+                    footer();
                     new InitializeUser(acc);
                     break;
                 } else {
@@ -34,21 +36,28 @@ public class Login extends LoadAccountDBController {
             
             loginAttempts++;
         }
-        sc.close();
     }
     
+    @Override
     public void header() {
-        System.out.println("********************************************");
+        System.out.println("\n********************************************");
         System.out.println("************     LOGIN PAGE     ************");
-        System.out.println("********************************************");
+        System.out.println("********************************************\n");
+    }
+
+    @Override
+    public void footer() {
+        System.out.println("================= Login successful! =================");
     }
     
     public void getLoginInputs() {
-        System.out.println("\n> LOGIN");
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("\n>LOGIN");
         System.out.printf("Enter User ID: ");
-        inputUserID = sc.nextLine();
+        this.inputUserID = sc.nextLine();
         System.out.printf("Enter Password: ");
-        inputPassword = sc.nextLine();
+        this.inputPassword = sc.nextLine();
     }
 
     public boolean checkUserID(String inputUserID) {

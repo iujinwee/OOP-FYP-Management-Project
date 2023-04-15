@@ -9,14 +9,16 @@ public class LoadUsersDBController implements LoadFilesInterface{
 
     public StudentDB stuDB;
     public SupervisorDB supDB;
-    public FYP_CoordinatorDB fypcoordDB;
+    public FYP_CoordinatorDB fyp_coordDB;
+
+    public LoadUsersDBController() {
+        loadFiles();
+    }
 
     @Override
     public void loadFiles() {
-        System.out.println("\nInitializing StudentDB, SupervisorDB, FYP_CoordinatorDB...");
         stuDB = new StudentDB();
         supDB = new SupervisorDB();
-        fypcoordDB = new FYP_CoordinatorDB();
-        System.out.println("StudentDB, SupervisorDB, FYP_CoordinatorDB Initialized.\n");
+        fyp_coordDB = new FYP_CoordinatorDB();
     }
 }

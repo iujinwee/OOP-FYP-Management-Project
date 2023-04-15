@@ -17,11 +17,11 @@ public class ChangeProjectTitle extends GetInputModifyProjectController{
         handleException();
     }
     
-    public ChangeProjectTitle(int projID, String newTitle){
+    public ChangeProjectTitle(int projID, String newTitle) {
         super();
+
         this.projID = projID;
         this.newTitle = newTitle;
-
         updateDB();
     }
     

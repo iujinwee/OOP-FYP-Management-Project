@@ -11,7 +11,7 @@ public class CreateProject extends GetInputModifyProjectController{
 	private Project newProject;
 	private String newTitle;
 
-    public CreateProject(Supervisor supervisor){
+    public CreateProject(Supervisor supervisor) {
 		super();
         this.supervisor = supervisor;
 		handleException();

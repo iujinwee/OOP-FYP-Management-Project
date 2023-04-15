@@ -1,6 +1,6 @@
 package Controller.User.UserMenuController;
 
-import Controller.Account.AccessAccountDBController.ChangePassword;
+import Controller.Account.ModifyAccountDBController.ChangePassword;
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
 import Controller.Request.CreateRequestController.ControllerObject.NewChangeTitleRequest;
@@ -28,8 +28,8 @@ public class StudentMenu extends UserMenuController {
     @Override
     public void viewUserMenu() {
         System.out.println("=============  STUDENT MENU  ==============");
-		System.out.println("[1] Show Available Projects.");
-		System.out.println("[2] Show Registered Project.");
+		System.out.println("[1] View Available Projects.");
+		System.out.println("[2] View Registered Project.");
 		System.out.println("[3] Register Project.");
 		System.out.println("[4] Deregister Project.");
 		System.out.println("[5] Change Assigned Project Title.");
@@ -54,7 +54,7 @@ public class StudentMenu extends UserMenuController {
 
             switch(choice){
                 case 1: 
-                    System.out.println("\nOption [1] selected! - Show Available Projects");
+                    System.out.println("\nOption [1] selected! - View Available Projects");
                     if(!student.getAssigned()){
                         new ViewAvailableProjects(student);
                     }else{
@@ -63,7 +63,7 @@ public class StudentMenu extends UserMenuController {
                     break;
     
                 case 2: 
-                    System.out.println("\nOption [2] selected! - Show Registered Project.");
+                    System.out.println("\nOption [2] selected! - View Registered Project.");
                     if(student.getAssigned()){
                         new ViewPersonalProjects(student);
                     }else{
@@ -114,12 +114,11 @@ public class StudentMenu extends UserMenuController {
                     
                 case 7:
                     System.out.println("\nOption [7] selected! - Change Password");
-                    System.out.println("Enter new password: ");
-                    String newPassword = sc.next();
-                    new ChangePassword(student.getUserID(), newPassword);
+                    new ChangePassword(student.getUserID());
+                    break;
             
                 case 0: 
-                    System.out.println("Option [0] selected! - Exit Program");
+                    System.out.println("\nOption [0] selected! - Exit Program");
                     break;
     
                 default:
@@ -127,7 +126,6 @@ public class StudentMenu extends UserMenuController {
             }
             
         }
-        sc.close();
     }
 
     private int checkPending(){

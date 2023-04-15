@@ -36,12 +36,12 @@ public abstract class NewRequestManager extends RequestDBManager implements GetI
     
 
     
-    public void body(){
-        try{
+    public void body() {
+        try {
             getInput();
-        }catch(InvalidInputException e){
+        } catch (InvalidInputException e) {
             handler.handleInvalidInputException(e);
-        }catch(InputMismatchException e){
+        } catch(InputMismatchException e) {
             handler.handleInputMismatchException(e);
         }
     }

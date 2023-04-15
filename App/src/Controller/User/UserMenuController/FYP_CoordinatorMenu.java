@@ -1,6 +1,6 @@
 package Controller.User.UserMenuController;
 
-import Controller.Account.AccessAccountDBController.ChangePassword;
+import Controller.Account.ModifyAccountDBController.ChangePassword;
 import Controller.Project.GenerateProjectReportController.GenerateReport;
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
@@ -16,6 +16,7 @@ public class FYP_CoordinatorMenu extends UserMenuController{
 
     public FYP_CoordinatorMenu(FYP_Coordinator fyp_coordinator) {
         this.fyp_coordinator = fyp_coordinator;
+		
 		handleException();
     }
 
@@ -70,20 +71,17 @@ public class FYP_CoordinatorMenu extends UserMenuController{
 
                 case 6:
                     System.out.println("\nOption [6] selected! - Change Password");
-                    System.out.println("Enter new password: ");
-                    String newPassword = sc.next();
-                    new ChangePassword(fyp_coordinator.getUserID(), newPassword);
+                    new ChangePassword(fyp_coordinator.getUserID());
                     break;
 			
 				case 0: 
-					System.out.println("Option [0] selected! - Exit Program\n");
+					System.out.println("\nOption [0] selected! - Exit Program\n");
 					break;
 
 				default:
 					throw new InvalidInputException(choice);
 			}
 		}
-        sc.close();
     }
 
     private void viewProjectOption(){

@@ -6,7 +6,7 @@ import Entity.ProjectClass.Project;
 import Entity.ProjectClass.ProjectStatus;
 import Entity.UserClass.UserDetails.*;
 
-public class ViewPersonalProjects extends ViewProjectsController implements UserBodyInterface{
+public class ViewPersonalProjects extends ViewProjectsController implements UserBodyInterface {
 
     public ViewPersonalProjects(User user){
 		super();
@@ -25,16 +25,16 @@ public class ViewPersonalProjects extends ViewProjectsController implements User
     @Override
     public void body(User user) {
 
-        for (Object obj: projDB.objectDB){
+        for (Object obj: projDB.objectDB) {
 			
 			Project curProj = (Project) obj;
 			boolean allocated = curProj.getProjectStatus().compareTo(ProjectStatus.ALLOCATED)==0;
 
-			if (curProj.getStudent()==null){
+			if (curProj.getStudent()==null) {
 				break;
 			}
 
-			switch(user.getUserType()){
+			switch(user.getUserType()) {
 				case STUDENT: 
 					boolean own = curProj.getStudentID().compareTo(user.getUserID())==0;
 					if(own && allocated){
@@ -45,7 +45,7 @@ public class ViewPersonalProjects extends ViewProjectsController implements User
 				case SUPERVISOR:
 				case FYPCOORDINATOR:
 				boolean created = curProj.getSupervisorID().compareTo(user.getUserID())==0;
-					if(created){
+					if(created) {
 						projects.add(curProj.viewBasicProjectInfo());
 					}
 					break;

@@ -253,9 +253,9 @@ public class FileHandler {
                 switch (className) {
                     case "Account":
                         Account current_account = (Account) result.get(row_count++);
-                        row.getCell(column_count++).setCellValue((String) current_account.getUserID());
-                        row.getCell(column_count++).setCellValue((String) current_account.getPassword());
-                        row.getCell(column_count++).setCellValue((String) current_account.getType());
+                        row.createCell(column_count++).setCellValue((String) current_account.getUserID());
+                        row.createCell(column_count++).setCellValue((String) current_account.getPassword());
+                        row.createCell(column_count++).setCellValue((String) current_account.getType());
                         break;
                         
                     case "Student":

@@ -1,6 +1,6 @@
 package Controller.User.UserMenuController;
 
-import Controller.Account.AccessAccountDBController.ChangePassword;
+import Controller.Account.ModifyAccountDBController.ChangePassword;
 import Controller.Project.ModifyProjectController.ControllerObject.ChangeProjectTitle;
 import Controller.Project.ModifyProjectController.ControllerObject.CreateProject;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
@@ -25,7 +25,7 @@ public class SupervisorMenu extends UserMenuController {
     public void viewUserMenu() {
         System.out.println("=============  SUPERVISOR MENU  ==============");
 		System.out.println("[1] Create New Project");
-		System.out.println("[2] View Projects created by me");
+		System.out.println("[2] View Projects Created By Me");
 		System.out.println("[3] Change Title of Project");
 		System.out.println("[4] Request to Transfer Student to Replacement Supervisor");
 		System.out.println("[5] Manage Incoming Requests ");
@@ -52,7 +52,7 @@ public class SupervisorMenu extends UserMenuController {
 
 				case 2: 
 					//Supervisor views his/her projects
-					System.out.println("Option [2] selected! - View Projects created by me.");
+					System.out.println("Option [2] selected! - View Projects Created By Me.");
 					new ViewPersonalProjects(supervisor);
 					break;
 
@@ -73,27 +73,24 @@ public class SupervisorMenu extends UserMenuController {
 					break;
 
 				case 6:
-					System.out.println("Option [6] selected! - View all incoming and outgoing requests.");
+					System.out.println("Option [6] selected! - View All Incoming and Outgoing Requests.");
 					new ViewIncomingRequestsHistory(supervisor);
 					new ViewOutgoingRequestsHistory(supervisor);
 					break;
 
 				case 7:
 					System.out.println("\nOption [7] selected! - Change Password");
-					System.out.println("Enter new password: ");
-                    String newPassword = sc.next();
-                    new ChangePassword(supervisor.getUserID(), newPassword);
+                    new ChangePassword(supervisor.getUserID());
 					break;
 
 				case 0: 
-					System.out.println("Option [0] selected! - Exit Program");
+					System.out.println("\nOption [0] selected! - Exit Program");
 					break;
 
 				default:
 					throw new InvalidInputException(choice);
 			}
         }
-        sc.close();
     }
 }
 

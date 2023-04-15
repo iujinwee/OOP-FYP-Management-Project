@@ -7,12 +7,12 @@ import Entity.ProjectClass.ProjectStatus;
 import Entity.UserClass.Student;
 import Entity.UserClass.Supervisor;
 
-public class RegisterProject extends ModifyProjectController{
+public class RegisterProject extends ModifyProjectController {
 
     private int projID;
     private Student student;
     
-    public RegisterProject(int projID, Student student){
+    public RegisterProject(int projID, Student student) {
         super();
         this.projID = projID;
         this.student = student;
