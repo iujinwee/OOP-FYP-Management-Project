@@ -12,7 +12,13 @@ public class ProjectDB extends Database{
         super("rollover_project.xlsx", new Project());
     }
 
-    public Project findInstance(int id) {
+    
+	/** 
+	 * Method to find instance of Project object in ProjectDB, matched by the Project ID, not case sensitive.
+	 * @param id Input Project ID to be found
+	 * @return Project
+	 */
+	public Project findInstance(int id) {
         for (Object s: super.objectDB){
             Project currentProject = (Project) s;
             if(currentProject.getProjectID() == id){
@@ -22,6 +28,11 @@ public class ProjectDB extends Database{
         return new Project();
     }
 
+	/** 
+	 * Method to indicate that supervisor has reached his limit of 2 assigned projects, and no more vacancy for other projects.
+	 * @param supervisor Supervisor object
+	 * @return boolean
+	 */
 	public boolean hasVacancy(Supervisor supervisor) {
 		//get number of assigned projects 
 		//if more than limit, set all projects under that supervisor as unavailable

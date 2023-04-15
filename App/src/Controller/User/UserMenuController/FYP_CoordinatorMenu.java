@@ -20,6 +20,10 @@ public class FYP_CoordinatorMenu extends UserMenuController{
     private handleInvalidInput handler = new handleInvalidInput(3);
     private Scanner sc = new Scanner(System.in);
 
+	/**
+	 * FYP Coordinator Menu Constructor.
+	 * @param fyp_coordinator FYP Coordinator Object
+	 */
     public FYP_CoordinatorMenu(FYP_Coordinator fyp_coordinator) {
         this.fyp_coordinator = fyp_coordinator;
 
@@ -48,7 +52,11 @@ public class FYP_CoordinatorMenu extends UserMenuController{
 		System.out.println("[0] Exit Program.");
     }
 
-    @Override
+    
+	/** 
+	 * @throws InvalidInputException
+	 */
+	@Override
     public void getInput() throws InvalidInputException {
 
         int choice = -1;
@@ -103,6 +111,9 @@ public class FYP_CoordinatorMenu extends UserMenuController{
         sc.close();
     }
 
+	/**
+	 * Method to view different project options for FYP coordinator.
+	 */
     private void viewProjectOption(){
 		System.out.println("[1] View Personal Projects");
 		System.out.println("[2] View All Projects");

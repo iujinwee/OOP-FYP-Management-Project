@@ -31,6 +31,13 @@ public class FileHandler {
     private final static String dataPath = "\\App\\data\\";
     private final static String macDataPath = "/App/data/";
 
+    
+    /** 
+     * Method used to read excel file into an array list of objects.
+     * @param filePath Path of excel file
+     * @param item Object of excel file content
+     * @return ArrayList<Object>
+     */
     public static ArrayList<Object> readExcelFile(String filePath, Object item) {
         String pathname;
         StudentDB stu;
@@ -214,6 +221,12 @@ public class FileHandler {
         return resultList;
     }
 
+    /** 
+     * Method used to save and update excel file
+     * @param filePath Path of excel file
+     * @param result 
+     * @return boolean
+     */
     public static boolean saveExcelFile(String filePath, ArrayList<Object> result) {
         // Path Name
         String pathname;
@@ -338,6 +351,11 @@ public class FileHandler {
         return saveFile;
     }
 
+    /** 
+     * Method used to get cell value in string format.
+     * @param cell 
+     * @return String
+     */
     private static String getStringCellValue(Cell cell) {
         String value = "";
         if (cell != null) {
@@ -361,6 +379,11 @@ public class FileHandler {
         return value;
     }
 
+    /** 
+     * Method used to get cell value in numeric format.
+     * @param cell 
+     * @return int
+     */
     private static int getNumericCellValue(Cell cell) {
         int value = 0;
         if (cell != null) {

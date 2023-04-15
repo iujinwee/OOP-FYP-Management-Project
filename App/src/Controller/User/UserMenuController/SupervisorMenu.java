@@ -21,6 +21,10 @@ public class SupervisorMenu extends UserMenuController {
     private handleInvalidInput handler = new handleInvalidInput(3);
 	Scanner sc = new Scanner(System.in);
 
+	/**
+	 * Supervisor Menu Constructor.
+	 * @param supervisor Supervisor Object
+	 */
     public SupervisorMenu(Supervisor supervisor) {
         this.supervisor = supervisor;
 
@@ -49,7 +53,11 @@ public class SupervisorMenu extends UserMenuController {
 		System.out.println("[0] Exit Program.");
     }
 
-    @Override
+    
+	/** 
+	 * @throws InvalidInputException
+	 */
+	@Override
     public void getInput() throws InvalidInputException {
 
         int choice = -1;

@@ -9,9 +9,9 @@ public class FYP_CoordinatorDB extends Database{
     }
 
     /**
-     * Find instance of FYP_Coordinator object in FYP_CoordinatorDB, matched by the User ID, not case sensitive.
-     * @param id Input User ID to be found.
-     * @return FYP_Coordinator object.
+     * Method to find instance of FYP_Coordinator object in FYP_CoordinatorDB, matched by the User ID, not case sensitive.
+     * @param id Input User ID to be found
+     * @return FYP_Coordinator object
      */
     public FYP_Coordinator findInstance(String id) {
         for(Object s : super.objectDB){
@@ -33,6 +33,7 @@ public class FYP_CoordinatorDB extends Database{
         }
     }
 
+    
     public FYP_Coordinator findInstance() {
         for (Object s: super.objectDB){
             FYP_Coordinator currentCoordinator = (FYP_Coordinator) s;

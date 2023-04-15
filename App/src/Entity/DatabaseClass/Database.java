@@ -13,6 +13,11 @@ public abstract class Database {
     private String filePath;
     public Scanner sc = new Scanner(System.in);
 
+    /**
+	 * Database constructor.
+	 * @param filePath Path to excel file
+	 * @param o Object
+	 */
     public Database(String filePath, Object o){
         this.filePath = filePath;
 
