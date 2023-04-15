@@ -25,8 +25,6 @@ public abstract class Database {
     }
 
     public void exportDB(){
-        String className = this.getClass().getSimpleName();
-        System.out.printf("Updating %s Files...\n", className);
         FileHandler.saveExcelFile(filePath, objectDB);
     }
 }

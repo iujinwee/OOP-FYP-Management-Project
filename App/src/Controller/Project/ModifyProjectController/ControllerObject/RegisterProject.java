@@ -23,32 +23,33 @@ public class RegisterProject extends ModifyProjectController{
     @Override
 	public void updateDB() {		
 
-		// Check if student has been rejected previously
-		if(projDB.findInstance(projID).getRejected().contains(student.getUserID())){
-			System.out.println("Student has been rejected previously.");
-		}else{
-            // Allocate student
-            Project currentProj = projDB.findInstance(projID);
-            currentProj.setStudent(student);
-            currentProj.setProjectStatus(ProjectStatus.ALLOCATED);
-            SupervisorDB supDB = new SupervisorDB();
-            Supervisor curSup = supDB.findInstance(currentProj.getSupervisor().getUserID());
-            curSup.addAssignedProjects();
-            if(curSup.getNumAssignedProjects() == 2){
-                for (Object obj : projDB.objectDB) {
-                    Project curProject = (Project) obj;
-                    if (curSup.getUserID().compareTo(curProject.getSupervisorID())==0 && curProject.getProjectStatus() == ProjectStatus.AVAILABLE) {
-                        curProject.setProjectStatus(ProjectStatus.UNAVAILABLE);
-                    }
+        // Allocate student
+        Project currentProj = projDB.findInstance(projID);
+        
+        currentProj.setStudent(student);
+        currentProj.setProjectStatus(ProjectStatus.ALLOCATED);
+
+        SupervisorDB supDB = new SupervisorDB();
+
+        Supervisor curSup = supDB.findInstance(currentProj.getSupervisor().getUserID());
+        curSup.addAssignedProjects();
+
+        if(curSup.getNumAssignedProjects() >= 2){
+            for (Object obj : projDB.objectDB) {
+                Project curProject = (Project) obj;
+                boolean own = curSup.getUserID().compareTo(curProject.getSupervisorID())==0;
+                boolean available = curProject.getProjectStatus() == ProjectStatus.AVAILABLE;
+                if (own && available) {
+                    curProject.setProjectStatus(ProjectStatus.UNAVAILABLE);
                 }
             }
-            supDB.exportDB();
-
-            System.out.println("=================================================================================");
-            System.out.printf("Successfully Registered for Project [%d] %s\n", currentProj.getProjectID(), currentProj.getProjectTitle());
-            System.out.println("=================================================================================");
-
         }
-	}
 
+        supDB.exportDB();
+
+        System.out.println("=================================================================================");
+        System.out.printf("Successfully Registered for Project [%d] %s\n", currentProj.getProjectID(), currentProj.getProjectTitle());
+        System.out.println("=================================================================================");
+
+    }
 }

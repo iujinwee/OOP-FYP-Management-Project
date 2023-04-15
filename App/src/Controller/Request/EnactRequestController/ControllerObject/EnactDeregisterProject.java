@@ -7,14 +7,14 @@ import Entity.UserClass.Student;
 
 public class EnactDeregisterProject extends EnactRequestController {
 
-    private StudentDB stuDB;
-
     public EnactDeregisterProject(int reqID){
         super(reqID);
     }
     
     @Override
     public void approve() {
+        StudentDB stuDB = new StudentDB();
+
         new DeregisterProject(request.getProjectID(), (Student) request.getFromUser());
         stuDB.findInstance(request.getfromUserID()).setAssigned(false);
         stuDB.exportDB();

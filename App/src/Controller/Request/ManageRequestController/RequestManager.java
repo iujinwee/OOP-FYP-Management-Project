@@ -10,6 +10,7 @@ import Boundaries.Menu.UserBodyInterface;
 import Controller.Request.EnactRequestController.ControllerObject.*;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewPendingRequests;
 import Entity.DatabaseClass.ProjectDB;
+import Entity.ProjectClass.Project;
 import Entity.RequestClass.Request;
 import Entity.UserClass.UserDetails.User;
 import Exceptions.InvalidInputException;
@@ -55,7 +56,11 @@ public class RequestManager implements GetInputInterface, HeaderInterface, UserB
 
             // Display Request
             selectedRequest = pend.reqDB.findInstance(choice);
-            (new ProjectDB()).findInstance(selectedRequest.getProjectID()).viewFullProjectInfo();
+
+            // Display Project Information
+            ProjectDB projDB = new ProjectDB();
+            Project proj = projDB.findInstance(selectedRequest.getProjectID());
+            proj.viewFullProjectInfo();
 
             // Enact request based on Request Type
             switch(selectedRequest.getRequestType()){
@@ -68,6 +73,13 @@ public class RequestManager implements GetInputInterface, HeaderInterface, UserB
                     break;
 
                 case REGISTERPROJECT:
+                    // Check if student have deregistered previously.
+                    if(proj.getRejected().contains(selectedRequest.getfromUserID())){
+                        System.out.println("****************          << ALERT >>         *****************");
+                        System.out.println("****    Requesting Student have deregistered previously!   ****");
+                        System.out.println("***************************************************************");
+                    }   
+                    
                     new EnactRegisterProject(choice);
                     break;
 

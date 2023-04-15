@@ -17,7 +17,7 @@ public class ChangeTitleRequest extends Request implements CreateRequestInterfac
     @Override
     public Request createRequest() {
         super.setNewTitle(newTitle);
-        System.out.printf("Request to change title to [%s] has been sent.\n", newTitle);
+        System.out.printf("Request to change title to [%s] has been sent.\n\n", newTitle);
         return this;
     }
 }

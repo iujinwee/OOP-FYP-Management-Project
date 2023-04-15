@@ -280,7 +280,7 @@ public class FileHandler {
                         
                         StringBuilder sb = new StringBuilder();
                         for (String s : current_proj.getRejected()) {
-                            if (!s.isEmpty()) {
+                            if (!s.isEmpty() && sb.indexOf(s) == -1) {
                                 sb.append(s).append(",");
                             }
                         }

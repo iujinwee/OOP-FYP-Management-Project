@@ -29,7 +29,7 @@ public class StudentMenu extends UserMenuController {
 		System.out.println("[3] Register Project.");
 		System.out.println("[4] Deregister Project.");
 		System.out.println("[5] Change Assigned Project Title.");
-		System.out.println("[6] View All Requests.");
+		System.out.println("[6] View Request Status and History.");
 		System.out.println("[7] Change Password.");
 		System.out.println("[0] Exit Program.");
     }

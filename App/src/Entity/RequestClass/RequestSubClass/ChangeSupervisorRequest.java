@@ -18,6 +18,7 @@ public class ChangeSupervisorRequest extends Request implements CreateRequestInt
     public Request createRequest() {
 
         setNewSupervisor(newSupervisor);
+        System.out.printf("Request to change supervisor to [%s] has been sent.\n\n", newSupervisor);
 
         return this;
     }

@@ -29,7 +29,8 @@ public class SupervisorMenu extends UserMenuController {
 		System.out.println("[3] Change Title of Project");
 		System.out.println("[4] Request to Transfer Student to Replacement Supervisor");
 		System.out.println("[5] Manage Incoming Requests ");
-		System.out.println("[6] Change Password ");
+		System.out.println("[6] View Request Status and History ");
+		System.out.println("[7] Change Password ");
 		System.out.println("[0] Exit Program.");
     }
 

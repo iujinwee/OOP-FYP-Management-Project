@@ -9,13 +9,14 @@ import Entity.ProjectClass.ProjectStatus;
 
 public class EnactRegisterProject extends EnactRequestController {
 
-    private StudentDB stuDB;
     public EnactRegisterProject(int reqID){
         super(reqID);
     }
 
     @Override
     public void approve() {
+        StudentDB stuDB = new StudentDB();
+        
         new RegisterProject(request.getProjectID(), (Student) request.getFromUser());
         stuDB.findInstance(request.getfromUserID()).setAssigned(true);
         stuDB.exportDB();

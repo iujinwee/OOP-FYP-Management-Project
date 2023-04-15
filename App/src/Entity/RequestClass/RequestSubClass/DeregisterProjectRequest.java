@@ -19,7 +19,7 @@ public class DeregisterProjectRequest extends Request implements CreateRequestIn
         
         Project selectedProject = projDB.findInstance(super.getProjectID());
 
-        System.out.printf("Request to deregister [Project %d: %s] has been sent.\n", selectedProject.getProjectID(), selectedProject.getProjectTitle());
+        System.out.printf("Request to deregister [Project %d: %s] has been sent.\n\n", selectedProject.getProjectID(), selectedProject.getProjectTitle());
 
         projDB.exportDB();
         return this;
