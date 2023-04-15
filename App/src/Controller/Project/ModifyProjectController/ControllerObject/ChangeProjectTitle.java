@@ -8,9 +8,9 @@ public class ChangeProjectTitle extends ModifyProjectController{
     private String newTitle;
     
     public ChangeProjectTitle(int projID, String newTitle){
+        super();
         this.projID = projID;
         this.newTitle = newTitle;
-        loadFiles();
         updateDB();
         exportDB();
     }

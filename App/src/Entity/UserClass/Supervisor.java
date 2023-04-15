@@ -14,11 +14,8 @@ import Entity.UserClass.UserDetails.*;
 
 public class Supervisor extends User {
 
-	private String supervisorID;
-	private int numAssignedProjects = 0;
-	// private int projectID = 0;
-
-	public Supervisor() {}
+	private int numAssignedProjects=0;
+	private int choice = -1;
 
 	/**
 	 * Supervisor constructor.
@@ -42,11 +39,7 @@ public class Supervisor extends User {
 	public int getNumAssignedProjects(){
 		return this.numAssignedProjects;
 	}
-
-	// SETTER FUNCTIONS
-	public void setSupervisorID(String supervisorID) {
-		this.supervisorID = supervisorID;
-	}
+	
 
 	public void setNumAssignedProjects(int numAssigned) {
 		this.numAssignedProjects = numAssigned;

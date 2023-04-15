@@ -14,11 +14,9 @@ public class SupervisorDB extends Database{
      * @return Supervisor object.
      */
     public Supervisor findInstance(String id) {
-        for(Object s : super.objectDB){
-            Supervisor temp = (Supervisor) s;
-            String correctID = temp.getUserID().toLowerCase();
-            if(correctID.compareTo(id.toLowerCase())==0){
-                return temp;
+        for (Object s: super.objectDB){
+            if(((Supervisor) s).getUserID().toLowerCase().compareTo(id.toLowerCase())==0){
+                return ((Supervisor) s);
             }
         }
         return new Supervisor();
@@ -30,7 +28,7 @@ public class SupervisorDB extends Database{
         System.out.println("================================\n");
         
         for (Object s: super.objectDB){
-            System.out.println(((Supervisor)s).getName());
+            System.out.println(((Supervisor)s).getName() + " (" + ((Supervisor)s).getUserID() + ")");
         }
     }
 }

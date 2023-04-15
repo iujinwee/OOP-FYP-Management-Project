@@ -5,14 +5,14 @@ import java.util.Scanner;
 
 import Boundaries.Request.EnactRequestInterface;
 import Boundaries.Request.ManageRequestInterface;
-import Controller.Request.AccessRequestDBController;
+import Controller.Request.RequestDBManager;
 import Entity.DatabaseClass.ProjectDB;
 import Entity.RequestClass.Request;
 import Entity.RequestClass.RequestStatus;
 import Exceptions.InvalidInputException;
 import Exceptions.handleInvalidInput;
 
-public abstract class EnactRequestController extends AccessRequestDBController implements EnactRequestInterface, ManageRequestInterface{
+public abstract class EnactRequestController extends RequestDBManager implements EnactRequestInterface, ManageRequestInterface{
     
     public ProjectDB projDB;
     public Request request;
@@ -20,7 +20,7 @@ public abstract class EnactRequestController extends AccessRequestDBController i
     private boolean enacted = false;
 
     public EnactRequestController(int reqID){
-        loadFiles();
+        super();
         this.request = reqDB.findInstance(reqID);
 
         updateDB();
@@ -28,14 +28,6 @@ public abstract class EnactRequestController extends AccessRequestDBController i
         if(enacted){
             exportDB();
         }
-    }
-
-    @Override
-    public void loadFiles() {
-        super.loadFiles();
-        // System.out.println("Initializing ProjectDB...");
-        // projDB = new ProjectDB();
-        // System.out.println("ProjectDB Initialized.");
     }
 
     @Override
@@ -68,7 +60,7 @@ public abstract class EnactRequestController extends AccessRequestDBController i
                 approve();
                 request.setRequestStatus(RequestStatus.APPROVED);
                 System.out.println("\n==============================");
-                System.out.printf("Request #%d has been approved.", request.getRequestID());
+                System.out.printf("Request #%d has been approved.\n", request.getRequestID());
                 System.out.println("==============================\n");
 
                 break;
@@ -78,7 +70,7 @@ public abstract class EnactRequestController extends AccessRequestDBController i
                 reject();
                 request.setRequestStatus(RequestStatus.REJECTED);
                 System.out.println("\n==============================");
-                System.out.printf("Request #%d has been rejected.", request.getRequestID());
+                System.out.printf("Request #%d has been rejected.\n", request.getRequestID());
                 System.out.println("==============================\n");
 
                 break;

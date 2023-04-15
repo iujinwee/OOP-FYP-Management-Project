@@ -1,7 +1,5 @@
 package Entity.RequestClass.RequestSubClass;
 
-import java.util.Scanner;
-
 import Boundaries.Request.CreateRequestInterface;
 import Entity.RequestClass.Request;
 import Entity.RequestClass.RequestStatus;
@@ -12,18 +10,14 @@ public class ChangeTitleRequest extends Request implements CreateRequestInterfac
 
     private String newTitle;
 
-    public ChangeTitleRequest(int requestID, User fromUser, User toUser, int projectID) {
+    public ChangeTitleRequest(int requestID, int projectID, User fromUser, User toUser, String newTitle) {
         super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGETITLE, projectID);
+        this.newTitle = newTitle;
     }
     @Override
     public Request createRequest() {
-        
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Input new project title:");
-        newTitle = sc.next();
-
         super.setNewTitle(newTitle);
-        sc.close();
+        System.out.printf("Request to change title to [%s] has been sent.\n", newTitle);
         return this;
     }
 }

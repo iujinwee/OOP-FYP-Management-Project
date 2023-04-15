@@ -2,11 +2,12 @@ package Controller.Request.EnactRequestController.ControllerObject;
 
 import Controller.Request.EnactRequestController.EnactRequestController;
 import Controller.Project.ModifyProjectController.ControllerObject.DeregisterProject;
+import Entity.DatabaseClass.StudentDB;
 import Entity.UserClass.Student;
 
 public class EnactDeregisterProject extends EnactRequestController {
 
-    Student dereg = (Student) request.getFromUser();
+    private StudentDB stuDB;
 
     public EnactDeregisterProject(int reqID){
         super(reqID);
@@ -14,11 +15,11 @@ public class EnactDeregisterProject extends EnactRequestController {
     
     @Override
     public void approve() {
-        new DeregisterProject(request.getProjectID(), dereg);
+        new DeregisterProject(request.getProjectID(), (Student) request.getFromUser());
+        stuDB.findInstance(request.getfromUserID()).setAssigned(false);
+        stuDB.exportDB();
     }
 
     @Override
-    public void reject() {
-        projDB.findInstance(request.getProjectID()).addRejected(dereg.getUserID());
-    }
+    public void reject() {}
 }

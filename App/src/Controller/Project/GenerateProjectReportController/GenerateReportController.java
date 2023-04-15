@@ -1,22 +1,23 @@
 package Controller.Project.GenerateProjectReportController;
 
 import Boundaries.Database.LoadFilesInterface;
-import Boundaries.Project.ViewProjectListInterface;
-import Entity.DatabaseClass.ProjectDB;
+import Boundaries.Menu.FooterInterface;
+import Boundaries.Menu.HeaderInterface;
+import Boundaries.Menu.UserBodyInterface;
+import Controller.Project.LoadProjectDBController;
 
-public abstract class GenerateReportController implements ViewProjectListInterface, LoadFilesInterface{
+public abstract class GenerateReportController extends LoadProjectDBController implements HeaderInterface, UserBodyInterface, FooterInterface{
 
-    private ProjectDB projDB;
-
-    @Override
-    public void loadFiles() {
-        System.out.println("\nInitializing ProjectDB...");
-        projDB = new ProjectDB();
-        System.out.println("ProjectDB Initialized.\n");
+    public GenerateReportController(){
+        super();
     }
 
     @Override
     public void footer() {
-        System.out.println("============        END OF REPORT       ============");
+        if(projDB.objectDB.size()!=0){
+			System.out.println("=======     NO PROJECTS FOUND!     =======");
+		}else{
+			System.out.println("\n=========   END OF PROJECT REPORT  ===========\n");
+		}
     }
 }
