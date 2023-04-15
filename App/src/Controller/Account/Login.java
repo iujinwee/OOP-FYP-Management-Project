@@ -13,7 +13,6 @@ public class Login extends LoadAccountDBController implements HeaderInterface, F
     private Account temp;
     private String inputUserID;
     private String inputPassword;
-    private Scanner sc = new Scanner(System.in);
 
     public Login() {
         super();
@@ -37,7 +36,6 @@ public class Login extends LoadAccountDBController implements HeaderInterface, F
             
             loginAttempts++;
         }
-        sc.close();
     }
     
     @Override
@@ -53,9 +51,11 @@ public class Login extends LoadAccountDBController implements HeaderInterface, F
     }
     
     public void getLoginInputs() {
-        System.out.println("Enter User ID: ");
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.printf("Enter User ID: ");
         this.inputUserID = sc.nextLine();
-        System.out.println("Enter Password: ");
+        System.out.printf("Enter Password: ");
         this.inputPassword = sc.nextLine();
     }
 

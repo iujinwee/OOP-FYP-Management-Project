@@ -22,7 +22,7 @@ public class ChangePassword extends ModifyAccountDBController implements FooterI
         Account temp =  accDB.findInstance(userID);
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter new password: ");
+        System.out.printf("Enter New Password: ");
         this.newPassword = sc.next();
         
         if(newPassword.compareTo(temp.getPassword()) != 0) {
@@ -34,7 +34,6 @@ public class ChangePassword extends ModifyAccountDBController implements FooterI
             System.out.println("\nERROR!");
 			System.out.println("New password cannot be the same as old password.\n");
 		}
-        sc.close();
     }
 
     @Override

@@ -116,6 +116,7 @@ public class StudentMenu extends UserMenuController {
                 case 7:
                     System.out.println("\nOption [7] selected! - Change Password");
                     new ChangePassword(student.getUserID());
+                    break;
             
                 case 0: 
                     System.out.println("\nOption [0] selected! - Exit Program");
@@ -126,7 +127,6 @@ public class StudentMenu extends UserMenuController {
             }
             
         }
-        sc.close();
     }
         
 }

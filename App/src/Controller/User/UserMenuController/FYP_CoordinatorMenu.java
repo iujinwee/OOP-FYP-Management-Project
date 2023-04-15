@@ -98,7 +98,6 @@ public class FYP_CoordinatorMenu extends UserMenuController{
 					throw new InvalidInputException(choice);
 			}
 		}
-        sc.close();
     }
 
     private void viewProjectOption(){
