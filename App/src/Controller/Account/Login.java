@@ -19,7 +19,7 @@ public class Login extends LoadAccountDBController implements HeaderInterface, F
         
         header();
         int loginAttempts = 1;
-        while (loginAttempts <= 5) {
+        while (loginAttempts <= 3) {
             getLoginInputs();
             if(checkUserID(inputUserID)) {
                 if(checkPassword(inputPassword)) {

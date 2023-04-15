@@ -10,6 +10,7 @@ public class CreateNewFYP_Coordinator extends ModifyUsersDBController {
     private String name;
     private String email;
     private FYP_Coordinator newFYP_Coord;
+    public Scanner sc = new Scanner(System.in);
 
     public CreateNewFYP_Coordinator(String userID) {
         super();
@@ -21,8 +22,6 @@ public class CreateNewFYP_Coordinator extends ModifyUsersDBController {
 
     @Override
     public void updateDB() {
-        Scanner sc = new Scanner(System.in);
-
         System.out.printf("Enter Name: ");
         this.name = sc.nextLine();
         newFYP_Coord = new FYP_Coordinator(userID, name, email);

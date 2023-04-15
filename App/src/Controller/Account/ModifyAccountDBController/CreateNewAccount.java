@@ -16,6 +16,7 @@ public class CreateNewAccount extends ModifyAccountDBController implements ViewU
     private String userID;
     private Account newAcc;
     private handleInvalidInput handler = new handleInvalidInput(3);
+    public Scanner sc = new Scanner(System.in);
 
     public CreateNewAccount() {
         super();
@@ -25,7 +26,6 @@ public class CreateNewAccount extends ModifyAccountDBController implements ViewU
 
     @Override
     public void updateDB() {
-        Scanner sc = new Scanner(System.in);
 
         System.out.printf("\nEnter User ID: ");
         userID = sc.nextLine();
@@ -40,6 +40,7 @@ public class CreateNewAccount extends ModifyAccountDBController implements ViewU
 
                 } catch(InputMismatchException e) {
                     handler.handleInputMismatchException(e);
+                    sc.nextLine();
                 } catch(InvalidInputException e) {
                     handler.handleInvalidInputException(e);
                 }
@@ -59,9 +60,7 @@ public class CreateNewAccount extends ModifyAccountDBController implements ViewU
     }
 
     @Override
-    public void getInput() throws InvalidInputException {
-        Scanner sc = new Scanner(System.in);
-        
+    public void getInput() throws InvalidInputException {        
         System.out.printf("\nEnter option: ");
         int choice = sc.nextInt();
 

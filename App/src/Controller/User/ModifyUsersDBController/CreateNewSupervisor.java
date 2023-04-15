@@ -10,6 +10,7 @@ public class CreateNewSupervisor extends ModifyUsersDBController {
     private String name;
     private String email;
     private Supervisor newSup;
+    public Scanner sc = new Scanner(System.in);
 
     public CreateNewSupervisor(String userID) {
         super();
@@ -21,8 +22,6 @@ public class CreateNewSupervisor extends ModifyUsersDBController {
 
     @Override
     public void updateDB() {
-        Scanner sc = new Scanner(System.in);
-
         System.out.printf("Enter Name: ");
         this.name = sc.nextLine();
         newSup = new Supervisor(userID, name, email, 0);

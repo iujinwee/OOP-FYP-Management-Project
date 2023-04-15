@@ -43,7 +43,6 @@ public class StudentMenu extends UserMenuController {
 			// Show User Menu
 			viewUserMenu();
 
-
 			System.out.printf("\nEnter Option: ");
 			choice = sc.nextInt();
 

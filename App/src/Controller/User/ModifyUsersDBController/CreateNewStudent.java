@@ -10,6 +10,7 @@ public class CreateNewStudent extends ModifyUsersDBController {
     private String name;
     private String email;
     private Student newStu;
+    public Scanner sc = new Scanner(System.in);
 
     public CreateNewStudent(String userID) {
         super();
@@ -21,8 +22,6 @@ public class CreateNewStudent extends ModifyUsersDBController {
 
     @Override
     public void updateDB() {
-        Scanner sc = new Scanner(System.in);
-
         System.out.printf("Enter Name: ");
         this.name = sc.nextLine().toUpperCase();
         newStu = new Student(userID, name, email, false);

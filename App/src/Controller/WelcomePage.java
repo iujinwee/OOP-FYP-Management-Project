@@ -14,17 +14,19 @@ import Exceptions.InvalidInputException;
 public class WelcomePage implements HeaderInterface, ViewUserMenuInterface, GetInputInterface {
     
     private handleInvalidInput handler = new handleInvalidInput(3);
+    public Scanner sc = new Scanner(System.in);
 
     public WelcomePage(){
 
         header();
-        viewUserMenu();
+
         while(handler.checkAttempts()) {
             try {    
                 getInput();
                 break;
             }catch(InputMismatchException e){
                 handler.handleInputMismatchException(e);
+                sc.nextLine();
             }catch(InvalidInputException e){
                 handler.handleInvalidInputException(e);
             }
@@ -44,7 +46,7 @@ public class WelcomePage implements HeaderInterface, ViewUserMenuInterface, GetI
 
     @Override
     public void viewUserMenu() {
-		System.out.println("\nWelcome");
+		System.out.println("Welcome");
         System.out.println("=======================");
 		System.out.println("[1] Login");
 		System.out.println("[2] Create New Account");
@@ -53,8 +55,9 @@ public class WelcomePage implements HeaderInterface, ViewUserMenuInterface, GetI
 
     @Override
     public void getInput() throws InvalidInputException {
-        Scanner sc = new Scanner(System.in);
-        System.out.printf("\nEnter option: ");
+        viewUserMenu();
+
+        System.out.printf("\nEnter Option: ");
         int choice = sc.nextInt();
 
         switch(choice) {
