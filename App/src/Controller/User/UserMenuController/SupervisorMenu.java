@@ -1,5 +1,6 @@
 package Controller.User.UserMenuController;
 
+import Boundaries.WelcomePage;
 import Controller.Account.ModifyAccountDBController.ChangePassword;
 import Controller.Project.ModifyProjectController.ControllerObject.ChangeProjectTitle;
 import Controller.Project.ModifyProjectController.ControllerObject.CreateProject;
@@ -28,16 +29,16 @@ public class SupervisorMenu extends UserMenuController {
     @Override
     public void viewUserMenu() {
         System.out.println("=============  SUPERVISOR MENU  ==============");
-		System.out.println("[1] Create New Project");
-		System.out.println("[2] View Projects Created By Me");
-		System.out.println("[3] Change Title of Project");
-		System.out.println("[4] Request to Transfer Student to Replacement Supervisor");
-		System.out.println("[5] Manage Incoming Requests ");
-		System.out.println("[6] View Request Status and History ");
-		System.out.println("[7] Change Password ");
+		System.out.println("[1] Create New Project.");
+		System.out.println("[2] View Projects Created By Me.");
+		System.out.println("[3] Change Title of Project.");
+		System.out.println("[4] Request to Transfer Student to Replacement Supervisor.");
+		System.out.println("[5] Manage Incoming Requests.");
+		System.out.println("[6] View Request Status and History.");
+		System.out.println("[7] Change Password.");
+		System.out.println("[8] Log Out.");
 		System.out.println("[0] Exit Program.");
     }
-
     
 	/** 
 	 * @throws InvalidInputException
@@ -46,7 +47,7 @@ public class SupervisorMenu extends UserMenuController {
     public void getInput() throws InvalidInputException {
 
         int choice = -1;
-        while(choice != 0) {
+        while(choice != 0 && choice != 8) {
             viewUserMenu();
 
             System.out.printf("\nEnter option: ");
@@ -90,6 +91,11 @@ public class SupervisorMenu extends UserMenuController {
 					System.out.println("\nOption [7] selected! - Change Password");
                     new ChangePassword(supervisor.getUserID());
 					break;
+
+				case 8:
+                    System.out.println("\nOption [8] selected! - Log Out\n");
+                    new WelcomePage();
+                    break;
 
 				case 0: 
 					System.out.println("\nOption [0] selected! - Exit Program");

@@ -1,5 +1,6 @@
 package Controller.User.UserMenuController;
 
+import Boundaries.WelcomePage;
 import Controller.Account.ModifyAccountDBController.ChangePassword;
 import Controller.Project.GenerateProjectReportController.GenerateReport;
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
@@ -33,6 +34,7 @@ public class FYP_CoordinatorMenu extends UserMenuController{
 		System.out.println("[4] View Projects.");
 		System.out.println("[5] Generate Project Report.");
         System.out.println("[6] Change Password ");
+        System.out.println("[7] Log Out.");
 		System.out.println("[0] Exit Program.");
     }
 
@@ -44,7 +46,7 @@ public class FYP_CoordinatorMenu extends UserMenuController{
     public void getInput() throws InvalidInputException {
 
         int choice = -1;
-        while(choice != 0) {
+        while(choice != 0 && choice != 7) {
             viewUserMenu();
 
             System.out.printf("\nEnter option: ");
@@ -81,7 +83,12 @@ public class FYP_CoordinatorMenu extends UserMenuController{
                     System.out.println("\nOption [6] selected! - Change Password");
                     new ChangePassword(fyp_coordinator.getUserID());
                     break;
-			
+				
+				case 7:
+                    System.out.println("\nOption [7] selected! - Log Out\n");
+                    new WelcomePage();
+                    break;
+				
 				case 0: 
 					System.out.println("\nOption [0] selected! - Exit Program\n");
 					break;

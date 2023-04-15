@@ -1,36 +1,19 @@
-package Controller;
+package Boundaries;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Boundaries.Menu.GetInputInterface;
-import Boundaries.Menu.HeaderInterface;
-import Boundaries.Menu.ViewUserMenuInterface;
+import Controller.WelcomePageController;
 import Controller.Account.Login;
 import Controller.Account.ModifyAccountDBController.CreateNewAccount;
-import Exceptions.handleInvalidInput;
 import Exceptions.InvalidInputException;
 
-public class WelcomePage implements HeaderInterface, ViewUserMenuInterface, GetInputInterface {
+public class WelcomePage extends WelcomePageController {
     
-    private handleInvalidInput handler = new handleInvalidInput(3);
     public Scanner sc = new Scanner(System.in);
 
     public WelcomePage(){
-
-        header();
-
-        while(handler.checkAttempts()) {
-            try {    
-                getInput();
-                break;
-            }catch(InputMismatchException e){
-                handler.handleInputMismatchException(e);
-                sc.nextLine();
-            }catch(InvalidInputException e){
-                handler.handleInvalidInputException(e);
-            }
-        } 
+        header(); 
+        handleException();
     }
     
     @Override

@@ -1,5 +1,6 @@
 package Controller.User.UserMenuController;
 
+import Boundaries.WelcomePage;
 import Controller.Account.ModifyAccountDBController.ChangePassword;
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
@@ -25,7 +26,7 @@ public class StudentMenu extends UserMenuController {
 	 */
     public StudentMenu(Student student) {
         this.student = student;
-
+        
         handleException();
     }
 
@@ -39,6 +40,7 @@ public class StudentMenu extends UserMenuController {
 		System.out.println("[5] Change Assigned Project Title.");
 		System.out.println("[6] View Request Status and History.");
 		System.out.println("[7] Change Password.");
+        System.out.println("[8] Log Out.");
 		System.out.println("[0] Exit Program.");
     }
 
@@ -50,7 +52,7 @@ public class StudentMenu extends UserMenuController {
     public void getInput() throws InvalidInputException {
 
         int choice = -1;
-        while (choice != 0){	
+        while (choice != 0 && choice != 8){	
 
             this.pendingCount  = checkPending();
             
@@ -123,6 +125,11 @@ public class StudentMenu extends UserMenuController {
                 case 7:
                     System.out.println("\nOption [7] selected! - Change Password");
                     new ChangePassword(student.getUserID());
+                    break;
+                
+                case 8:
+                    System.out.println("\nOption [8] selected! - Log Out\n");
+                    new WelcomePage();
                     break;
             
                 case 0: 

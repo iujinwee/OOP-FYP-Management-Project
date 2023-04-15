@@ -1,4 +1,4 @@
-import Controller.WelcomePage;
+import Boundaries.WelcomePage;
 
 public class App {
 

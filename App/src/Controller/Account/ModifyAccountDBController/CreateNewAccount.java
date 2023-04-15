@@ -3,9 +3,9 @@ package Controller.Account.ModifyAccountDBController;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import Boundaries.WelcomePage;
 import Boundaries.Menu.GetInputInterface;
 import Boundaries.Menu.ViewUserMenuInterface;
-import Controller.WelcomePage;
 import Controller.User.ModifyUsersDBController.*;
 import Entity.AccountClass.Account;
 import Exceptions.InvalidInputException;
@@ -34,6 +34,7 @@ public class CreateNewAccount extends ModifyAccountDBController implements ViewU
             while(handler.checkAttempts()) {
                 try {
                     getInput();
+                    System.out.println("======= Account Successfully Created! =======\n");
                     accDB.objectDB.add(newAcc);
                     exportDB();
                     break;

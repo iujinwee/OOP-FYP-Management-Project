@@ -1,18 +1,18 @@
-package Controller.User.UserMenuController;
+package Controller;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Boundaries.Menu.*;
-import Exceptions.InvalidInputException;
 import Exceptions.handleInvalidInput;
+import Exceptions.InvalidInputException;
 
-public abstract class UserMenuController implements ViewUserMenuInterface, GetInputInterface, ExceptionHandlerInterface {
+public abstract class WelcomePageController implements HeaderInterface, ViewUserMenuInterface, GetInputInterface, ExceptionHandlerInterface {
 
     private handleInvalidInput handler = new handleInvalidInput(3);
-	public Scanner sc = new Scanner(System.in);
+    public Scanner sc = new Scanner(System.in);
 
-    public UserMenuController() {}
+    public WelcomePageController() {}
 
     @Override
     public void handleException() {
