@@ -5,12 +5,11 @@ import Boundaries.Database.UpdateDBInterface;
 import Controller.Project.LoadProjectDBController;
 import Entity.DatabaseClass.ProjectDB;
 
-public abstract class ModifyProjectController extends LoadProjectDBController implements UpdateDBInterface, ExportDBInterface{
+public abstract class ModifyProjectController extends LoadProjectDBController implements UpdateDBInterface, ExportDBInterface {
 
-    public boolean filesInitialized = false; 
     public ProjectDB projDB;
 
-    public ModifyProjectController(){
+    public ModifyProjectController() {
         super();
     }
 

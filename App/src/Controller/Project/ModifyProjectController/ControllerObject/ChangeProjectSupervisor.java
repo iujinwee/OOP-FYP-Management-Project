@@ -4,7 +4,7 @@ import Controller.Project.ModifyProjectController.ModifyProjectController;
 import Entity.DatabaseClass.SupervisorDB;
 import Entity.UserClass.Supervisor;
 
-public class ChangeProjectSupervisor extends ModifyProjectController{
+public class ChangeProjectSupervisor extends ModifyProjectController {
 
     private int projID;
     private Supervisor supervisor;

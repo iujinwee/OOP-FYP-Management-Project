@@ -23,7 +23,7 @@ public abstract class NewRequestController extends RequestDBManager implements G
     handleInvalidInput handler = new handleInvalidInput();
     public Scanner sc = new Scanner(System.in);
 
-    public NewRequestController(User user){
+    public NewRequestController(User user) {
         super();
         this.fromUser = user;
     }
@@ -36,12 +36,12 @@ public abstract class NewRequestController extends RequestDBManager implements G
     
 
     
-    public void body(){
-        try{
+    public void body() {
+        try {
             getInput();
-        }catch(InvalidInputException e){
+        } catch (InvalidInputException e) {
             handler.handleInvalidInputException(e);
-        }catch(InputMismatchException e){
+        } catch(InputMismatchException e) {
             handler.handleInputMismatchException(e);
         }
     }

@@ -11,13 +11,13 @@ import Entity.UserClass.UserDetails.User;
 import Exceptions.InvalidInputException;
 import Exceptions.handleInvalidInput;
 
-public class NewChangeSupervisorRequest extends NewRequestController{
+public class NewChangeSupervisorRequest extends NewRequestController {
 
     FYP_CoordinatorDB FYPDB = new FYP_CoordinatorDB();
     SupervisorDB supDB = new SupervisorDB();
     String newSupervisor;
 
-    public NewChangeSupervisorRequest(User user){
+    public NewChangeSupervisorRequest(User user) {
         super(user);
         this.type = RequestType.CHANGESUPERVISOR;
 
@@ -48,13 +48,13 @@ public class NewChangeSupervisorRequest extends NewRequestController{
             projs.projDB.findInstance(projID).viewFullProjectInfo();
             
             // Check for invalid project ID
-            if(!projs.projects.contains(projID)){
+            if(!projs.projects.contains(projID)) {
                 throw new InvalidInputException(projID);
             }
 
 			boolean allocated = (projs.projDB.findInstance(projID).getProjectStatus() == ProjectStatus.ALLOCATED);
 
-            if(allocated){
+            if(allocated) {
 			
                 boolean proceed = false;
                 supDB.view();
@@ -62,25 +62,25 @@ public class NewChangeSupervisorRequest extends NewRequestController{
                 handleInvalidInput handler = new handleInvalidInput(3);
 
                 // Provide 3 attempts to enter supervisor ID
-                while(handler.checkAttempts()){
-                    try{
+                while(handler.checkAttempts()) {
+                    try {
                         System.out.printf("\nEnter New Supervisor ID: ");
                         newSupervisor = sc.next();
         
                         // Check for invalid supervisor ID
-                        if(supDB.findInstance(newSupervisor).getUserID()==null){
+                        if(supDB.findInstance(newSupervisor).getUserID()==null) {
                             throw new InvalidInputException(newSupervisor);
-                        }else{
+                        } else {
                             proceed = true;
                             break;
                         }
 
-                    }catch(InvalidInputException e){
+                    } catch(InvalidInputException e) {
                         handler.handleInvalidInputException(e);
                     }
                 }
 
-                if(proceed){
+                if(proceed) {
                     System.out.printf("\nChange Supervisor of Project %d to [%s]?\n", projID, newSupervisor);
                     System.out.println("[1] Yes");
                     System.out.println("[0] No");

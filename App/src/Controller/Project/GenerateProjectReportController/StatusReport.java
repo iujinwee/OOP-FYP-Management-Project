@@ -6,14 +6,14 @@ import Boundaries.Menu.BodyInterface;
 import Controller.Project.ViewProjectController.ViewProjectsController;
 import Entity.ProjectClass.Project;
 
-public class StatusReport extends ViewProjectsController implements BodyInterface{
+public class StatusReport extends ViewProjectsController implements BodyInterface {
 
     private ArrayList<Project> availableProjs = new ArrayList<>(); 
     private ArrayList<Project> unavailableProjs = new ArrayList<>(); 
     private ArrayList<Project> reservedProjs = new ArrayList<>(); 
     private ArrayList<Project> allocatedProjs = new ArrayList<>(); 
 
-    public StatusReport(){
+    public StatusReport() {
         // Loading Status Report 
         super();
         sortProjectList();
@@ -45,7 +45,7 @@ public class StatusReport extends ViewProjectsController implements BodyInterfac
     }
 
 
-    private void sortProjectList(){
+    private void sortProjectList() {
         for(Object obj : projDB.objectDB){
             Project p = (Project) obj;
             switch(p.getProjectStatus()){
@@ -69,7 +69,7 @@ public class StatusReport extends ViewProjectsController implements BodyInterfac
         }
     }
 
-    private void printList(ArrayList<Project> arr){
+    private void printList(ArrayList<Project> arr) {
         if(arr.size()!=0){
             for(Project p : arr){    
                 String stuName = p.getStudent().getName();

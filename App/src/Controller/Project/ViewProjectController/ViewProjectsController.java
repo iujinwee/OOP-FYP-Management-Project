@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 import Boundaries.Menu.FooterInterface;
 import Boundaries.Menu.HeaderInterface;
+import Boundaries.Menu.UserBodyInterface;
 import Controller.Project.LoadProjectDBController;
-import Entity.DatabaseClass.ProjectDB;
 
-public abstract class ViewProjectsController extends LoadProjectDBController implements HeaderInterface, FooterInterface {
+public abstract class ViewProjectsController extends LoadProjectDBController implements HeaderInterface, UserBodyInterface, FooterInterface {
     
     public ArrayList<Integer> projects = new ArrayList<>();
 
-    public ViewProjectsController(){
+    public ViewProjectsController() {
         super();
     }
     

@@ -12,15 +12,14 @@ public class GenerateReport implements GenerateReportInterface, GetInputInterfac
     
     private handleInvalidInput handler = new handleInvalidInput();
 
-    public GenerateReport(){
+    public GenerateReport() {
         displayOptions();
 
         try{
             getInput();
-            
-        }catch(InputMismatchException e){
+        } catch(InputMismatchException e) {
             handler.handleInputMismatchException(e);
-        }catch(InvalidInputException e){
+        } catch(InvalidInputException e) {
             handler.handleInvalidInputException(e);
         }
     }
@@ -41,7 +40,7 @@ public class GenerateReport implements GenerateReportInterface, GetInputInterfac
         System.out.printf("\nEnter option: ");
         int choice = sc.nextInt();
 
-        switch(choice){
+        switch(choice) {
             case 1:
                 System.out.println("Generating Project Report by Status...");
                 new StatusReport();

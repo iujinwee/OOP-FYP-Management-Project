@@ -7,12 +7,12 @@ import Entity.ProjectClass.ProjectStatus;
 import Entity.UserClass.Student;
 import Entity.UserClass.Supervisor;
 
-public class RegisterProject extends ModifyProjectController{
+public class RegisterProject extends ModifyProjectController {
 
     private int projID;
     private Student student;
     
-    public RegisterProject(int projID, Student student){
+    public RegisterProject(int projID, Student student) {
         super();
         this.projID = projID;
         this.student = student;
@@ -24,9 +24,9 @@ public class RegisterProject extends ModifyProjectController{
 	public void updateDB() {		
 
 		// Check if student has been rejected previously
-		if(projDB.findInstance(projID).getRejected().contains(student.getUserID())){
+		if(projDB.findInstance(projID).getRejected().contains(student.getUserID())) { 
 			System.out.println("Student has been rejected previously.");
-		}else{
+		} else {
             // Allocate student
             Project currentProj = projDB.findInstance(projID);
             currentProj.setStudent(student);
@@ -34,7 +34,7 @@ public class RegisterProject extends ModifyProjectController{
             SupervisorDB supDB = new SupervisorDB();
             Supervisor curSup = supDB.findInstance(currentProj.getSupervisor().getUserID());
             curSup.addAssignedProjects();
-            if(curSup.getNumAssignedProjects() == 2){
+            if(curSup.getNumAssignedProjects() == 2) {
                 for (Object obj : projDB.objectDB) {
                     Project curProject = (Project) obj;
                     if (curSup.getUserID().compareTo(curProject.getSupervisorID())==0 && curProject.getProjectStatus() == ProjectStatus.AVAILABLE) {
@@ -47,8 +47,6 @@ public class RegisterProject extends ModifyProjectController{
             System.out.println("=================================================================================");
             System.out.printf("Successfully Registered for Project [%d] %s\n", currentProj.getProjectID(), currentProj.getProjectTitle());
             System.out.println("=================================================================================");
-
         }
 	}
-
 }

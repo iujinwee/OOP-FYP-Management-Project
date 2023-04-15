@@ -3,7 +3,7 @@ package Controller.User.UserMenuController;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Controller.Account.AccessAccountDBController.ChangePassword;
+import Controller.Account.ModifyAccountDBController.ChangePassword;
 import Controller.Project.ModifyProjectController.ControllerObject.ChangeProjectTitle;
 import Controller.Project.ModifyProjectController.ControllerObject.CreateProject;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
@@ -95,9 +95,7 @@ public class SupervisorMenu extends UserMenuController {
 
 				case 7:
 					System.out.println("\nOption [7] selected! - Change Password");
-					System.out.println("Enter new password: ");
-                    String newPassword = sc.next();
-                    new ChangePassword(supervisor.getUserID(), newPassword);
+                    new ChangePassword(supervisor.getUserID());
 					break;
 
 				case 0: 

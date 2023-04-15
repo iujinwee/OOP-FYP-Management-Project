@@ -8,7 +8,7 @@ public class CreateProject extends ModifyProjectController {
 
     private Supervisor supervisor;
 
-    public CreateProject(Supervisor supervisor){
+    public CreateProject(Supervisor supervisor) {
 		super();
         this.supervisor = supervisor;
         updateDB();
@@ -32,8 +32,7 @@ public class CreateProject extends ModifyProjectController {
 			// Export database
 			newProject.setProjectTitle(title);
 			projDB.objectDB.add(newProject);
-		}
-		else {
+		} else {
 			System.out.println("Error! You are unable to create anymore projects!");
 		}
     }

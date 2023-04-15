@@ -1,12 +1,11 @@
 package Controller.Project.ViewProjectController.ControllerObject;
 
-import Boundaries.Menu.UserBodyInterface;
 import Controller.Project.ViewProjectController.ViewProjectsController;
 import Entity.ProjectClass.Project;
 import Entity.ProjectClass.ProjectStatus;
 import Entity.UserClass.UserDetails.User;
 
-public class ViewAvailableProjects extends ViewProjectsController implements UserBodyInterface{
+public class ViewAvailableProjects extends ViewProjectsController {
 
     public ViewAvailableProjects(User user){
         super();
@@ -25,20 +24,20 @@ public class ViewAvailableProjects extends ViewProjectsController implements Use
     @Override
     public void body(User user) {
 
-        for (Object obj: projDB.objectDB){
+        for (Object obj: projDB.objectDB ){
 			Project curProj = (Project) obj;
 
-            switch(user.getUserType()){
+            switch(user.getUserType()) {
                 // Supervisor can access his/ her own projects
                 case SUPERVISOR: 
-                    if(curProj.getSupervisorID().compareTo(user.getUserID())==0){
+                    if(curProj.getSupervisorID().compareTo(user.getUserID())==0) {
 						projects.add(curProj.viewBasicProjectInfo());
                     }
                     break;
 
                 // Student can only access available projects 
                 case STUDENT: 
-                    if(curProj.getProjectStatus()==ProjectStatus.AVAILABLE){
+                    if(curProj.getProjectStatus()==ProjectStatus.AVAILABLE) {
 						projects.add(curProj.viewBasicProjectInfo());
                     }
                     break;

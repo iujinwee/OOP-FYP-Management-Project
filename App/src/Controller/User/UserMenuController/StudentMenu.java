@@ -3,7 +3,7 @@ package Controller.User.UserMenuController;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Controller.Account.AccessAccountDBController.ChangePassword;
+import Controller.Account.ModifyAccountDBController.ChangePassword;
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
 import Controller.Request.CreateRequestController.ControllerObject.NewChangeTitleRequest;
@@ -115,9 +115,7 @@ public class StudentMenu extends UserMenuController {
                     
                 case 7:
                     System.out.println("\nOption [7] selected! - Change Password");
-                    System.out.println("Enter new password: ");
-                    String newPassword = sc.next();
-                    new ChangePassword(student.getUserID(), newPassword);
+                    new ChangePassword(student.getUserID());
             
                 case 0: 
                     System.out.println("Option [0] selected! - Exit Program");

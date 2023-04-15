@@ -1,39 +1,44 @@
-package Controller.Account.AccessAccountDBController;
+package Controller.Account.ModifyAccountDBController;
 
+import java.util.Scanner;
+
+import Boundaries.Menu.FooterInterface;
 import Controller.Account.Login;
 import Entity.AccountClass.Account;
-import Entity.DatabaseClass.AccountDB;
 
-public class ChangePassword extends AccessAccountDBController {
+public class ChangePassword extends ModifyAccountDBController implements FooterInterface {
 
     private String userID;
     private String newPassword;
 
-    public ChangePassword(String userID, String newPassword) {
+    public ChangePassword(String userID) {
+        super();
         this.userID = userID;
-        this.newPassword = newPassword;
-        loadFiles();
         updateDB();
-    }
-    
-    @Override
-    public void loadFiles() {
-        accDB = new AccountDB();
     }
 
     @Override
     public void updateDB() {
         Account temp =  accDB.findInstance(userID);
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter new password: ");
+        this.newPassword = sc.next();
         
         if(newPassword.compareTo(temp.getPassword()) != 0) {
 			temp.setPassword(newPassword);
-			System.out.println("========= Password successfully changed. =========");
+			footer();
             exportDB();
             new Login();
 		} else {
             System.out.println("\nERROR!");
 			System.out.println("New password cannot be the same as old password.\n");
 		}
+        sc.close();
     }
-    
+
+    @Override
+    public void footer() {
+        System.out.println("\n========= Password successfully changed. =========\n");
+    }
 }
