@@ -36,7 +36,7 @@ public class ChangeProjectTitle extends GetInputModifyProjectController{
         ViewPersonalProjects projs = new ViewPersonalProjects(supervisor);
 
         System.out.println("Select Project ID to change new title:");
-		int projID = sc.nextInt();
+		projID = sc.nextInt();
         
 		boolean own = projs.projects.contains(projID);
 
