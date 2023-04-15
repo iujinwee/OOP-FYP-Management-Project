@@ -1,8 +1,5 @@
 package Controller.User.UserMenuController;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import Controller.Account.AccessAccountDBController.ChangePassword;
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
@@ -11,28 +8,17 @@ import Controller.Request.CreateRequestController.ControllerObject.NewDeregister
 import Controller.Request.CreateRequestController.ControllerObject.NewRegisterRequest;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewOutgoingRequestsHistory;
 import Entity.UserClass.Student;
-import Exceptions.handleInvalidInput;
 import Exceptions.InvalidInputException;
 
 
 public class StudentMenu extends UserMenuController {
     
     private Student student;
-    private handleInvalidInput handler = new handleInvalidInput(3);
 
     public StudentMenu(Student student) {
         this.student = student;
 
-        while(handler.checkAttempts()) {
-            try {    
-                getInput();
-                break;
-            }catch(InputMismatchException e){
-                handler.handleInputMismatchException(e);
-            }catch(InvalidInputException e){
-                handler.handleInvalidInputException(e);
-            }
-        } 
+        handleException();
     }
 
     @Override
@@ -50,7 +36,6 @@ public class StudentMenu extends UserMenuController {
 
     @Override
     public void getInput() throws InvalidInputException {
-        Scanner sc = new Scanner(System.in);
 
         int choice = -1;
         while (choice != 0){	

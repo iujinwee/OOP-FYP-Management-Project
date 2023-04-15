@@ -1,8 +1,5 @@
 package Controller.User.UserMenuController;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import Controller.Account.AccessAccountDBController.ChangePassword;
 import Controller.Project.ModifyProjectController.ControllerObject.ChangeProjectTitle;
 import Controller.Project.ModifyProjectController.ControllerObject.CreateProject;
@@ -12,29 +9,16 @@ import Controller.Request.ManageRequestController.RequestManager;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewIncomingRequestsHistory;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewOutgoingRequestsHistory;
 import Entity.UserClass.Supervisor;
-import Exceptions.handleInvalidInput;
 import Exceptions.InvalidInputException;
 
 public class SupervisorMenu extends UserMenuController {
 
     private Supervisor supervisor;
-    private handleInvalidInput handler = new handleInvalidInput(3);
-	Scanner sc = new Scanner(System.in);
 
     public SupervisorMenu(Supervisor supervisor) {
-        this.supervisor = supervisor;
+		this.supervisor = supervisor;
 
-        while(handler.checkAttempts()) {
-            try {    
-                getInput();
-                break;
-    
-            }catch(InputMismatchException e){
-                handler.handleInputMismatchException(e);
-            }catch(InvalidInputException e){
-                handler.handleInvalidInputException(e);
-            }
-        } 
+		handleException();
     }
 
     @Override
