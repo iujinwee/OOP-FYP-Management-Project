@@ -1,14 +1,15 @@
 package Controller.Project.ViewProjectController.ControllerObject;
 
+import Boundaries.Menu.UserBodyInterface;
 import Controller.Project.ViewProjectController.ViewProjectsController;
 import Entity.ProjectClass.Project;
 import Entity.ProjectClass.ProjectStatus;
 import Entity.UserClass.UserDetails.*;
 
-public class ViewPersonalProjects extends ViewProjectsController{
+public class ViewPersonalProjects extends ViewProjectsController implements UserBodyInterface{
 
     public ViewPersonalProjects(User user){
-		loadFiles();
+		super();
         header();
         body(user);
         footer();
@@ -37,8 +38,7 @@ public class ViewPersonalProjects extends ViewProjectsController{
 				case STUDENT: 
 					boolean own = curProj.getStudentID().compareTo(user.getUserID())==0;
 					if(own && allocated){
-						projects.add(curProj.getProjectID());
-						viewFullProjectInfo(curProj);
+						projects.add(curProj.viewFullProjectInfo());
 					}	
 					break;
 
@@ -46,8 +46,7 @@ public class ViewPersonalProjects extends ViewProjectsController{
 				case FYPCOORDINATOR:
 				boolean created = curProj.getSupervisorID().compareTo(user.getUserID())==0;
 					if(created){
-						projects.add(curProj.getProjectID());
-						viewBasicProjectInfo(curProj);
+						projects.add(curProj.viewBasicProjectInfo());
 					}
 					break;
 					

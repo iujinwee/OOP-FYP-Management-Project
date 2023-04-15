@@ -13,9 +13,9 @@ public class RegisterProject extends ModifyProjectController{
     private Student student;
     
     public RegisterProject(int projID, Student student){
+        super();
         this.projID = projID;
         this.student = student;
-        loadFiles();
         updateDB();
         exportDB();
     }

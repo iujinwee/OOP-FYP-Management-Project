@@ -1,14 +1,15 @@
 package Controller.Project.ViewProjectController.ControllerObject;
 
+import Boundaries.Menu.UserBodyInterface;
 import Controller.Project.ViewProjectController.ViewProjectsController;
 import Entity.ProjectClass.Project;
 import Entity.ProjectClass.ProjectStatus;
 import Entity.UserClass.UserDetails.User;
 
-public class ViewAvailableProjects extends ViewProjectsController{
+public class ViewAvailableProjects extends ViewProjectsController implements UserBodyInterface{
 
     public ViewAvailableProjects(User user){
-        loadFiles();
+        super();
         header();
         body(user);
         footer();
@@ -31,23 +32,20 @@ public class ViewAvailableProjects extends ViewProjectsController{
                 // Supervisor can access his/ her own projects
                 case SUPERVISOR: 
                     if(curProj.getSupervisorID().compareTo(user.getUserID())==0){
-						projects.add(curProj.getProjectID());
-                        viewBasicProjectInfo(curProj);
+						projects.add(curProj.viewBasicProjectInfo());
                     }
                     break;
 
                 // Student can only access available projects 
                 case STUDENT: 
                     if(curProj.getProjectStatus()==ProjectStatus.AVAILABLE){
-						projects.add(curProj.getProjectID());
-                        viewBasicProjectInfo(curProj);
+						projects.add(curProj.viewBasicProjectInfo());
                     }
                     break;
 
                 // FYP Coordinator can access all projects
                 case FYPCOORDINATOR: 
-                    projects.add(curProj.getProjectID());
-                    viewBasicProjectInfo(curProj);
+                    projects.add(curProj.viewBasicProjectInfo());
                     break;
 
                 default:

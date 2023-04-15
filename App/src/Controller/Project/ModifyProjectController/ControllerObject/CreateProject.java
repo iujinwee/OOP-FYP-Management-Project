@@ -9,8 +9,8 @@ public class CreateProject extends ModifyProjectController {
     private Supervisor supervisor;
 
     public CreateProject(Supervisor supervisor){
+		super();
         this.supervisor = supervisor;
-        loadFiles();
         updateDB();
         exportDB();
     }

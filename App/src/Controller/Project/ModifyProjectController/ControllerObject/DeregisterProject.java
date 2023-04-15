@@ -13,9 +13,9 @@ public class DeregisterProject extends ModifyProjectController{
     private Student student;
     
     public DeregisterProject(int projID, Student student){
+        super();
         this.projID = projID;
         this.student = student;
-        loadFiles();
         updateDB();
         exportDB();
     }

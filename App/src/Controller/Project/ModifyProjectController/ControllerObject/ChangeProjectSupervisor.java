@@ -11,7 +11,7 @@ public class ChangeProjectSupervisor extends ModifyProjectController{
     public SupervisorDB supDB;
     
     public ChangeProjectSupervisor(int projID, String supID){
-        loadFiles();
+        super();
         
         this.projID = projID;
         this.supervisor = supDB.findInstance(supID);

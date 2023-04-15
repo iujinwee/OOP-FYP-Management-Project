@@ -1,19 +1,17 @@
 package Controller.Project.ModifyProjectController;
 
 import Boundaries.Database.ExportDBInterface;
-import Boundaries.Database.LoadFilesInterface;
 import Boundaries.Database.UpdateDBInterface;
+import Controller.Project.LoadProjectDBController;
 import Entity.DatabaseClass.ProjectDB;
 
-public abstract class ModifyProjectController implements LoadFilesInterface, UpdateDBInterface, ExportDBInterface{
+public abstract class ModifyProjectController extends LoadProjectDBController implements UpdateDBInterface, ExportDBInterface{
 
     public boolean filesInitialized = false; 
     public ProjectDB projDB;
 
-    @Override
-    public void loadFiles() {
-        System.out.println("\nInitializing ProjectDB...");
-        projDB = new ProjectDB();
+    public ModifyProjectController(){
+        super();
     }
 
     @Override

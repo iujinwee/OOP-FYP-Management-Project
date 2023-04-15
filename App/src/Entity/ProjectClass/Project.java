@@ -100,4 +100,37 @@ public class Project {
 	public void addRejected(String studentID){
 		this.getRejected().add(studentID);
 	}
+
+	public int viewBasicProjectInfo(){
+		System.out.printf("| %-11s | [%-2d] %s \n", projectStatus, projectID, projectTitle);
+		return projectID;
+	}
+    
+	public int viewFullProjectInfo() {
+
+		System.out.println("\n****************************************************************");
+        System.out.println("****************         Project Details        ****************");
+        System.out.println("****************************************************************\n");
+
+       // View Project Details
+       System.out.println("================================================================");
+		System.out.println("| > Project");
+		System.out.println("| Project ID: " + projectID);
+		System.out.println("| Project Title: " + projectStatus);
+		System.out.println("| Project Status: " + projectStatus);
+        System.out.println("================================================================");
+
+		System.out.println("| > Supervisor-in-charge");
+		System.out.println("| Supervisor Name: " + supervisedBy.getName());
+		System.out.println("| Supervisor Email: " + supervisedBy.getEmail());
+        System.out.println("================================================================");
+
+		if((projectStatus == ProjectStatus.ALLOCATED) | (projectStatus == ProjectStatus.RESERVED)){
+			System.out.println("| > Assigned Student");
+			System.out.println("| Student Name: " + assignedTo.getName());
+			System.out.println("| Student Email: " + assignedTo.getEmail());
+            System.out.println("================================================================");
+		}
+		return projectID;
+    }
 }

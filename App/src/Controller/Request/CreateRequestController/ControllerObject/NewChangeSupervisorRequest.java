@@ -1,6 +1,5 @@
 package Controller.Request.CreateRequestController.ControllerObject;
 
-import Controller.Project.ViewProjectController.ControllerObject.ViewFullProjectInfo;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
 import Controller.Request.CreateRequestController.NewRequestController;
 import Entity.DatabaseClass.FYPCoordinatorDB;
@@ -8,7 +7,6 @@ import Entity.DatabaseClass.SupervisorDB;
 import Entity.ProjectClass.ProjectStatus;
 import Entity.RequestClass.RequestType;
 import Entity.RequestClass.RequestSubClass.ChangeSupervisorRequest;
-import Entity.RequestClass.RequestSubClass.ChangeTitleRequest;
 import Entity.UserClass.UserDetails.User;
 import Exceptions.InvalidInputException;
 import Exceptions.handleInvalidInput;
@@ -47,7 +45,7 @@ public class NewChangeSupervisorRequest extends NewRequestController{
 			System.out.printf("Select Project ID to change new supervisor: ");
             int projID = sc.nextInt();	
             // View Info
-            new ViewFullProjectInfo(projs.projDB.findInstance(projID));
+            projs.projDB.findInstance(projID).viewFullProjectInfo();
             
             // Check for invalid project ID
             if(!projs.projects.contains(projID)){

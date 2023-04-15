@@ -7,7 +7,6 @@ import Boundaries.Menu.FooterInterface;
 import Boundaries.Menu.GetInputInterface;
 import Boundaries.Menu.HeaderInterface;
 import Boundaries.Menu.UserBodyInterface;
-import Controller.Project.ViewProjectController.ControllerObject.ViewFullProjectInfo;
 import Controller.Request.EnactRequestController.ControllerObject.*;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewPendingRequests;
 import Entity.DatabaseClass.ProjectDB;
@@ -56,7 +55,7 @@ public class RequestManager implements GetInputInterface, HeaderInterface, UserB
 
             // Display Request
             selectedRequest = pend.reqDB.findInstance(choice);
-            new ViewFullProjectInfo((new ProjectDB()).findInstance(selectedRequest.getProjectID()));
+            (new ProjectDB()).findInstance(selectedRequest.getProjectID()).viewFullProjectInfo();
 
             // Enact request based on Request Type
             switch(selectedRequest.getRequestType()){

@@ -7,8 +7,6 @@ import Entity.RequestClass.Request;
 import Entity.RequestClass.RequestStatus;
 import Entity.RequestClass.RequestType;
 import Entity.UserClass.UserDetails.User;
-import Exceptions.InvalidInputException;
-import Exceptions.handleInvalidInput;
 
 public class ChangeSupervisorRequest extends Request implements CreateRequestInterface{
     private SupervisorDB supDB = new SupervisorDB();
@@ -22,28 +20,6 @@ public class ChangeSupervisorRequest extends Request implements CreateRequestInt
     
     @Override
     public Request createRequest() {
-        
-        // handleInvalidInput handler = new handleInvalidInput(3);
-        // supDB.view(); // View Supervisor DB
-
-        // Scanner sc = new Scanner(System.in);
-        
-        // while(handler.checkAttempts()){
-        //     try{
-        //         System.out.println("Key in ID of new supervisor:");
-        //         newSupervisor = sc.next();
-
-        //         if(supDB.findInstance(newSupervisor)!=null){
-        //             setNewSupervisor(newSupervisor);
-        //             System.out.printf("Request to change supervisor to [%s] has been sent.\n", supDB.findInstance(newSupervisor).getName());
-        //             break;
-        //         }else{
-        //             throw new InvalidInputException(newSupervisor);
-        //         }
-        //     }catch(InvalidInputException e){
-        //         handler.handleInvalidInputException(e);
-        //     }
-        // }
 
         setNewSupervisor(newSupervisor);
 
