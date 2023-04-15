@@ -2,7 +2,9 @@ package Controller.User.UserMenuController;
 
 import Controller.WelcomePage;
 import Controller.Account.ModifyAccountDBController.ChangePassword;
-import Controller.Project.GenerateProjectReportController.GenerateReportController;
+import Controller.Project.GenerateProjectReportController.GenerateReport;
+import Controller.Project.ModifyProjectController.ControllerObject.ChangeProjectSupervisor;
+import Controller.Project.ModifyProjectController.ControllerObject.CreateProject;
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
 import Controller.Request.ManageRequestController.RequestManager;
@@ -31,9 +33,11 @@ public class FYP_CoordinatorMenu extends UserMenuController{
 		System.out.println("[1] View All Requests.");
 		System.out.println("[2] Manage Requests.");
 		System.out.println("[3] View Pending Requests.");
-		System.out.println("[4] View Projects.");
-		System.out.println("[5] Generate Project Report.");
-        System.out.println("[6] Change Password ");
+		System.out.println("[4] Create New Project.");
+		System.out.println("[5] Transfer Student to Replacement Supervisor");
+		System.out.println("[6] View Projects.");
+		System.out.println("[7] Generate Project Report.");
+        System.out.println("[8] Change Password ");
 		System.out.println("[0] Exit Program.");
     }
 
@@ -68,18 +72,29 @@ public class FYP_CoordinatorMenu extends UserMenuController{
 					new ViewPendingRequests(fyp_coordinator);
 					break;
 
-				case 4:	
-					System.out.println("Option [4] selected! - View Projects.\n");
+				case 4:
+					System.out.println("Option [4] selected! - [4] Create New Project.");
+					new CreateProject(fyp_coordinator);
+					break;
+				
+				case 5: 
+					System.out.println("Option [5] selected! - [5] Transfer Student to Replacement Supervisor");
+					new ChangeProjectSupervisor(fyp_coordinator);
+					break;
+				
+				case 6:	
+				
+					System.out.println("Option [6] selected! - View Projects.\n");
 					viewProjectOption();
 					break;
 
-				case 5: 
-					System.out.println("Option [5] selected! - Generate Project Report.\n"); 
-					new GenerateReportController();
+				case 7: 
+					System.out.println("Option [7] selected! - Generate Project Report.\n"); 
+					new GenerateReport();
 					break;
 
-                case 6:
-                    System.out.println("\nOption [6] selected! - Change Password");
+                case 8:
+                    System.out.println("\nOption [8] selected! - Change Password");
                     new ChangePassword(fyp_coordinator.getUserID());
                     break;
 			
@@ -93,6 +108,9 @@ public class FYP_CoordinatorMenu extends UserMenuController{
 			}
 		}
     }
+
+	private void ViewPersonalProjects(FYP_Coordinator fyp_coordinator2) {
+	}
 
 	/**
 	 * Method to view different project options for FYP coordinator.

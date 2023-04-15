@@ -30,7 +30,7 @@ public class SupervisorMenu extends UserMenuController {
     public void viewUserMenu() {
         System.out.println("=============  SUPERVISOR MENU  ==============");
 		System.out.println("[1] Create New Project");
-		System.out.println("[2] View Projects Created By Me");
+		System.out.println("[2] View Personal Projects");
 		System.out.println("[3] Change Title of Project");
 		System.out.println("[4] Request to Transfer Student to Replacement Supervisor");
 		System.out.println("[5] Manage Incoming Requests ");
@@ -61,7 +61,7 @@ public class SupervisorMenu extends UserMenuController {
 
 				case 2: 
 					//Supervisor views his/her projects
-					System.out.println("Option [2] selected! - View Projects Created By Me.");
+					System.out.println("Option [2] selected! - View Personal Projects.");
 					new ViewPersonalProjects(supervisor);
 					break;
 
