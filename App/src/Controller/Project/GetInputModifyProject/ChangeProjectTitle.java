@@ -55,12 +55,13 @@ public class ChangeProjectTitle extends GetInputModifyProject{
 
             System.out.println("Select Project ID to change new title:");
             projID = sc.nextInt();
+            sc.nextLine();
 
             own = projs.projects.contains(projID);
 
             if (own) {
                 System.out.printf("Enter the new title: ");
-                newTitle = sc.next();
+                newTitle = sc.nextLine();
 
                 System.out.println("\nChanging Project Title:");
                 System.out.printf("Current: %s\n", projDB.findInstance(projID).getProjectTitle());
