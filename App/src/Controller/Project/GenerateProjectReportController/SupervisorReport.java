@@ -5,12 +5,10 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
-import Boundaries.Menu.BodyInterface;
-import Controller.Project.ViewProjectController.ViewProjectsController;
 import Entity.ProjectClass.Project;
 import Entity.UserClass.Supervisor;
 
-public class SupervisorReport extends ViewProjectsController implements BodyInterface {
+public class SupervisorReport extends GenerateReportBoundary {
 
     private Map<Supervisor, ArrayList<Project>> projectsBySupervisor;
     private ArrayList<Supervisor> supervisors;

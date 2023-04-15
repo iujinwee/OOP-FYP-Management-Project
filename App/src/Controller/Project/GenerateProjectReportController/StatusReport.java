@@ -2,11 +2,9 @@ package Controller.Project.GenerateProjectReportController;
 
 import java.util.ArrayList;
 
-import Boundaries.Menu.BodyInterface;
-import Controller.Project.ViewProjectController.ViewProjectsController;
 import Entity.ProjectClass.Project;
 
-public class StatusReport extends ViewProjectsController implements BodyInterface {
+public class StatusReport extends GenerateReportBoundary {
 
     private ArrayList<Project> availableProjs = new ArrayList<>(); 
     private ArrayList<Project> unavailableProjs = new ArrayList<>(); 

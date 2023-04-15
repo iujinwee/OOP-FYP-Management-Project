@@ -53,7 +53,7 @@ public class Login extends LoadAccountDBController implements HeaderInterface, F
     public void getLoginInputs() {
         Scanner sc = new Scanner(System.in);
         
-        System.out.println("\n>LOGIN");
+        System.out.println("\n> LOGIN");
         System.out.printf("Enter User ID: ");
         this.inputUserID = sc.nextLine();
         System.out.printf("Enter Password: ");

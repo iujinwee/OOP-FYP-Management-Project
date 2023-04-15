@@ -2,7 +2,7 @@ package Controller.User.UserMenuController;
 
 import Controller.WelcomePage;
 import Controller.Account.ModifyAccountDBController.ChangePassword;
-import Controller.Project.GenerateProjectReportController.GenerateReport;
+import Controller.Project.GenerateProjectReportController.GenerateReportController;
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
 import Controller.Request.ManageRequestController.RequestManager;
@@ -75,7 +75,7 @@ public class FYP_CoordinatorMenu extends UserMenuController{
 
 				case 5: 
 					System.out.println("Option [5] selected! - Generate Project Report.\n"); 
-					new GenerateReport();
+					new GenerateReportController();
 					break;
 
                 case 6:

@@ -1,22 +1,65 @@
 package Controller.Project.GenerateProjectReportController;
 
-import Boundaries.Menu.FooterInterface;
-import Boundaries.Menu.HeaderInterface;
-import Boundaries.Menu.UserBodyInterface;
-import Controller.Project.LoadProjectDBController;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
-public abstract class GenerateReportController extends LoadProjectDBController implements HeaderInterface, UserBodyInterface, FooterInterface {
+import Boundaries.Menu.GetInputInterface;
+import Boundaries.Menu.ViewUserMenuInterface;
+import Exceptions.InvalidInputException;
+import Exceptions.handleInvalidInput;
 
-    public GenerateReportController() {
-        super();
+public class GenerateReportController implements ViewUserMenuInterface, GetInputInterface {
+    
+    private handleInvalidInput handler = new handleInvalidInput();
+
+    public GenerateReportController(){
+        viewUserMenu();
+
+        try {
+            getInput();
+        } catch(InputMismatchException e) {
+            handler.handleInputMismatchException(e);
+        } catch(InvalidInputException e) {
+            handler.handleInvalidInputException(e);
+        }
     }
 
     @Override
-    public void footer() {
-        if(projDB.objectDB.size()!=0) {
-			System.out.println("=======     NO PROJECTS FOUND!     =======");
-		} else {
-			System.out.println("\n=========   END OF PROJECT REPORT  ===========\n");
-		}
+    public void viewUserMenu() {
+		System.out.println("Generate Report (Search Filters)");
+        System.out.println("=================================");
+		System.out.println("[1] By Status");
+		System.out.println("[2] By Supervisor");
+        System.out.println("[0] Back");
+    }
+
+    
+    /** 
+     * @throws InvalidInputException
+     */
+    @Override
+    public void getInput() throws InvalidInputException {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.printf("\nEnter option: ");
+        int choice = sc.nextInt();
+
+        switch(choice) {
+            case 1:
+                System.out.println("Generating Project Report by Status...");
+                new StatusReport();
+                break;
+
+            case 2:
+                System.out.println("Generating Project Report by Supervisor...");   
+                new SupervisorReport();
+                break;
+
+            case 0:
+                break;
+
+            default: 
+                throw new InvalidInputException(choice);
+        }
     }
 }
