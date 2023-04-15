@@ -1,17 +1,16 @@
 package Boundaries.Menu.Classes;
 
-import Boundaries.Project.Classes.ViewAvailableProjects;
-import Boundaries.Project.Classes.ViewPersonalProjects;
-import Controller.Account.ModifyAccountDBController.ChangePassword;
-import Controller.Menu.UserMenuController;
-import Controller.Project.GenerateProjectReportController.GenerateReport;
-import Controller.Request.ManageRequestController.RequestManager;
-import Controller.Request.ViewRequestPackage.ControllerObject.ViewAllRequestsHistory;
-import Controller.Request.ViewRequestPackage.ControllerObject.ViewPendingRequests;
+import Boundaries.Project.ViewAvailableProjects;
+import Boundaries.Project.ViewPersonalProjects;
+import Boundaries.Request.Classes.ViewAllRequestsHistory;
+import Boundaries.Request.Classes.ViewPendingRequests;
+import Controller.Account.ModifyAccountDB.ChangePassword;
+import Controller.Menu.CheckInputUserMenu;
+import Controller.Request.ManageRequest.ManageRequest;
 import Entity.UserClass.FYP_Coordinator;
 import Exceptions.InvalidInputException;
 
-public class FYP_CoordinatorMenu extends UserMenuController{
+public class FYP_CoordinatorMenu extends CheckInputUserMenu{
     
     private FYP_Coordinator fyp_coordinator;
 
@@ -28,14 +27,14 @@ public class FYP_CoordinatorMenu extends UserMenuController{
     @Override
     public void viewUserMenu() {
         System.out.println("\n=============  FYP COORDINATOR MENU  ==============");
-		System.out.println("[1] View All Requests.");
-		System.out.println("[2] Manage Requests.");
-		System.out.println("[3] View Pending Requests.");
-		System.out.println("[4] View Projects.");
-		System.out.println("[5] Generate Project Report.");
-        System.out.println("[6] Change Password ");
-        System.out.println("[7] Log Out.");
-		System.out.println("[0] Exit Program.");
+		System.out.println("[1] View All Requests");
+		System.out.println("[2] Manage Requests");
+		System.out.println("[3] View Pending Requests");
+		System.out.println("[4] View Projects");
+		System.out.println("[5] Generate Project Report");
+        System.out.println("[6] Change Password");
+        System.out.println("[7] Log Out");
+		System.out.println("[0] Exit Program");
     }
 
     
@@ -59,24 +58,24 @@ public class FYP_CoordinatorMenu extends UserMenuController{
 					break;
 
 				case 2: 
-					System.out.println("Option [2] selected! - Manage Requests.\n");
-					new RequestManager(fyp_coordinator);
+					System.out.println("Option [2] selected! - Manage Requests\n");
+					new ManageRequest(fyp_coordinator);
 
 					break;
 
 				case 3:
-					System.out.println("Option [3] selected! - View Pending Requests.\n");
+					System.out.println("Option [3] selected! - View Pending Requests\n");
 					new ViewPendingRequests(fyp_coordinator);
 					break;
 
 				case 4:	
-					System.out.println("Option [4] selected! - View Projects.\n");
+					System.out.println("Option [4] selected! - View Projects\n");
 					viewProjectOption();
 					break;
 
 				case 5: 
-					System.out.println("Option [5] selected! - Generate Project Report.\n"); 
-					new GenerateReport();
+					System.out.println("Option [5] selected! - Generate Project Report\n"); 
+					new GenerateReportMenu();
 					break;
 
                 case 6:

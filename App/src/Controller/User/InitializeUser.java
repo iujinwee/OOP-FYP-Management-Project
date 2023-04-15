@@ -3,25 +3,15 @@ package Controller.User;
 import Boundaries.Menu.Classes.FYP_CoordinatorMenu;
 import Boundaries.Menu.Classes.StudentMenu;
 import Boundaries.Menu.Classes.SupervisorMenu;
-import Boundaries.Menu.Interfaces.StartProgramInterface;
 import Entity.AccountClass.Account;
 import Entity.UserClass.Student;
 import Entity.UserClass.Supervisor;
 import Entity.UserClass.FYP_Coordinator;
 
-public class InitializeUser extends LoadUsersDBController implements StartProgramInterface {
-
-    private Account acc;
+public class InitializeUser extends LoadUsersDB {
     
     public InitializeUser(Account acc) {
-        this.acc = acc;
-        loadFiles();
-        startProgram();
-    }
-
-    @Override
-    public void startProgram() {
-
+        super();
         System.out.printf("You are currently signed in as a %s.\n\n", acc.getType());
         switch(acc.getType()){
             case "STUDENT":
@@ -42,5 +32,4 @@ public class InitializeUser extends LoadUsersDBController implements StartProgra
 		System.out.println("Terminating Program...");
 		System.exit(0);
     }
-
 }

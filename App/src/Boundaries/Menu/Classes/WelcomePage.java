@@ -2,12 +2,13 @@ package Boundaries.Menu.Classes;
 
 import java.util.Scanner;
 
+import Boundaries.Menu.Interfaces.HeaderInterface;
 import Controller.Account.Login;
-import Controller.Account.ModifyAccountDBController.CreateNewAccount;
-import Controller.Menu.WelcomePageController;
+import Controller.Account.ModifyAccountDB.CreateNewAccount;
+import Controller.Menu.CheckInputWelcomePage;
 import Exceptions.InvalidInputException;
 
-public class WelcomePage extends WelcomePageController {
+public class WelcomePage extends CheckInputWelcomePage implements HeaderInterface {
     
     public Scanner sc = new Scanner(System.in);
 

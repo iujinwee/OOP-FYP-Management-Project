@@ -7,7 +7,7 @@ import Boundaries.Menu.Interfaces.HeaderInterface;
 import Controller.User.InitializeUser;
 import Entity.AccountClass.Account;
 
-public class Login extends LoadAccountDBController implements HeaderInterface, FooterInterface {
+public class Login extends LoadAccountDB implements HeaderInterface, FooterInterface {
     
     private Account acc = new Account();
     private Account temp;
@@ -65,7 +65,7 @@ public class Login extends LoadAccountDBController implements HeaderInterface, F
      * @param inputUserID
      * @return boolean
      */
-    public boolean checkUserID(String inputUserID) {
+    private boolean checkUserID(String inputUserID) {
         temp = accDB.findInstance(inputUserID);
         if(temp.getUserID() != null) {
             return true;
@@ -74,7 +74,7 @@ public class Login extends LoadAccountDBController implements HeaderInterface, F
         }
     }
     
-    public boolean checkPassword(String inputPassword) {
+    private boolean checkPassword(String inputPassword) {
 		if(inputPassword.compareTo(temp.getPassword()) == 0) {
 			return true;
 		} else {
@@ -82,7 +82,7 @@ public class Login extends LoadAccountDBController implements HeaderInterface, F
 		}
 	}
 
-    public void setupAccount() {
+    private void setupAccount() {
         acc.setUserID(temp.getUserID());
 		acc.setPassword(temp.getPassword());
 		acc.setType(temp.getType());
