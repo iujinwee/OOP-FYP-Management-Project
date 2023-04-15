@@ -49,7 +49,7 @@ public abstract class NewRequestController extends RequestDBManager implements G
     
     @Override
     public void footer() {
-        System.out.println("==========      Request has been created!     ===========\n");
+        System.out.println("\n==========      Request has been created!     ===========\n");
 
     }
 

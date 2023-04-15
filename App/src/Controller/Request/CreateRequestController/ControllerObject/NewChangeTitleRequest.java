@@ -41,7 +41,7 @@ public class NewChangeTitleRequest extends NewRequestController{
             toUser = projs.projDB.findInstance(projID).getSupervisor();
 
 			System.out.printf("Enter New Title: ");
-            newTitle = sc.next();
+            newTitle = sc.nextLine();
             
             System.out.printf("\nChange Title of Assigned Project to [%s]?\n", newTitle);
             System.out.println("[1] Yes");

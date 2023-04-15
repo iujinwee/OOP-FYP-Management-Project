@@ -1,8 +1,5 @@
 package Controller.User.UserMenuController;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import Controller.Account.ModifyAccountDBController.ChangePassword;
 import Controller.Project.ModifyProjectController.ControllerObject.ChangeProjectTitle;
 import Controller.Project.ModifyProjectController.ControllerObject.CreateProject;
@@ -12,29 +9,16 @@ import Controller.Request.ManageRequestController.RequestManager;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewIncomingRequestsHistory;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewOutgoingRequestsHistory;
 import Entity.UserClass.Supervisor;
-import Exceptions.handleInvalidInput;
 import Exceptions.InvalidInputException;
 
 public class SupervisorMenu extends UserMenuController {
 
     private Supervisor supervisor;
-    private handleInvalidInput handler = new handleInvalidInput(3);
-	Scanner sc = new Scanner(System.in);
 
     public SupervisorMenu(Supervisor supervisor) {
-        this.supervisor = supervisor;
+		this.supervisor = supervisor;
 
-        while(handler.checkAttempts()) {
-            try {    
-                getInput();
-                break;
-    
-            }catch(InputMismatchException e){
-                handler.handleInputMismatchException(e);
-            }catch(InvalidInputException e){
-                handler.handleInvalidInputException(e);
-            }
-        } 
+		handleException();
     }
 
     @Override
@@ -45,7 +29,8 @@ public class SupervisorMenu extends UserMenuController {
 		System.out.println("[3] Change Title of Project");
 		System.out.println("[4] Request to Transfer Student to Replacement Supervisor");
 		System.out.println("[5] Manage Incoming Requests ");
-		System.out.println("[6] Change Password ");
+		System.out.println("[6] View Request Status and History ");
+		System.out.println("[7] Change Password ");
 		System.out.println("[0] Exit Program.");
     }
 

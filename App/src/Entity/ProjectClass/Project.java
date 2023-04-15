@@ -116,7 +116,7 @@ public class Project {
        System.out.println("================================================================");
 		System.out.println("| > Project");
 		System.out.println("| Project ID: " + projectID);
-		System.out.println("| Project Title: " + projectStatus);
+		System.out.println("| Project Title: " + projectTitle);
 		System.out.println("| Project Status: " + projectStatus);
         System.out.println("================================================================");
 
@@ -125,10 +125,20 @@ public class Project {
 		System.out.println("| Supervisor Email: " + supervisedBy.getEmail());
         System.out.println("================================================================");
 
+		String name = assignedTo.getName(); 
+		if(name == null){
+			name = "< Empty > ";
+		}
+
+		String email = assignedTo.getEmail(); 
+		if(email == null){
+			email = "< Empty > ";
+		}
+		
 		if((projectStatus == ProjectStatus.ALLOCATED) | (projectStatus == ProjectStatus.RESERVED)){
 			System.out.println("| > Assigned Student");
-			System.out.println("| Student Name: " + assignedTo.getName());
-			System.out.println("| Student Email: " + assignedTo.getEmail());
+			System.out.println("| Student Name: " + name);
+			System.out.println("| Student Email: " + email);
             System.out.println("================================================================");
 		}
 		return projectID;

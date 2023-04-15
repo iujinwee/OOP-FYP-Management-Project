@@ -14,10 +14,11 @@ import Exceptions.handleInvalidInput;
 
 public abstract class EnactRequestController extends RequestDBManager implements EnactRequestInterface, ManageRequestInterface{
     
-    public ProjectDB projDB;
+    public ProjectDB projDB = new ProjectDB();
     public Request request;
     private handleInvalidInput selectionHandler = new handleInvalidInput();
     private boolean enacted = false;
+    Scanner sc = new Scanner(System.in);
 
     public EnactRequestController(int reqID){
         super();
@@ -36,10 +37,9 @@ public abstract class EnactRequestController extends RequestDBManager implements
         System.out.printf("\n> Choose to accept/ reject [Request #%s]\n", request.getRequestID());
         System.out.println("[1] Approve");
         System.out.println("[0] Reject");
-        
-        Scanner sc = new Scanner(System.in);
-            int choice = sc.nextInt();
-    
+        System.out.printf("Enter Option: ");
+        int choice = sc.nextInt();
+
         try{
             enactRequest(choice);
             enacted = true;
@@ -59,7 +59,7 @@ public abstract class EnactRequestController extends RequestDBManager implements
             case 1:
                 approve();
                 request.setRequestStatus(RequestStatus.APPROVED);
-                System.out.println("\n==============================");
+                System.out.println("\n\n==============================");
                 System.out.printf("Request #%d has been approved.\n", request.getRequestID());
                 System.out.println("==============================\n");
 
@@ -69,7 +69,7 @@ public abstract class EnactRequestController extends RequestDBManager implements
             case 0:
                 reject();
                 request.setRequestStatus(RequestStatus.REJECTED);
-                System.out.println("\n==============================");
+                System.out.println("\n\n==============================");
                 System.out.printf("Request #%d has been rejected.\n", request.getRequestID());
                 System.out.println("==============================\n");
 

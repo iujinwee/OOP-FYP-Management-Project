@@ -1,8 +1,5 @@
 package Controller.User.UserMenuController;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import Controller.Account.ModifyAccountDBController.ChangePassword;
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
 import Controller.Project.ViewProjectController.ControllerObject.ViewPersonalProjects;
@@ -11,28 +8,17 @@ import Controller.Request.CreateRequestController.ControllerObject.NewDeregister
 import Controller.Request.CreateRequestController.ControllerObject.NewRegisterRequest;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewOutgoingRequestsHistory;
 import Entity.UserClass.Student;
-import Exceptions.handleInvalidInput;
 import Exceptions.InvalidInputException;
 
 
 public class StudentMenu extends UserMenuController {
     
     private Student student;
-    private handleInvalidInput handler = new handleInvalidInput(3);
 
     public StudentMenu(Student student) {
         this.student = student;
 
-        while(handler.checkAttempts()) {
-            try {    
-                getInput();
-                break;
-            }catch(InputMismatchException e){
-                handler.handleInputMismatchException(e);
-            }catch(InvalidInputException e){
-                handler.handleInvalidInputException(e);
-            }
-        } 
+        handleException();
     }
 
     @Override
@@ -43,14 +29,13 @@ public class StudentMenu extends UserMenuController {
 		System.out.println("[3] Register Project.");
 		System.out.println("[4] Deregister Project.");
 		System.out.println("[5] Change Assigned Project Title.");
-		System.out.println("[6] View All Requests.");
+		System.out.println("[6] View Request Status and History.");
 		System.out.println("[7] Change Password.");
 		System.out.println("[0] Exit Program.");
     }
 
     @Override
     public void getInput() throws InvalidInputException {
-        Scanner sc = new Scanner(System.in);
 
         int choice = -1;
         while (choice != 0){	

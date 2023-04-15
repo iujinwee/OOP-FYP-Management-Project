@@ -1,8 +1,5 @@
 package Controller.User.UserMenuController;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import Controller.Account.ModifyAccountDBController.ChangePassword;
 import Controller.Project.GenerateProjectReportController.GenerateReport;
 import Controller.Project.ViewProjectController.ControllerObject.ViewAvailableProjects;
@@ -11,29 +8,16 @@ import Controller.Request.ManageRequestController.RequestManager;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewAllRequestsHistory;
 import Controller.Request.ViewRequestPackage.ControllerObject.ViewPendingRequests;
 import Entity.UserClass.FYP_Coordinator;
-import Exceptions.handleInvalidInput;
 import Exceptions.InvalidInputException;
 
 public class FYP_CoordinatorMenu extends UserMenuController{
     
     private FYP_Coordinator fyp_coordinator;
-    private handleInvalidInput handler = new handleInvalidInput(3);
-    private Scanner sc = new Scanner(System.in);
 
     public FYP_CoordinatorMenu(FYP_Coordinator fyp_coordinator) {
         this.fyp_coordinator = fyp_coordinator;
-
-        while(handler.checkAttempts()) {
-            try {    
-                getInput();
-                break;
-    
-            }catch(InputMismatchException e){
-                handler.handleInputMismatchException(e);
-            }catch(InvalidInputException e){
-                handler.handleInvalidInputException(e);
-            }
-        } 
+		
+		handleException();
     }
 
     @Override
