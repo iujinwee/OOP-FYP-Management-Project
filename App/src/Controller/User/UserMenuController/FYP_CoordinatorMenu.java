@@ -91,7 +91,7 @@ public class FYP_CoordinatorMenu extends UserMenuController{
                     break;
 			
 				case 0: 
-					System.out.println("Option [0] selected! - Exit Program\n");
+					System.out.println("\nOption [0] selected! - Exit Program\n");
 					break;
 
 				default:

@@ -31,7 +31,7 @@ public class InitializeUser extends LoadUsersDBController implements StartProgra
                 new SupervisorMenu(supervisor);
                 break;
             case "FYPCOORDINATOR":
-                FYP_Coordinator fyp_coordinator = fypcoordDB.findInstance(acc.getUserID());
+                FYP_Coordinator fyp_coordinator = fyp_coordDB.findInstance(acc.getUserID());
                 new FYP_CoordinatorMenu(fyp_coordinator);
                 break;
         }

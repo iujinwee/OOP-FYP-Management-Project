@@ -1,13 +1,6 @@
 package Entity.UserClass;
 
-// import Controller.Project.ViewProjectController.ViewAvailableProjects;
-// import Controller.Project.ViewProjectController.ViewPersonalProjects;
-// import Controller.Request.CreateRequestController.NewRequest;
-// import Controller.Request.ViewRequestController.ControllerObject.ViewOutgoingRequestsHistory;
-// import Entity.DatabaseClass.FYP_CoordinatorDB;
-// import Entity.RequestClass.RequestType;
 import Entity.UserClass.UserDetails.*;
-// import Exceptions.InvalidInputException;
 
 public class Student extends User {
 
@@ -23,19 +16,19 @@ public class Student extends User {
 	 * @param name   Name of the student.
 	 * @param email  Email address of the student.
 	 */
-	public Student(String userID, String name, String email, Boolean bool) {
+	public Student(String userID, String name, String email, Boolean assigned) {
 		super(userID, name, email);
 		super.setUserType(UserType.STUDENT);
 		this.studentID = super.getUserID();
-		setAssigned(bool);
+		setAssigned(assigned);
 	}
 
 	public boolean getAssigned(){
 		return this.assigned;
 	}
 
-	public void setAssigned(boolean bool){
-		this.assigned = bool;
+	public void setAssigned(boolean assigned){
+		this.assigned = assigned;
 	}
 
 	// GETTER FUNCTIONS

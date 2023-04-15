@@ -4,10 +4,9 @@ import java.util.ArrayList;
 
 import Boundaries.Menu.FooterInterface;
 import Boundaries.Menu.HeaderInterface;
-import Boundaries.Menu.UserBodyInterface;
 import Controller.Project.LoadProjectDBController;
 
-public abstract class ViewProjectsController extends LoadProjectDBController implements HeaderInterface, UserBodyInterface, FooterInterface {
+public abstract class ViewProjectsController extends LoadProjectDBController implements HeaderInterface, FooterInterface {
     
     public ArrayList<Integer> projects = new ArrayList<>();
 
@@ -17,9 +16,9 @@ public abstract class ViewProjectsController extends LoadProjectDBController imp
     
     @Override
     public void footer() {
-        if(projects.size()==0){
+        if(projects.size()==0) {
 			System.out.println("=======     NO PROJECTS FOUND!     =======");
-		}else{
+		} else {
 			System.out.println("\n=========   END OF PROJECT LIST  ===========\n");
 		}
     }
