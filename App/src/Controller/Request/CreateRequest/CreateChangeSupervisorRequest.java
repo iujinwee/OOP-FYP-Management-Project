@@ -37,11 +37,12 @@ public class CreateChangeSupervisorRequest extends CreateRequest{
     public void getInput() throws InvalidInputException {
         
         ViewPersonalProjects projs = new ViewPersonalProjects(fromUser);
-
+        
         // View Projects
 		if (projs.projects.size() != 0) {
 
 			System.out.printf("Select Project ID to change new supervisor: ");
+<<<<<<< HEAD
             projID = sc.nextInt();	
 
              // Check for invalid project ID
@@ -51,6 +52,9 @@ public class CreateChangeSupervisorRequest extends CreateRequest{
             
             // View Info
             projs.projDB.findInstance(projID).viewFullProjectInfo();
+=======
+            int projID = sc.nextInt();	
+>>>>>>> 09256cd (Error handling for newChangeSupReq)
             
             // Check for invalid project ID
             if(!projs.projects.contains(projID)) {
@@ -60,6 +64,10 @@ public class CreateChangeSupervisorRequest extends CreateRequest{
             // View Info
             projs.projDB.findInstance(projID).viewFullProjectInfo();
             
+            
+
+            // View Info
+            projs.projDB.findInstance(projID).viewFullProjectInfo();
             
 
 			boolean allocated = (projs.projDB.findInstance(projID).getProjectStatus() == ProjectStatus.ALLOCATED);
