@@ -72,7 +72,7 @@ public class ChangeProjectTitle extends GetInputModifyProject{
                 System.out.printf("Enter the new title: ");
                 newTitle = sc.nextLine();
 
-                if(newTitle.length() == 0){
+                if(newTitle.isBlank()){
                     System.out.println("\nTitle cannot be empty!\n");
                 }
                 
