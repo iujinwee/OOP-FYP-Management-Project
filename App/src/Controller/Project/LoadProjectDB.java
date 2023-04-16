@@ -7,6 +7,9 @@ public class LoadProjectDB implements LoadFilesInterface {
 
     public ProjectDB projDB; 
 
+    /** 
+     * Load Project Database Constructor.
+     */
     public LoadProjectDB() {
         loadFiles();
     }

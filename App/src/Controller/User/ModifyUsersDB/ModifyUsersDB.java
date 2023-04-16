@@ -6,6 +6,9 @@ import Controller.User.LoadUsersDB;
 
 public abstract class ModifyUsersDB extends LoadUsersDB implements UpdateDBInterface, ExportDBInterface {
 
+    /** 
+     * Modify Users Database Constructor.
+     */
     public ModifyUsersDB() {
         super();
     }

@@ -11,6 +11,10 @@ public class CreateDeregisterRequest extends CreateRequest{
 
     FYP_CoordinatorDB FYPDB = new FYP_CoordinatorDB();
 
+    /** 
+     * Create Deregister Request Constructor.
+     * @param user User Object
+     */
     public CreateDeregisterRequest(User user){
         super(user);
         this.type = RequestType.DEREGISTERPROJECT;

@@ -10,6 +10,14 @@ public class ChangeTitleRequest extends Request implements CreateRequestInterfac
 
     private String newTitle;
 
+    /**
+	 * Change Title Request Constructor.
+	 * @param requestID Unique ID of Request Object
+	 * @param projectID Unique ID of Project Object
+	 * @param fromUser User Object request is made from
+     * @param toUser User Object request is made to
+     * @param newTitle New Title of project
+	 */
     public ChangeTitleRequest(int requestID, int projectID, User fromUser, User toUser, String newTitle) {
         super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.CHANGETITLE, projectID);
         this.newTitle = newTitle;

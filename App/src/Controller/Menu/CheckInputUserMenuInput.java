@@ -14,6 +14,9 @@ public abstract class CheckInputUserMenuInput implements ViewUserMenuInterface, 
     private handleInvalidInput handler = new handleInvalidInput(3);
 	public Scanner sc = new Scanner(System.in);
 
+    /** 
+     * Check Input User Menu Input Constructor.
+     */
     public CheckInputUserMenuInput() {}
 
     @Override

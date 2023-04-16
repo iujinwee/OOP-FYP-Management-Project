@@ -10,6 +10,10 @@ import Entity.UserClass.FYP_Coordinator;
 
 public class InitializeUser extends LoadUsersDB {
     
+    /** 
+     * Initialize User Constructor.
+     * @param acc Account Object
+     */
     public InitializeUser(Account acc) {
         super();
         System.out.printf("You are currently signed in as a %s.\n\n", acc.getType());

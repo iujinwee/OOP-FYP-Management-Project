@@ -23,6 +23,9 @@ public class SupervisorReport extends LoadProjectDB implements HeaderInterface, 
     private ArrayList<Project> allocatedProjs = new ArrayList<>(); 
 
 
+    /** 
+     * Supervisor Report Constructor.
+     */
     public SupervisorReport() {
         // Loading Status Report 
         super();
@@ -73,6 +76,9 @@ public class SupervisorReport extends LoadProjectDB implements HeaderInterface, 
 		}
     }
 
+    /**
+	 * Method used to sort a list of projects.
+	 */
     private void sortProjectList() {
         // Group projects by supervisor
         projectsBySupervisor = new HashMap<>();
@@ -110,6 +116,10 @@ public class SupervisorReport extends LoadProjectDB implements HeaderInterface, 
         }
     }
     
+    /** 
+     * Method used to print an array list of projects.
+     * @param arr Array list of Project Objects
+     */
     private void printList(ArrayList<Project> arr) {
         if(arr.size()!=0) {
             for(Project p : arr) {    

@@ -6,6 +6,10 @@ import Entity.UserClass.UserDetails.User;
 
 public class ViewPendingRequests extends ViewRequestDB {
 
+    /** 
+     * View Pending Requests Constructor.
+     * @param user User Object
+     */
     public ViewPendingRequests(User user){
         super(user);
     }

@@ -12,6 +12,13 @@ public class RegisterProjectRequest extends Request implements CreateRequestInte
 
     private ProjectDB projDB = new ProjectDB(); 
     
+    /**
+	 * Register Project Request Constructor.
+	 * @param requestID Unique ID of Request Object
+	 * @param projectID Unique ID of Project Object
+	 * @param fromUser User Object request is made from
+     * @param toUser User Object request is made to
+	 */
     public RegisterProjectRequest(int requestID, int projectID, User fromUser, User toUser) {
         super(requestID, fromUser, toUser, RequestStatus.PENDING, RequestType.REGISTERPROJECT, projectID);
     }

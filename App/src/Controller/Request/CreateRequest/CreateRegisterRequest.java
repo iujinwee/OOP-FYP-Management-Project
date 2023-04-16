@@ -15,6 +15,10 @@ public class CreateRegisterRequest extends CreateRequest{
     handleInvalidInput handler = new handleInvalidInput();
     Scanner sc = new Scanner(System.in);
 
+    /** 
+     * Create Register Request Constructor.
+     * @param user User Object
+     */
     public CreateRegisterRequest(User user){
         super(user);
         this.type = RequestType.REGISTERPROJECT;

@@ -15,6 +15,9 @@ public abstract class CheckInputFilteredReportMenu extends LoadProjectDB impleme
     public handleInvalidInput handler = new handleInvalidInput(3);
 	public Scanner sc = new Scanner(System.in);
 
+    /** 
+     * Check Input Filtered Report Menu Constructor.
+     */
     public CheckInputFilteredReportMenu() {
         super();
     }

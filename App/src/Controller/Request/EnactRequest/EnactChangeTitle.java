@@ -4,6 +4,10 @@ import Controller.Project.GetInputModifyProject.ChangeProjectTitle;
 
 public class EnactChangeTitle extends EnactRequest {
 
+    /** 
+     * Enact Change Title Constructor.
+     * @param reqID Unique ID of Request Object
+     */
     public EnactChangeTitle(int reqID){
         super(reqID);
     }

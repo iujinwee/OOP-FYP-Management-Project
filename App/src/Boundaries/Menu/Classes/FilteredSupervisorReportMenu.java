@@ -13,6 +13,10 @@ public class FilteredSupervisorReportMenu extends CheckInputFilteredReportMenu {
     private Supervisor supervisor;
     private FYP_Coordinator coord;
     
+    /**
+	 * Filtered Supervisor Report Menu Constructor.
+	 * @param coord FYP Coordinator Object
+	 */
     public FilteredSupervisorReportMenu(FYP_Coordinator coord) {
         this.coord = coord;
         handleException();

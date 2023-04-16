@@ -14,7 +14,11 @@ import Entity.ProjectClass.*;
 
 public class EnactRegisterProject extends EnactRequest {
 
-    public EnactRegisterProject(int reqID) {
+    /** 
+     * Enact Register Project Constructor.
+     * @param reqID Unique ID of Request Object
+     */
+    public EnactRegisterProject(int reqID){
         super(reqID);
     }
 

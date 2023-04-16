@@ -15,6 +15,9 @@ public class StatusReport extends LoadProjectDB implements HeaderInterface, Body
     private ArrayList<Project> reservedProjs = new ArrayList<>(); 
     private ArrayList<Project> allocatedProjs = new ArrayList<>(); 
 
+    /** 
+     * Status Report Constructor.
+     */
     public StatusReport() {
         // Loading Status Report 
         super();
@@ -54,6 +57,9 @@ public class StatusReport extends LoadProjectDB implements HeaderInterface, Body
 		}
     }
 
+    /**
+	 * Method used to sort a list of projects.
+	 */
     private void sortProjectList() {
         for(Object obj : projDB.objectDB){
             Project p = (Project) obj;
@@ -80,7 +86,8 @@ public class StatusReport extends LoadProjectDB implements HeaderInterface, Body
 
     
     /** 
-     * @param arr
+     * Method used to print an array list of projects.
+     * @param arr Array list of Project Objects.
      */
     private void printList(ArrayList<Project> arr){
         if(arr.size()!=0){

@@ -15,6 +15,9 @@ public abstract class CheckInputGenerateReportMenu extends LoadProjectDB impleme
     private handleInvalidInput handler = new handleInvalidInput(3);
 	public Scanner sc = new Scanner(System.in);
 
+    /** 
+     * Check Input Generate Report Menu Constructor.
+     */
     public CheckInputGenerateReportMenu() {
         super();
     }

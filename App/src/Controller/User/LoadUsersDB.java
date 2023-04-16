@@ -11,6 +11,9 @@ public class LoadUsersDB implements LoadFilesInterface{
     public SupervisorDB supDB;
     public FYP_CoordinatorDB fyp_coordDB;
 
+    /** 
+     * Load Users Database Constructor.
+     */
     public LoadUsersDB() {
         loadFiles();
     }
