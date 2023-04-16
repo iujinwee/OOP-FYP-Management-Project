@@ -4,7 +4,7 @@ import Boundaries.Project.ViewPersonalProjects;
 import Boundaries.Request.Classes.ViewIncomingRequestsHistory;
 import Boundaries.Request.Classes.ViewOutgoingRequestsHistory;
 import Controller.Account.ModifyAccountDB.ChangePassword;
-import Controller.Menu.CheckInputUserMenu;
+import Controller.Menu.CheckInputUserMenuInput;
 import Controller.Project.GetInputModifyProject.ChangeProjectTitle;
 import Controller.Project.GetInputModifyProject.CreateProject;
 import Controller.Request.CreateRequest.CreateChangeSupervisorRequest;
@@ -12,7 +12,7 @@ import Controller.Request.ManageRequest.ManageRequest;
 import Entity.UserClass.Supervisor;
 import Exceptions.InvalidInputException;
 
-public class SupervisorMenu extends CheckInputUserMenu {
+public class SupervisorMenu extends CheckInputUserMenuInput {
 
     private Supervisor supervisor;
 

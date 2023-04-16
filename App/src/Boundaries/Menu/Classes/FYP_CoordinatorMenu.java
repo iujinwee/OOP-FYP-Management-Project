@@ -5,14 +5,14 @@ import Boundaries.Project.ViewPersonalProjects;
 import Boundaries.Request.Classes.ViewAllRequestsHistory;
 import Boundaries.Request.Classes.ViewPendingRequests;
 import Controller.Account.ModifyAccountDB.ChangePassword;
-import Controller.Menu.CheckInputUserMenu;
+import Controller.Menu.CheckInputUserMenuInput;
 import Controller.Project.GetInputModifyProject.CreateProject;
 import Controller.Project.ModifyProject.ChangeProjectSupervisor;
 import Controller.Request.ManageRequest.ManageRequest;
 import Entity.UserClass.FYP_Coordinator;
 import Exceptions.InvalidInputException;
 
-public class FYP_CoordinatorMenu extends CheckInputUserMenu{
+public class FYP_CoordinatorMenu extends CheckInputUserMenuInput{
     
     private FYP_Coordinator fyp_coordinator;
 
@@ -36,7 +36,8 @@ public class FYP_CoordinatorMenu extends CheckInputUserMenu{
 		System.out.println("[5] Transfer Student to Replacement Supervisor");
 		System.out.println("[6] View Projects.");
 		System.out.println("[7] Generate Project Report.");
-        System.out.println("[8] Change Password ");
+        System.out.println("[8] Change Password. ");
+		System.out.println("[9] Logout.");
 		System.out.println("[0] Exit Program.");
     }
 
@@ -89,7 +90,7 @@ public class FYP_CoordinatorMenu extends CheckInputUserMenu{
 
 				case 7: 
 					System.out.println("\nOption [7] selected! - Generate Project Report.\n"); 
-					new GenerateReportMenu();
+					new GenerateReportMenu(fyp_coordinator);
 					break;
 
                 case 8:

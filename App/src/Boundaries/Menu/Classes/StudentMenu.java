@@ -4,7 +4,7 @@ import Boundaries.Project.ViewAvailableProjects;
 import Boundaries.Project.ViewPersonalProjects;
 import Boundaries.Request.Classes.ViewOutgoingRequestsHistory;
 import Controller.Account.ModifyAccountDB.ChangePassword;
-import Controller.Menu.CheckInputUserMenu;
+import Controller.Menu.CheckInputUserMenuInput;
 import Controller.Request.CreateRequest.CreateChangeTitleRequest;
 import Controller.Request.CreateRequest.CreateDeregisterRequest;
 import Controller.Request.CreateRequest.CreateRegisterRequest;
@@ -15,7 +15,7 @@ import Entity.UserClass.Student;
 import Exceptions.InvalidInputException;
 
 
-public class StudentMenu extends CheckInputUserMenu {
+public class StudentMenu extends CheckInputUserMenuInput {
     
     private Student student;
     private int pendingCount; 

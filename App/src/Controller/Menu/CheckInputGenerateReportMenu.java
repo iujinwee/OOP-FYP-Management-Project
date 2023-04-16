@@ -21,14 +21,18 @@ public abstract class CheckInputGenerateReportMenu extends LoadProjectDB impleme
 
     @Override
     public void handleException() {
-        try {
-            getInput();
-        } catch(InputMismatchException e) {
-            handler.handleInputMismatchException(e);
-            sc.nextLine();
-
-        } catch(InvalidInputException e) {
-            handler.handleInvalidInputException(e);
-        }
+        while(handler.checkAttempts()) {
+            try {    
+                getInput();
+                break;
+    
+            }catch(InputMismatchException e){
+                handler.handleInputMismatchException(e);
+                sc.nextLine();
+                
+            }catch(InvalidInputException e){
+                handler.handleInvalidInputException(e);
+            }
+        } 
     }
 }
