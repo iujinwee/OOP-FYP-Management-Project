@@ -11,12 +11,21 @@ public class ChangeProjectTitle extends GetInputModifyProject{
     private String newTitle;
     private Supervisor supervisor;
 
+    /** 
+     * Change Project Title Constructor.
+     * @param sup Supervisor Object
+     */
     public ChangeProjectTitle(Supervisor sup) {
         super();
         this.supervisor = sup;
         handleException();
     }
 
+    /** 
+     * Change Project Title Constructor.
+     * @param projID Unique ID of Project Object
+     * @param newTitle New Title of Project
+     */
     public ChangeProjectTitle(int projID, String newTitle) {
         super();
 

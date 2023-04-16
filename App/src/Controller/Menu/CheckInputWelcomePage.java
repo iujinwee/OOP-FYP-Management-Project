@@ -14,6 +14,9 @@ public abstract class CheckInputWelcomePage implements ViewUserMenuInterface, Ge
     private handleInvalidInput handler = new handleInvalidInput(3);
     public Scanner sc = new Scanner(System.in);
 
+    /** 
+     * Check Input Welcome Page Constructor.
+     */
     public CheckInputWelcomePage() {}
 
     @Override

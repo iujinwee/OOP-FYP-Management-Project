@@ -4,6 +4,9 @@ import Entity.AccountClass.Account;
 
 public class AccountDB extends Database {
     
+    /** 
+     * Account Database Constructor.
+     */
     public AccountDB() {
         super("account_list.xlsx", new Account());
     }

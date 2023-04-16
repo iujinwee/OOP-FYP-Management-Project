@@ -18,6 +18,9 @@ public class CreateNewAccount extends ModifyAccountDB implements ViewUserMenuInt
     private handleInvalidInput handler = new handleInvalidInput(3);
     public Scanner sc = new Scanner(System.in);
 
+    /** 
+     * Create New Account Constructor.
+     */
     public CreateNewAccount() {
         super();
         updateDB();

@@ -143,6 +143,10 @@ public class StudentMenu extends CheckInputUserMenuInput {
         }
     }
 
+    /**
+	 * Method to check number of pending requests.
+	 * @return int
+	 */
     private int checkPending(){
         RequestDB d = new RequestDB();
         int count = 0; 

@@ -6,6 +6,9 @@ import Controller.Interfaces.UpdateDBInterface;
 
 public abstract class ModifyAccountDB extends LoadAccountDB implements ExportDBInterface, UpdateDBInterface {
     
+    /** 
+     * Modify Account Database Constructor.
+     */
     public ModifyAccountDB() {
         super();
     }

@@ -5,6 +5,10 @@ import Entity.UserClass.UserDetails.User;
 
 public class ViewOutgoingRequestsHistory extends ViewRequestDB{
     
+    /** 
+     * View Outgoing Requests History Constructor.
+     * @param user User Object
+     */
     public ViewOutgoingRequestsHistory(User user){
         super(user);
     }

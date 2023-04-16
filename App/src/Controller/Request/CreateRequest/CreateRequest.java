@@ -23,6 +23,10 @@ public abstract class CreateRequest extends ModifyRequestDB implements GetInputI
     handleInvalidInput handler = new handleInvalidInput();
     public Scanner sc = new Scanner(System.in);
 
+    /** 
+     * Create Request Constructor.
+     * @param user User Object
+     */
     public CreateRequest(User user){
         super();
         this.fromUser = user;

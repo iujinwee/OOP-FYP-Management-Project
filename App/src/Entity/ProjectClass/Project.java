@@ -15,14 +15,16 @@ public class Project {
 	private ArrayList<String> rejectedID;
 
 	/**
+	 * Project Constructor.
 	 * Represents a Project. Project is created by a Supervisor and assigned to a Student.
-	 * @param id represents the Project ID
-	 * @param title represents the Project Title
-	 * @param student represents the assigned Student object
-	 * @param supervisor represents the Supervisor tagged to the project
 	 */
 	public Project(){}
 
+	/**
+	 * Project Constructor.
+	 * Represents a Project. Project is created by a Supervisor and assigned to a Student.
+	 * @param id Unique ID of Project Object
+	 */
 	public Project(int id){
 		// Create Project
 		ArrayList<String> rejList = new ArrayList<>();
@@ -32,6 +34,16 @@ public class Project {
 		this.projectStatus = ProjectStatus.AVAILABLE;
 	}
 
+	/**
+	 * Project Constructor.
+	 * Represents a Project. Project is created by a Supervisor and assigned to a Student.
+	 * @param id Unique ID of Project Object
+	 * @param title Project Title
+	 * @param student Assigned Student Object
+	 * @param supervisor Supervisor Object tagged to project
+	 * @param status Project Status
+	 * @param rejectedId Array list of deregistered students
+	 */
 	public Project(int id, String title, Student student, Supervisor supervisor, ProjectStatus status, ArrayList<String> rejectedId) {
 		this.projectID = id;
 		this.projectTitle = title;

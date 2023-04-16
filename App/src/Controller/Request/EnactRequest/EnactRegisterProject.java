@@ -8,6 +8,10 @@ import Entity.ProjectClass.ProjectStatus;
 
 public class EnactRegisterProject extends EnactRequest {
 
+    /** 
+     * Enact Register Project Constructor.
+     * @param reqID Unique ID of Request Object
+     */
     public EnactRegisterProject(int reqID){
         super(reqID);
     }

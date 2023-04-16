@@ -16,6 +16,10 @@ public class CreateChangeSupervisorRequest extends CreateRequest{
     SupervisorDB supDB = new SupervisorDB();
     String newSupervisor;
 
+    /** 
+     * Create Change Supervisor Request Constructor.
+     * @param user User Object
+     */
     public CreateChangeSupervisorRequest(User user) {
         super(user);
         this.type = RequestType.CHANGESUPERVISOR;

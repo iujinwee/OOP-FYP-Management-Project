@@ -12,6 +12,10 @@ public class ChangePassword extends ModifyAccountDB implements FooterInterface {
     private String newPassword;
     public Scanner sc = new Scanner(System.in);
 
+    /** 
+     * Change Password Constructor.
+     * @param userID Unique ID of User
+     */
     public ChangePassword(String userID) {
         super();
         this.userID = userID;

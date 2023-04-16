@@ -11,6 +11,9 @@ public abstract class ViewProjects extends LoadProjectDB implements HeaderInterf
     
     public ArrayList<Integer> projects = new ArrayList<>();
 
+    /**
+	 * View Projects Constructor.
+	 */
     public ViewProjects() {
         super();
     }

@@ -12,6 +12,10 @@ public class CreateNewFYP_Coordinator extends ModifyUsersDB {
     private FYP_Coordinator newFYP_Coord;
     public Scanner sc = new Scanner(System.in);
 
+    /** 
+     * Create New FYP Coordinator Constructor.
+     * @param userID Unique ID of User
+     */
     public CreateNewFYP_Coordinator(String userID) {
         super();
         this.userID = userID;

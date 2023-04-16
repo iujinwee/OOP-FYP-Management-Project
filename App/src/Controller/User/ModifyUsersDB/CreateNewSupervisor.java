@@ -12,6 +12,10 @@ public class CreateNewSupervisor extends ModifyUsersDB {
     private Supervisor newSup;
     public Scanner sc = new Scanner(System.in);
 
+    /** 
+     * Create New Supervisor Constructor.
+     * @param userID Unique ID of User
+     */
     public CreateNewSupervisor(String userID) {
         super();
         this.userID = userID;

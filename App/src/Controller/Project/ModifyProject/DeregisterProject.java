@@ -11,6 +11,11 @@ public class DeregisterProject extends ModifyProject {
     private int projID;
     private Student student;
     
+    /** 
+     * Deregister Project Constructor.
+     * @param projID Unique ID of Project Object
+     * @param student Student Object
+     */
     public DeregisterProject(int projID, Student student) {
         super();
         this.projID = projID;

@@ -18,11 +18,10 @@ public class ChangeProjectSupervisor extends GetInputModifyProject {
     private FYP_Coordinator FYP_coordinator; 
     String newSupervisor;
 
-    /**
-     * Change Project Supervisor as per request from Supervisor to FYP Coordinator.
-     * 
-     * @param projID String representing the project ID. 
-     * @param supID int representing the supervisor ID.
+    /** 
+     * Change Project Supervisor Constructor. As per request from Supervisor to FYP Coordinator.
+     * @param projID Unique ID of Project Object
+     * @param supID Unique ID of Supervisor Object
      */
     public ChangeProjectSupervisor(int projID, String supID){
         super();
@@ -34,9 +33,8 @@ public class ChangeProjectSupervisor extends GetInputModifyProject {
     }
 
     /**
-     * Change Project Supervisor directly from the FYP Coordinator.
-     * 
-     * @param coordinator represents the FYP Coordinator Class Object.
+     * Change Project Supervisor Constructor. Directly from the FYP Coordinator.
+     * @param coordinator FYP Coordinator Object
      */
     public ChangeProjectSupervisor(FYP_Coordinator coordinator) {
         super(); 

@@ -14,6 +14,9 @@ public abstract class GetInputModifyProject extends ModifyProject implements Get
     public handleInvalidInput handler = new handleInvalidInput(3);
     public Scanner sc = new Scanner(System.in);
 
+    /** 
+     * Get Input Modify Project Constructor.
+     */
     public GetInputModifyProject(){
         super();
     }

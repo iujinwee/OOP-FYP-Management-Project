@@ -11,6 +11,11 @@ public class RegisterProject extends ModifyProject {
     private int projID;
     private Student student;
     
+    /** 
+     * Register Project Constructor.
+     * @param projID Unique ID of Project Object
+     * @param student Student Object
+     */
     public RegisterProject(int projID, Student student) {
         super();
         this.projID = projID;

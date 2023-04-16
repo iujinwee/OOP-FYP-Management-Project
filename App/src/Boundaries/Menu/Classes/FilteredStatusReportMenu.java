@@ -8,6 +8,10 @@ import Exceptions.InvalidInputException;
 
 public class FilteredStatusReportMenu extends CheckInputFilteredReportMenu {
 
+    /**
+	 * Filtered Status Report Menu Constructor.
+	 * @param coord FYP Coordinator Object
+	 */
     public FilteredStatusReportMenu(FYP_Coordinator coord) {
         handleException();
         new GenerateReportMenu(coord);

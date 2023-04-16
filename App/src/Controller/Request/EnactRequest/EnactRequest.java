@@ -20,6 +20,10 @@ public abstract class EnactRequest extends ModifyRequestDB implements EnactReque
     private boolean enacted = false;
     Scanner sc = new Scanner(System.in);
 
+    /** 
+     * Enact Request Constructor.
+     * @param reqID Unique ID of Request Object
+     */
     public EnactRequest(int reqID){
         super();
         this.request = reqDB.findInstance(reqID);

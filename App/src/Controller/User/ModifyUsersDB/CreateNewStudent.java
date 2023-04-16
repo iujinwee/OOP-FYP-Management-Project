@@ -12,6 +12,10 @@ public class CreateNewStudent extends ModifyUsersDB {
     private Student newStu;
     public Scanner sc = new Scanner(System.in);
 
+    /** 
+     * Create New Student Constructor.
+     * @param userID Unique ID of User
+     */
     public CreateNewStudent(String userID) {
         super();
         this.userID = userID.toUpperCase();

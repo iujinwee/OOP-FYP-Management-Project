@@ -12,6 +12,10 @@ public class CreateChangeTitleRequest extends CreateRequest{
     FYP_CoordinatorDB FYPDB = new FYP_CoordinatorDB();
     String newTitle;
 
+    /** 
+     * Create Change Title Request Constructor.
+     * @param user User Object
+     */
     public CreateChangeTitleRequest(User user){
         super(user);
         this.type = RequestType.CHANGETITLE;
