@@ -52,7 +52,7 @@ public class FYP_CoordinatorMenu extends CheckInputUserMenuInput{
     public void getInput() throws InvalidInputException {
 
 		int choice = -1;
-		while(choice != 0 && choice != 7) {
+		while(choice != 0 && choice != 10) {
 			viewUserMenu();
 
 			System.out.printf("\nEnter option: ");
