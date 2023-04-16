@@ -89,7 +89,7 @@ public class Project {
 	}
 
 	/** 
-	 * Method to get rejectedID.
+	 * Method to get array list of deregistered student ID.
 	 * @return ArrayList
 	 */
 	public ArrayList<String> getRejected(){
@@ -147,8 +147,8 @@ public class Project {
 	}
 
 	/** 
-	 * Method to add unique ID of student who is rejected.
-	 * @param studentID Unique ID of rejected student
+	 * Method to add unique ID of student who deregistered.
+	 * @param studentID Unique ID of deregistered student
 	 */
 	public void addRejected(String studentID){
 		this.getRejected().add(studentID);
