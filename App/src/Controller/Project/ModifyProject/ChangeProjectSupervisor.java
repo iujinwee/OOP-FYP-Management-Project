@@ -42,11 +42,6 @@ public class ChangeProjectSupervisor extends GetInputModifyProject {
         super(); 
         this.FYP_coordinator = coordinator; 
         handleException(); 
-        
-        if(supervisor != null){
-            updateDB();
-            exportDB();
-        }
     }
     
     @Override
@@ -81,13 +76,13 @@ public class ChangeProjectSupervisor extends GetInputModifyProject {
                     try {
                         System.out.printf("\nEnter New Supervisor ID: ");
                         newSupervisor = sc.next();
+                        this.supervisor = supDB.findInstance(newSupervisor);
         
                         // Check for invalid supervisor ID
-                        if(supDB.findInstance(newSupervisor).getUserID()==null) {
+                        if((supervisor==null) || supervisor.getUserID() == null) {
                             throw new InvalidInputException(newSupervisor);
                         } else {
                             proceed = true;
-                            this.supervisor = supDB.findInstance(newSupervisor); 
                             break;
                         }
 
