@@ -26,7 +26,6 @@ public abstract class CheckInputWelcomePage implements ViewUserMenuInterface, Ge
             }catch(InputMismatchException e){
                 handler.handleInputMismatchException(e);
                 sc.nextLine();
-                continue;
                 
             }catch(InvalidInputException e){
                 handler.handleInvalidInputException(e);

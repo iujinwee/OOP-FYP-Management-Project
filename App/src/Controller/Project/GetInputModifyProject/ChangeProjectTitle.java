@@ -62,26 +62,34 @@ public class ChangeProjectTitle extends GetInputModifyProject{
                 System.out.printf("Enter the new title: ");
                 newTitle = sc.next();
 
-                System.out.println("\nChanging Project Title:");
-                System.out.printf("Current: %s\n", projDB.findInstance(projID).getProjectTitle());
-                System.out.printf("New: %s\n", newTitle);
-                System.out.println("\nConfirm?");
-
-                System.out.println("[1] Yes");
-                System.out.println("[0] No");
-                System.out.printf("Enter option: ");
-                int choice = sc.nextInt();
-
-                if (choice == 1) {
-                    updateDB();
-                    System.out.printf("\nSuccessfully changed title to %s!\n\n", newTitle);
-
-                } else if (choice == 0) {
-                    System.out.println("Creating New Project operation is cancelled.\n");
-                } else {
-                    throw new InvalidInputException(choice);
+                if(newTitle.length() == 0){
+                    System.out.println("\nTitle cannot be empty!\n");
+                }
+                
+                else{
+                    System.out.println("\nChanging Project Title:");
+                    System.out.printf("Current: %s\n", projDB.findInstance(projID).getProjectTitle());
+                    System.out.printf("New: %s\n", newTitle);
+                    System.out.println("\nConfirm?");
+    
+                    System.out.println("[1] Yes");
+                    System.out.println("[0] No");
+                    System.out.printf("Enter option: ");
+                    int choice = sc.nextInt();
+    
+                    if (choice == 1) {
+                        updateDB();
+                        System.out.printf("\nSuccessfully changed title to %s!\n\n", newTitle);
+    
+                    } else if (choice == 0) {
+                        System.out.println("Creating New Project operation is cancelled.\n");
+                    } else {
+                        throw new InvalidInputException(choice);
+                    }
+    
                 }
 
+               
             } else {
                 throw new InvalidInputException(projID);
             }
