@@ -13,6 +13,9 @@ public class WelcomePage extends CheckInputWelcomePage implements HeaderInterfac
     
     public Scanner sc = new Scanner(System.in);
 
+    /**
+	 * Welcome Page Constructor.
+	 */
     public WelcomePage(){
         header(); 
         handleException();
