@@ -64,12 +64,13 @@ public class ChangeProjectTitle extends GetInputModifyProject{
 
             System.out.println("Select Project ID to change new title:");
             projID = sc.nextInt();
+            sc.nextLine();
 
             own = projs.projects.contains(projID);
 
             if (own) {
                 System.out.printf("Enter the new title: ");
-                newTitle = sc.next();
+                newTitle = sc.nextLine();
 
                 if(newTitle.length() == 0){
                     System.out.println("\nTitle cannot be empty!\n");
