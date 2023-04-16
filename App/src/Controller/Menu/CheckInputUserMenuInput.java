@@ -6,15 +6,15 @@ import java.util.Scanner;
 import Boundaries.Menu.Interfaces.ExceptionHandlerInterface;
 import Boundaries.Menu.Interfaces.GetInputInterface;
 import Boundaries.Menu.Interfaces.ViewUserMenuInterface;
-import Exceptions.handleInvalidInput;
 import Exceptions.InvalidInputException;
+import Exceptions.handleInvalidInput;
 
-public abstract class CheckInputWelcomePage implements ViewUserMenuInterface, GetInputInterface, ExceptionHandlerInterface {
+public abstract class CheckInputUserMenuInput implements ViewUserMenuInterface, GetInputInterface, ExceptionHandlerInterface {
 
     private handleInvalidInput handler = new handleInvalidInput(3);
-    public Scanner sc = new Scanner(System.in);
+	public Scanner sc = new Scanner(System.in);
 
-    public CheckInputWelcomePage() {}
+    public CheckInputUserMenuInput() {}
 
     @Override
     public void handleException() {
@@ -26,7 +26,6 @@ public abstract class CheckInputWelcomePage implements ViewUserMenuInterface, Ge
             }catch(InputMismatchException e){
                 handler.handleInputMismatchException(e);
                 sc.nextLine();
-                continue;
                 
             }catch(InvalidInputException e){
                 handler.handleInvalidInputException(e);
