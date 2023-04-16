@@ -111,7 +111,6 @@ public class FYP_CoordinatorMenu extends CheckInputUserMenuInput{
 				
 				case 0: 
 					System.out.println("\nOption [0] selected! - Exit Program.\n");
-					new WelcomePage();
 					break;
 
 			default:
