@@ -6,6 +6,10 @@ import Entity.UserClass.UserDetails.User;
 
 public class ViewAvailableProjects extends ViewProjects {
 
+    /**
+	 * View Available Projects Constructor.
+	 * @param user User Object
+	 */
     public ViewAvailableProjects(User user){
         super();
         header();

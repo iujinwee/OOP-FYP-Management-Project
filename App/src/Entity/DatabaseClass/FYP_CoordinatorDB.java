@@ -4,6 +4,9 @@ import Entity.UserClass.FYP_Coordinator;
 
 public class FYP_CoordinatorDB extends Database{
 
+    /** 
+     * FYP Coordinator Database Constructor.
+     */
     public FYP_CoordinatorDB(){
         super("FYP_coordinator.xlsx", new FYP_Coordinator());
     }

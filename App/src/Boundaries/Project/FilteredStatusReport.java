@@ -7,20 +7,23 @@ import Boundaries.Menu.Interfaces.FooterInterface;
 import Boundaries.Menu.Interfaces.HeaderInterface;
 import Controller.Project.LoadProjectDB;
 import Entity.ProjectClass.Project;
+import Entity.ProjectClass.ProjectStatus;
 
-public class StatusReport extends LoadProjectDB implements HeaderInterface, BodyInterface, FooterInterface {
+public class FilteredStatusReport extends LoadProjectDB implements HeaderInterface, BodyInterface, FooterInterface {
+    
+    private ProjectStatus status;
+    private ArrayList<Project> projectsList = new ArrayList<>();
 
-    private ArrayList<Project> availableProjs = new ArrayList<>(); 
-    private ArrayList<Project> unavailableProjs = new ArrayList<>(); 
-    private ArrayList<Project> reservedProjs = new ArrayList<>(); 
-    private ArrayList<Project> allocatedProjs = new ArrayList<>(); 
-
-    /** 
-     * Status Report Constructor.
-     */
-    public StatusReport() {
+    /**
+	 * Filtered Status Report Constructor.
+	 * @param status Status of Project
+	 */
+    public FilteredStatusReport(ProjectStatus status){ 
         // Loading Status Report 
-        super();
+        super(); 
+        this.status = status;
+        
+        // Sorting Project List 
         sortProjectList();
 
         // Displaying Report
@@ -28,10 +31,10 @@ public class StatusReport extends LoadProjectDB implements HeaderInterface, Body
         body();
         footer();
     }
-    
+
     @Override
     public void header() {
-        System.out.println("\nPROJECT REPORT (STATUS)");
+        System.out.printf("\nPROJECT REPORT (%s)\n", status.toString());
         System.out.println("=========================");
         System.out.println(String.format("%-4s %-85s %-10s %-15s %-15s", "ID", "Title", "Status", "Student", "Supervisor"));
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
@@ -39,18 +42,19 @@ public class StatusReport extends LoadProjectDB implements HeaderInterface, Body
 
     @Override
     public void body() {
-        printList(allocatedProjs);
-        printList(reservedProjs);
-        printList(availableProjs);
-        printList(unavailableProjs);
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
-        System.out.println(String.format("Total: %-4d | Allocated: %-5d | Reserved: %-5d | Available: %-5d | Unavailable: %-5d ", projDB.size, allocatedProjs.size(), reservedProjs.size(), availableProjs.size(), unavailableProjs.size()));
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
+        if((projectsList != null ) || (projectsList.size()!=0)){
+            printList(projectsList);
+            System.out.println();
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
+            System.out.printf("----------------------------------------                  Total: %d                 ---------------------------------------------\n", projectsList.size());
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
+        }
     }
+        
     
     @Override
     public void footer() {
-        if(projDB.objectDB.size()==0) {
+        if ((projectsList == null) || (projectsList.size()==0)) {
 			System.out.println("\n==============================================   NO PROJECTS FOUND!   ==============================================\n");
 		} else {
 			System.out.println("\n==============================================   END OF PROJECT REPORT   ==============================================\n");
@@ -63,23 +67,8 @@ public class StatusReport extends LoadProjectDB implements HeaderInterface, Body
     private void sortProjectList() {
         for(Object obj : projDB.objectDB){
             Project p = (Project) obj;
-            switch(p.getProjectStatus()){
-                case ALLOCATED:
-                    allocatedProjs.add(p);
-                    break;
-
-                case AVAILABLE:
-                    availableProjs.add(p);
-                    break;
-
-                case UNAVAILABLE: 
-                    unavailableProjs.add(p);
-                    break;
-
-                case RESERVED: 
-                    reservedProjs.add(p);
-                    break;
-
+            if(p.getProjectStatus().compareTo(status)==0){
+                projectsList.add(p);
             }
         }
     }
@@ -87,7 +76,7 @@ public class StatusReport extends LoadProjectDB implements HeaderInterface, Body
     
     /** 
      * Method used to print an array list of projects.
-     * @param arr Array list of Project Objects.
+     * @param arr Array list of Project Objects
      */
     private void printList(ArrayList<Project> arr){
         if(arr.size()!=0){

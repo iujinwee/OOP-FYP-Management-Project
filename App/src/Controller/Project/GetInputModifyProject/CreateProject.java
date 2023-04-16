@@ -10,6 +10,10 @@ public class CreateProject extends GetInputModifyProject{
 	private Project newProject;
 	private String newTitle;
 
+	/** 
+     * Create Project Constructor.
+     * @param supervisor Supervisor Object
+     */
     public CreateProject(Supervisor supervisor) {
 		super();
         this.supervisor = supervisor;

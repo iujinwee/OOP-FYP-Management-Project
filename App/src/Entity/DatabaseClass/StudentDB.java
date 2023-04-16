@@ -4,6 +4,9 @@ import Entity.UserClass.Student;
 
 public class StudentDB extends Database{
 
+    /** 
+     * Student Database Constructor.
+     */
     public StudentDB(){
         super("student_list.xlsx", new Student());
     }

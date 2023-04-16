@@ -4,6 +4,10 @@ import Controller.Project.ModifyProject.ChangeProjectSupervisor;
 
 public class EnactChangeSupervisor extends EnactRequest {
 
+    /** 
+     * Enact Change Supervisor Constructor.
+     * @param reqID Unique ID of Request Object
+     */
     public EnactChangeSupervisor(int reqID){
         super(reqID);
     }

@@ -14,15 +14,17 @@ public class ChangeProjectSupervisor extends GetInputModifyProject {
 
     private int projID;
     private Supervisor supervisor;
-    public SupervisorDB supDB = new SupervisorDB();
+    private SupervisorDB supDB = new SupervisorDB();
     private FYP_Coordinator FYP_coordinator; 
     String newSupervisor;
 
-    
+    /** 
+     * Change Project Supervisor Constructor. As per request from Supervisor to FYP Coordinator.
+     * @param projID Unique ID of Project Object
+     * @param supID Unique ID of Supervisor Object
+     */
     public ChangeProjectSupervisor(int projID, String supID){
         super();
-
-        SupervisorDB supDB = new SupervisorDB();
         this.projID = projID;
         this.supervisor = supDB.findInstance(supID);
 
@@ -30,13 +32,14 @@ public class ChangeProjectSupervisor extends GetInputModifyProject {
         exportDB();
     }
 
+    /**
+     * Change Project Supervisor Constructor. Directly from the FYP Coordinator.
+     * @param coordinator FYP Coordinator Object
+     */
     public ChangeProjectSupervisor(FYP_Coordinator coordinator) {
         super(); 
-        this.FYP_coordinator =  coordinator; 
+        this.FYP_coordinator = coordinator; 
         handleException(); 
-        
-        updateDB();
-        exportDB();
     }
     
     @Override
@@ -57,9 +60,7 @@ public class ChangeProjectSupervisor extends GetInputModifyProject {
             // View Info
             projs.projDB.findInstance(projID).viewFullProjectInfo();
             
- 
-
-			boolean allocated = (projs.projDB.findInstance(projID).getProjectStatus() == ProjectStatus.ALLOCATED);
+			boolean allocated = projs.projDB.findInstance(projID).getProjectStatus().compareTo(ProjectStatus.ALLOCATED)==0;
 
             if(allocated) {
 			
@@ -73,13 +74,13 @@ public class ChangeProjectSupervisor extends GetInputModifyProject {
                     try {
                         System.out.printf("\nEnter New Supervisor ID: ");
                         newSupervisor = sc.next();
+                        this.supervisor = supDB.findInstance(newSupervisor);
         
                         // Check for invalid supervisor ID
-                        if(supDB.findInstance(newSupervisor).getUserID()==null) {
+                        if((supervisor==null) || supervisor.getUserID() == null) {
                             throw new InvalidInputException(newSupervisor);
                         } else {
                             proceed = true;
-                            this.supervisor = supDB.findInstance(newSupervisor); 
                             break;
                         }
 
@@ -114,7 +115,9 @@ public class ChangeProjectSupervisor extends GetInputModifyProject {
 
     @Override
     public void updateDB() {
-        supDB = new SupervisorDB();
+
+        
+
         if (supervisor.getNumAssignedProjects() >= 2) {
             System.out.println("New supervisor has reached project limit.");
         } 

@@ -6,6 +6,9 @@ import Entity.DatabaseClass.RequestDB;
 public abstract class LoadRequestDB implements LoadFilesInterface {
     public RequestDB reqDB;
 
+    /** 
+     * Load Request Database Constructor.
+     */
     public LoadRequestDB(){
         loadFiles();
     }

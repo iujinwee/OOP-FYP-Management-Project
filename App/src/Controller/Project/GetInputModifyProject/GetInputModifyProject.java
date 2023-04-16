@@ -12,8 +12,11 @@ import Exceptions.handleInvalidInput;
 public abstract class GetInputModifyProject extends ModifyProject implements GetInputInterface, ExceptionHandlerInterface {
 
     public handleInvalidInput handler = new handleInvalidInput(3);
-    public Scanner sc = new Scanner(System.in);
+    public Scanner sc = new Scanner(System.in).useDelimiter("\n");
 
+    /** 
+     * Get Input Modify Project Constructor.
+     */
     public GetInputModifyProject(){
         super();
     }

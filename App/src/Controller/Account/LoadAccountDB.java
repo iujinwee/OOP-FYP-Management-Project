@@ -7,6 +7,9 @@ public class LoadAccountDB implements LoadFilesInterface {
 
     public AccountDB accDB;
 
+    /** 
+     * Load Account Database Constructor.
+     */
     public LoadAccountDB() {
         loadFiles();
     }

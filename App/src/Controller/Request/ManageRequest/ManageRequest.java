@@ -25,6 +25,10 @@ public class ManageRequest implements GetInputInterface, HeaderInterface, UserBo
     private handleInvalidInput handler = new handleInvalidInput();
     private Request selectedRequest;
 
+    /** 
+     * Manage Request Constructor.
+     * @param user User Object
+     */
     public ManageRequest(User user){
         header();
         body(user);
