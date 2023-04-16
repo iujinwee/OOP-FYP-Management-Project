@@ -13,25 +13,29 @@ public class handleInvalidInput {
         this.MAX_ATTEMPTS = attempts;
     }
 
-	
     /** 
      * @param e
      */
     public void handleInputMismatchException(InputMismatchException e){
         System.out.println("\nERROR!");
-		System.out.println("Invalid Input. Please enter a number.\n");
-        if(MAX_ATTEMPTS!=0){
-            System.out.printf("Remaining Attempts left: %d\n\n", MAX_ATTEMPTS - ++attempts);
-        }
+		System.out.println("Invalid Input. Please enter a number.");
+        ++attempts;
+        printWarning();
+
 	}	
 
 	public void handleInvalidInputException(InvalidInputException e){
         System.out.println("\nERROR!");
-		System.out.println("Invalid Input. Please select one of the following options.\n");
-        if(MAX_ATTEMPTS!=0){
-            System.out.printf("Remaining Attempts left: %d\n\n", MAX_ATTEMPTS - ++attempts);
-        }
+		System.out.println("Invalid Input. Please select one of the following options.");
+        ++attempts;
+        printWarning();
 	}	
+
+    public void printWarning(){
+        if(MAX_ATTEMPTS!=0){
+            System.out.printf("\nRemaining Attempts left: %d\n\n", MAX_ATTEMPTS - attempts);
+        }
+    }
 
     public boolean checkAttempts(){
         if(attempts==MAX_ATTEMPTS){
@@ -39,5 +43,9 @@ public class handleInvalidInput {
             return false;
         }
         return true;
+    }
+
+    public int getAttempts(){
+        return attempts;
     }
 }

@@ -39,7 +39,7 @@ public class Student extends User {
 	// GETTER FUNCTIONS
 	/** 
 	 * Method used to get unique ID of student.
-	 * @return Unique ID of student
+	 * @return String
 	 */
 	public String getStudentID() {
 		return this.studentID;
