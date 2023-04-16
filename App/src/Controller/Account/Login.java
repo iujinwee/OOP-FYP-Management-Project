@@ -15,6 +15,9 @@ public class Login extends LoadAccountDB implements HeaderInterface, FooterInter
     private String inputPassword;
     public Scanner sc = new Scanner(System.in);
 
+    /** 
+     * Login Constructor.
+     */
     public Login() {
         super();
         
@@ -61,7 +64,8 @@ public class Login extends LoadAccountDB implements HeaderInterface, FooterInter
 
     
     /** 
-     * @param inputUserID
+     * Method used to check input ID of User.
+     * @param inputUserID Unique ID of User 
      * @return boolean
      */
     private boolean checkUserID(String inputUserID) {
@@ -73,6 +77,11 @@ public class Login extends LoadAccountDB implements HeaderInterface, FooterInter
         }
     }
     
+    /** 
+     * Method used to check input password of User.
+     * @param inputUserID Password of User
+     * @return boolean
+     */
     private boolean checkPassword(String inputPassword) {
 		if(inputPassword.compareTo(temp.getPassword()) == 0) {
 			return true;
@@ -81,6 +90,9 @@ public class Login extends LoadAccountDB implements HeaderInterface, FooterInter
 		}
 	}
 
+    /** 
+     * Method used to set up account.
+     */
     private void setupAccount() {
         acc.setUserID(temp.getUserID());
 		acc.setPassword(temp.getPassword());

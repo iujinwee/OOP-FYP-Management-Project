@@ -14,6 +14,10 @@ public class FilteredStatusReport extends LoadProjectDB implements HeaderInterfa
     private ProjectStatus status;
     private ArrayList<Project> projectsList = new ArrayList<>();
 
+    /**
+	 * Filtered Status Report Constructor.
+	 * @param status Status of Project
+	 */
     public FilteredStatusReport(ProjectStatus status){ 
         // Loading Status Report 
         super(); 
@@ -57,7 +61,9 @@ public class FilteredStatusReport extends LoadProjectDB implements HeaderInterfa
 		}
     }
 
-    
+    /**
+	 * Method used to sort a list of projects.
+	 */
     private void sortProjectList() {
         for(Object obj : projDB.objectDB){
             Project p = (Project) obj;
@@ -69,7 +75,8 @@ public class FilteredStatusReport extends LoadProjectDB implements HeaderInterfa
 
     
     /** 
-     * @param arr
+     * Method used to print an array list of projects.
+     * @param arr Array list of Project Objects
      */
     private void printList(ArrayList<Project> arr){
         if(arr.size()!=0){

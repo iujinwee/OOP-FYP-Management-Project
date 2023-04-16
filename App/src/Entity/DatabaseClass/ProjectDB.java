@@ -8,6 +8,9 @@ public class ProjectDB extends Database{
 
 	private int projectLimit = 2;
 
+	/** 
+     * Project Database Constructor.
+     */
     public ProjectDB(){
         super("rollover_project.xlsx", new Project());
     }

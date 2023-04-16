@@ -6,6 +6,10 @@ import Entity.UserClass.Student;
 
 public class EnactDeregisterProject extends EnactRequest {
 
+    /** 
+     * Enact Deregister Project Constructor.
+     * @param reqID Unique ID of Request Object
+     */
     public EnactDeregisterProject(int reqID){
         super(reqID);
     }

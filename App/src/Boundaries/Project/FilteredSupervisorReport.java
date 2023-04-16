@@ -14,6 +14,10 @@ public class FilteredSupervisorReport extends LoadProjectDB implements HeaderInt
     private Supervisor supervisor;
     private ArrayList<Project> projectsList = new ArrayList<>();
 
+    /**
+	 * Filtered Supervisor Report Constructor.
+	 * @param supervisor Supervisor Object
+	 */
     public FilteredSupervisorReport(Supervisor supervisor){ 
         // Loading Status Report 
         super(); 
@@ -56,7 +60,9 @@ public class FilteredSupervisorReport extends LoadProjectDB implements HeaderInt
 		}
     }
 
-    
+    /**
+	 * Method used to sort a list of projects.
+	 */
     private void sortProjectList() {
         for(Object obj : projDB.objectDB){
             Project p = (Project) obj;
@@ -68,7 +74,8 @@ public class FilteredSupervisorReport extends LoadProjectDB implements HeaderInt
 
     
     /** 
-     * @param arr
+     * Method used to print an array list of projects.
+     * @param arr Array list of Project Objects
      */
     private void printList(ArrayList<Project> arr){
         if(arr.size()!=0){

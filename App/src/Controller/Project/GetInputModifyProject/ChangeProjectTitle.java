@@ -11,12 +11,21 @@ public class ChangeProjectTitle extends GetInputModifyProject{
     private String newTitle;
     private Supervisor supervisor;
 
+    /** 
+     * Change Project Title Constructor.
+     * @param sup Supervisor Object
+     */
     public ChangeProjectTitle(Supervisor sup) {
         super();
         this.supervisor = sup;
         handleException();
     }
 
+    /** 
+     * Change Project Title Constructor.
+     * @param projID Unique ID of Project Object
+     * @param newTitle New Title of Project
+     */
     public ChangeProjectTitle(int projID, String newTitle) {
         super();
 
@@ -55,12 +64,13 @@ public class ChangeProjectTitle extends GetInputModifyProject{
 
             System.out.println("Select Project ID to change new title:");
             projID = sc.nextInt();
+            sc.nextLine();
 
             own = projs.projects.contains(projID);
 
             if (own) {
                 System.out.printf("Enter the new title: ");
-                newTitle = sc.next();
+                newTitle = sc.nextLine();
 
                 if(newTitle.isBlank()){
                     System.out.println("\nTitle cannot be empty!\n");

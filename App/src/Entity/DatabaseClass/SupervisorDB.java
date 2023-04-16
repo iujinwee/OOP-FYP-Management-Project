@@ -4,6 +4,9 @@ import Entity.UserClass.Supervisor;
 
 public class SupervisorDB extends Database{
 
+    /** 
+     * Supervisor Database Constructor.
+     */
     public SupervisorDB(){
         super("faculty_list.xlsx", new Supervisor());
     }

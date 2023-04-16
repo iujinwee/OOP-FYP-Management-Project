@@ -14,6 +14,10 @@ import Entity.UserClass.UserDetails.User;
 public abstract class ViewRequestDB extends LoadRequestDB implements ViewRequestInterface, HeaderInterface, UserBodyInterface, FooterInterface{
     public ArrayList<Integer> requests = new ArrayList<>();
 
+    /** 
+     * View Request Database Constructor.
+     * @param user User Object
+     */
     public ViewRequestDB(User user){
         super();
         header();

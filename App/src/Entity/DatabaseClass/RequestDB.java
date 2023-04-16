@@ -4,7 +4,9 @@ import Entity.RequestClass.Request;
 
 public class RequestDB extends Database{
 
-	
+	/** 
+     * Request Database Constructor.
+     */
 	public RequestDB(){
 		super("request_list.xlsx", new Request());
 	}
