@@ -6,6 +6,7 @@ import Boundaries.Request.Classes.ViewAllRequestsHistory;
 import Boundaries.Request.Classes.ViewPendingRequests;
 import Controller.Account.ModifyAccountDB.ChangePassword;
 import Controller.Menu.CheckInputUserMenuInput;
+import Controller.Project.GetInputModifyProject.ChangeProjectTitle;
 import Controller.Project.GetInputModifyProject.CreateProject;
 import Controller.Project.ModifyProject.ChangeProjectSupervisor;
 import Controller.Request.ManageRequest.ManageRequest;
@@ -26,18 +27,20 @@ public class FYP_CoordinatorMenu extends CheckInputUserMenuInput{
 		handleException();
     }
 
-    @Override
+    
+	@Override
     public void viewUserMenu() {
-        System.out.println("\n=============  FYP COORDINATOR MENU  ==============");
+		System.out.println("\n=============  FYP COORDINATOR MENU  ==============");
 		System.out.println("[1] View All Requests.");
 		System.out.println("[2] Manage Requests.");
 		System.out.println("[3] View Pending Requests.");
 		System.out.println("[4] Create New Project.");
-		System.out.println("[5] Transfer Student to Replacement Supervisor");
-		System.out.println("[6] View Projects.");
-		System.out.println("[7] Generate Project Report.");
-        System.out.println("[8] Change Password. ");
-		System.out.println("[9] Logout.");
+		System.out.println("[5] Change Title of Project");
+		System.out.println("[6] Transfer Student to Replacement Supervisor");
+		System.out.println("[7] View Projects.");
+		System.out.println("[8] Generate Project Report.");
+		System.out.println("[9] Change Password. ");
+		System.out.println("[10] Logout.");
 		System.out.println("[0] Exit Program.");
     }
 
@@ -48,69 +51,72 @@ public class FYP_CoordinatorMenu extends CheckInputUserMenuInput{
 	@Override
     public void getInput() throws InvalidInputException {
 
-        int choice = -1;
-        while(choice != 0 && choice != 7) {
-            viewUserMenu();
+		int choice = -1;
+		while(choice != 0 && choice != 7) {
+			viewUserMenu();
 
-            System.out.printf("\nEnter option: ");
-            choice = sc.nextInt();
+			System.out.printf("\nEnter option: ");
+			choice = sc.nextInt();
 
-            switch(choice){
-				case 1: 
-					System.out.println("\nOption [1] selected! - View All Requests.\n");
-					new ViewAllRequestsHistory(fyp_coordinator);
-					break;
+		switch(choice){
+			case 1: 
+			System.out.println("\nOption [1] selected! - View All Requests.\n");
+			new ViewAllRequestsHistory(fyp_coordinator);
+			break;
 
-				case 2: 
-					System.out.println("\nOption [2] selected! - Manage Requests.\n");
-					new ManageRequest(fyp_coordinator);
+			case 2: 
+				System.out.println("\nOption [2] selected! - Manage Requests.\n");
+				new ManageRequest(fyp_coordinator);
+				break;
 
-					break;
+			case 3:
+				System.out.println("\nOption [3] selected! - View Pending Requests.\n");
+				new ViewPendingRequests(fyp_coordinator);
+				break;
 
-				case 3:
-					System.out.println("\nOption [3] selected! - View Pending Requests.\n");
-					new ViewPendingRequests(fyp_coordinator);
-					break;
+			case 4:
+				System.out.println("\nOption [4] selected! - Create New Project.\n");
+				new CreateProject(fyp_coordinator);
+				break;
 
-				case 4:
-					System.out.println("\nOption [4] selected! - Create New Project.\n");
-					new CreateProject(fyp_coordinator);
-					break;
-				
-				case 5: 
-					System.out.println("\nOption [5] selected! - Transfer Student to Replacement Supervisor.\n");
-					new ChangeProjectSupervisor(fyp_coordinator);
-					break;
-				
-				case 6:	
-				
-					System.out.println("\nOption [6] selected! - View Projects.\n");
-					viewProjectOption();
-					break;
+			case 5: 
+				System.out.println("\nOption [5] selected! - Change Title of Project.\n");
+				new ChangeProjectTitle(fyp_coordinator);
+				break;
 
-				case 7: 
-					System.out.println("\nOption [7] selected! - Generate Project Report.\n"); 
-					new GenerateReportMenu(fyp_coordinator);
-					break;
+			case 6: 
+				System.out.println("\nOption [6] selected! - Transfer Student to Replacement Supervisor.\n");
+				new ChangeProjectSupervisor(fyp_coordinator);
+				break;
+			
+			case 7:  
+				System.out.println("\nOption [7] selected! - View Projects.\n");
+				viewProjectOption();
+				break;
 
-                case 8:
-                    System.out.println("\nOption [8] selected! - Change Password.\n");
-                    new ChangePassword(fyp_coordinator.getUserID());
-                    break;
-				
-				case 9:
-                    System.out.println("\nOption [9] selected! - Log Out.\n");
-                    new WelcomePage();
-                    break;
-				
-				case 0: 
-					System.out.println("\nOption [0] selected! - Exit Program.\n");
-					new WelcomePage();
-					break;
+			case 8: 
+				System.out.println("\nOption [8] selected! - Generate Project Report.\n"); 
+				new GenerateReportMenu(fyp_coordinator);
+				break;
 
-				default:
-					throw new InvalidInputException(choice);
-			}
+			case 9:
+				System.out.println("\nOption [9] selected! - Change Password.\n");
+				new ChangePassword(fyp_coordinator.getUserID());
+				break;
+			
+			case 10:
+				System.out.println("\nOption [10] selected! - Log Out.\n");
+				new WelcomePage();
+				break;
+			
+			case 0: 
+				System.out.println("\nOption [0] selected! - Exit Program.\n");
+				new WelcomePage();
+				break;
+
+			default:
+				throw new InvalidInputException(choice);
+		}
 		}
     }
 	
