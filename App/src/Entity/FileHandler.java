@@ -28,8 +28,8 @@ import Entity.UserClass.Supervisor;
 import Entity.UserClass.UserDetails.User;
 
 public class FileHandler {
-    private final static String dataPath = "\\App\\data\\";
-    private final static String macDataPath = "/App/data/";
+    private static String dataPath;
+    private static String macDataPath;
 
     
     /** 
@@ -43,7 +43,15 @@ public class FileHandler {
         StudentDB stu;
         SupervisorDB sup;
         String className;
+        String dir = System.getProperty("user.dir"); 
 
+        if(dir.endsWith("App")){
+            dataPath = "\\data\\";
+            macDataPath = "/data/";
+        }else{
+            dataPath = "\\App\\data\\";
+            macDataPath = "/App/data/";
+        }
         // Path Name
         final String OS = System.getProperty("os.name").toLowerCase();
         if (OS.indexOf("mac") >= 0) {
