@@ -30,12 +30,12 @@ We incorporated Entity-Controller-Boundary (ECB) code structure, SOLID principle
 <!-- Object Oriented Programming Concepts -->
 ## Object-Oriented Programming Concepts 🖌️
 
-### Entity-Controller-Boundary Structure
+### Entity-Controller-Boundary Structure 🛠️
 * `Entities` are objects representing the system data, ensuring that data manipulations are consistent throughout the application and adheres to a strict set of rules.
 * `Boundaries` are objects that interface with the systems. They lie on the periphery of the system (but still within it), and often interact with the users, such as displaying the user menu and getting user inputs.
 * `Controllers` are objects that act as the mediator between Boundaries and Entities, allowing us to modify the logic control.
 
-### SOLID Principles 
+### SOLID Principles 🕹️
 * `Single Responsibility Principle [S]` 
   - Each class is assigned to **only one single responsibility**, and only one reason to change it.
   - Enables lower coupling as there will be fewer dependencies across different classes.
